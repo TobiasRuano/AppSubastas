@@ -102,7 +102,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
                 new AlertDialog.Builder(IniciarSesionActivity.this)
                         .setTitle(titulo)
                         .setMessage(mensaje)
-                        .setPositiveButton(android.R.string.ok, null)
+                        .setPositiveButton("Aceptar", null)
                         .show();
             }
         });

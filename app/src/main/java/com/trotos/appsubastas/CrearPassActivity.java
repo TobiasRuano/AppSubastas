@@ -58,7 +58,7 @@ public class CrearPassActivity extends AppCompatActivity {
                 new AlertDialog.Builder(CrearPassActivity.this)
                         .setTitle(titulo)
                         .setMessage(mensaje)
-                        .setPositiveButton(android.R.string.ok, null)
+                        .setPositiveButton("Aceptar", null)
                         .show();
             }
         });
