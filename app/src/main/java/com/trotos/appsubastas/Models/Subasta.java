@@ -3,14 +3,14 @@ package com.trotos.appsubastas;
 import java.io.Serializable;
 import java.util.List;
 
-public class Subastas implements Serializable {
+public class Subasta implements Serializable {
     private String color;
     private String name;
     private String state;
     private String category;
     private String id;
 
-    public Subastas(String color, String name, String state, String category, String id) {
+    public Subasta(String color, String name, String state, String category, String id) {
         this.color = color;
         this.name = name;
         this.state = state;

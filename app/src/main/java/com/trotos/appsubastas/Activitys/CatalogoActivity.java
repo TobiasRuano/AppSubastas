@@ -35,7 +35,7 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogo);
 
-        Subastas element = (Subastas) getIntent().getSerializableExtra("Subastas");
+        Subasta element = (Subasta) getIntent().getSerializableExtra("Subastas");
         nameDescriptionTextView = findViewById(R.id.nameDescriptionTextView);
         stateDescriptionTextView = findViewById(R.id.stateDescriptionTextView);
         categoryDescriptionTextView = findViewById(R.id.categoryDescriptionTextView);

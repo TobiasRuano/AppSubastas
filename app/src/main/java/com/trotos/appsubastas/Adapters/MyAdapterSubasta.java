@@ -16,16 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.ViewHolder> {
-    private List<Subastas> mData;
+    private List<Subasta> mData;
     private LayoutInflater mInflater;
     private Context context;
     final OnItemClickListener listener;
 
     public interface OnItemClickListener {
-        void onItemClick(Subastas item);
+        void onItemClick(Subasta item);
     }
 
-    public MyAdapterSubasta(List<Subastas> itemList, Context context, OnItemClickListener listener){
+    public MyAdapterSubasta(List<Subasta> itemList, Context context, OnItemClickListener listener){
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
@@ -46,7 +46,7 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
         holder.bindData(mData.get(position));
     }
 
-    public void setItems(List<Subastas> items){
+    public void setItems(List<Subasta> items){
         mData = items;
     }
 
@@ -64,7 +64,7 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
             cv = itemView.findViewById(R.id.cv2);
         }
 
-        public void bindData(final Subastas item){
+        public void bindData(final Subasta item){
             iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
             name.setText(item.getName());
             state.setText(item.getState());

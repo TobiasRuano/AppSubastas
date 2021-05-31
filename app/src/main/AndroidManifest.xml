@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.trotos.appsubastas">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,24 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppSubastas">
-        <activity android:name=".AgregarMedioPago"></activity>
+
+        <activity android:name=".AgregarMedioPago" />
         <activity android:name=".MediosPagoActivity" />
         <activity android:name=".CrearPassActivity" />
         <activity android:name=".CrearUsuarioActivity" />
-
-        <!---Your comment
-        <activity android:name=".IniciarSesionActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        -->
-
-        <activity android:name=".DescripcionActivity"></activity>
-        <activity android:name=".CatalogoActivity"></activity>
+        <activity android:name=".DescripcionActivity" />
+        <activity android:name=".CatalogoActivity" />
         <activity android:name=".SubastaActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
