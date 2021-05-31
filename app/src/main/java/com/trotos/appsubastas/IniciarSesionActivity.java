@@ -60,6 +60,9 @@ public class IniciarSesionActivity extends AppCompatActivity {
                     if (userHasPass) {
                         if (checkPassword()) {
                             //TODO: a la API!
+
+                            Intent intent = new Intent(IniciarSesionActivity.this, MenuLogueado.class);
+                            startActivity(intent);
                         } else {
                             showAlert("Usuario o Contraseña invalidos", "Por favor, chequea que los datos ingresados sean correctos.");
                         }
