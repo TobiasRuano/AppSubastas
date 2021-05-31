@@ -29,7 +29,7 @@ public class DescripcionActivity extends AppCompatActivity {
 
     TextView valorActualOVendido;
     TextView precioBaseView;
-    TextView historialPujas;
+    TextView historialPujasView;
 
     List<CarouselItem> list = new ArrayList<>();
 
@@ -61,23 +61,34 @@ public class DescripcionActivity extends AppCompatActivity {
         valorActualOVendido = findViewById(R.id.valorActualOVendido);
         precioBaseView = findViewById(R.id.precioBaseView);
         botonRegistrar = findViewById(R.id.botonRegistrar);
+        historialPujasView = findViewById(R.id.historialPujasView);
 
 
         //HARDCODEADO
         if(estaRegistrado == false){
             editarNumeroDeTexto.setVisibility(View.GONE);
             botonOfertar.setVisibility(View.GONE);
+            valorActualOVendido.setVisibility(View.GONE);
+            valorActualDescriptionTextView3.setVisibility(View.GONE);
+            precioBaseDescriptionTextView3.setVisibility(View.GONE);
+            precioBaseView.setVisibility(View.GONE);
+            historialPujasView.setVisibility(View.GONE);
         }else {
             botonRegistrar.setVisibility(View.GONE);
         }
 
+        //En Curso
         if(element.getEstado().equals("En Curso")){
             valorActualOVendido.setText("Valor Actual:");
             valorActualDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
         }
+        //Programada
         if(element.getEstado().equals("Programada")){
             valorActualOVendido.setVisibility(View.GONE);
             valorActualDescriptionTextView3.setVisibility(View.GONE);
+            editarNumeroDeTexto.setVisibility(View.GONE);
+            botonOfertar.setVisibility(View.GONE);
+            historialPujasView.setVisibility(View.GONE);
             precioBaseDescriptionTextView3.setTextSize(30);
             precioBaseDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
 
@@ -85,6 +96,7 @@ public class DescripcionActivity extends AppCompatActivity {
             precioBaseView.setTextColor(Color.parseColor("#FF669900"));
 
         }
+        //Finalizada
         if(element.getEstado().equals("Finalizada")){
             editarNumeroDeTexto.setVisibility(View.GONE);
             botonOfertar.setVisibility(View.GONE);
@@ -204,8 +216,7 @@ public class DescripcionActivity extends AppCompatActivity {
     }
 
     private void verHistorialPujas() {
-        historialPujas = findViewById(R.id.historialPujas);
-        historialPujas.setOnClickListener(new View.OnClickListener() {
+        historialPujasView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //HARDCODEADO
