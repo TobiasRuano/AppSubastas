@@ -3,12 +3,19 @@ package com.trotos.appsubastas;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CrearPassActivity extends AppCompatActivity {
 
@@ -22,17 +29,14 @@ public class CrearPassActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_pass);
 
-        titleText = (TextView) findViewById(R.id.titleText);
-        // TODO: obtener el nombre del usuario desde la API!
-        firstPasswordText = (EditText) findViewById(R.id.passwordEditText);
-        secondPasswordText = (EditText) findViewById(R.id.secondPasswordEditText);
-        createPasswordButton = (Button) findViewById(R.id.createPasswordButton);
+        configureUI();
 
         createPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (checkInput()) {
-                    // TODO: A la API!
+                    String password = firstPasswordText.getText().toString();
+                    createPassword(password);
                     showAlert("Exito!", "Contraseña creada de forma satisfactoria. Ya puedes disfrutar de nuestro servicio!");
                 } else {
                     showAlert("Contraseña invalida", "Debes ingresar una contraseña y re escribirla para continuar");
@@ -53,14 +57,50 @@ public class CrearPassActivity extends AppCompatActivity {
                     }
                 }
             }
+        });
+    }
 
-            private void showAlert(String titulo, String mensaje) {
-                new AlertDialog.Builder(CrearPassActivity.this)
-                        .setTitle(titulo)
-                        .setMessage(mensaje)
-                        .setPositiveButton("Aceptar", null)
-                        .show();
+    private void configureUI() {
+        titleText = (TextView) findViewById(R.id.titleText);
+        // TODO: obtener el nombre del usuario desde la API!
+        firstPasswordText = (EditText) findViewById(R.id.passwordEditText);
+        secondPasswordText = (EditText) findViewById(R.id.secondPasswordEditText);
+        createPasswordButton = (Button) findViewById(R.id.createPasswordButton);
+    }
+
+    private void createPassword(String password) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("URL de la API")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiUtils as = retrofit.create(ApiUtils.class);
+        Call<User> call = as.createPassword(password);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(response.body() != null) {
+                    //showAlert("Exito!", "Contraseña creada de forma satisfactoria!");
+                    Toast toast1 = Toast.makeText(getApplicationContext(),"Contraseña creada de forma satisfactoria!", Toast.LENGTH_LONG);
+                    toast1.show();
+                    Intent intent = new Intent(CrearPassActivity.this, SubastaActivity.class);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast toast1 = Toast.makeText(getApplicationContext(),"Error al intentar crear la contraseña.", Toast.LENGTH_LONG);
+                toast1.show();
             }
         });
+    }
+
+    private void showAlert(String titulo, String mensaje) {
+        new AlertDialog.Builder(CrearPassActivity.this)
+                .setTitle(titulo)
+                .setMessage(mensaje)
+                .setPositiveButton("Aceptar", null)
+                .show();
     }
 }

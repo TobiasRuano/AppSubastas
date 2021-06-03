@@ -6,20 +6,30 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.CardViewHolder> {
 
-    MPTarjeta[] tarjetas;
+    List<MPTarjeta> tarjetas;
     Context context;
 
-    public CardViewAdapter(Context ct, MPTarjeta[] tarjetas) {
+    public CardViewAdapter(Context ct, List<MPTarjeta> tarjetas) {
         this.context = ct;
         this.tarjetas = tarjetas;
     }
@@ -33,11 +43,13 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.CardVi
 
     @Override
     public void onBindViewHolder(@NonNull CardViewAdapter.CardViewHolder holder, int position) {
-        String dashedString = createDashedString(tarjetas[position].getNumeroTarjeta());
+        String dashedString = createDashedString(tarjetas.get(position).getNumeroTarjeta());
         holder.number.setText(dashedString);
-        holder.name.setText(tarjetas[position].getNombreTarjeta());
-        String prov = tarjetas[position].getProveedorTarjeta();
+        holder.name.setText(tarjetas.get(position).getNombreTarjeta());
+        String prov = tarjetas.get(position).getProveedorTarjeta();
         holder.provider.setText(prov);
+
+        holder.card.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_transition));
 
         selectCardColor(holder, prov);
 
@@ -56,29 +68,36 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.CardVi
                         .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                //TODO: Eliminar la tarjeta
-                                tarjetas = filtrarTarjetaEliminada(tarjetas, position);
-                                notifyItemRemoved(position);
-                                notifyItemRangeChanged(position,tarjetas.length);
+                                deleteTarjeta(tarjetas.get(position));
                             }
                         })
                         .show();
             }
 
-            private MPTarjeta[] filtrarTarjetaEliminada(MPTarjeta[] tarjetas, int position) {
-                int size = 0;
-                for(int i=0;i<tarjetas.length;i++){
-                    if(i != position)
-                        size++;
-                }
-                MPTarjeta[] tmp = new MPTarjeta[size];
-                size=0;
-                for(int i=0;i<tarjetas.length;i++){
-                    if(i != position)
-                        tmp[size++] = tarjetas[i];
-                }
+            private void deleteTarjeta(MPTarjeta tarjeta) {
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("https://URL-de-la-API.com")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                ApiUtils as = retrofit.create(ApiUtils.class);
+                Call<MPTarjeta> call = as.deleteTarjeta(tarjeta);
 
-                return tmp;
+                call.enqueue(new Callback<MPTarjeta>() {
+                    @Override
+                    public void onResponse(Call<MPTarjeta> call, Response<MPTarjeta> response) {
+                        if(response.body() != null) {
+                            tarjetas.remove(position);
+                            notifyItemRemoved(position);
+                            notifyItemRangeChanged(position,tarjetas.size());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<MPTarjeta> call, Throwable t) {
+                        Toast toast1 = Toast.makeText(context,"Error al intentar eliminar la tarjeta", Toast.LENGTH_LONG);
+                        toast1.show();
+                    }
+                });
             }
         });
     }
@@ -105,7 +124,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.CardVi
 
     @Override
     public int getItemCount() {
-        return tarjetas.length;
+        return tarjetas.size();
     }
 
     public class CardViewHolder extends RecyclerView.ViewHolder{
