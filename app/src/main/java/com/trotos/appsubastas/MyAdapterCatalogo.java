@@ -55,7 +55,7 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iconImage;
-        TextView descripcion, descripcionBreve, ValorActual;
+        TextView descripcion, descripcionBreve, ValorActual, moneda;
         CardView cv2;
 
         ViewHolder(View itemView) {
@@ -64,6 +64,7 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
             descripcion = itemView.findViewById(R.id.descripcionTextView2);
             descripcionBreve = itemView.findViewById(R.id.descripcionBreveTextView2);
             ValorActual = itemView.findViewById(R.id.valorActualTextView2);
+            moneda = itemView.findViewById(R.id.monedaActualTextView2);
 
             cv2 = itemView.findViewById(R.id.cv2);
         }
@@ -72,7 +73,10 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
             iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
             descripcion.setText(item.getDescripcion());
             descripcionBreve.setText(item.getDescripcionBreve());
-            ValorActual.setText(item.getValorActual());
+            moneda.setText(item.getMoneda());
+
+            String valorActualText = String.format("%,d", item.getValorActual());
+            ValorActual.setText(valorActualText);
 
             //HARDCODEADO
             if(estaRegistrado == false){

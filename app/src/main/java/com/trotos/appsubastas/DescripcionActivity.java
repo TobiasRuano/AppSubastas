@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,12 @@ import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
 
 import java.util.*;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class DescripcionActivity extends AppCompatActivity {
 
@@ -22,6 +29,8 @@ public class DescripcionActivity extends AppCompatActivity {
     TextView precioBaseDescriptionTextView3;
     TextView valorActualDescriptionTextView3;
     TextView fullTitleDescriptionTextView3;
+    TextView monedaBaseDescriptionTextView3;
+    TextView monedaActualDescriptionTextView3;
 
     EditText editarNumeroDeTexto;
     Button botonOfertar;
@@ -33,6 +42,8 @@ public class DescripcionActivity extends AppCompatActivity {
 
     List<CarouselItem> list = new ArrayList<>();
 
+    ItemCatalogo element; // Chequear
+
     //HARDCODEADO
     boolean estaRegistrado = true;
 
@@ -41,20 +52,33 @@ public class DescripcionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_descripcion);
 
+        element = (ItemCatalogo) getIntent().getSerializableExtra("Catalogos");
+        configureUI();
 
-        ItemCatalogo element = (ItemCatalogo) getIntent().getSerializableExtra("Catalogos");
+        cargar();
+        verHistorialPujas();
+        ofertar();
+    }
+
+    private void configureUI() {
         titleDescriptionTextView3 = findViewById(R.id.titleDescriptionTextView3);
         precioBaseDescriptionTextView3 = findViewById(R.id.precioBaseDescriptionTextView3);
         valorActualDescriptionTextView3 = findViewById(R.id.valorActualDescriptionTextView3);
         fullTitleDescriptionTextView3 = findViewById(R.id.fullTitleDescriptionTextView3);
+        monedaBaseDescriptionTextView3 = findViewById(R.id.monedaBaseDescriptionTextView);
+        monedaActualDescriptionTextView3 = findViewById(R.id.monedaActualDescriptionTextView3);
 
         titleDescriptionTextView3.setText(element.getDescripcion());
         titleDescriptionTextView3.setTextColor(Color.parseColor(element.getColor()));
-        precioBaseDescriptionTextView3.setText(element.getPrecioBase());
-        valorActualDescriptionTextView3.setText(element.getValorActual());
+
+        String precioBaseText = String.format("%,d", element.getPrecioBase());
+        precioBaseDescriptionTextView3.setText(precioBaseText);
+        String valorActualText = String.format("%,d", element.getValorActual());
+        valorActualDescriptionTextView3.setText(valorActualText);
         valorActualDescriptionTextView3.setTextColor(Color.GRAY);
         fullTitleDescriptionTextView3.setText(element.getDescripcionCompleta());
-
+        monedaBaseDescriptionTextView3.setText(element.getMoneda());
+        monedaActualDescriptionTextView3.setText(element.getMoneda());
 
         editarNumeroDeTexto = findViewById(R.id.editarNumeroDeTexto);
         botonOfertar = findViewById(R.id.botonOfertar);
@@ -63,29 +87,30 @@ public class DescripcionActivity extends AppCompatActivity {
         botonRegistrar = findViewById(R.id.botonRegistrar);
         historialPujasView = findViewById(R.id.historialPujasView);
 
-
         //HARDCODEADO
         if(estaRegistrado == false){
             editarNumeroDeTexto.setVisibility(View.GONE);
             botonOfertar.setVisibility(View.GONE);
             valorActualOVendido.setVisibility(View.GONE);
+            monedaActualDescriptionTextView3.setVisibility(View.GONE);
             valorActualDescriptionTextView3.setVisibility(View.GONE);
             precioBaseDescriptionTextView3.setVisibility(View.GONE);
+            monedaBaseDescriptionTextView3.setVisibility(View.GONE);
             precioBaseView.setVisibility(View.GONE);
             historialPujasView.setVisibility(View.GONE);
         }else {
             botonRegistrar.setVisibility(View.GONE);
         }
 
-        //En Curso
         if(element.getEstado().equals("En Curso")){
             valorActualOVendido.setText("Valor Actual:");
             valorActualDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
         }
-        //Programada
+
         if(element.getEstado().equals("Programada")){
             valorActualOVendido.setVisibility(View.GONE);
             valorActualDescriptionTextView3.setVisibility(View.GONE);
+            monedaActualDescriptionTextView3.setVisibility(View.GONE);
             editarNumeroDeTexto.setVisibility(View.GONE);
             botonOfertar.setVisibility(View.GONE);
             historialPujasView.setVisibility(View.GONE);
@@ -94,31 +119,22 @@ public class DescripcionActivity extends AppCompatActivity {
 
             precioBaseView.setTextSize(30);
             precioBaseView.setTextColor(Color.parseColor("#FF669900"));
-
         }
-        //Finalizada
+
         if(element.getEstado().equals("Finalizada")){
             editarNumeroDeTexto.setVisibility(View.GONE);
             botonOfertar.setVisibility(View.GONE);
             valorActualOVendido.setText("Vendido:");
             valorActualDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
         }
-
-        cargar();
-
-        verHistorialPujas();
-
-        ofertar();
-
     }
 
 
     private void cargar() {
-
         // Java
         ImageCarousel carousel = findViewById(R.id.carousel);
 
-// Register lifecycle. For activity this will be lifecycle/getLifecycle() and for fragments it will be viewLifecycleOwner/getViewLifecycleOwner().
+        // Register lifecycle. For activity this will be lifecycle/getLifecycle() and for fragments it will be viewLifecycleOwner/getViewLifecycleOwner().
         carousel.registerLifecycle(getLifecycle());
 
         // Image URL with caption
@@ -129,8 +145,7 @@ public class DescripcionActivity extends AppCompatActivity {
                 )
         );
 
-
-// Image URL with caption
+        // Image URL with caption
         list.add(
                 new CarouselItem(
                         "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080",
@@ -138,8 +153,7 @@ public class DescripcionActivity extends AppCompatActivity {
                 )
         );
 
-
-// Image URL with header
+        // Image URL with header
         Map<String, String> headers = new HashMap<>();
         headers.put("header_key", "header_value");
 
@@ -162,7 +176,6 @@ public class DescripcionActivity extends AppCompatActivity {
 
     }
 
-
     private void showAlert(String titulo, String mensaje) {
         new AlertDialog.Builder(DescripcionActivity.this)
                 .setTitle(titulo)
@@ -178,8 +191,8 @@ public class DescripcionActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //HARDCODEADO
-                Integer valorPrecioActual = 10000;
-                Integer valorPrecioBase = 2000;
+                Integer valorPrecioActual = element.getValorActual();
+                Integer valorPrecioBase = element.getPrecioBase();
                 boolean hayError = false;
                 String categoria = "oro";
                 //HARDCODEADO
@@ -207,10 +220,36 @@ public class DescripcionActivity extends AppCompatActivity {
                     showAlert("Error al realizar la oferta","Hubo un problema con la realización de la oferta. Por favor intenta mas tarde.");
                 }
                 else{
-                    showAlert("Éxito!","Oferta realizada correctamente");
+                    pujar(valorPuja);
                 }
+            }
+        });
+    }
 
+    private void pujar(int offer) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://URL-de-la-API.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiUtils as = retrofit.create(ApiUtils.class);
 
+        element.setValorActual(offer);
+
+        Call<ItemCatalogo> call = as.postBid(element);
+
+        call.enqueue(new Callback<ItemCatalogo>() {
+            @Override
+            public void onResponse(Call<ItemCatalogo> call, Response<ItemCatalogo> response) {
+                if(response.body() != null) {
+                    Toast toast1 = Toast.makeText(getApplicationContext(),"Oferta realizada con exito!", Toast.LENGTH_LONG);
+                    toast1.show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ItemCatalogo> call, Throwable t) {
+                Toast toast1 = Toast.makeText(getApplicationContext(),"Error al ofertar!", Toast.LENGTH_LONG);
+                toast1.show();
             }
         });
     }

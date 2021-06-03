@@ -61,18 +61,15 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
 
 
         //HARDCODEADO
-        catalogos.add(new ItemCatalogo("123456","En Curso","Rolex","8.000 ARS","2.100.000 ARS","#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.","Breve descripcion del item"));
-        catalogos.add(new ItemCatalogo("123456","En Curso","Casio","2.000 ARS","10.000 ARS","#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.2","Breve descripcion del item"));
-        catalogos.add(new ItemCatalogo("123456","En Curso","Paddle Watch","200 USD","7.000 USD","#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.3","Breve descripcion del item"));
-        catalogos.add(new ItemCatalogo("123456","En Curso","Rolex","8.000 ARS","2.100.000 ARS","#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.","Breve descripcion del item"));
-        catalogos.add(new ItemCatalogo("123456","Programada","Casio","2.000 ARS","6.000 ARS","#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.2","Breve descripcion del item"));
-        catalogos.add(new ItemCatalogo("123456","Programada","Paddle Watch","200 USD","7.000 USD","#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.3","Breve descripcion del item"));
-        catalogos.add(new ItemCatalogo("123456","Programada","Rolex","8.000 ARS","2.100.000 ARS","#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.","Breve descripcion del item"));
-        catalogos.add(new ItemCatalogo("123456","Programada","Casio","2.000 ARS","6.000 ARS","#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.2","Breve descripcion del item"));
-        catalogos.add(new ItemCatalogo("123456","Programada","Paddle Watch","200 USD","7.000 USD","#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.3","Breve descripcion del item"));
-        catalogos.add(new ItemCatalogo("123456","Finalizada","Rolex","8.000 ARS","2.100.000 ARS","#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.","Breve descripcion del item"));
-        catalogos.add(new ItemCatalogo("123456","Finalizada","Casio","2.000 ARS","6.000 ARS","#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.2","Breve descripcion del item"));
-        catalogos.add(new ItemCatalogo("123456","Finalizada","Paddle Watch","200 USD","7.000 USD","#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.3","Breve descripcion del item"));
+        catalogos.add(new ItemCatalogo("123456","En Curso","Rolex",8000,2100000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.","Breve descripcion del item", "ARS"));
+        catalogos.add(new ItemCatalogo("123456","En Curso","Casio",2000,10000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.2","Breve descripcion del item", "ARS"));
+        catalogos.add(new ItemCatalogo("123456","En Curso","Paddle Watch",200,7000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.3","Breve descripcion del item", "USD"));
+        catalogos.add(new ItemCatalogo("123456","Programada","Rolex",8000,2100000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.","Breve descripcion del item", "ARS"));
+        catalogos.add(new ItemCatalogo("123456","Programada","Casio",2000,10000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.2","Breve descripcion del item", "ARS"));
+        catalogos.add(new ItemCatalogo("123456","Programada","Paddle Watch",200,7000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.3","Breve descripcion del item", "USD"));
+        catalogos.add(new ItemCatalogo("123456","Finalizada","Rolex",8000,2100000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.","Breve descripcion del item", "ARS"));
+        catalogos.add(new ItemCatalogo("123456","Finalizada","Casio",2000,10000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.2","Breve descripcion del item", "ARS"));
+        catalogos.add(new ItemCatalogo("123456","Finalizada","Paddle Watch",200,7000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.3","Breve descripcion del item", "USD"));
 
         MyAdapterCatalogo myAdapterCatalogo = new MyAdapterCatalogo(catalogos, this, new MyAdapterCatalogo.OnItemClickListener() {
             @Override
@@ -124,9 +121,9 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
     }
 
     private void moveToDescription(ItemCatalogo item) {
-        Intent intent2 = new Intent(this,   com.trotos.appsubastas.DescripcionActivity.class);
-        intent2.putExtra("Catalogos",item);
-        startActivity(intent2);
+        Intent intent = new Intent(this,   com.trotos.appsubastas.DescripcionActivity.class);
+        intent.putExtra("Catalogos",item);
+        startActivity(intent);
     }
 
 

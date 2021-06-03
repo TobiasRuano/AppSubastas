@@ -5,16 +5,18 @@ import java.io.Serializable;
 public class ItemCatalogo extends Producto implements Serializable {
 
     private String estado;
-    private String precioBase;
-    private String valorActual;
+    private int precioBase;
+    private int valorActual;
     private String color;
+    private String moneda;
 
-    public ItemCatalogo(String id, String estado, String descripcion, String precioBase, String valorActual, String color, String descripcionCompleta, String descripcionBreve) {
+    public ItemCatalogo(String id, String estado, String descripcion, int precioBase, int valorActual, String color, String descripcionCompleta, String descripcionBreve, String moneda) {
         super(id, descripcion, descripcionCompleta, descripcionBreve);
         this.estado = estado;
         this.precioBase = precioBase;
         this.valorActual = valorActual;
         this.color = color;
+        this.moneda = moneda;
     }
 
     public String getEstado() {
@@ -25,19 +27,19 @@ public class ItemCatalogo extends Producto implements Serializable {
         this.estado = estado;
     }
 
-    public String getPrecioBase() {
+    public int getPrecioBase() {
         return precioBase;
     }
 
-    public void setPrecioBase(String precioBase) {
+    public void setPrecioBase(int precioBase) {
         this.precioBase = precioBase;
     }
 
-    public String getValorActual() {
+    public int getValorActual() {
         return valorActual;
     }
 
-    public void setValorActual(String valorActual) {
+    public void setValorActual(int valorActual) {
         this.valorActual = valorActual;
     }
 
@@ -47,5 +49,13 @@ public class ItemCatalogo extends Producto implements Serializable {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public void setMoneda(String moneda) {
+        this.moneda = moneda;
+    }
+
+    public String getMoneda() {
+        return moneda;
     }
 }
