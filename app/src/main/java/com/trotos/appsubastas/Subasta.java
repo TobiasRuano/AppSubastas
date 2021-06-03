@@ -9,6 +9,7 @@ public class Subasta implements Serializable {
     private String state;
     private String category;
     private String id;
+    //private List<ItemCatalogo> catalogo;
 
     public Subasta(String color, String name, String state, String category, String id) {
         this.color = color;
@@ -16,6 +17,7 @@ public class Subasta implements Serializable {
         this.state = state;
         this.category = category;
         this.id = id;
+        //this.catalogo = catalogo;
     }
 
     public String getColor() {
