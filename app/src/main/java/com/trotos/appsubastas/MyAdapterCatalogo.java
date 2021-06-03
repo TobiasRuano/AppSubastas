@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.ViewHolder> {
-    private List<itemCatalogo> mData;
+    private List<ItemCatalogo> mData;
     private LayoutInflater mInflater;
     private Context context;
     final OnItemClickListener listener2;
@@ -25,10 +25,10 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
     boolean estaRegistrado = true;
 
     public interface OnItemClickListener {
-        void onItemClick(itemCatalogo item);
+        void onItemClick(ItemCatalogo item);
     }
 
-    public MyAdapterCatalogo(List<itemCatalogo> itemList, Context context, OnItemClickListener listener2){
+    public MyAdapterCatalogo(List<ItemCatalogo> itemList, Context context, OnItemClickListener listener2){
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
@@ -49,7 +49,7 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
         holder.bindData(mData.get(position));
     }
 
-    public void setItems(List<itemCatalogo> items){
+    public void setItems(List<ItemCatalogo> items){
         mData = items;
     }
 
@@ -68,7 +68,7 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
             cv2 = itemView.findViewById(R.id.cv2);
         }
 
-        public void bindData(final itemCatalogo item){
+        public void bindData(final ItemCatalogo item){
             iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
             descripcion.setText(item.getDescripcion());
             descripcionBreve.setText(item.getDescripcionBreve());
