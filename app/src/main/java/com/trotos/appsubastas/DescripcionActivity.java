@@ -42,7 +42,7 @@ public class DescripcionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_descripcion);
 
 
-        itemCatalogo element = (itemCatalogo) getIntent().getSerializableExtra("Catalogos");
+        ItemCatalogo element = (ItemCatalogo) getIntent().getSerializableExtra("Catalogos");
         titleDescriptionTextView3 = findViewById(R.id.titleDescriptionTextView3);
         precioBaseDescriptionTextView3 = findViewById(R.id.precioBaseDescriptionTextView3);
         valorActualDescriptionTextView3 = findViewById(R.id.valorActualDescriptionTextView3);

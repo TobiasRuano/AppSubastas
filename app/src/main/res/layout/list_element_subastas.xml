@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="10dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
 
@@ -42,15 +42,16 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
                 android:layout_marginTop="2dp"
                 android:layout_toEndOf="@+id/iconImageView"
-                android:orientation="vertical"
-                android:layout_marginLeft="4dp"
                 android:layout_toRightOf="@+id/iconImageView"
+                android:orientation="vertical"
                 tools:ignore="NotSibling">
                 android:orientation="vertical"
                 android:layout_marginLeft="4dp"
                 android:layout_toRightOf="@+id/iconImageView"
+
                 <TextView
                     android:id="@+id/nameTextView"
                     android:layout_width="match_parent"
@@ -60,34 +61,33 @@
                     android:textColor="@android:color/black"
                     android:textSize="24sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/stateTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Activa - Restante 15:32 min"
-                    android:textSize="18sp"
-                    />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/categoryTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="6dp"
                 android:layout_marginRight="6dp"
                 android:text="Oro"
                 android:textSize="25sp"
-                android:textStyle="bold"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:textStyle="bold" />
 
         </RelativeLayout>
     </LinearLayout>
 
 
-
-    </androidx.cardview.widget.CardView>
+</androidx.cardview.widget.CardView>
 
 
 

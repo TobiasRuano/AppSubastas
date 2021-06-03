@@ -10,9 +10,16 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class IniciarSesionActivity extends AppCompatActivity {
 
@@ -29,11 +36,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iniciar_sesion);
 
-        mailText = (EditText) findViewById(R.id.mailText);
-        passText = (EditText) findViewById(R.id.passText);
-        logInButton = (Button) findViewById(R.id.submitButton);
-        registerButton = (Button) findViewById(R.id.RegisterButton);
-        hasPassSwitch = (Switch) findViewById(R.id.hasPassSwitch);
+        configureUI();
 
         hasPassSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -57,16 +60,16 @@ public class IniciarSesionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (checkEstadoMail()) {
+                    String mail = mailText.getText().toString();
                     if (userHasPass) {
                         if (checkPassword()) {
-                            //TODO: a la API!
+                            String password = passText.getText().toString();
+                            logIn(mail, password);
                         } else {
                             showAlert("Usuario o Contraseña invalidos", "Por favor, chequea que los datos ingresados sean correctos.");
                         }
                     } else {
-                        // TODO: a la API.
-                        Intent intent = new Intent(IniciarSesionActivity.this, CrearPassActivity.class);
-                        startActivity(intent);
+                        getEstadoContraseña(mail);
                     }
                 } else {
                     showAlert("Mail invalido", "Debes ingresar un mail valido para continuar.");
@@ -97,14 +100,6 @@ public class IniciarSesionActivity extends AppCompatActivity {
                 Matcher matcher = pattern.matcher(email);
                 return matcher.matches();
             }
-
-            private void showAlert(String titulo, String mensaje) {
-                new AlertDialog.Builder(IniciarSesionActivity.this)
-                        .setTitle(titulo)
-                        .setMessage(mensaje)
-                        .setPositiveButton("Aceptar", null)
-                        .show();
-            }
         });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -114,5 +109,75 @@ public class IniciarSesionActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void configureUI() {
+        mailText = (EditText) findViewById(R.id.mailText);
+        passText = (EditText) findViewById(R.id.passText);
+        logInButton = (Button) findViewById(R.id.submitButton);
+        registerButton = (Button) findViewById(R.id.RegisterButton);
+        hasPassSwitch = (Switch) findViewById(R.id.hasPassSwitch);
+    }
+
+    private void logIn(String mail, String password) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("URL de la API")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiUtils as = retrofit.create(ApiUtils.class);
+        Call<User> call = as.logIn(mail, password);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(response.body() != null) {
+                    // TODO: ir o no a la otra ventana
+                    // TODO: guardar el usuario recivido.
+                    Intent intent = new Intent(IniciarSesionActivity.this, SubastaActivity.class);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast toast1 = Toast.makeText(getApplicationContext(),"Error al Iniciar sesion", Toast.LENGTH_LONG);
+                toast1.show();
+            }
+        });
+    }
+
+    private void getEstadoContraseña(String mail) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("URL de la API")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiUtils as = retrofit.create(ApiUtils.class);
+        Call<User> call = as.checkContraseñaUsuario(mail);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(response.body() != null) {
+                    // TODO: ir o no a la otra ventana
+                    // TODO: obtener el nombre del usuario para pasar a la otra ventana
+                    Intent intent = new Intent(IniciarSesionActivity.this, CrearPassActivity.class);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast toast1 = Toast.makeText(getApplicationContext(),"Error al intentar obtener los datos de la cuenta.", Toast.LENGTH_LONG);
+                toast1.show();
+            }
+        });
+    }
+
+    private void showAlert(String titulo, String mensaje) {
+        new AlertDialog.Builder(IniciarSesionActivity.this)
+                .setTitle(titulo)
+                .setMessage(mensaje)
+                .setPositiveButton("Aceptar", null)
+                .show();
     }
 }
