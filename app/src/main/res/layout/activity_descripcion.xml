@@ -68,7 +68,7 @@
             android:orientation="horizontal"
             android:layout_marginTop="16dp">
 
-        <TextView
+            <TextView
             android:id="@+id/valorActualOVendido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,6 +96,21 @@
             android:textStyle="bold"
             android:textSize="28sp" />
 
+            <TextView
+                android:id="@+id/monedaActualDescriptionTextView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/titleDescriptionTextView3"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="1"
+                android:text="ARS"
+                android:textColor="@android:color/black"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
 
 
@@ -104,7 +119,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-        <TextView
+            <TextView
             android:id="@+id/precioBaseView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -132,6 +147,22 @@
             android:textColor="@android:color/black"
             android:textStyle="bold"
             android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/monedaBaseDescriptionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/precioBaseDescriptionTextView3"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:text="ARS"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
