@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.trotos.appsubastas.Modelos.User;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -61,8 +63,9 @@ public class CrearPassActivity extends AppCompatActivity {
     }
 
     private void configureUI() {
+        User user = (User) getIntent().getSerializableExtra("usuario");
         titleText = (TextView) findViewById(R.id.titleText);
-        // TODO: obtener el nombre del usuario desde la API!
+        titleText.setText("Hola " + user.getName());
         firstPasswordText = (EditText) findViewById(R.id.passwordEditText);
         secondPasswordText = (EditText) findViewById(R.id.secondPasswordEditText);
         createPasswordButton = (Button) findViewById(R.id.createPasswordButton);
@@ -70,7 +73,7 @@ public class CrearPassActivity extends AppCompatActivity {
 
     private void createPassword(String password) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("URL de la API")
+                .baseUrl("https://URL-de-la-API.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
@@ -80,7 +83,6 @@ public class CrearPassActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.body() != null) {
-                    //showAlert("Exito!", "Contraseña creada de forma satisfactoria!");
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Contraseña creada de forma satisfactoria!", Toast.LENGTH_LONG);
                     toast1.show();
                     Intent intent = new Intent(CrearPassActivity.this, SubastaActivity.class);

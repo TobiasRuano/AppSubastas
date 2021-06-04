@@ -1,5 +1,11 @@
 package com.trotos.appsubastas;
 
+import com.trotos.appsubastas.Modelos.ItemCatalogo;
+import com.trotos.appsubastas.Modelos.MPTarjeta;
+import com.trotos.appsubastas.Modelos.Producto;
+import com.trotos.appsubastas.Modelos.Subasta;
+import com.trotos.appsubastas.Modelos.User;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -15,28 +21,28 @@ interface ApiUtils {
     Call<List<Subasta>> getSubastas();
     @GET("auctions")
     Call<List<ItemCatalogo>> getItemsSubasta(@Body String idSubasta);
-    @POST("auctions")
+    @POST("auctions/{auctionId}/bid")
     Call<ItemCatalogo> postBid(@Body ItemCatalogo item);
 
     @GET("users")
-    Call<User> checkContraseñaUsuario(@Body String mail);
-    @GET("users")
+    Call<User> checkPasswordUsuario(@Body String mail);
+    @GET("users/{userId}/items")
     Call<List<Producto>> getObjetosPropuestos();
     @GET("users")
     Call<List<Subasta>> getSubastasParticipadas(@Body String userID);
-    @GET("users")
+    @GET("users/{userId}/payment_methods")
     Call<List<MPTarjeta>> getTarjetas();
 
     @POST("users")
     Call<User> createAccount(@Body User user);
-    @POST("users")
+    @POST("users/{userId}/items")
     Call<Producto> postProducto(@Body Producto producto);
-    @POST("users")
+    @POST("users/{userId}/payment_methods")
     Call<MPTarjeta> postTarjeta(@Body MPTarjeta tarjeta);
 
-    @PATCH("users")
+    @PATCH("users/{userId}")
     Call<User> modifyUser(@Body User user);
-    @DELETE("users")
+    @DELETE("users/{userId}/payment_methods/{paymentMethodId}")
     Call<MPTarjeta> deleteTarjeta(@Body MPTarjeta tarjeta);
 
     @POST("password")
@@ -44,4 +50,5 @@ interface ApiUtils {
 
     @POST("login")
     Call<User> logIn(@Body String mail, @Body String password);
+
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,9 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.trotos.appsubastas.Modelos.User;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -121,7 +125,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
 
     private void logIn(String mail, String password) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("URL de la API")
+                .baseUrl("https://URL-de-la-API.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
@@ -131,9 +135,9 @@ public class IniciarSesionActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.body() != null) {
-                    // TODO: ir o no a la otra ventana
-                    // TODO: guardar el usuario recivido.
+                    saveUser(response.body());
                     Intent intent = new Intent(IniciarSesionActivity.this, SubastaActivity.class);
+                    intent.putExtra("estadoLoggeado",true);
                     startActivity(intent);
                 }
             }
@@ -146,21 +150,29 @@ public class IniciarSesionActivity extends AppCompatActivity {
         });
     }
 
+    private void saveUser(User userToSave) {
+        SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(userToSave);
+        prefsEditor.putString("User", json);
+        prefsEditor.apply();
+    }
+
     private void getEstadoContraseña(String mail) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("URL de la API")
+                .baseUrl("https://URL-de-la-API.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
-        Call<User> call = as.checkContraseñaUsuario(mail);
+        Call<User> call = as.checkPasswordUsuario(mail);
 
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.body() != null) {
-                    // TODO: ir o no a la otra ventana
-                    // TODO: obtener el nombre del usuario para pasar a la otra ventana
                     Intent intent = new Intent(IniciarSesionActivity.this, CrearPassActivity.class);
+                    intent.putExtra("usuario",response.body());
                     startActivity(intent);
                 }
             }

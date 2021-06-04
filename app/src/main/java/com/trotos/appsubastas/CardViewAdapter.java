@@ -15,6 +15,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.trotos.appsubastas.Modelos.MPTarjeta;
+
 import java.util.List;
 
 import retrofit2.Call;

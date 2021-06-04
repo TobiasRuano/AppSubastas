@@ -1,4 +1,4 @@
-package com.trotos.appsubastas;
+package com.trotos.appsubastas.Modelos;
 
 import java.io.Serializable;
 import java.util.List;

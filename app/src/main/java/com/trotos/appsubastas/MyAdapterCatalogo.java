@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.trotos.appsubastas.Modelos.ItemCatalogo;
+
 import java.util.List;
 
 public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.ViewHolder> {
@@ -21,18 +23,18 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
     private Context context;
     final OnItemClickListener listener2;
 
-    //HARDCODEADO
-    boolean estaRegistrado = true;
+    boolean estaRegistrado;
 
     public interface OnItemClickListener {
         void onItemClick(ItemCatalogo item);
     }
 
-    public MyAdapterCatalogo(List<ItemCatalogo> itemList, Context context, OnItemClickListener listener2){
+    public MyAdapterCatalogo(List<ItemCatalogo> itemList, Boolean estaRegistrado, Context context, OnItemClickListener listener2){
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
         this.listener2 = listener2;
+        this.estaRegistrado = estaRegistrado;
     }
 
     public int getItemCount() {
@@ -78,9 +80,9 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
             String valorActualText = String.format("%,d", item.getValorActual());
             ValorActual.setText(valorActualText);
 
-            //HARDCODEADO
             if(estaRegistrado == false){
                 ValorActual.setVisibility(View.GONE);
+                moneda.setVisibility(View.GONE);
             }
 
             itemView.setOnClickListener(new View.OnClickListener() {

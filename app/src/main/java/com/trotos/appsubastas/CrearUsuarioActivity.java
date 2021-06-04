@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.trotos.appsubastas.Modelos.User;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -88,7 +90,7 @@ public class CrearUsuarioActivity extends AppCompatActivity{
 
     private void createAccount(User user) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("URL de la API")
+                .baseUrl("https://URL-de-la-API.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
@@ -98,8 +100,9 @@ public class CrearUsuarioActivity extends AppCompatActivity{
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.body() != null) {
-                    // TODO: ir o no a la otra ventana
-                    showAlert("Exito!", "Usuario creado de forma satisfactoria!");
+                    //showAlert("Exito!", "Usuario creado de forma satisfactoria!");
+                    Toast toast1 = Toast.makeText(getApplicationContext(),"Usuario creado de forma satisfactoria!", Toast.LENGTH_LONG);
+                    toast1.show();
                     Intent intent = new Intent(CrearUsuarioActivity.this, SubastaActivity.class);
                     startActivity(intent);
                 }

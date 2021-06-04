@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.trotos.appsubastas.Modelos.MPTarjeta;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,7 +40,7 @@ public class MediosPagoActivity extends AppCompatActivity {
         addCardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MediosPagoActivity.this, AgregarMedioPago.class);
+                Intent intent = new Intent(MediosPagoActivity.this, AgregarMedioPagoActivity.class);
                 startActivityForResult(intent, 1);
             }
         });
