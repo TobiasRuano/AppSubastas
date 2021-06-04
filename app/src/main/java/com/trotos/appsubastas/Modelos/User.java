@@ -1,6 +1,8 @@
-package com.trotos.appsubastas;
+package com.trotos.appsubastas.Modelos;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     String name;
     String surname;

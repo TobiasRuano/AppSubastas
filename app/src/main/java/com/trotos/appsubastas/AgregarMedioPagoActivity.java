@@ -12,6 +12,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.trotos.appsubastas.Modelos.MPTarjeta;
+
 import java.util.Date;
 
 import retrofit2.Call;
@@ -20,7 +22,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class AgregarMedioPago extends AppCompatActivity {
+public class AgregarMedioPagoActivity extends AppCompatActivity {
 
     EditText cardNumber;
     EditText cardName;
@@ -137,7 +139,7 @@ public class AgregarMedioPago extends AppCompatActivity {
     }
 
     private void showAlert(String titulo, String mensaje) {
-        new AlertDialog.Builder(AgregarMedioPago.this)
+        new AlertDialog.Builder(AgregarMedioPagoActivity.this)
                 .setTitle(titulo)
                 .setMessage(mensaje)
                 .setPositiveButton("Aceptar", null)

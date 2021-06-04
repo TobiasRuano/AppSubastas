@@ -8,6 +8,8 @@
  import androidx.recyclerview.widget.LinearLayoutManager;
  import androidx.recyclerview.widget.RecyclerView;
 
+ import com.trotos.appsubastas.Modelos.Subasta;
+
  import java.util.ArrayList;
  import java.util.List;
 
@@ -20,6 +22,7 @@
  public class SubastaActivity extends AppCompatActivity {
 
      List<Subasta> subastas;
+     Boolean estadoLoggeado;
 
      protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,7 @@
 
     public void init(){
         subastas = new ArrayList<>();
+        estadoLoggeado = (Boolean) getIntent().getSerializableExtra("estadoLoggeado");
 
         //HARDCODEADO
         testCreateSubastas();
@@ -44,11 +48,12 @@
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(  this    ));
         recyclerView.setAdapter(myAdapterSubasta);
+        //recyclerView.getAdapter().
     }
 
      private void getDatos() {
          Retrofit retrofit = new Retrofit.Builder()
-                 .baseUrl("URL de la API")
+                 .baseUrl("https://URL-de-la-API.com")
                  .addConverterFactory(GsonConverterFactory.create())
                  .build();
          ApiUtils as = retrofit.create(ApiUtils.class);
@@ -85,6 +90,7 @@
      private void moveToDescription(Subasta item) {
          Intent intent = new Intent(this, CatalogoActivity.class);
          intent.putExtra("Subastas",item);
+         intent.putExtra("estadoLoggeado", estadoLoggeado);
          startActivity(intent);
      }
 

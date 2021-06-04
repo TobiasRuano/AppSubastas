@@ -1,5 +1,6 @@
 package com.trotos.appsubastas;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.trotos.appsubastas.Modelos.ItemCatalogo;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
@@ -42,10 +45,8 @@ public class DescripcionActivity extends AppCompatActivity {
 
     List<CarouselItem> list = new ArrayList<>();
 
-    ItemCatalogo element; // Chequear
-
-    //HARDCODEADO
-    boolean estaRegistrado = true;
+    ItemCatalogo element;
+    boolean estaRegistrado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +54,22 @@ public class DescripcionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_descripcion);
 
         element = (ItemCatalogo) getIntent().getSerializableExtra("Catalogos");
+        estaRegistrado = (Boolean) getIntent().getSerializableExtra("estadoLoggeado");
         configureUI();
-
         cargar();
         verHistorialPujas();
         ofertar();
+        logIn();
+    }
+
+    private void logIn() {
+        botonRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DescripcionActivity.this, IniciarSesionActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void configureUI() {
@@ -87,7 +99,6 @@ public class DescripcionActivity extends AppCompatActivity {
         botonRegistrar = findViewById(R.id.botonRegistrar);
         historialPujasView = findViewById(R.id.historialPujasView);
 
-        //HARDCODEADO
         if(estaRegistrado == false){
             editarNumeroDeTexto.setVisibility(View.GONE);
             botonOfertar.setVisibility(View.GONE);
@@ -102,12 +113,12 @@ public class DescripcionActivity extends AppCompatActivity {
             botonRegistrar.setVisibility(View.GONE);
         }
 
-        if(element.getEstado().equals("En Curso")){
+        String estado = element.getEstado();
+
+        if(estado.equals("En Curso")){
             valorActualOVendido.setText("Valor Actual:");
             valorActualDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
-        }
-
-        if(element.getEstado().equals("Programada")){
+        }else if(estado.equals("Programada")){
             valorActualOVendido.setVisibility(View.GONE);
             valorActualDescriptionTextView3.setVisibility(View.GONE);
             monedaActualDescriptionTextView3.setVisibility(View.GONE);
@@ -116,12 +127,9 @@ public class DescripcionActivity extends AppCompatActivity {
             historialPujasView.setVisibility(View.GONE);
             precioBaseDescriptionTextView3.setTextSize(30);
             precioBaseDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
-
             precioBaseView.setTextSize(30);
             precioBaseView.setTextColor(Color.parseColor("#FF669900"));
-        }
-
-        if(element.getEstado().equals("Finalizada")){
+        }else if(estado.equals("Finalizada")){
             editarNumeroDeTexto.setVisibility(View.GONE);
             botonOfertar.setVisibility(View.GONE);
             valorActualOVendido.setText("Vendido:");
@@ -190,7 +198,6 @@ public class DescripcionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //HARDCODEADO
                 Integer valorPrecioActual = element.getValorActual();
                 Integer valorPrecioBase = element.getPrecioBase();
                 boolean hayError = false;
