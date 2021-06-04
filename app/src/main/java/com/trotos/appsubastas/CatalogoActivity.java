@@ -39,12 +39,8 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogo);
 
-        Subasta element = (Subasta) getIntent().getSerializableExtra("Subastas");
-        if (getIntent().getSerializableExtra("estadoLoggeado") != null) {
-            estaRegistrado = (Boolean) getIntent().getSerializableExtra("estadoLoggeado");
-        } else {
-            estaRegistrado = false;
-        }
+        Subasta element = (Subasta) getIntent().getSerializableExtra("subasta");
+        estaRegistrado = getIntent().getBooleanExtra("estadoLoggeado", false);
         nameDescriptionTextView = findViewById(R.id.nameDescriptionTextView);
         stateDescriptionTextView = findViewById(R.id.stateDescriptionTextView);
         categoryDescriptionTextView = findViewById(R.id.categoryDescriptionTextView);
@@ -58,16 +54,13 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
         categoryDescriptionTextView.setTextColor(Color.GRAY);
 
         init();
-
     }
 
     List<ItemCatalogo> catalogos;
 
-
     public void init(){
 
         catalogos = new ArrayList<>();
-
 
         //HARDCODEADO
         catalogos.add(new ItemCatalogo("123456","En Curso","Rolex",8000,2100000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.","Breve descripcion del item", "ARS"));
@@ -89,7 +82,7 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
 
         RecyclerView recyclerView2 = findViewById(R.id.listRecyclerView2);
         recyclerView2.setHasFixedSize(true);
-        recyclerView2.setLayoutManager(new LinearLayoutManager(  this    ));
+        recyclerView2.setLayoutManager(new LinearLayoutManager(this));
         recyclerView2.setAdapter(myAdapterCatalogo);
 
         listRecyclerView2  = findViewById(R.id.listRecyclerView2);
@@ -100,12 +93,11 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
 
         linearLayout1 = findViewById(R.id.linearLayout1);
 
-        //ANIMACION VISTA
-        animFadeIn=AnimationUtils.loadAnimation(this, R.anim.fadeout);
+        animFadeIn = AnimationUtils.loadAnimation(this, R.anim.fadeout);
             listRecyclerView2.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
-                    if(banderaAnimation == false) {
+                    if(!banderaAnimation) {
                         banderaAnimation = true;
                         linearLayout1.startAnimation(animFadeIn);
                         linearLayout1.setVisibility(View.VISIBLE);
@@ -126,7 +118,6 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
                     return false;
                 }
             });
-
     }
 
     private void moveToDescription(ItemCatalogo item) {
@@ -135,7 +126,5 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
         intent.putExtra("estadoLoggeado", estaRegistrado);
         startActivity(intent);
     }
-
-
 
 }

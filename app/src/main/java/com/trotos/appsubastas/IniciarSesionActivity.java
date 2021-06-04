@@ -73,7 +73,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
                             showAlert("Usuario o Contraseña invalidos", "Por favor, chequea que los datos ingresados sean correctos.");
                         }
                     } else {
-                        getEstadoContraseña(mail);
+                        getEstadoPassword(mail);
                     }
                 } else {
                     showAlert("Mail invalido", "Debes ingresar un mail valido para continuar.");
@@ -91,11 +91,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
 
             private boolean checkPassword() {
                 String pass = passText.getText().toString();
-                if (pass.isEmpty()) {
-                    return false;
-                } else {
-                    return true;
-                }
+                return !pass.isEmpty();
             }
 
             private boolean isEmailValid(String email) {
@@ -159,7 +155,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
         prefsEditor.apply();
     }
 
-    private void getEstadoContraseña(String mail) {
+    private void getEstadoPassword(String mail) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://URL-de-la-API.com")
                 .addConverterFactory(GsonConverterFactory.create())

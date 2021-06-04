@@ -67,9 +67,7 @@ public class MediosPagoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<MPTarjeta>> call, Response<List<MPTarjeta>> response) {
                 if(response.body() != null) {
-                    for (MPTarjeta tarjeta : response.body()) {
-                        tarjetas.add(tarjeta);
-                    }
+                    tarjetas.addAll(response.body());
                 }
             }
 

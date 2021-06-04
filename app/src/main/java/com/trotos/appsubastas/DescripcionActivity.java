@@ -1,5 +1,6 @@
 package com.trotos.appsubastas;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -54,7 +55,7 @@ public class DescripcionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_descripcion);
 
         element = (ItemCatalogo) getIntent().getSerializableExtra("Catalogos");
-        estaRegistrado = (Boolean) getIntent().getSerializableExtra("estadoLoggeado");
+        estaRegistrado = (Boolean) getIntent().getBooleanExtra("estadoLoggeado", false);
         configureUI();
         cargar();
         verHistorialPujas();
@@ -99,7 +100,7 @@ public class DescripcionActivity extends AppCompatActivity {
         botonRegistrar = findViewById(R.id.botonRegistrar);
         historialPujasView = findViewById(R.id.historialPujasView);
 
-        if(estaRegistrado == false){
+        if(!estaRegistrado){
             editarNumeroDeTexto.setVisibility(View.GONE);
             botonOfertar.setVisibility(View.GONE);
             valorActualOVendido.setVisibility(View.GONE);
@@ -115,73 +116,64 @@ public class DescripcionActivity extends AppCompatActivity {
 
         String estado = element.getEstado();
 
-        if(estado.equals("En Curso")){
-            valorActualOVendido.setText("Valor Actual:");
-            valorActualDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
-        }else if(estado.equals("Programada")){
-            valorActualOVendido.setVisibility(View.GONE);
-            valorActualDescriptionTextView3.setVisibility(View.GONE);
-            monedaActualDescriptionTextView3.setVisibility(View.GONE);
-            editarNumeroDeTexto.setVisibility(View.GONE);
-            botonOfertar.setVisibility(View.GONE);
-            historialPujasView.setVisibility(View.GONE);
-            precioBaseDescriptionTextView3.setTextSize(30);
-            precioBaseDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
-            precioBaseView.setTextSize(30);
-            precioBaseView.setTextColor(Color.parseColor("#FF669900"));
-        }else if(estado.equals("Finalizada")){
-            editarNumeroDeTexto.setVisibility(View.GONE);
-            botonOfertar.setVisibility(View.GONE);
-            valorActualOVendido.setText("Vendido:");
-            valorActualDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
+        switch (estado) {
+            case "En Curso":
+                valorActualOVendido.setText("Valor Actual:");
+                valorActualDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
+                break;
+            case "Programada":
+                valorActualOVendido.setVisibility(View.GONE);
+                valorActualDescriptionTextView3.setVisibility(View.GONE);
+                monedaActualDescriptionTextView3.setVisibility(View.GONE);
+                editarNumeroDeTexto.setVisibility(View.GONE);
+                botonOfertar.setVisibility(View.GONE);
+                historialPujasView.setVisibility(View.GONE);
+                precioBaseDescriptionTextView3.setTextSize(30);
+                precioBaseDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
+                precioBaseView.setTextSize(30);
+                precioBaseView.setTextColor(Color.parseColor("#FF669900"));
+                break;
+            case "Finalizada":
+                editarNumeroDeTexto.setVisibility(View.GONE);
+                botonOfertar.setVisibility(View.GONE);
+                valorActualOVendido.setText("Vendido:");
+                valorActualDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
+                break;
         }
     }
 
 
     private void cargar() {
-        // Java
         ImageCarousel carousel = findViewById(R.id.carousel);
-
-        // Register lifecycle. For activity this will be lifecycle/getLifecycle() and for fragments it will be viewLifecycleOwner/getViewLifecycleOwner().
         carousel.registerLifecycle(getLifecycle());
 
-        // Image URL with caption
         list.add(
                 new CarouselItem(
                         "https://www.uade.edu.ar/media/pfqfuh4i/monserrat.jpeg?center=0.70307819516856551,0.54415877733959017&mode=crop&width=1240&height=910&rnd=132386837151700000",
                         "Edificio UADE"
                 )
         );
-
-        // Image URL with caption
         list.add(
                 new CarouselItem(
                         "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080",
                         "FOTO"
                 )
         );
-
-        // Image URL with header
         Map<String, String> headers = new HashMap<>();
         headers.put("header_key", "header_value");
-
         list.add(
                 new CarouselItem(
                         "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080",
                         headers
                 )
         );
-
-        // Image URL with caption
         list.add(
                 new CarouselItem(
                         "https://resizer.iproimg.com/unsafe/880x495/filters:format(webp)/https://assets.iprofesional.com/assets/jpg/2016/01/427212.jpg?7.1.0",
                         "Pinamar UADE"
                 )
         );
-
         carousel.setData(list);
-
     }
 
     private void showAlert(String titulo, String mensaje) {
@@ -198,35 +190,31 @@ public class DescripcionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Integer valorPrecioActual = element.getValorActual();
-                Integer valorPrecioBase = element.getPrecioBase();
+                int valorPrecioActual = element.getValorActual();
+                int valorPrecioBase = element.getPrecioBase();
                 boolean hayError = false;
-                String categoria = "oro";
-                //HARDCODEADO
 
-                Integer valorPuja = 0;
+                String categoria = getIntent().getStringExtra("categoria");
+                if (categoria == null) {
+                    categoria = "oro";
+                }
+
+                int valorPuja = 0;
                 String texto = editarNumeroDeTexto.getText().toString();
-                if(texto.equals("") == false){
+                if(!texto.equals("")){
                     valorPuja = Integer.parseInt(editarNumeroDeTexto.getText().toString());
                 }
 
 
                 if(valorPuja == 0){
                     showAlert("Monto vacio","Debe ingresar un Monto para poder Ofertar.");
-                }
-                else if(valorPuja > (valorPrecioActual * 1.2) && (categoria.equals("oro") || categoria.equals("platino")) ){
+                } else if(valorPuja > (valorPrecioActual * 1.2) && (categoria.equals("Oro") || categoria.equals("Platino")) ){
                     showAlert("Monto inválido","La oferta no puede exceder el 20 % de la última oferta realizada.");
-                }
-                else if(valorPuja <= (valorPrecioBase * 0.01 + valorPrecioActual)){
+                } else if(valorPuja <= (valorPrecioBase * 0.01 + valorPrecioActual)){
                     showAlert("Monto inválido","La oferta debe ser 1 % mayor al valor base del bien.");
-                }
-                else if(valorPuja <= valorPrecioActual){
+                } else if(valorPuja <= valorPrecioActual){
                     showAlert("Monto inválido","La oferta no puede ser menor o igual a la última oferta realizada.");
-                }
-                else if(hayError == true){
-                    showAlert("Error al realizar la oferta","Hubo un problema con la realización de la oferta. Por favor intenta mas tarde.");
-                }
-                else{
+                } else{
                     pujar(valorPuja);
                 }
             }

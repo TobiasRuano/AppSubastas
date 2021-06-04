@@ -63,9 +63,7 @@
              @Override
              public void onResponse(Call<List<Subasta>> call, Response<List<Subasta>> response) {
                  if(response.body() != null) {
-                     for (Subasta subasta : response.body()) {
-                         subastas.add(subasta);
-                     }
+                     subastas.addAll(response.body());
                  }
              }
 
@@ -89,7 +87,8 @@
 
      private void moveToDescription(Subasta item) {
          Intent intent = new Intent(this, CatalogoActivity.class);
-         intent.putExtra("Subastas",item);
+         intent.putExtra("subasta",item);
+         intent.putExtra("categoria", item.getCategory());
          intent.putExtra("estadoLoggeado", estadoLoggeado);
          startActivity(intent);
      }
