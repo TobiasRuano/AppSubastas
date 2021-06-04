@@ -41,10 +41,8 @@ public class AgregarMedioPagoActivity extends AppCompatActivity {
         expDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (view.getId()) {
-                    case R.id.expDateEditText:
-                        showDatePickerDialog();
-                        break;
+                if (view.getId() == R.id.expDateEditText) {
+                    showDatePickerDialog();
                 }
             }
         });
@@ -64,11 +62,7 @@ public class AgregarMedioPagoActivity extends AppCompatActivity {
                 String number = cardNumber.getText().toString();
                 String exp = expDate.getText().toString();
                 String cvc = cvcNumber.getText().toString();
-                if (!name.isEmpty() && !number.isEmpty() && !exp.isEmpty() && !cvc.isEmpty()) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return !name.isEmpty() && !number.isEmpty() && !exp.isEmpty() && !cvc.isEmpty();
             }
         });
     }
@@ -124,8 +118,6 @@ public class AgregarMedioPagoActivity extends AppCompatActivity {
             public void onFailure(Call<MPTarjeta> call, Throwable t) {
                 Toast toast1 = Toast.makeText(getApplicationContext(),"Error al intentar agregar la tarjeta", Toast.LENGTH_LONG);
                 toast1.show();
-
-                //passDataBack(); // Solo para debug sin API!
             }
         });
     }

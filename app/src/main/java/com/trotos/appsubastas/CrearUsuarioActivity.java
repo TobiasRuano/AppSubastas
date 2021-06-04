@@ -54,11 +54,7 @@ public class CrearUsuarioActivity extends AppCompatActivity{
                 String mail = mailText.getText().toString();
                 String dni = dniText.getText().toString();
                 String address = addressText.getText().toString();
-                if (!name.isEmpty() && !surname.isEmpty() && !mail.isEmpty() && isEmailValid(mail) && !dni.isEmpty() && !address.isEmpty()) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return !name.isEmpty() && !surname.isEmpty() && !mail.isEmpty() && isEmailValid(mail) && !dni.isEmpty() && !address.isEmpty();
             }
 
             private boolean isEmailValid(String email) {

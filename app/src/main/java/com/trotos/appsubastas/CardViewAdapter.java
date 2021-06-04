@@ -36,6 +36,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.CardVi
         this.tarjetas = tarjetas;
     }
 
+    @NonNull
     @Override
     public CardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -105,14 +106,19 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.CardVi
     }
 
     private void selectCardColor(CardViewHolder holder, String prov) {
-        if (prov == "Visa") {
-            holder.card.setCardBackgroundColor(Color.parseColor("#4048BD"));
-        } else if (prov == "Amex") {
-            holder.card.setCardBackgroundColor(Color.parseColor("#4d4f53"));
-        } else if (prov == "MasterCard") {
-            holder.card.setCardBackgroundColor(Color.parseColor("#EB001B"));
-        } else {
-            holder.card.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
+        switch (prov) {
+            case "Visa":
+                holder.card.setCardBackgroundColor(Color.parseColor("#4048BD"));
+                break;
+            case "Amex":
+                holder.card.setCardBackgroundColor(Color.parseColor("#4d4f53"));
+                break;
+            case "MasterCard":
+                holder.card.setCardBackgroundColor(Color.parseColor("#EB001B"));
+                break;
+            default:
+                holder.card.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
+                break;
         }
     }
 

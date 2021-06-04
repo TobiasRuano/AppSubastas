@@ -12,6 +12,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 
@@ -24,7 +25,7 @@ interface ApiUtils {
     @POST("auctions/{auctionId}/bid")
     Call<ItemCatalogo> postBid(@Body ItemCatalogo item);
 
-    @GET("users")
+    @HTTP(method = "GET", path = "/users", hasBody = true)
     Call<User> checkPasswordUsuario(@Body String mail);
     @GET("users/{userId}/items")
     Call<List<Producto>> getObjetosPropuestos();
@@ -42,7 +43,8 @@ interface ApiUtils {
 
     @PATCH("users/{userId}")
     Call<User> modifyUser(@Body User user);
-    @DELETE("users/{userId}/payment_methods/{paymentMethodId}")
+
+    @HTTP(method = "DELETE", path = "users/{userId}/payment_methods/{paymentMethodId}", hasBody = true)
     Call<MPTarjeta> deleteTarjeta(@Body MPTarjeta tarjeta);
 
     @POST("password")

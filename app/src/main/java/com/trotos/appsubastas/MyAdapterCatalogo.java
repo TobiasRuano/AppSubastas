@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,6 +42,7 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
         return mData.size();
     }
 
+    @NonNull
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View view = mInflater.from(parent.getContext()).inflate(R.layout.list_element_catalogos,parent,false);
         return new ViewHolder(view);
@@ -80,7 +82,7 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
             String valorActualText = String.format("%,d", item.getValorActual());
             ValorActual.setText(valorActualText);
 
-            if(estaRegistrado == false){
+            if(!estaRegistrado){
                 ValorActual.setVisibility(View.GONE);
                 moneda.setVisibility(View.GONE);
             }

@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +39,7 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
         return mData.size();
     }
 
+    @NonNull
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         View view = mInflater.from(parent.getContext()).inflate(R.layout.list_element_subastas,parent,false);
         return new ViewHolder(view);
