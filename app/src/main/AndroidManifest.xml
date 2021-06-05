@@ -14,15 +14,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppSubastas">
-        <activity android:name=".MenuInvitado"></activity>
+        <activity android:name=".MisObjetos"></activity>
+        <activity android:name=".AgregarObjeto" />
+        <activity android:name=".MenuInvitado" />
         <activity android:name=".EditarPerfil" />
         <activity android:name=".MiUsuario" />
-        <activity android:name=".MenuLogueado" />
+        <activity android:name=".IniciarSesionActivity" />
         <activity android:name=".AgregarMedioPago" />
         <activity android:name=".MediosPagoActivity" />
         <activity android:name=".CrearPassActivity" />
         <activity android:name=".CrearUsuarioActivity" />
-        <activity android:name=".IniciarSesionActivity">
+        <activity android:name=".MenuLogueado">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

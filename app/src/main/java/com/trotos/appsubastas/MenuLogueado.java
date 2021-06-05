@@ -7,8 +7,10 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -31,6 +33,9 @@ public class MenuLogueado extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_logueado);
+
+        getSupportActionBar().hide();
+
 
         drawerLayout = findViewById(R.id.drawerLogueado);
         navigationView = findViewById(R.id.navLogueado);
@@ -58,6 +63,8 @@ public class MenuLogueado extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        navigationView.setCheckedItem(R.id.homeLogueado);
+
 
     }
 
@@ -74,6 +81,21 @@ public class MenuLogueado extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.homeLogueado:
+                break;
+            case R.id.mpLogueado:
+                Intent intent = new Intent(MenuLogueado.this, MediosPagoActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.msLogueado:
+                break;
+            case R.id.moLogueado:
+                Intent intent2 = new Intent(MenuLogueado.this, MisObjetos.class);
+                startActivity(intent2);
+                break;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 }

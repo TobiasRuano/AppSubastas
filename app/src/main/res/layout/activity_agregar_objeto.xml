@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AgregarObjeto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarLogueado"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#D63131"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarLogueado">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/radioButtonLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            tools:ignore="MissingConstraints">
+
+            <RadioGroup
+                android:id="@+id/radioGroupObjetos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints">
+
+
+                <RadioButton
+                    android:id="@+id/estandarBoton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Estandar"
+                    android:textStyle="bold" />
+
+
+                <RadioButton
+                    android:id="@+id/obraBoton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Obra Especial"
+                    android:textStyle="bold" />
+
+
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/nombreTextoObjetoEstandar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre:"
+                app:layout_constraintTop_toBottomOf="@id/radioGroupObjetos"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/nombreObjetoEstandar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/nombreTextoObjetoEstandar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                tools:ignore="MissingConstraints" />
+
+
+
+
+
+            <TextView
+                android:id="@+id/nombreArtistaTextoObjetoEstandar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre Artista:"
+                app:layout_constraintTop_toBottomOf="@id/nombreObjetoEstandar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/nombreArtistaObjetoEstandar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/nombreArtistaTextoObjetoEstandar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                tools:ignore="MissingConstraints" />
+
+
+
+
+            <TextView
+                android:id="@+id/nPlazaTextoObjetoEstandar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Numero Plaza:"
+                app:layout_constraintTop_toBottomOf="@id/nombreArtistaObjetoEstandar"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/nPlazaObjetoEstandar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/nPlazaTextoObjetoEstandar"
+                app:layout_constraintStart_toStartOf="parent"
+
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                tools:ignore="MissingConstraints" />
+
+
+
+
+
+
+
+            <TextView
+                android:id="@+id/descripcionTextoObjetoEstandar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="Descripcion:"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nPlazaObjetoEstandar"
+                tools:ignore="MissingConstraints" />
+
+
+            <EditText
+                android:id="@+id/descripcionObjetoEstandar"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                app:layout_constraintTop_toBottomOf="@id/descripcionTextoObjetoEstandar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                tools:ignore="MissingConstraints" />
+
+
+
+
+
+
+            <TextView
+                android:id="@+id/fotoTextoObjetoEstandar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="Foto:"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descripcionObjetoEstandar"/>
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/subirFotoObjeto"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/imagenObjetos"
+                app:layout_constraintTop_toBottomOf="@id/fotoTextoObjetoEstandar" />
+
+            <ImageView
+                android:id="@+id/imagenObjetos"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/fotoTextoObjetoEstandar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/subirFotoObjeto"/>
+
+
+
+
+
+            <Button
+                android:id="@+id/botonGargarObjeto"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Cargar Objeto"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="100dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/subirFotoObjeto"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
