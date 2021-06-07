@@ -79,7 +79,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.CardVi
 
             private void deleteTarjeta(MPTarjeta tarjeta) {
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("https://URL-de-la-API.com")
+                        .baseUrl("http://192.168.1.111/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 ApiUtils as = retrofit.create(ApiUtils.class);

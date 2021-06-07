@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.trotos.appsubastas.Modelos.MPTarjeta;
 
 import java.util.Date;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -84,16 +85,20 @@ public class AgregarMedioPagoActivity extends AppCompatActivity {
 
     private void addCard() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://URL-de-la-API.com")
+                .baseUrl("http://192.168.1.111/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
 
         String name = cardName.getText().toString();
         String number = cardNumber.getText().toString();
-        String cvc = cvcNumber.getText().toString();
+        String cvc1 = cvcNumber.getText().toString();
+        int cvc2 = Integer.parseInt(cvc1);
+        Random random = new Random();
+        int id = random.nextInt(10000000);
 
-        MPTarjeta tarjeta = new MPTarjeta(name, number, "Visa", cvc, expiracionTarjeta);
+
+        MPTarjeta tarjeta = new MPTarjeta(id, name, number, "Visa", cvc2, expiracionTarjeta);
 
         Call<MPTarjeta> call = as.postTarjeta(tarjeta);
 
@@ -118,6 +123,7 @@ public class AgregarMedioPagoActivity extends AppCompatActivity {
             public void onFailure(Call<MPTarjeta> call, Throwable t) {
                 Toast toast1 = Toast.makeText(getApplicationContext(),"Error al intentar agregar la tarjeta", Toast.LENGTH_LONG);
                 toast1.show();
+                passDataBack();
             }
         });
     }

@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,6 +21,12 @@ import com.trotos.appsubastas.Modelos.Subasta;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
 
@@ -34,12 +41,14 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
     ViewGroup.LayoutParams params;
     LinearLayout linearLayout1;
 
+    Subasta element;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogo);
 
-        Subasta element = (Subasta) getIntent().getSerializableExtra("subasta");
+        element = (Subasta) getIntent().getSerializableExtra("subasta");
         estaRegistrado = getIntent().getBooleanExtra("estadoLoggeado", false);
         nameDescriptionTextView = findViewById(R.id.nameDescriptionTextView);
         stateDescriptionTextView = findViewById(R.id.stateDescriptionTextView);
@@ -54,6 +63,7 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
         categoryDescriptionTextView.setTextColor(Color.GRAY);
 
         init();
+        //getDatos();
     }
 
     List<ItemCatalogo> catalogos;
@@ -61,17 +71,21 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
     public void init(){
 
         catalogos = new ArrayList<>();
+        getDatos();
+
+
+
 
         //HARDCODEADO
-        catalogos.add(new ItemCatalogo("123456","En Curso","Rolex",8000,2100000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.","Breve descripcion del item", "ARS"));
-        catalogos.add(new ItemCatalogo("123456","En Curso","Casio",2000,10000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.2","Breve descripcion del item", "ARS"));
-        catalogos.add(new ItemCatalogo("123456","En Curso","Paddle Watch",200,7000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.3","Breve descripcion del item", "USD"));
-        catalogos.add(new ItemCatalogo("123456","Programada","Rolex",8000,2100000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.","Breve descripcion del item", "ARS"));
-        catalogos.add(new ItemCatalogo("123456","Programada","Casio",2000,10000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.2","Breve descripcion del item", "ARS"));
-        catalogos.add(new ItemCatalogo("123456","Programada","Paddle Watch",200,7000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.3","Breve descripcion del item", "USD"));
-        catalogos.add(new ItemCatalogo("123456","Finalizada","Rolex",8000,2100000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.","Breve descripcion del item", "ARS"));
-        catalogos.add(new ItemCatalogo("123456","Finalizada","Casio",2000,10000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.2","Breve descripcion del item", "ARS"));
-        catalogos.add(new ItemCatalogo("123456","Finalizada","Paddle Watch",200,7000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.3","Breve descripcion del item", "USD"));
+        //catalogos.add(new ItemCatalogo("123456","En Curso","Rolex",8000,2100000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.","Breve descripcion del item", "ARS"));
+        //catalogos.add(new ItemCatalogo("123456","En Curso","Casio",2000,10000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.2","Breve descripcion del item", "ARS"));
+        //catalogos.add(new ItemCatalogo("123456","En Curso","Paddle Watch",200,7000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.3","Breve descripcion del item", "USD"));
+        //catalogos.add(new ItemCatalogo("123456","Programada","Rolex",8000,2100000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.","Breve descripcion del item", "ARS"));
+        //catalogos.add(new ItemCatalogo("123456","Programada","Casio",2000,10000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.2","Breve descripcion del item", "ARS"));
+        //catalogos.add(new ItemCatalogo("123456","Programada","Paddle Watch",200,7000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.3","Breve descripcion del item", "USD"));
+        //catalogos.add(new ItemCatalogo("123456","Finalizada","Rolex",8000,2100000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.","Breve descripcion del item", "ARS"));
+        //catalogos.add(new ItemCatalogo("123456","Finalizada","Casio",2000,10000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.2","Breve descripcion del item", "ARS"));
+        //catalogos.add(new ItemCatalogo("123456","Finalizada","Paddle Watch",200,7000,"#775447","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.3","Breve descripcion del item", "USD"));
 
         MyAdapterCatalogo myAdapterCatalogo = new MyAdapterCatalogo(catalogos, estaRegistrado, this, new MyAdapterCatalogo.OnItemClickListener() {
             @Override
@@ -126,5 +140,50 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
         intent.putExtra("estadoLoggeado", estaRegistrado);
         startActivity(intent);
     }
+
+    private void getDatos() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.1.111/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiUtils as = retrofit.create(ApiUtils.class);
+
+
+
+
+        //System.out.println(element.getId());
+        //System.out.println(element.getName());
+        Call<List<ItemCatalogo>> call = as.getItemsSubasta(element.getId());
+
+        System.out.println(element.getId());
+
+
+        call.enqueue(new Callback<List<ItemCatalogo>>() {
+            @Override
+            public void onResponse(Call<List<ItemCatalogo>> call, Response<List<ItemCatalogo>> response) {
+
+                List<ItemCatalogo> itemsCatalogo = response.body();
+
+
+                for(ItemCatalogo itemCatalogo: itemsCatalogo){
+                    catalogos.add(itemCatalogo);
+                }
+
+
+                //RecyclerView recyclerView2 = findViewById(R.id.listRecyclerView2);
+                listRecyclerView2.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<List<ItemCatalogo>> call, Throwable t) {
+                Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener los Catalogos", Toast.LENGTH_LONG);
+                //Toast toast2 = Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG);
+                toast1.show();
+            }
+        });
+    }
+
+
+
 
 }

@@ -9,14 +9,16 @@ public class ItemCatalogo extends Producto implements Serializable {
     private int valorActual;
     private String color;
     private String moneda;
+    private int subastaid;
 
-    public ItemCatalogo(String id, String estado, String descripcion, int precioBase, int valorActual, String color, String descripcionCompleta, String descripcionBreve, String moneda) {
+    public ItemCatalogo(String id, String estado, String descripcion, int precioBase, int valorActual, String color, String descripcionCompleta, String descripcionBreve, String moneda, int subastaid) {
         super(id, descripcion, descripcionCompleta, descripcionBreve);
         this.estado = estado;
         this.precioBase = precioBase;
         this.valorActual = valorActual;
         this.color = color;
         this.moneda = moneda;
+        this.subastaid = subastaid;
     }
 
     public String getEstado() {
@@ -58,4 +60,8 @@ public class ItemCatalogo extends Producto implements Serializable {
     public String getMoneda() {
         return moneda;
     }
+
+    public int getSubastaid() { return subastaid; }
+
+    public void setSubastaid(int subastaid) { this.subastaid = subastaid; }
 }

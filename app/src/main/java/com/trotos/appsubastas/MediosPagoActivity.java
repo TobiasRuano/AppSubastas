@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,9 +12,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.trotos.appsubastas.Modelos.MPTarjeta;
+import com.trotos.appsubastas.Modelos.Subasta;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -33,8 +36,8 @@ public class MediosPagoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medios_pago);
 
-        testCreateTarjetas();
-        //getTarjetas();
+        //testCreateTarjetas();
+        getTarjetas();
         configureUI();
 
         addCardButton.setOnClickListener(new View.OnClickListener() {
@@ -56,8 +59,9 @@ public class MediosPagoActivity extends AppCompatActivity {
     }
 
     private void getTarjetas() {
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://URL-de-la-API.com")
+                .baseUrl("http://192.168.1.111/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
@@ -68,13 +72,17 @@ public class MediosPagoActivity extends AppCompatActivity {
             public void onResponse(Call<List<MPTarjeta>> call, Response<List<MPTarjeta>> response) {
                 if(response.body() != null) {
                     tarjetas.addAll(response.body());
+
+                    reciclerView.getAdapter().notifyDataSetChanged();
+
                 }
             }
 
             @Override
             public void onFailure(Call<List<MPTarjeta>> call, Throwable t) {
                 Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener las tarjetas", Toast.LENGTH_LONG);
-                toast1.show();
+                Toast toast2 = Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG);
+                toast2.show();
             }
         });
     }
@@ -90,15 +98,16 @@ public class MediosPagoActivity extends AppCompatActivity {
     }
 
     //Funcion test sin API
+    @SuppressLint("SimpleDateFormat")
     private void testCreateTarjetas() {
-        tarjetas.add( new MPTarjeta("Tobias Ruano", "14237463987612376", "Visa", "123", new Date()));
-        tarjetas.add( new MPTarjeta("Tobias Ruano", "14237263987616652", "Amex", "123", new Date()));
-        tarjetas.add( new MPTarjeta("Tobias Ruano", "14237463987613972", "MasterCard", "123", new Date()));
-        tarjetas.add( new MPTarjeta("Tobias Ruano", "14237263987610097", "Amex", "123", new Date()));
-        tarjetas.add( new MPTarjeta("Tobias Ruano", "14237463987611132", "MasterCard", "123", new Date()));
-        tarjetas.add( new MPTarjeta("Tobias Ruano", "14237263987617625", "Discover", "123", new Date()));
-        tarjetas.add( new MPTarjeta("Tobias Ruano", "14237263967384950", "Visa", "123", new Date()));
-        tarjetas.add( new MPTarjeta("Tobias Ruano", "14237463900923618", "Discover", "123", new Date()));
-        tarjetas.add( new MPTarjeta("Tobias Ruano", "14237263983611352", "Amex", "123", new Date()));
+        //tarjetas.add( new MPTarjeta(1,"Tobias Ruano", "14237463987612376", "Visa", 111, new Date()));
+        //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237263987616652", "Amex", "123", new Date()));
+        //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237463987613972", "MasterCard", "123", new Date()));
+        //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237263987610097", "Amex", "123", new Date()));
+        //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237463987611132", "MasterCard", "123", new Date()));
+        //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237263987617625", "Discover", "123", new Date()));
+        //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237263967384950", "Visa", "123", new Date()));
+        //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237463900923618", "Discover", "123", new Date()));
+        //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237263983611352", "Amex", "123", new Date()));
     }
 }

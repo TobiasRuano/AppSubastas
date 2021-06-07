@@ -15,15 +15,23 @@ import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 interface ApiUtils {
 
-    @GET("auctions")
+    @GET("Subastas")
     Call<List<Subasta>> getSubastas();
-    @GET("auctions")
-    Call<List<ItemCatalogo>> getItemsSubasta(@Body String idSubasta);
+    @GET("ItemCatalogo")
+    Call<List<ItemCatalogo>> getItemsSubasta(@Query("subastaid") int subastaid);
     @POST("auctions/{auctionId}/bid")
     Call<ItemCatalogo> postBid(@Body ItemCatalogo item);
+
+
+
+    @GET("Usuario")
+    Call<List<User>> getUsuarios();
+    @GET("Usuario")
+    Call<User> getUsuario(@Query("id") int id);
 
     @HTTP(method = "GET", path = "/users", hasBody = true)
     Call<User> checkPasswordUsuario(@Body String mail);
@@ -31,7 +39,8 @@ interface ApiUtils {
     Call<List<Producto>> getObjetosPropuestos();
     @GET("users")
     Call<List<Subasta>> getSubastasParticipadas(@Body String userID);
-    @GET("users/{userId}/payment_methods")
+
+    @GET("Tarjetas")
     Call<List<MPTarjeta>> getTarjetas();
 
     @POST("users")
@@ -51,6 +60,6 @@ interface ApiUtils {
     Call<User> createPassword(@Body String password);
 
     @POST("login")
-    Call<User> logIn(@Body String mail, @Body String password);
+    Call<User> logIn();
 
 }

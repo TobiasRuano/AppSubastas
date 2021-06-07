@@ -1,17 +1,16 @@
 package com.trotos.appsubastas.Modelos;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class Subasta implements Serializable {
     private String color;
     private String name;
     private String state;
     private String category;
-    private String id;
+    private int id;
     //private List<ItemCatalogo> catalogo;
 
-    public Subasta(String color, String name, String state, String category, String id) {
+    public Subasta(String color, String name, String state, String category, int id) {
         this.color = color;
         this.name = name;
         this.state = state;
@@ -52,11 +51,11 @@ public class Subasta implements Serializable {
         this.category = category;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

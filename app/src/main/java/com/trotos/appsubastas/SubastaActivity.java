@@ -35,8 +35,8 @@
         estadoLoggeado = (Boolean) getIntent().getSerializableExtra("estadoLoggeado");
 
         //HARDCODEADO
-        testCreateSubastas();
-        //getDatos();
+        //testCreateSubastas();
+        getDatos();
 
         MyAdapterSubasta myAdapterSubasta = new MyAdapterSubasta(subastas, this, new MyAdapterSubasta.OnItemClickListener() {
             @Override
@@ -53,7 +53,7 @@
 
      private void getDatos() {
          Retrofit retrofit = new Retrofit.Builder()
-                 .baseUrl("https://URL-de-la-API.com")
+                 .baseUrl("http://192.168.1.111/")
                  .addConverterFactory(GsonConverterFactory.create())
                  .build();
          ApiUtils as = retrofit.create(ApiUtils.class);
@@ -62,28 +62,39 @@
          call.enqueue(new Callback<List<Subasta>>() {
              @Override
              public void onResponse(Call<List<Subasta>> call, Response<List<Subasta>> response) {
-                 if(response.body() != null) {
-                     subastas.addAll(response.body());
+
+                 List<Subasta> subastas2 = response.body();
+                 for(Subasta subasta: subastas2){
+                    subastas.add(subasta);
                  }
+
+
+                 RecyclerView recyclerView = findViewById(R.id.listRecyclerView);
+                 recyclerView.getAdapter().notifyDataSetChanged();
              }
+
+                     //subastas.addAll(response.body());
+                 //}
+             //}
 
              @Override
              public void onFailure(Call<List<Subasta>> call, Throwable t) {
-                 Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener las subastas", Toast.LENGTH_LONG);
-                 toast1.show();
+                 //Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener las subastas", Toast.LENGTH_LONG);
+                 Toast toast2 = Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG);
+                 toast2.show();
              }
          });
      }
 
      //Funcion test sin API
-     private void testCreateSubastas() {
-         subastas.add(new Subasta("#775447","RELOJES","Activa - Restante 15:32 min","Común",  null  ));
-         subastas.add(new Subasta("#215826","AUTOS","Comienza en 20:00 min","Especial", null    ));
-         subastas.add(new Subasta("#455668","CELULARES","Activa - Restante 15:32 min","Plata", null    ));
-         subastas.add(new Subasta("#798999","COMPUTACION","Comienza en 20:00 min","Oro", null    ));
-         subastas.add(new Subasta("#335435","ROPA","Activa - Restante 15:32 min","Platino", null    ));
-         subastas.add(new Subasta("#486648","CAMARAS","Comienza en 20:00 min","Oro", null    ));
-     }
+     //private void testCreateSubastas() {
+         //subastas.add(new Subasta("#775447","RELOJES","Activa - Restante 15:32 min","Común",  null  ));
+         //subastas.add(new Subasta("#215826","AUTOS","Comienza en 20:00 min","Especial", null    ));
+         //subastas.add(new Subasta("#455668","CELULARES","Activa - Restante 15:32 min","Plata", null    ));
+         //subastas.add(new Subasta("#798999","COMPUTACION","Comienza en 20:00 min","Oro", null    ));
+         //subastas.add(new Subasta("#335435","ROPA","Activa - Restante 15:32 min","Platino", null    ));
+         //subastas.add(new Subasta("#486648","CAMARAS","Comienza en 20:00 min","Oro", null    ));
+     //}
 
      private void moveToDescription(Subasta item) {
          Intent intent = new Intent(this, CatalogoActivity.class);
