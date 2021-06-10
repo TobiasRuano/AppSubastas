@@ -14,6 +14,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.trotos.appsubastas.Modelos.LoginInformation;
 import com.trotos.appsubastas.Modelos.User;
 
 import java.util.regex.Matcher;
@@ -125,7 +126,9 @@ public class IniciarSesionActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
-        Call<User> call = as.logIn();
+
+        LoginInformation logIn = new LoginInformation(mail, password);
+        Call<User> call = as.logIn(logIn);
 
         call.enqueue(new Callback<User>() {
             @Override
@@ -142,10 +145,6 @@ public class IniciarSesionActivity extends AppCompatActivity {
             public void onFailure(Call<User> call, Throwable t) {
                 Toast toast1 = Toast.makeText(getApplicationContext(),"Error al Iniciar sesion", Toast.LENGTH_LONG);
                 toast1.show();
-                // para entrar
-                Intent intent = new Intent(IniciarSesionActivity.this, SubastaActivity.class);
-                intent.putExtra("estadoLoggeado",true);
-                startActivity(intent);
             }
         });
     }
@@ -181,10 +180,6 @@ public class IniciarSesionActivity extends AppCompatActivity {
             public void onFailure(Call<User> call, Throwable t) {
                 Toast toast1 = Toast.makeText(getApplicationContext(),"Error al intentar obtener los datos de la cuenta.", Toast.LENGTH_LONG);
                 toast1.show();
-                //para testear
-                Intent intent = new Intent(IniciarSesionActivity.this, CrearPassActivity.class);
-                intent.putExtra("usuario",new User("nombre","apellido","mail",1234,"address"));
-                startActivity(intent);
             }
         });
     }
