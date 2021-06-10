@@ -1,6 +1,7 @@
 package com.trotos.appsubastas;
 
 import com.trotos.appsubastas.Modelos.ItemCatalogo;
+import com.trotos.appsubastas.Modelos.LoginInformation;
 import com.trotos.appsubastas.Modelos.MPTarjeta;
 import com.trotos.appsubastas.Modelos.Producto;
 import com.trotos.appsubastas.Modelos.Subasta;
@@ -19,7 +20,7 @@ import retrofit2.http.Query;
 
 interface ApiUtils {
 
-    @GET("Subastas")
+    @GET("subastas/")
     Call<List<Subasta>> getSubastas();
     @GET("ItemCatalogo")
     Call<List<ItemCatalogo>> getItemsSubasta(@Query("subastaid") int subastaid);
@@ -43,7 +44,7 @@ interface ApiUtils {
     @GET("Tarjetas")
     Call<List<MPTarjeta>> getTarjetas();
 
-    @POST("users")
+    @HTTP(method = "POST", path = "users", hasBody = true)
     Call<User> createAccount(@Body User user);
     @POST("users/{userId}/items")
     Call<Producto> postProducto(@Body Producto producto);
@@ -59,7 +60,7 @@ interface ApiUtils {
     @POST("password")
     Call<User> createPassword(@Body String password);
 
-    @POST("login")
-    Call<User> logIn();
+    @HTTP(method = "POST", path = "/login", hasBody = true)
+    Call<User> logIn(@Body LoginInformation logIn);
 
 }
