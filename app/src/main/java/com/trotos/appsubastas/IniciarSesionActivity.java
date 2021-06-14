@@ -4,15 +4,27 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.trotos.appsubastas.Modelos.LoginInformation;
+import com.trotos.appsubastas.Modelos.User;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class IniciarSesionActivity extends AppCompatActivity {
 
@@ -29,11 +41,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iniciar_sesion);
 
-        mailText = (EditText) findViewById(R.id.mailText);
-        passText = (EditText) findViewById(R.id.passText);
-        logInButton = (Button) findViewById(R.id.submitButton);
-        registerButton = (Button) findViewById(R.id.RegisterButton);
-        hasPassSwitch = (Switch) findViewById(R.id.hasPassSwitch);
+        configureUI();
 
         hasPassSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -57,19 +65,16 @@ public class IniciarSesionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (checkEstadoMail()) {
+                    String mail = mailText.getText().toString();
                     if (userHasPass) {
                         if (checkPassword()) {
-                            //TODO: a la API!
-
-                            Intent intent = new Intent(IniciarSesionActivity.this, MenuLogueado.class);
-                            startActivity(intent);
+                            String password = passText.getText().toString();
+                            logIn(mail, password);
                         } else {
                             showAlert("Usuario o Contraseña invalidos", "Por favor, chequea que los datos ingresados sean correctos.");
                         }
                     } else {
-                        // TODO: a la API.
-                        Intent intent = new Intent(IniciarSesionActivity.this, CrearPassActivity.class);
-                        startActivity(intent);
+                        getEstadoPassword(mail);
                     }
                 } else {
                     showAlert("Mail invalido", "Debes ingresar un mail valido para continuar.");
@@ -87,11 +92,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
 
             private boolean checkPassword() {
                 String pass = passText.getText().toString();
-                if (pass.isEmpty()) {
-                    return false;
-                } else {
-                    return true;
-                }
+                return !pass.isEmpty();
             }
 
             private boolean isEmailValid(String email) {
@@ -99,14 +100,6 @@ public class IniciarSesionActivity extends AppCompatActivity {
                 Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
                 Matcher matcher = pattern.matcher(email);
                 return matcher.matches();
-            }
-
-            private void showAlert(String titulo, String mensaje) {
-                new AlertDialog.Builder(IniciarSesionActivity.this)
-                        .setTitle(titulo)
-                        .setMessage(mensaje)
-                        .setPositiveButton("Aceptar", null)
-                        .show();
             }
         });
 
@@ -117,5 +110,85 @@ public class IniciarSesionActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void configureUI() {
+        mailText = (EditText) findViewById(R.id.mailText);
+        passText = (EditText) findViewById(R.id.passText);
+        logInButton = (Button) findViewById(R.id.submitButton);
+        registerButton = (Button) findViewById(R.id.RegisterButton);
+        hasPassSwitch = (Switch) findViewById(R.id.hasPassSwitch);
+    }
+
+    private void logIn(String mail, String password) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://URL-de-la-API.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiUtils as = retrofit.create(ApiUtils.class);
+
+        LoginInformation logIn = new LoginInformation(mail, password);
+        Call<User> call = as.logIn(logIn);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(response.body() != null) {
+                    saveUser(response.body());
+                    Intent intent = new Intent(IniciarSesionActivity.this, SubastaActivity.class);
+                    intent.putExtra("estadoLoggeado",true);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast toast1 = Toast.makeText(getApplicationContext(),"Error al Iniciar sesion", Toast.LENGTH_LONG);
+                toast1.show();
+            }
+        });
+    }
+
+    private void saveUser(User userToSave) {
+        SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(userToSave);
+        prefsEditor.putString("User", json);
+        prefsEditor.apply();
+    }
+
+    private void getEstadoPassword(String mail) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://URL-de-la-API.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiUtils as = retrofit.create(ApiUtils.class);
+        Call<User> call = as.checkPasswordUsuario(mail);
+
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(response.body() != null) {
+                    Intent intent = new Intent(IniciarSesionActivity.this, CrearPassActivity.class);
+                    intent.putExtra("usuario",response.body());
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast toast1 = Toast.makeText(getApplicationContext(),"Error al intentar obtener los datos de la cuenta.", Toast.LENGTH_LONG);
+                toast1.show();
+            }
+        });
+    }
+
+    private void showAlert(String titulo, String mensaje) {
+        new AlertDialog.Builder(IniciarSesionActivity.this)
+                .setTitle(titulo)
+                .setMessage(mensaje)
+                .setPositiveButton("Aceptar", null)
+                .show();
     }
 }
