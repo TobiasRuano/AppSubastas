@@ -1,5 +1,6 @@
 package com.trotos.appsubastas;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,10 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.jetbrains.annotations.NotNull;
 import com.trotos.appsubastas.Modelos.MPTarjeta;
 import com.trotos.appsubastas.Modelos.Subasta;
 
@@ -29,13 +35,15 @@ public class MediosPagoActivity extends AppCompatActivity {
 
     List<MPTarjeta> tarjetas = new ArrayList<MPTarjeta>();
     RecyclerView reciclerView;
-    Button addCardButton;
+    FloatingActionButton addCardButton;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medios_pago);
 
+        getSupportActionBar().hide();
         //testCreateTarjetas();
         getTarjetas();
         configureUI();
@@ -51,13 +59,43 @@ public class MediosPagoActivity extends AppCompatActivity {
 
     private void configureUI() {
         reciclerView = (RecyclerView) findViewById(R.id.cardView);
-        addCardButton = (Button) findViewById(R.id.newCardButton);
+        addCardButton = (FloatingActionButton) findViewById(R.id.newCardButton);
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
 
         CardViewAdapter cardViewAdapter = new CardViewAdapter(this, tarjetas);
         reciclerView.setAdapter(cardViewAdapter);
         reciclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+        bottomNavigationView.setSelectedItemId(R.id.mpLogueado);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.homeLogueado:
+                        startActivity(new Intent(MediosPagoActivity.this, MenuLogueado.class));
+                        overridePendingTransition(0,0);
+                        break;
+                    case R.id.mpLogueado:
+                        break;
+                    case R.id.msLogueado:
+                        break;
+                    case R.id.moLogueado:
+                        startActivity(new Intent(MediosPagoActivity.this, MisObjetos.class));
+                        overridePendingTransition(0,0);
+                        break;
+                    case R.id.usuarioLogueado:
+                        startActivity(new Intent(MediosPagoActivity.this, MiUsuario.class));
+                        overridePendingTransition(0,0);
+                        break;
+                }
+                return false;
+            }
+        });
+
+
+
+        addCardButton.setOnClickListener(new View.OnClickListener() {
     private void getTarjetas() {
 
         Retrofit retrofit = new Retrofit.Builder()

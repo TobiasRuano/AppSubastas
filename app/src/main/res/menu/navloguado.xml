@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/homeLogueado"
+            android:title="Home"
+            android:icon="@drawable/home" />
+        <item
+            android:id="@+id/mpLogueado"
+            android:title="Medios de Pago"
+            android:icon="@drawable/mediospagos"/>
+        <item
+            android:id="@+id/msLogueado"
+            android:title="Mis Subastas"
+            android:icon="@drawable/missubastas"/>
+        <item
+            android:id="@+id/moLogueado"
+            android:title="Mis Objetos"
+            android:icon="@drawable/misobjetos"/>
+        <item
+            android:id="@+id/usuarioLogueado"
+            android:title="Mi Usuario"
+            android:icon="@drawable/usuario"/>
+    </group>
+
+</menu>
