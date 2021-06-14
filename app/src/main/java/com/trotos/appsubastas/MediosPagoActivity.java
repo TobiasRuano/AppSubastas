@@ -45,7 +45,7 @@ public class MediosPagoActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
         //testCreateTarjetas();
-        getTarjetas();
+        //getTarjetas();
         configureUI();
 
         addCardButton.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +65,7 @@ public class MediosPagoActivity extends AppCompatActivity {
         CardViewAdapter cardViewAdapter = new CardViewAdapter(this, tarjetas);
         reciclerView.setAdapter(cardViewAdapter);
         reciclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
+
 
         bottomNavigationView.setSelectedItemId(R.id.mpLogueado);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -94,8 +94,9 @@ public class MediosPagoActivity extends AppCompatActivity {
         });
 
 
+    }
 
-        addCardButton.setOnClickListener(new View.OnClickListener() {
+
     private void getTarjetas() {
 
         Retrofit retrofit = new Retrofit.Builder()
