@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".MediosPagoActivity">
 
+    <include layout="@layout/toolbarlogueado"></include>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -19,15 +21,14 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <Button
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/newCardButton"
-        android:layout_width="200dp"
+        android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:text="Add a new Card"
+        android:layout_marginBottom="80dp"
+        android:layout_marginRight="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

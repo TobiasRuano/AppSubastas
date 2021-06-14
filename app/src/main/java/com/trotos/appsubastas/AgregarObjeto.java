@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -20,12 +21,15 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class AgregarObjeto extends AppCompatActivity {
 
-    TextView artista;
-    EditText nombreBox, artistaBox, nPlazaBox, descBox;
+    TextInputLayout artista;
     Button cargarObjeto;
+
+    TextInputEditText nombreBox, artistaBox, nPlazaBox, descBox;
 
     ImageView imagenObjetos;
 
@@ -40,6 +44,8 @@ public class AgregarObjeto extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_objeto);
+
+        getSupportActionBar().hide();
 
         imagenObjetos = findViewById(R.id.imagenObjetos);
         subirFoto = findViewById(R.id.subirFotoObjeto);
@@ -64,6 +70,8 @@ public class AgregarObjeto extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
                     case R.id.estandarBoton:
+                        botonEstandar.setTextColor(Color.WHITE);
+                        botonObra.setTextColor(Color.RED);
                         artista.setVisibility(View.GONE);
                         artistaBox.setVisibility(View.GONE);
                         cargarObjeto.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +86,8 @@ public class AgregarObjeto extends AppCompatActivity {
                         });
                         break;
                     case R.id.obraBoton:
+                        botonEstandar.setTextColor(Color.RED);
+                        botonObra.setTextColor(Color.WHITE);
                         artista.setVisibility(View.VISIBLE);
                         artistaBox.setVisibility(View.VISIBLE);
                         cargarObjeto.setOnClickListener(new View.OnClickListener() {

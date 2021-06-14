@@ -16,18 +16,15 @@ import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import org.jetbrains.annotations.NotNull;
 
 
-public class MenuLogueado extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MenuLogueado extends AppCompatActivity{
 
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    Toolbar toolbar;
-
-    View item;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,66 +33,35 @@ public class MenuLogueado extends AppCompatActivity implements NavigationView.On
 
         getSupportActionBar().hide();
 
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setSelectedItemId(R.id.homeLogueado);
 
-        drawerLayout = findViewById(R.id.drawerLogueado);
-        navigationView = findViewById(R.id.navLogueado);
-        toolbar = findViewById(R.id.toolbarLogueado);
-
-        item = findViewById(R.id.usuarioLogueado);
-
-        item.setOnClickListener(new View.OnClickListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuLogueado.this,MiUsuario.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_bottom,R.anim.slide_out_top);
+            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.homeLogueado:
+                        break;
+                    case R.id.mpLogueado:
+                        startActivity(new Intent(MenuLogueado.this, MediosPagoActivity.class));
+                        overridePendingTransition(0,0);
+                        break;
+                    case R.id.msLogueado:
+                        break;
+                    case R.id.moLogueado:
+                        startActivity(new Intent(MenuLogueado.this, MisObjetos.class));
+                        overridePendingTransition(0,0);
+                        break;
+                    case R.id.usuarioLogueado:
+                        startActivity(new Intent(MenuLogueado.this, MiUsuario.class));
+                        overridePendingTransition(0,0);
+                        break;
+                }
+                return false;
             }
         });
 
 
-
-        navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
-        drawerLayout.addDrawerListener(toggle);
-
-
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        navigationView.setCheckedItem(R.id.homeLogueado);
-
-
     }
 
-    @Override
-    public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else{
-            super.onBackPressed();
-        }
-    }
-
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.homeLogueado:
-                break;
-            case R.id.mpLogueado:
-                Intent intent = new Intent(MenuLogueado.this, MediosPagoActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.msLogueado:
-                break;
-            case R.id.moLogueado:
-                Intent intent2 = new Intent(MenuLogueado.this, MisObjetos.class);
-                startActivity(intent2);
-                break;
-        }
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
-    }
 }

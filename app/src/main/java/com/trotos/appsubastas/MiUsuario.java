@@ -1,5 +1,6 @@
 package com.trotos.appsubastas;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -12,18 +13,22 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.jetbrains.annotations.NotNull;
 
 public class MiUsuario extends AppCompatActivity {
 
-    ImageView flecha;
     ImageView fotoPerfil;
     FloatingActionButton subirFoto;
     Button editarPerfilBoton;
+    BottomNavigationView bottomNavigationView;
 
     Integer REQUEST_CAMERA = 1, SELECT_FILE = 0;
 
@@ -32,17 +37,37 @@ public class MiUsuario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mi_usuario);
 
-        flecha = findViewById(R.id.flechaAbajoMiUsuario);
+        getSupportActionBar().hide();
+
         subirFoto = findViewById(R.id.subirFoto);
         editarPerfilBoton = findViewById(R.id.editarPerfilBoton);
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
 
 
-        flecha.setOnClickListener(new View.OnClickListener() {
+        bottomNavigationView.setSelectedItemId(R.id.usuarioLogueado);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MiUsuario.this,MenuLogueado.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_top,R.anim.slide_out_bottom);
+            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.homeLogueado:
+                        startActivity(new Intent(MiUsuario.this, MenuLogueado.class));
+                        overridePendingTransition(0,0);
+                        break;
+                    case R.id.mpLogueado:
+                        startActivity(new Intent(MiUsuario.this, MediosPagoActivity.class));
+                        overridePendingTransition(0,0);
+                        break;
+                    case R.id.msLogueado:
+                        break;
+                    case R.id.moLogueado:
+                        startActivity(new Intent(MiUsuario.this, MisObjetos.class));
+                        overridePendingTransition(0,0);
+                        break;
+                    case R.id.usuarioLogueado:
+                        break;
+                }
+                return false;
             }
         });
 
