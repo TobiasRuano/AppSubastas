@@ -17,7 +17,10 @@ import com.trotos.appsubastas.Modelos.ItemCatalogo;
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,22 +29,22 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class DescripcionActivity extends AppCompatActivity {
+public class DestalleMisSubastasActivity extends AppCompatActivity {
 
-    TextView titleDescriptionTextView3;
-    TextView precioBaseDescriptionTextView3;
-    TextView valorActualDescriptionTextView3;
-    TextView fullTitleDescriptionTextView3;
-    TextView monedaBaseDescriptionTextView3;
-    TextView monedaActualDescriptionTextView3;
+    TextView titleDescriptionTextView5;
+    TextView precioBaseDescriptionTextView5;
+    TextView valorActualDescriptionTextView5;
+    TextView fullTitleDescriptionTextView5;
+    TextView monedaBaseDescriptionTextView5;
+    TextView monedaActualDescriptionTextView5;
 
-    EditText editarNumeroDeTexto;
-    Button botonOfertar;
-    Button botonRegistrar;
+    EditText editarNumeroDeTexto5;
+    Button botonOfertar5;
+    Button botonRegistrar5;
 
-    TextView valorActualOVendido;
-    TextView precioBaseView;
-    TextView historialPujasView;
+    TextView valorActualOVendido5;
+    TextView precioBaseView5;
+    TextView historialPujasView5;
 
     List<CarouselItem> list = new ArrayList<>();
 
@@ -51,99 +54,99 @@ public class DescripcionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_descripcion);
+        setContentView(R.layout.activity_detalle_mis_subastas);
 
-        element = (ItemCatalogo) getIntent().getSerializableExtra("Catalogos");
+        element = (ItemCatalogo) getIntent().getSerializableExtra("MisSubastas");
         estaRegistrado = (Boolean) getIntent().getBooleanExtra("estadoLoggeado", false);
         configureUI();
         cargar();
         verHistorialPujas();
-        ofertar();
-        logIn();
+        //ofertar();
+        //logIn();
     }
 
     private void logIn() {
-        botonRegistrar.setOnClickListener(new View.OnClickListener() {
+        botonRegistrar5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DescripcionActivity.this, IniciarSesionActivity.class);
+                Intent intent = new Intent(DestalleMisSubastasActivity.this, IniciarSesionActivity.class);
                 startActivity(intent);
             }
         });
     }
 
     private void configureUI() {
-        titleDescriptionTextView3 = findViewById(R.id.titleDescriptionTextView3);
-        precioBaseDescriptionTextView3 = findViewById(R.id.precioBaseDescriptionTextView3);
-        valorActualDescriptionTextView3 = findViewById(R.id.valorActualDescriptionTextView3);
-        fullTitleDescriptionTextView3 = findViewById(R.id.fullTitleDescriptionTextView3);
-        monedaBaseDescriptionTextView3 = findViewById(R.id.monedaBaseDescriptionTextView3);
-        monedaActualDescriptionTextView3 = findViewById(R.id.monedaActualDescriptionTextView3);
+        titleDescriptionTextView5 = findViewById(R.id.titleDescriptionTextView5);
+        precioBaseDescriptionTextView5 = findViewById(R.id.precioBaseDescriptionTextView5);
+        valorActualDescriptionTextView5 = findViewById(R.id.valorActualDescriptionTextView5);
+        fullTitleDescriptionTextView5 = findViewById(R.id.fullTitleDescriptionTextView5);
+        monedaBaseDescriptionTextView5 = findViewById(R.id.monedaBaseDescriptionTextView5);
+        monedaActualDescriptionTextView5 = findViewById(R.id.monedaActualDescriptionTextView5);
 
-        titleDescriptionTextView3.setText(element.getDescripcion());
-        titleDescriptionTextView3.setTextColor(Color.parseColor(element.getColor()));
+        titleDescriptionTextView5.setText(element.getDescripcion());
+        titleDescriptionTextView5.setTextColor(Color.parseColor(element.getColor()));
 
-        String precioBaseText = String.format("%,d", element.getPrecioBase());
-        precioBaseDescriptionTextView3.setText(precioBaseText);
-        String valorActualText = String.format("%,d", element.getValorActual());
-        valorActualDescriptionTextView3.setText(valorActualText);
-        valorActualDescriptionTextView3.setTextColor(Color.GRAY);
-        fullTitleDescriptionTextView3.setText(element.getDescripcionCompleta());
-        monedaBaseDescriptionTextView3.setText(element.getMoneda());
-        monedaActualDescriptionTextView3.setText(element.getMoneda());
+        String precioBaseText5 = String.format("%,d", element.getPrecioBase());
+        precioBaseDescriptionTextView5.setText(precioBaseText5);
+        String valorActualText5 = String.format("%,d", element.getValorActual());
+        valorActualDescriptionTextView5.setText(valorActualText5);
+        valorActualDescriptionTextView5.setTextColor(Color.GRAY);
+        fullTitleDescriptionTextView5.setText(element.getDescripcionCompleta());
+        monedaBaseDescriptionTextView5.setText(element.getMoneda());
+        monedaActualDescriptionTextView5.setText(element.getMoneda());
 
-        editarNumeroDeTexto = findViewById(R.id.editarNumeroDeTexto);
-        botonOfertar = findViewById(R.id.botonOfertar);
-        valorActualOVendido = findViewById(R.id.valorActualOVendido);
-        precioBaseView = findViewById(R.id.precioBaseView);
-        botonRegistrar = findViewById(R.id.botonRegistrar);
-        historialPujasView = findViewById(R.id.historialPujasView);
+        //editarNumeroDeTexto5 = findViewById(R.id.editarNumeroDeTexto5);
+        //botonOfertar5 = findViewById(R.id.botonOfertar5);
+        valorActualOVendido5 = findViewById(R.id.valorActualOVendido5);
+        precioBaseView5 = findViewById(R.id.precioBaseView5);
+        //botonRegistrar5 = findViewById(R.id.botonRegistrar5);
+        historialPujasView5 = findViewById(R.id.historialPujasView5);
 
         if(!estaRegistrado){
-            editarNumeroDeTexto.setVisibility(View.GONE);
-            botonOfertar.setVisibility(View.GONE);
-            valorActualOVendido.setVisibility(View.GONE);
-            monedaActualDescriptionTextView3.setVisibility(View.GONE);
-            valorActualDescriptionTextView3.setVisibility(View.GONE);
-            precioBaseDescriptionTextView3.setVisibility(View.GONE);
-            monedaBaseDescriptionTextView3.setVisibility(View.GONE);
-            precioBaseView.setVisibility(View.GONE);
-            historialPujasView.setVisibility(View.GONE);
+            //editarNumeroDeTexto5.setVisibility(View.GONE);
+            //botonOfertar5.setVisibility(View.GONE);
+            valorActualOVendido5.setVisibility(View.GONE);
+            monedaActualDescriptionTextView5.setVisibility(View.GONE);
+            valorActualDescriptionTextView5.setVisibility(View.GONE);
+            precioBaseDescriptionTextView5.setVisibility(View.GONE);
+            monedaBaseDescriptionTextView5.setVisibility(View.GONE);
+            precioBaseView5.setVisibility(View.GONE);
+            historialPujasView5.setVisibility(View.GONE);
         }else {
-            botonRegistrar.setVisibility(View.GONE);
+            //botonRegistrar5.setVisibility(View.GONE);
         }
 
         String estado = element.getEstado();
 
         switch (estado) {
             case "En Curso":
-                valorActualOVendido.setText("Valor Actual:");
-                valorActualDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
+                valorActualOVendido5.setText("Valor Actual:");
+                valorActualDescriptionTextView5.setTextColor(Color.parseColor("#FF669900"));
                 break;
             case "Programada":
-                valorActualOVendido.setVisibility(View.GONE);
-                valorActualDescriptionTextView3.setVisibility(View.GONE);
-                monedaActualDescriptionTextView3.setVisibility(View.GONE);
-                editarNumeroDeTexto.setVisibility(View.GONE);
-                botonOfertar.setVisibility(View.GONE);
-                historialPujasView.setVisibility(View.GONE);
-                precioBaseDescriptionTextView3.setTextSize(30);
-                precioBaseDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
-                precioBaseView.setTextSize(30);
-                precioBaseView.setTextColor(Color.parseColor("#FF669900"));
+                valorActualOVendido5.setVisibility(View.GONE);
+                valorActualDescriptionTextView5.setVisibility(View.GONE);
+                monedaActualDescriptionTextView5.setVisibility(View.GONE);
+                //editarNumeroDeTexto5.setVisibility(View.GONE);
+                //botonOfertar5.setVisibility(View.GONE);
+                historialPujasView5.setVisibility(View.GONE);
+                precioBaseDescriptionTextView5.setTextSize(30);
+                precioBaseDescriptionTextView5.setTextColor(Color.parseColor("#FF669900"));
+                precioBaseView5.setTextSize(30);
+                precioBaseView5.setTextColor(Color.parseColor("#FF669900"));
                 break;
             case "Finalizada":
-                editarNumeroDeTexto.setVisibility(View.GONE);
-                botonOfertar.setVisibility(View.GONE);
-                valorActualOVendido.setText("Vendido:");
-                valorActualDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
+                //editarNumeroDeTexto5.setVisibility(View.GONE);
+                //botonOfertar5.setVisibility(View.GONE);
+                valorActualOVendido5.setText("Vendido:");
+                valorActualDescriptionTextView5.setTextColor(Color.parseColor("#FF669900"));
                 break;
         }
     }
 
 
     private void cargar() {
-        ImageCarousel carousel = findViewById(R.id.carousel);
+        ImageCarousel carousel = findViewById(R.id.carousel5);
         carousel.registerLifecycle(getLifecycle());
 
         list.add(
@@ -176,7 +179,7 @@ public class DescripcionActivity extends AppCompatActivity {
     }
 
     private void showAlert(String titulo, String mensaje) {
-        new AlertDialog.Builder(DescripcionActivity.this)
+        new AlertDialog.Builder(DestalleMisSubastasActivity.this)
                 .setTitle(titulo)
                 .setMessage(mensaje)
                 .setPositiveButton("Aceptar", null)
@@ -185,7 +188,7 @@ public class DescripcionActivity extends AppCompatActivity {
 
 
     private void ofertar() {
-        botonOfertar.setOnClickListener(new View.OnClickListener() {
+        botonOfertar5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -199,9 +202,9 @@ public class DescripcionActivity extends AppCompatActivity {
                 }
 
                 int valorPuja = 0;
-                String texto = editarNumeroDeTexto.getText().toString();
+                String texto = editarNumeroDeTexto5.getText().toString();
                 if(!texto.equals("")){
-                    valorPuja = Integer.parseInt(editarNumeroDeTexto.getText().toString());
+                    valorPuja = Integer.parseInt(editarNumeroDeTexto5.getText().toString());
                 }
 
 
@@ -249,7 +252,7 @@ public class DescripcionActivity extends AppCompatActivity {
     }
 
     private void verHistorialPujas() {
-        historialPujasView.setOnClickListener(new View.OnClickListener() {
+        historialPujasView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //HARDCODEADO

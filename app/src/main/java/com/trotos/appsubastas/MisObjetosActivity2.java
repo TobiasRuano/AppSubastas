@@ -3,11 +3,8 @@ package com.trotos.appsubastas;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,18 +25,18 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
+public class MisObjetosActivity2<animFadeIn> extends AppCompatActivity {
 
-    TextView nameDescriptionTextView;
-    TextView stateDescriptionTextView;
-    TextView categoryDescriptionTextView;
-    RecyclerView listRecyclerView2;
+    TextView nameDescriptionTextView4;
+    TextView stateDescriptionTextView4;
+    TextView categoryDescriptionTextView4;
+    RecyclerView listRecyclerView4;
 
     Animation animFadeIn;
     boolean banderaAnimation = false;
-    boolean estaRegistrado;
+    boolean estaRegistrado = true;
     ViewGroup.LayoutParams params;
-    LinearLayout linearLayout1;
+    LinearLayout linearLayout4;
 
     Subasta element;
 
@@ -48,25 +45,9 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_catalogo);
+        setContentView(R.layout.activity_mis_objetos2);
 
-        element = (Subasta) getIntent().getSerializableExtra("subasta");
-        estaRegistrado = getIntent().getBooleanExtra("estadoLoggeado", false);
-        nameDescriptionTextView = findViewById(R.id.nameDescriptionTextView);
-        stateDescriptionTextView = findViewById(R.id.stateDescriptionTextView);
-        categoryDescriptionTextView = findViewById(R.id.categoryDescriptionTextView);
-
-        nameDescriptionTextView.setText(element.getName());
-        nameDescriptionTextView.setTextColor(Color.parseColor(element.getColor()));
-
-        stateDescriptionTextView.setText(element.getStatus());
-
-        categoryDescriptionTextView.setText(element.getCategory());
-        categoryDescriptionTextView.setTextColor(Color.GRAY);
-
-        //HARDCODEADO
-        catalogos = new ArrayList<>();
-        catalogos = element.getCatalogos();
+        //estaRegistrado = getIntent().getBooleanExtra("estadoLoggeado", false);
 
         init();
         //getDatos();
@@ -75,38 +56,41 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
 
     public void init(){
 
-        /*
-
+        //HARDCODEADO
         catalogos = new ArrayList<>();
+        catalogos.add(new ItemCatalogo("123456","En Curso","Rolex",1234,1234567,"#575457","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.","Breve descripcion del item", "ARS",000));
+        catalogos.add(new ItemCatalogo("123456","En Curso","Casio",1234,123456,"#A70447","Lorem2 ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.2","Breve descripcion del item", "ARS", 001));
+        catalogos.add(new ItemCatalogo("123456","En Curso","Paddle Watch",12,123,"#075447","Lorem3 ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.3","Breve descripcion del item", "USD", 002));
+
+        /*
         //getDatos();
+        */
 
-         */
-
-        MyAdapterCatalogo myAdapterCatalogo = new MyAdapterCatalogo(catalogos, estaRegistrado, this, new MyAdapterCatalogo.OnItemClickListener() {
+        MyAdapterMisObjetos myAdapterMisObjetos = new MyAdapterMisObjetos(catalogos, estaRegistrado, this, new MyAdapterMisObjetos.OnItemClickListener() {
             @Override
             public void onItemClick(ItemCatalogo item) {
                 moveToDescription(item);
             }
         });
 
-        RecyclerView recyclerView2 = findViewById(R.id.listRecyclerView2);
-        recyclerView2.setHasFixedSize(true);
-        recyclerView2.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView2.setAdapter(myAdapterCatalogo);
+        RecyclerView recyclerView4 = findViewById(R.id.listRecyclerView4);
+        recyclerView4.setHasFixedSize(true);
+        recyclerView4.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView4.setAdapter(myAdapterMisObjetos);
 
-        listRecyclerView2  = findViewById(R.id.listRecyclerView2);
+        listRecyclerView4  = findViewById(R.id.listRecyclerView4);
 
-        nameDescriptionTextView = findViewById(R.id.nameDescriptionTextView);
-        stateDescriptionTextView = findViewById(R.id.stateDescriptionTextView);
-        categoryDescriptionTextView = findViewById(R.id.categoryDescriptionTextView);
+        nameDescriptionTextView4 = findViewById(R.id.nameDescriptionTextView4);
+        //stateDescriptionTextView4 = findViewById(R.id.stateDescriptionTextView4);
+        //categoryDescriptionTextView4 = findViewById(R.id.categoryDescriptionTextView4);
 
-        linearLayout1 = findViewById(R.id.linearLayout1);
+        linearLayout4 = findViewById(R.id.linearLayout4);
 
     }
 
     private void moveToDescription(ItemCatalogo item) {
-        Intent intent = new Intent(this,   com.trotos.appsubastas.DescripcionActivity.class);
-        intent.putExtra("Catalogos",item);
+        Intent intent = new Intent(this,   DestalleMisObjetosActivity.class);
+        intent.putExtra("MisObjetos",item);
         intent.putExtra("estadoLoggeado", estaRegistrado);
         startActivity(intent);
     }
@@ -141,7 +125,7 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
 
 
                 //RecyclerView recyclerView2 = findViewById(R.id.listRecyclerView2);
-                listRecyclerView2.getAdapter().notifyDataSetChanged();
+                listRecyclerView4.getAdapter().notifyDataSetChanged();
             }
 
             @Override

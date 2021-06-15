@@ -139,7 +139,8 @@ public class MediosPagoActivity extends AppCompatActivity {
     //Funcion test sin API
     @SuppressLint("SimpleDateFormat")
     private void testCreateTarjetas() {
-        //tarjetas.add( new MPTarjeta(1,"Tobias Ruano", "14237463987612376", "Visa", 111, new Date()));
+
+        tarjetas.add( new MPTarjeta(1,"Tobias Ruano", "14237463987612376", "Visa", 111, new Date(12,12,12)));
         //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237263987616652", "Amex", "123", new Date()));
         //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237463987613972", "MasterCard", "123", new Date()));
         //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237263987610097", "Amex", "123", new Date()));

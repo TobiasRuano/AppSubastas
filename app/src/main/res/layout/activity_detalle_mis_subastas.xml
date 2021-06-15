@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/titleTextView"
+    android:id="@+id/titleTextView5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SubastaActivity">
@@ -10,19 +10,19 @@
 
     <RelativeLayout
 
-        android:id="@+id/relativeLayout"
+        android:id="@+id/relativeLayout5"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
         <LinearLayout
-            android:id="@+id/primerLinearLayout"
+            android:id="@+id/primerLinearLayout5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/historialPujasView"
+                android:id="@+id/historialPujasView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16sp"
@@ -35,11 +35,11 @@
 
 
             <TextView
-                android:id="@+id/titleDescriptionTextView3"
+                android:id="@+id/titleDescriptionTextView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_marginStart="-45dp"
+                android:layout_marginStart="-55dp"
                 android:text="Description"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
@@ -49,14 +49,14 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/segundoLinearLayout"
+            android:id="@+id/segundoLinearLayout5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_below="@+id/primerLinearLayout">
+            android:layout_below="@+id/primerLinearLayout5">
 
         <org.imaginativeworld.whynotimagecarousel.ImageCarousel
-            android:id="@+id/carousel"
+            android:id="@+id/carousel5"
             android:layout_width="match_parent"
             android:layout_height="300dp"/>
 
@@ -69,10 +69,10 @@
             android:layout_marginTop="16dp">
 
             <TextView
-            android:id="@+id/valorActualOVendido"
+            android:id="@+id/valorActualOVendido5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/titleDescriptionTextView3"
+            android:layout_below="@+id/titleDescriptionTextView5"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_marginStart="16dp"
@@ -83,10 +83,10 @@
             android:textSize="28sp" />
 
         <TextView
-            android:id="@+id/valorActualDescriptionTextView3"
+            android:id="@+id/valorActualDescriptionTextView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/titleDescriptionTextView3"
+            android:layout_below="@+id/titleDescriptionTextView5"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_marginStart="16dp"
@@ -97,10 +97,10 @@
             android:textSize="28sp" />
 
             <TextView
-                android:id="@+id/monedaActualDescriptionTextView3"
+                android:id="@+id/monedaActualDescriptionTextView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/titleDescriptionTextView3"
+                android:layout_below="@+id/titleDescriptionTextView5"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="16dp"
@@ -120,10 +120,10 @@
             android:orientation="horizontal">
 
             <TextView
-            android:id="@+id/precioBaseView"
+            android:id="@+id/precioBaseView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/precioBaseDescriptionTextView3"
+            android:layout_below="@+id/precioBaseDescriptionTextView5"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_marginStart="16dp"
@@ -134,10 +134,10 @@
             android:textStyle="bold"
             android:textSize="16sp" />
         <TextView
-            android:id="@+id/precioBaseDescriptionTextView3"
+            android:id="@+id/precioBaseDescriptionTextView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/precioBaseDescriptionTextView3"
+            android:layout_below="@+id/precioBaseDescriptionTextView5"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_marginStart="8dp"
@@ -149,10 +149,10 @@
             android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/monedaBaseDescriptionTextView3"
+                android:id="@+id/monedaBaseDescriptionTextView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/precioBaseDescriptionTextView3"
+                android:layout_below="@+id/precioBaseDescriptionTextView5"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="8dp"
@@ -170,7 +170,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/titleDescriptionTextView3"
+                android:layout_below="@+id/titleDescriptionTextView5"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="16dp"
@@ -180,10 +180,10 @@
                 android:textColor="@android:color/black"
                 android:textSize="28sp" />
             <TextView
-                android:id="@+id/fullTitleDescriptionTextView3"
+                android:id="@+id/fullTitleDescriptionTextView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/titleDescriptionTextView3"
+                android:layout_below="@+id/titleDescriptionTextView5"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="16dp"
@@ -196,62 +196,42 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
+            android:orientation="vertical"
 
-            android:gravity="bottom|center"
+            android:gravity="bottom"
             android:layout_marginBottom="5dp"
             >
 
-
-            <EditText
-                    android:id="@+id/editarNumeroDeTexto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="8"
-                    android:inputType="number"
-                    android:textColor="@android:color/holo_blue_dark"
-                    android:textStyle="bold"
-                    android:layout_marginTop="10dp"
-                    android:hint="$xx.xxx"
-                    android:gravity="center"
-                    />
-
-            <Button
-                android:id="@+id/botonOfertar"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:ems="10"
-                app:backgroundTint="#E13636"
-                android:radius="50dip"
-                android:text="Ofertar" />
+                android:layout_below="@+id/titleDescriptionTextView5"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:text="Estado del Envio:"
+                android:textColor="@android:color/black"
+                android:textSize="28sp" />
 
-            </LinearLayout>
+            <TextView
+                android:id="@+id/envioDescriptionTextView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/titleDescriptionTextView5"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:text="Pendiente -> Enviado -> Recibido"
+                android:textColor="@android:color/black"
+                android:textSize="24sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="-100dp"
 
-                android:gravity="bottom|center"
-                android:layout_marginBottom="5dp"
-                >
+        </LinearLayout>
 
 
-                <Button
-                    android:id="@+id/botonRegistrar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="21"
-                    app:backgroundTint="#E13636"
-                    android:radius="50dip"
-                    android:text="Inicia sesión para ver más detalles"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    />
-
-            </LinearLayout>
 
 
         </LinearLayout>

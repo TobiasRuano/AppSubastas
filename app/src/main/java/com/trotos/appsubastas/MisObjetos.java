@@ -32,7 +32,6 @@ public class MisObjetos extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.moLogueado);
-
         newObjectButton = findViewById(R.id.newObjectButton);
 
         newObjectButton.setOnClickListener(new View.OnClickListener() {

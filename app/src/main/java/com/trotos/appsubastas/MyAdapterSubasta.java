@@ -61,17 +61,22 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
 
         ViewHolder(View itemView) {
             super(itemView);
+
             iconImage = itemView.findViewById(R.id.iconImageView);
             name = itemView.findViewById(R.id.nameTextView);
             state = itemView.findViewById(R.id.stateTextView);
             category = itemView.findViewById(R.id.categoryTextView);
             cv = itemView.findViewById(R.id.cv2);
+
+
         }
 
         public void bindData(final Subasta item){
+
+
             iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
             name.setText(item.getName());
-            state.setText(item.getState());
+            state.setText(item.getStatus());
             category.setText(item.getCategory());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -79,6 +84,10 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
                     listener.onItemClick(item);
                 }
             });
+
+
+
+
         }
 
     }
