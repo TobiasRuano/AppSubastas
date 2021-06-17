@@ -16,6 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
+
         <TextView
             android:id="@+id/titleView"
             android:layout_width="match_parent"
@@ -27,25 +29,30 @@
             android:textSize="34sp"
             android:textStyle="bold" />
 
-        <TextView
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:id="@+id/userTextView"
+            android:hint="Mail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="20dp"
-            android:text="Usuario" />
+            app:endIconMode="clear_text"
+            app:layout_constraintTop_toBottomOf="@id/layoutRadioGroup"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
 
-        <EditText
-            android:id="@+id/mailText"
-            android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="20dp"
-            android:ems="10"
-            android:hint="Mail"
-            android:inputType="textPersonName" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/mailText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
 
         <Switch
             android:id="@+id/hasPassSwitch"
@@ -62,25 +69,31 @@
             android:textOff="NO"
             android:textOn="SI" />
 
-        <TextView
-            android:id="@+id/passTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="20dp"
-            android:text="Contraseña" />
 
-        <EditText
-            android:id="@+id/passText"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:id="@+id/passTextView"
+            android:hint="Contraseña"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="20dp"
-            android:ems="10"
-            android:hint="Contraseña"
-            android:inputType="textPassword" />
+            app:endIconMode="clear_text"
+            app:layout_constraintTop_toBottomOf="@id/layoutRadioGroup"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
         <Button
             android:id="@+id/submitButton"
