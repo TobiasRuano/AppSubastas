@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.trotos.appsubastas.Modelos.LoginInformation;
+import com.trotos.appsubastas.Modelos.ResponseLogIn;
 import com.trotos.appsubastas.Modelos.User;
 
 import java.util.regex.Matcher;
@@ -122,27 +123,32 @@ public class IniciarSesionActivity extends AppCompatActivity {
 
     private void logIn(String mail, String password) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://URL-de-la-API.com")
+                .baseUrl("http://10.0.2.2:3000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
 
         LoginInformation logIn = new LoginInformation(mail, password);
-        Call<User> call = as.logIn(logIn);
+        Call<ResponseLogIn> call = as.logIn(logIn);
 
-        call.enqueue(new Callback<User>() {
+        call.enqueue(new Callback<ResponseLogIn>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if(response.body() != null) {
-                    saveUser(response.body());
+            public void onResponse(Call<ResponseLogIn> call, Response<ResponseLogIn> response) {
+                if(response.isSuccessful()) {
+                    ResponseLogIn responseLogin = response.body();
+                    saveUser(responseLogin.getUser());
+                    saveToken(responseLogin.getToken());
                     Intent intent = new Intent(IniciarSesionActivity.this, SubastaActivity.class);
                     intent.putExtra("estadoLoggeado",true);
                     startActivity(intent);
+                } else {
+                    Toast toast1 = Toast.makeText(getApplicationContext(),"Contraseña Incorrecta", Toast.LENGTH_LONG);
+                    toast1.show();
                 }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<ResponseLogIn> call, Throwable t) {
                 Toast toast1 = Toast.makeText(getApplicationContext(),"Error al Iniciar sesion", Toast.LENGTH_LONG);
                 toast1.show();
             }
@@ -158,21 +164,34 @@ public class IniciarSesionActivity extends AppCompatActivity {
         prefsEditor.apply();
     }
 
+    private void saveToken(String token) {
+        SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(token);
+        prefsEditor.putString("Token", json);
+        prefsEditor.apply();
+    }
+
     private void getEstadoPassword(String mail) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://URL-de-la-API.com")
+                .baseUrl("http://10.0.2.2:3000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
-        Call<User> call = as.checkPasswordUsuario(mail);
+        Call<User> call = as.checkPasswordUsuario(new LoginInformation(mail, null));
 
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                if(response.body() != null) {
+                if(response.isSuccessful()) {
+                    User usuario = response.body();
                     Intent intent = new Intent(IniciarSesionActivity.this, CrearPassActivity.class);
-                    intent.putExtra("usuario",response.body());
+                    intent.putExtra("usuario", usuario);
                     startActivity(intent);
+                } else {
+                    Toast toast1 = Toast.makeText(getApplicationContext(),"No puede crear una contraseña para su cuenta", Toast.LENGTH_LONG);
+                    toast1.show();
                 }
             }
 

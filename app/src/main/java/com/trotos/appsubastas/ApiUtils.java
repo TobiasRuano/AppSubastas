@@ -4,6 +4,7 @@ import com.trotos.appsubastas.Modelos.ItemCatalogo;
 import com.trotos.appsubastas.Modelos.LoginInformation;
 import com.trotos.appsubastas.Modelos.MPTarjeta;
 import com.trotos.appsubastas.Modelos.Producto;
+import com.trotos.appsubastas.Modelos.ResponseLogIn;
 import com.trotos.appsubastas.Modelos.Subasta;
 import com.trotos.appsubastas.Modelos.User;
 
@@ -11,7 +12,6 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.PATCH;
@@ -27,15 +27,11 @@ interface ApiUtils {
     @POST("auctions/{auctionId}/bid")
     Call<ItemCatalogo> postBid(@Body ItemCatalogo item);
 
-
-
-    @GET("Usuario")
-    Call<List<User>> getUsuarios();
     @GET("Usuario")
     Call<User> getUsuario(@Query("id") int id);
 
-    @HTTP(method = "GET", path = "/users", hasBody = true)
-    Call<User> checkPasswordUsuario(@Body String mail);
+    @HTTP(method = "POST", path = "user/checkpass", hasBody = true)
+    Call<User> checkPasswordUsuario(@Body LoginInformation logIn);
     @GET("users/{userId}/items")
     Call<List<Producto>> getObjetosPropuestos();
     @GET("users")
@@ -44,7 +40,7 @@ interface ApiUtils {
     @GET("Tarjetas")
     Call<List<MPTarjeta>> getTarjetas();
 
-    @HTTP(method = "POST", path = "users", hasBody = true)
+    @HTTP(method = "POST", path = "user/sign-up", hasBody = true)
     Call<User> createAccount(@Body User user);
     @POST("users/{userId}/items")
     Call<Producto> postProducto(@Body Producto producto);
@@ -58,9 +54,9 @@ interface ApiUtils {
     Call<MPTarjeta> deleteTarjeta(@Body MPTarjeta tarjeta);
 
     @POST("password")
-    Call<User> createPassword(@Body String password);
+    Call<User> createPassword(@Body LoginInformation logIn);
 
-    @HTTP(method = "POST", path = "/login", hasBody = true)
-    Call<User> logIn(@Body LoginInformation logIn);
+    @HTTP(method = "POST", path = "login/", hasBody = true)
+    Call<ResponseLogIn> logIn(@Body LoginInformation logIn);
 
 }

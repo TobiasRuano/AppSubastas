@@ -4,19 +4,22 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
+    int id;
     String name;
     String surname;
     String mail;
     int dni;
     String address;
+    String category;
 
-    public User(String name, String surname, String mail, int dni, String address) {
-
+    public User(int id, String name, String surname, String mail, int dni, String address, String category) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.mail = mail;
         this.dni = dni;
         this.address = address;
+        this.category = category;
     }
 
     public String getName() { return name; }
@@ -38,4 +41,12 @@ public class User implements Serializable {
     public String getAddress() { return address; }
 
     public void setAddress(String address) { this.address = address; }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

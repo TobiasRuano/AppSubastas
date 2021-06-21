@@ -81,12 +81,12 @@ public class CrearUsuarioActivity extends AppCompatActivity{
         String mail = mailText.getText().toString();
         int dni = Integer.parseInt(dniText.getText().toString());
         String address = addressText.getText().toString();
-        return new User(name, surname, mail, dni, address);
+        return new User(0, name, surname, mail, dni, address, null);
     }
 
     private void createAccount(User user) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://URL-de-la-API.com")
+                .baseUrl("http://10.0.2.2:3000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
@@ -95,12 +95,16 @@ public class CrearUsuarioActivity extends AppCompatActivity{
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                if(response.body() != null) {
-                    //showAlert("Exito!", "Usuario creado de forma satisfactoria!");
+                if(response.isSuccessful()) {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Usuario creado de forma satisfactoria!", Toast.LENGTH_LONG);
                     toast1.show();
-                    Intent intent = new Intent(CrearUsuarioActivity.this, SubastaActivity.class);
-                    startActivity(intent);
+                    //Intent intent = new Intent(CrearUsuarioActivity.this, SubastaActivity.class);
+                    //startActivity(intent);
+                    // ir a log in
+                    finish();
+                } else {
+                    Toast toast1 = Toast.makeText(getApplicationContext(),"Error al intentar crear la cuenta.", Toast.LENGTH_LONG);
+                    toast1.show();
                 }
             }
 

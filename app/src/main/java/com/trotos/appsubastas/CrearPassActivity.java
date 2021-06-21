@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.trotos.appsubastas.Modelos.LoginInformation;
 import com.trotos.appsubastas.Modelos.User;
 
 import retrofit2.Call;
@@ -25,6 +26,7 @@ public class CrearPassActivity extends AppCompatActivity {
     EditText firstPasswordText;
     EditText secondPasswordText;
     Button createPasswordButton;
+    String mail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,7 @@ public class CrearPassActivity extends AppCompatActivity {
         User user = (User) getIntent().getSerializableExtra("usuario");
         titleText = (TextView) findViewById(R.id.titleText);
         titleText.setText("Hola " + user.getName());
+        mail = user.getMail();
         firstPasswordText = (EditText) findViewById(R.id.passwordEditText);
         secondPasswordText = (EditText) findViewById(R.id.secondPasswordEditText);
         createPasswordButton = (Button) findViewById(R.id.createPasswordButton);
@@ -73,20 +76,26 @@ public class CrearPassActivity extends AppCompatActivity {
 
     private void createPassword(String password) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://URL-de-la-API.com")
+                .baseUrl("http://10.0.2.2:3000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
-        Call<User> call = as.createPassword(password);
+        LoginInformation logIn = new LoginInformation(mail, password);
+        Call<User> call = as.createPassword(logIn);
 
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                if(response.body() != null) {
+                if(response.isSuccessful()) {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Contraseña creada de forma satisfactoria!", Toast.LENGTH_LONG);
                     toast1.show();
-                    Intent intent = new Intent(CrearPassActivity.this, SubastaActivity.class);
-                    startActivity(intent);
+                    //Intent intent = new Intent(CrearPassActivity.this, SubastaActivity.class);
+                    //startActivity(intent);
+                    finish();
+
+                } else {
+                    Toast toast1 = Toast.makeText(getApplicationContext(),"Hubo un error en la respuesta", Toast.LENGTH_LONG);
+                    toast1.show();
                 }
             }
 
