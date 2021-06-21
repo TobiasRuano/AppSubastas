@@ -7,7 +7,6 @@
     tools:context=".MisObjetos"
     android:id="@+id/drawerLogueadoObjetos">
 
-    <include layout="@layout/toolbarlogueado"></include>
 
     <RelativeLayout
 
@@ -42,8 +41,10 @@
             android:id="@+id/listRecyclerView4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_below="@+id/linearLayout4"
+            android:layout_marginTop="-2dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="55sp"
             />
 
 
@@ -62,6 +63,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <include layout="@layout/toolbarlogueado"></include>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
