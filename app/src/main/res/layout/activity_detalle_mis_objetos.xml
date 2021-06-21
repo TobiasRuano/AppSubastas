@@ -254,6 +254,39 @@
             </LinearLayout>
 
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="-100dp">
+
+                <Button
+                    android:id="@+id/aceptarPendienteBoton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:backgroundTint="#57873A"
+                    android:text="Aceptar"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"/>
+
+                <Button
+                    android:id="@+id/rechazarPendienteBoton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:backgroundTint="#E13636"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Rechazar"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+
+
+
+
         </LinearLayout>
 
 

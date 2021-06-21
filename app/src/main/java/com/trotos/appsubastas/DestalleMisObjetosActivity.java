@@ -41,6 +41,7 @@ public class DestalleMisObjetosActivity extends AppCompatActivity {
     EditText editarNumeroDeTexto4;
     Button botonOfertar4;
     Button botonRegistrar4;
+    Button aceptarPendienteBoton, rechazarPendienteBoton;
 
     TextView valorActualOVendido4;
     TextView precioBaseView4;
@@ -63,6 +64,29 @@ public class DestalleMisObjetosActivity extends AppCompatActivity {
         verHistorialPujas();
         ofertar();
         logIn();
+        cambiarEstado();
+    }
+
+    private void cambiarEstado(){
+        aceptarPendienteBoton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //System.out.println(element.getEstado());
+                element.setEstado("Aceptado");
+                System.out.println(element.getEstado());
+                //startActivity(new Intent(DestalleMisObjetosActivity.this, MisObjetos.class));
+            }
+        });
+
+        rechazarPendienteBoton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //System.out.println(element.getEstado());
+                element.setEstado("Rechazado");
+                System.out.println(element.getEstado());
+                //startActivity(new Intent(DestalleMisObjetosActivity.this, MisObjetos.class));
+            }
+        });
     }
 
     private void logIn() {
@@ -82,6 +106,9 @@ public class DestalleMisObjetosActivity extends AppCompatActivity {
         fullTitleDescriptionTextView4 = findViewById(R.id.fullTitleDescriptionTextView4);
         monedaBaseDescriptionTextView4 = findViewById(R.id.monedaBaseDescriptionTextView4);
         monedaActualDescriptionTextView4 = findViewById(R.id.monedaActualDescriptionTextView4);
+
+        aceptarPendienteBoton = findViewById(R.id.aceptarPendienteBoton);
+        rechazarPendienteBoton = findViewById(R.id.rechazarPendienteBoton);
 
         titleDescriptionTextView4.setText(element.getDescripcion());
         titleDescriptionTextView4.setTextColor(Color.parseColor(element.getColor()));
@@ -140,6 +167,23 @@ public class DestalleMisObjetosActivity extends AppCompatActivity {
                 botonOfertar4.setVisibility(View.GONE);
                 valorActualOVendido4.setText("Vendido:");
                 valorActualDescriptionTextView4.setTextColor(Color.parseColor("#FF669900"));
+                break;
+            case "Aceptado":
+                break;
+            case "Pendiente":
+                monedaBaseDescriptionTextView4.setVisibility(View.GONE);
+                historialPujasView4.setVisibility(View.GONE);
+                valorActualOVendido4.setVisibility(View.GONE);
+                editarNumeroDeTexto4.setVisibility(View.GONE);
+                monedaActualDescriptionTextView4.setVisibility(View.GONE);
+                valorActualDescriptionTextView4.setVisibility(View.GONE);
+                precioBaseDescriptionTextView4.setVisibility(View.GONE);
+                precioBaseView4.setVisibility(View.GONE);
+                botonOfertar4.setVisibility(View.GONE);
+                aceptarPendienteBoton.setVisibility(View.VISIBLE);
+                rechazarPendienteBoton.setVisibility(View.VISIBLE);
+                break;
+            case "Rechazado":
                 break;
         }
     }

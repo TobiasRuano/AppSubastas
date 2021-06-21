@@ -21,7 +21,7 @@
 
 
         android:theme="@style/Theme.AppSubastas">
-        <activity android:name=".MisObjetos"></activity>
+        <activity android:name=".MisObjetosActivity2"></activity>
         <activity android:name=".MisSubastasActivity"></activity>
         <activity android:name=".SubastaActivity"></activity>
         <activity android:name=".AgregarObjeto" />
@@ -38,7 +38,7 @@
         <activity android:name=".DestalleMisObjetosActivity" />
         <activity android:name=".DestalleMisSubastasActivity" />
         <activity android:name=".CatalogoActivity" />
-        <activity android:name=".MisObjetosActivity2">
+        <activity android:name=".MisObjetos">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
