@@ -156,8 +156,8 @@ public class IniciarSesionActivity extends AppCompatActivity {
     }
 
     private void saveUser(User userToSave) {
-        SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        SharedPreferences  sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(userToSave);
         prefsEditor.putString("User", json);
@@ -165,11 +165,9 @@ public class IniciarSesionActivity extends AppCompatActivity {
     }
 
     private void saveToken(String token) {
-        SharedPreferences  mPrefs = getPreferences(MODE_PRIVATE);
-        SharedPreferences.Editor prefsEditor = mPrefs.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(token);
-        prefsEditor.putString("Token", json);
+        SharedPreferences  sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
+        prefsEditor.putString("Token", token);
         prefsEditor.apply();
     }
 

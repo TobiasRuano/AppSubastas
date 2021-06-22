@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +16,6 @@ import android.widget.Toast;
 import com.trotos.appsubastas.Modelos.MPTarjeta;
 
 import java.util.Date;
-import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,10 +32,14 @@ public class AgregarMedioPagoActivity extends AppCompatActivity {
     Button addCardButton;
     Date expiracionTarjeta;
 
+    int userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_medio_pago);
+
+        userId = (int) getIntent().getSerializableExtra("userId");
 
         configureUI();
 
@@ -72,10 +76,8 @@ public class AgregarMedioPagoActivity extends AppCompatActivity {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                // +1 porque enero es cero
                 final String selectedDate = day + " / " + (month+1) + " / " + year;
                 expDate.setText(selectedDate);
-                System.out.println(expDate.getText().toString());
 
                 expiracionTarjeta = new Date(year - 1900, month, day);
             }
@@ -84,8 +86,11 @@ public class AgregarMedioPagoActivity extends AppCompatActivity {
     }
 
     private void addCard() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        String token = sharedPreferences.getString("Token", null);
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.111/")
+                .baseUrl("http://10.0.2.2:3000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
@@ -94,13 +99,10 @@ public class AgregarMedioPagoActivity extends AppCompatActivity {
         String number = cardNumber.getText().toString();
         String cvc1 = cvcNumber.getText().toString();
         int cvc2 = Integer.parseInt(cvc1);
-        Random random = new Random();
-        int id = random.nextInt(10000000);
 
+        MPTarjeta tarjeta = new MPTarjeta(0, userId, name,false, number, cvc2, expiracionTarjeta);
 
-        MPTarjeta tarjeta = new MPTarjeta(id, name, number, "Visa", cvc2, expiracionTarjeta);
-
-        Call<MPTarjeta> call = as.postTarjeta(tarjeta);
+        Call<MPTarjeta> call = as.postTarjeta(tarjeta, "Bearer "+ token);
 
         call.enqueue(new Callback<MPTarjeta>() {
             @Override

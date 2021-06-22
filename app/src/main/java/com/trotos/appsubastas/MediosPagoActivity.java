@@ -5,23 +5,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.jetbrains.annotations.NotNull;
-import com.trotos.appsubastas.Modelos.MPTarjeta;
-import com.trotos.appsubastas.Modelos.Subasta;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.trotos.appsubastas.Modelos.MPTarjeta;
+import com.trotos.appsubastas.Modelos.ResponseMPTarjetas;
+import com.trotos.appsubastas.Modelos.User;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +39,7 @@ public class MediosPagoActivity extends AppCompatActivity {
     RecyclerView reciclerView;
     FloatingActionButton addCardButton;
     BottomNavigationView bottomNavigationView;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,17 +47,26 @@ public class MediosPagoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_medios_pago);
 
         getSupportActionBar().hide();
-        //testCreateTarjetas();
-        //getTarjetas();
+        getUser();
+        getTarjetas();
         configureUI();
 
         addCardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MediosPagoActivity.this, AgregarMedioPagoActivity.class);
+                intent.putExtra("userId", user.getId());
                 startActivityForResult(intent, 1);
             }
         });
+    }
+
+    private void getUser() {
+        SharedPreferences  sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("User", null);
+        Type type = new TypeToken<User>() {}.getType();
+        user = gson.fromJson(json, type);
     }
 
     private void configureUI() {
@@ -92,34 +104,35 @@ public class MediosPagoActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
     }
 
 
     private void getTarjetas() {
+        SharedPreferences  sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        String token = sharedPreferences.getString("Token", null);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.111/")
+                .baseUrl("http://10.0.2.2:3000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
-        Call<List<MPTarjeta>> call = as.getTarjetas();
+        Call<ResponseMPTarjetas> call = as.getTarjetas(user, "Bearer "+ token);
 
-        call.enqueue(new Callback<List<MPTarjeta>>() {
+        call.enqueue(new Callback<ResponseMPTarjetas>() {
             @Override
-            public void onResponse(Call<List<MPTarjeta>> call, Response<List<MPTarjeta>> response) {
-                if(response.body() != null) {
-                    tarjetas.addAll(response.body());
-
+            public void onResponse(Call<ResponseMPTarjetas> call, Response<ResponseMPTarjetas> response) {
+                if(response.isSuccessful()) {
+                    ResponseMPTarjetas responseMP = response.body();
+                    tarjetas.addAll(responseMP.getResults());
                     reciclerView.getAdapter().notifyDataSetChanged();
-
+                } else {
+                    Toast toast2 = Toast.makeText(getApplicationContext(), "Error al obtener las tarjetas", Toast.LENGTH_LONG);
+                    toast2.show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<MPTarjeta>> call, Throwable t) {
-                Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener las tarjetas", Toast.LENGTH_LONG);
+            public void onFailure(Call<ResponseMPTarjetas> call, Throwable t) {
                 Toast toast2 = Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG);
                 toast2.show();
             }
@@ -134,20 +147,5 @@ public class MediosPagoActivity extends AppCompatActivity {
                 tarjetas.add(tarjeta);
             }
         }
-    }
-
-    //Funcion test sin API
-    @SuppressLint("SimpleDateFormat")
-    private void testCreateTarjetas() {
-
-        tarjetas.add( new MPTarjeta(1,"Tobias Ruano", "14237463987612376", "Visa", 111, new Date(12,12,12)));
-        //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237263987616652", "Amex", "123", new Date()));
-        //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237463987613972", "MasterCard", "123", new Date()));
-        //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237263987610097", "Amex", "123", new Date()));
-        //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237463987611132", "MasterCard", "123", new Date()));
-        //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237263987617625", "Discover", "123", new Date()));
-        //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237263967384950", "Visa", "123", new Date()));
-        //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237463900923618", "Discover", "123", new Date()));
-        //tarjetas.add( new MPTarjeta("Tobias Ruano", "14237263983611352", "Amex", "123", new Date()));
     }
 }

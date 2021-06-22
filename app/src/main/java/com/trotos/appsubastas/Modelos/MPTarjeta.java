@@ -5,51 +5,77 @@ import java.util.Date;
 
 public class MPTarjeta implements Serializable {
 
-    private int idUsuario;
-    private String nombreTarjeta;
-    private String proveedorTarjeta;
-    private String numeroTarjeta;
-    private Date fechaExpTarjeta;
-    private int cvcTarjeta;
+    private int id;
+    private int userId;
+    private String cardHolderName;
+    private Boolean isDefaultCard;
+    private String cardNumber;
+    private Date expiration;
+    private int code;
 
-    public MPTarjeta(int idUsuario, String nombre, String numero, String proveedor, int cvc, Date fecha) {
-        this.idUsuario = idUsuario;
-        this.nombreTarjeta = nombre;
-        this.numeroTarjeta = numero;
-        this.proveedorTarjeta = proveedor;
-        this.cvcTarjeta = cvc;
-        this.fechaExpTarjeta = fecha;
+    public MPTarjeta(int id, int userId, String cardHolderName, Boolean isDefaultCard, String cardNumber, int code, Date expiration) {
+        this.id = id;
+        this.userId = userId;
+        this.cardHolderName = cardHolderName;
+        this.isDefaultCard = isDefaultCard;
+        this.cardNumber = cardNumber;
+        this.code = code;
+        this.expiration = expiration;
     }
 
-    public int getIdUsuario() { return idUsuario; }
-
-    public String getNombreTarjeta() {
-        return nombreTarjeta;
+    public int getId() {
+        return id;
     }
 
-    public String getProveedorTarjeta() {
-        return proveedorTarjeta;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getNumeroTarjeta() {
-        return numeroTarjeta;
+    public int getUserId() {
+        return userId;
     }
 
-    public int getCvcTarjeta() { return this.cvcTarjeta; }
-
-    public Date getFechaExpTarjeta() {
-        return fechaExpTarjeta;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public void setNombreTarjeta(String nombreTarjeta) { this.nombreTarjeta = nombreTarjeta; }
+    public String getCardHolderName() {
+        return cardHolderName;
+    }
 
-    public void setProveedorTarjeta(String proveedorTarjeta) { this.proveedorTarjeta = proveedorTarjeta; }
+    public void setCardHolderName(String cardHolderName) {
+        this.cardHolderName = cardHolderName;
+    }
 
-    public void setNumeroTarjeta(String numeroTarjeta) { this.numeroTarjeta = numeroTarjeta; }
+    public Boolean getDefaultCard() {
+        return isDefaultCard;
+    }
 
-    public void setFechaExpTarjeta(Date fechaExpTarjeta) { this.fechaExpTarjeta = fechaExpTarjeta; }
+    public void setDefaultCard(Boolean defaultCard) {
+        isDefaultCard = defaultCard;
+    }
 
-    public void setCvcTarjeta(int cvcTarjeta) { this.cvcTarjeta = cvcTarjeta; }
+    public String getCardNumber() {
+        return cardNumber;
+    }
 
-    public void setIdUsuario(int idUsuario) { this.idUsuario = idUsuario; }
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public Date getExpiration() {
+        return expiration;
+    }
+
+    public void setExpiration(Date expiration) {
+        this.expiration = expiration;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
 }
