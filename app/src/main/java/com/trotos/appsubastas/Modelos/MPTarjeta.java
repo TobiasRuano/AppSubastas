@@ -11,6 +11,7 @@ public class MPTarjeta implements Serializable {
     private Boolean isDefaultCard;
     private String cardNumber;
     private Date expiration;
+    private String company;
     private int code;
 
     public MPTarjeta(int id, int userId, String cardHolderName, Boolean isDefaultCard, String cardNumber, int code, Date expiration) {
@@ -21,6 +22,14 @@ public class MPTarjeta implements Serializable {
         this.cardNumber = cardNumber;
         this.code = code;
         this.expiration = expiration;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public int getId() {

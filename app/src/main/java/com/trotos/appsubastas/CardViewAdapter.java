@@ -52,8 +52,12 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.CardVi
         String dashedString = createDashedString(tarjetas.get(position).getCardNumber());
         holder.number.setText(dashedString);
         holder.name.setText(tarjetas.get(position).getCardHolderName());
-        String prov = "Visa";
+        String prov = tarjetas.get(position).getCompany();
         holder.provider.setText(prov);
+
+        if(!tarjetas.get(position).getDefaultCard()){
+            holder.statusCard.setVisibility(View.GONE);
+        }
 
         holder.card.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_transition));
 
@@ -149,6 +153,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.CardVi
         TextView name;
         TextView provider;
         CardView card;
+        TextView statusCard;
 
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -156,6 +161,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.CardVi
             name = itemView.findViewById(R.id.nameText);
             provider = itemView.findViewById(R.id.proveedorText);
             card = itemView.findViewById(R.id.cardView);
+            statusCard = itemView.findViewById(R.id.statusCard);
         }
     }
 }
