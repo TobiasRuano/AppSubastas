@@ -22,7 +22,7 @@
 
         android:theme="@style/Theme.AppSubastas">
         <activity android:name=".MisObjetosActivity2"></activity>
-        <activity android:name=".MisSubastasActivity"></activity>
+        <activity android:name=".MisCatalogosPujadosActivity"></activity>
         <activity android:name=".SubastaActivity" />
         <activity android:name=".AgregarObjeto" />
         <activity android:name=".MenuInvitado" />
@@ -36,7 +36,7 @@
         <activity android:name=".MenuLogueado"/>
         <activity android:name=".DescripcionActivity" />
         <activity android:name=".DestalleMisObjetosActivity" />
-        <activity android:name=".DestalleMisSubastasActivity" />
+        <activity android:name=".DestalleMisCatalogosPujadosActivity" />
         <activity android:name=".CatalogoActivity" />
         <activity android:name=".MisObjetos">
             <intent-filter>

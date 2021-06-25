@@ -99,7 +99,7 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         break;
                     case R.id.msLogueado:
-                        startActivity(new Intent(MisObjetos.this, MisSubastasActivity.class));
+                        startActivity(new Intent(MisObjetos.this, MisCatalogosPujadosActivity.class));
                         overridePendingTransition(0,0);
                         break;
                     case R.id.moLogueado:

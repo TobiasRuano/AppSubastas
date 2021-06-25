@@ -94,7 +94,7 @@ public class MiUsuario extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         break;
                     case R.id.msLogueado:
-                        startActivity(new Intent(MiUsuario.this, MisSubastasActivity.class));
+                        startActivity(new Intent(MiUsuario.this, MisCatalogosPujadosActivity.class));
                         overridePendingTransition(0,0);
                         break;
                     case R.id.moLogueado:

@@ -12,7 +12,7 @@
             android:icon="@drawable/mediospagos"/>
         <item
             android:id="@+id/msLogueado"
-            android:title="Mis Subastas"
+            android:title="Mis Participaciones"
             android:icon="@drawable/missubastas"/>
         <item
             android:id="@+id/moLogueado"

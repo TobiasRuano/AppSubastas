@@ -28,7 +28,7 @@
                 android:layout_marginStart="16sp"
                 android:layout_marginLeft="16sp"
                 android:layout_marginTop="5sp"
-                android:text="Mis Subastas"
+                android:text="Mis Participaciones"
                 android:textColor="@android:color/black"
                 android:textSize="34sp"
                 android:textStyle="bold"

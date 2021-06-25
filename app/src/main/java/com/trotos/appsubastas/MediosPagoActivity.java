@@ -91,7 +91,7 @@ public class MediosPagoActivity extends AppCompatActivity {
                     case R.id.mpLogueado:
                         break;
                     case R.id.msLogueado:
-                        startActivity(new Intent(MediosPagoActivity.this, MisSubastasActivity.class));
+                        startActivity(new Intent(MediosPagoActivity.this, MisCatalogosPujadosActivity.class));
                         overridePendingTransition(0,0);
                         break;
                     case R.id.moLogueado:
