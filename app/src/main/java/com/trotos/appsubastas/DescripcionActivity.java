@@ -1,6 +1,7 @@
 package com.trotos.appsubastas;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -12,11 +13,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.trotos.appsubastas.Modelos.Bid;
 import com.trotos.appsubastas.Modelos.ItemCatalogo;
+import com.trotos.appsubastas.Modelos.User;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
 
+import java.lang.reflect.Type;
 import java.util.*;
 
 import retrofit2.Call;
@@ -42,6 +48,8 @@ public class DescripcionActivity extends AppCompatActivity {
     TextView valorActualOVendido;
     TextView precioBaseView;
     TextView historialPujasView;
+    int valorPuja = 0;
+    User user;
 
     List<CarouselItem> list = new ArrayList<>();
 
@@ -54,6 +62,7 @@ public class DescripcionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_descripcion);
 
         element = (ItemCatalogo) getIntent().getSerializableExtra("Catalogos");
+        getUser();
         estaRegistrado = (Boolean) getIntent().getBooleanExtra("estadoLoggeado", false);
         configureUI();
         cargar();
@@ -80,17 +89,17 @@ public class DescripcionActivity extends AppCompatActivity {
         monedaBaseDescriptionTextView3 = findViewById(R.id.monedaBaseDescriptionTextView3);
         monedaActualDescriptionTextView3 = findViewById(R.id.monedaActualDescriptionTextView3);
 
-        titleDescriptionTextView3.setText(element.getDescripcion());
-        titleDescriptionTextView3.setTextColor(Color.parseColor(element.getColor()));
+        titleDescriptionTextView3.setText(element.getDescription());
+        //titleDescriptionTextView3.setTextColor(Color.parseColor(element.getColor()));
 
-        String precioBaseText = String.format("%,d", element.getPrecioBase());
-        precioBaseDescriptionTextView3.setText(precioBaseText);
-        String valorActualText = String.format("%,d", element.getValorActual());
-        valorActualDescriptionTextView3.setText(valorActualText);
+        //String precioBaseText = String.format("%,d", element.getPrecioBase());
+        //precioBaseDescriptionTextView3.setText(precioBaseText);
+        //String valorActualText = String.format("%,d", element.getValorActual());
+        //valorActualDescriptionTextView3.setText(valorActualText);
         valorActualDescriptionTextView3.setTextColor(Color.GRAY);
-        fullTitleDescriptionTextView3.setText(element.getDescripcionCompleta());
-        monedaBaseDescriptionTextView3.setText(element.getMoneda());
-        monedaActualDescriptionTextView3.setText(element.getMoneda());
+        //fullTitleDescriptionTextView3.setText(element.getDescription());
+        //monedaBaseDescriptionTextView3.setText(element.getMoneda());
+        //monedaActualDescriptionTextView3.setText(element.getMoneda());
 
         editarNumeroDeTexto = findViewById(R.id.editarNumeroDeTexto);
         botonOfertar = findViewById(R.id.botonOfertar);
@@ -113,7 +122,7 @@ public class DescripcionActivity extends AppCompatActivity {
             botonRegistrar.setVisibility(View.GONE);
         }
 
-        String estado = element.getEstado();
+        String estado = element.getStatus();
 
         switch (estado) {
             case "En Curso":
@@ -189,8 +198,8 @@ public class DescripcionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                int valorPrecioActual = element.getValorActual();
-                int valorPrecioBase = element.getPrecioBase();
+                int valorPrecioActual = element.getBasePrice(); // no es esto
+                int valorPrecioBase = element.getBasePrice();
                 boolean hayError = false;
 
                 String categoria = getIntent().getStringExtra("categoria");
@@ -198,7 +207,6 @@ public class DescripcionActivity extends AppCompatActivity {
                     categoria = "oro";
                 }
 
-                int valorPuja = 0;
                 String texto = editarNumeroDeTexto.getText().toString();
                 if(!texto.equals("")){
                     valorPuja = Integer.parseInt(editarNumeroDeTexto.getText().toString());
@@ -220,28 +228,38 @@ public class DescripcionActivity extends AppCompatActivity {
         });
     }
 
+    private void getUser() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("User", null);
+        Type type = new TypeToken<User>() {}.getType();
+        user = gson.fromJson(json, type);
+    }
+
     private void pujar(int offer) {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        String token = sharedPreferences.getString("Token", null);
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://URL-de-la-API.com")
+                .baseUrl("http://10.0.2.2:3000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
 
-        element.setValorActual(offer);
+        Bid bid = new Bid(element.getItemId(), valorPuja, user.getId());
+        Call<String> call = as.postBid(bid);
 
-        Call<ItemCatalogo> call = as.postBid(element);
-
-        call.enqueue(new Callback<ItemCatalogo>() {
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<ItemCatalogo> call, Response<ItemCatalogo> response) {
-                if(response.body() != null) {
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful()) {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Oferta realizada con exito!", Toast.LENGTH_LONG);
                     toast1.show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ItemCatalogo> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Toast toast1 = Toast.makeText(getApplicationContext(),"Error al ofertar!", Toast.LENGTH_LONG);
                 toast1.show();
             }
@@ -252,9 +270,7 @@ public class DescripcionActivity extends AppCompatActivity {
         historialPujasView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //HARDCODEADO
-                String historialPujasTexto = "\nRodríguezxxx ofertó $2.000 \n\nGómezxxx ofertó $3.000 \n\nPerezxxx ofertó $4.000 \n\nGonzalesxxx ofertó $5.000 \n\nFernándezxxx ofertó $6.000 \n\nLópezxxx ofertó $7.000 \n\nDíazxxx ofertó $8.000 \n\nMartínezxxx ofertó $9.000 \n\nTu has ofertado $10.000 \n\n ";
-                showAlert("Historial de ofertas",historialPujasTexto);
+                // a la vista con la lista de pujas
             }
         });
     }

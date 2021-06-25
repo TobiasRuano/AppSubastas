@@ -1,7 +1,7 @@
 package com.trotos.appsubastas;
 
 import android.content.Intent;
-import android.graphics.Color;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -13,9 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.trotos.appsubastas.Modelos.ItemCatalogo;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.trotos.appsubastas.Modelos.Item;
+import com.trotos.appsubastas.Modelos.ResponseItems;
 import com.trotos.appsubastas.Modelos.Subasta;
+import com.trotos.appsubastas.Modelos.User;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,8 +44,9 @@ public class MisObjetosActivity2<animFadeIn> extends AppCompatActivity {
     LinearLayout linearLayout4;
 
     Subasta element;
+    User user;
 
-    List<ItemCatalogo> catalogos;
+    List<Item> catalogos= new ArrayList<Item>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,96 +54,73 @@ public class MisObjetosActivity2<animFadeIn> extends AppCompatActivity {
         setContentView(R.layout.activity_mis_objetos2);
 
         //estaRegistrado = getIntent().getBooleanExtra("estadoLoggeado", false);
-
+        getUser();
+        getDatos();
         init();
-        //getDatos();
     }
 
 
     public void init(){
-
-        //HARDCODEADO
-        catalogos = new ArrayList<>();
-        catalogos.add(new ItemCatalogo("123456","En Curso","Rolex",1234,1234567,"#575457","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.","Breve descripcion del item", "ARS",000));
-        catalogos.add(new ItemCatalogo("123456","En Curso","Casio",1234,123456,"#A70447","Lorem2 ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.2","Breve descripcion del item", "ARS", 001));
-        catalogos.add(new ItemCatalogo("123456","En Curso","Paddle Watch",12,123,"#075447","Lorem3 ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.3","Breve descripcion del item", "USD", 002));
-
-        /*
-        //getDatos();
-        */
-
-        MyAdapterMisObjetos myAdapterMisObjetos = new MyAdapterMisObjetos(catalogos, estaRegistrado, this, new MyAdapterMisObjetos.OnItemClickListener() {
-            @Override
-            public void onItemClick(ItemCatalogo item) {
-                moveToDescription(item);
-            }
-        });
-
         RecyclerView recyclerView4 = findViewById(R.id.listRecyclerView4);
         recyclerView4.setHasFixedSize(true);
         recyclerView4.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView4.setAdapter(myAdapterMisObjetos);
-
         listRecyclerView4  = findViewById(R.id.listRecyclerView4);
+        MyAdapterMisObjetos myAdapterMisObjetos = new MyAdapterMisObjetos(catalogos, estaRegistrado, this, new MyAdapterMisObjetos.OnItemClickListener() {
+            @Override
+            public void onItemClick(Item item) {
+                moveToDescription(item);
+            }
+        });
+        recyclerView4.setAdapter(myAdapterMisObjetos);
 
         nameDescriptionTextView4 = findViewById(R.id.nameDescriptionTextView4);
         //stateDescriptionTextView4 = findViewById(R.id.stateDescriptionTextView4);
         //categoryDescriptionTextView4 = findViewById(R.id.categoryDescriptionTextView4);
 
         linearLayout4 = findViewById(R.id.linearLayout4);
-
     }
 
-    private void moveToDescription(ItemCatalogo item) {
+    private void moveToDescription(Item item) {
         Intent intent = new Intent(this,   DestalleMisObjetosActivity.class);
         intent.putExtra("MisObjetos",item);
         intent.putExtra("estadoLoggeado", estaRegistrado);
         startActivity(intent);
     }
 
+    private void getUser() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("User", null);
+        Type type = new TypeToken<User>() {}.getType();
+        user = gson.fromJson(json, type);
+    }
+
     private void getDatos() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        String token = sharedPreferences.getString("Token", null);
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.111/")
+                .baseUrl("http://10.0.2.2:3000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
+        Call<ResponseItems> call = as.getObjetosPropuestos(user, "Bearer "+ token);
 
-
-
-
-        //System.out.println(element.getId());
-        //System.out.println(element.getName());
-        Call<List<ItemCatalogo>> call = as.getItemsSubasta(element.getId());
-
-        System.out.println(element.getId());
-
-
-        call.enqueue(new Callback<List<ItemCatalogo>>() {
+        call.enqueue(new Callback<ResponseItems>() {
             @Override
-            public void onResponse(Call<List<ItemCatalogo>> call, Response<List<ItemCatalogo>> response) {
-
-                List<ItemCatalogo> itemsCatalogo = response.body();
-
-
-                for(ItemCatalogo itemCatalogo: itemsCatalogo){
-                    catalogos.add(itemCatalogo);
+            public void onResponse(Call<ResponseItems> call, Response<ResponseItems> response) {
+                if(response.isSuccessful()) {
+                    ResponseItems items = response.body();
+                    catalogos.addAll(items.getData());
+                    listRecyclerView4.getAdapter().notifyDataSetChanged();
                 }
-
-
-                //RecyclerView recyclerView2 = findViewById(R.id.listRecyclerView2);
-                listRecyclerView4.getAdapter().notifyDataSetChanged();
             }
 
             @Override
-            public void onFailure(Call<List<ItemCatalogo>> call, Throwable t) {
-                Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener los Catalogos", Toast.LENGTH_LONG);
-                //Toast toast2 = Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG);
+            public void onFailure(Call<ResponseItems> call, Throwable t) {
+                Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener los Items Propuestos", Toast.LENGTH_LONG);
                 toast1.show();
             }
         });
     }
-
-
-
-
 }

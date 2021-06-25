@@ -74,12 +74,12 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
         }
 
         public void bindData(final ItemCatalogo item){
-            iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
-            descripcion.setText(item.getDescripcion());
-            descripcionBreve.setText(item.getDescripcionBreve());
-            moneda.setText(item.getMoneda());
+            //iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
+            descripcion.setText(item.getDescription());
+            descripcionBreve.setText(item.getDescription());
+            moneda.setText("USD"); // harcodeado
 
-            String valorActualText = String.format("%,d", item.getValorActual());
+            String valorActualText = String.format("%,d", item.getBasePrice());
             ValorActual.setText(valorActualText);
 
             if(!estaRegistrado){

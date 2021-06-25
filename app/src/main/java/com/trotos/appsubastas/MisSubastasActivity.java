@@ -54,13 +54,6 @@ public class MisSubastasActivity<animFadeIn> extends AppCompatActivity {
 
 
     public void init(){
-
-        //HARDCODEADO
-        catalogos = new ArrayList<>();
-        catalogos.add(new ItemCatalogo("123456","En Curso","Rolex",1234,1234567,"#1111ff","Lorem ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.","Breve descripcion del item", "ARS",000));
-        catalogos.add(new ItemCatalogo("123456","En Curso","Casio",1234,123456,"#A70447","Lorem2 ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.2","Breve descripcion del item", "ARS", 001));
-        catalogos.add(new ItemCatalogo("123456","En Curso","Paddle Watch",12,123,"#075447","Lorem3 ipsum dolor sit amet consectetur adipiscing elit aptent platea facilisi tortor nunc imperdiet.3","Breve descripcion del item", "USD", 002));
-
         /*
         //getDatos();
         */

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.trotos.appsubastas.Modelos.Item;
 import com.trotos.appsubastas.Modelos.ItemCatalogo;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
@@ -49,7 +50,7 @@ public class DestalleMisObjetosActivity extends AppCompatActivity {
 
     List<CarouselItem> list = new ArrayList<>();
 
-    ItemCatalogo element;
+    Item element;
     boolean estaRegistrado;
 
     @Override
@@ -57,12 +58,11 @@ public class DestalleMisObjetosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_mis_objetos);
 
-        element = (ItemCatalogo) getIntent().getSerializableExtra("MisObjetos");
+        element = (Item) getIntent().getSerializableExtra("MisObjetos");
+        System.out.println(element.getTitle());
         estaRegistrado = (Boolean) getIntent().getBooleanExtra("estadoLoggeado", false);
         configureUI();
         cargar();
-        verHistorialPujas();
-        ofertar();
         logIn();
         cambiarEstado();
     }
@@ -71,9 +71,7 @@ public class DestalleMisObjetosActivity extends AppCompatActivity {
         aceptarPendienteBoton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //System.out.println(element.getEstado());
-                element.setEstado("Aceptado");
-                System.out.println(element.getEstado());
+                element.setStatus("Aceptado");
                 //startActivity(new Intent(DestalleMisObjetosActivity.this, MisObjetos.class));
             }
         });
@@ -81,9 +79,7 @@ public class DestalleMisObjetosActivity extends AppCompatActivity {
         rechazarPendienteBoton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //System.out.println(element.getEstado());
-                element.setEstado("Rechazado");
-                System.out.println(element.getEstado());
+                element.setStatus("Rechazado");
                 //startActivity(new Intent(DestalleMisObjetosActivity.this, MisObjetos.class));
             }
         });
@@ -110,17 +106,17 @@ public class DestalleMisObjetosActivity extends AppCompatActivity {
         aceptarPendienteBoton = findViewById(R.id.aceptarPendienteBoton);
         rechazarPendienteBoton = findViewById(R.id.rechazarPendienteBoton);
 
-        titleDescriptionTextView4.setText(element.getDescripcion());
-        titleDescriptionTextView4.setTextColor(Color.parseColor(element.getColor()));
+        titleDescriptionTextView4.setText(element.getDescription());
+        //titleDescriptionTextView4.setTextColor(Color.parseColor(element.getColor()));
 
-        String precioBaseText4 = String.format("%,d", element.getPrecioBase());
+        String precioBaseText4 = String.format("%,d", element.getBasePrice());
         precioBaseDescriptionTextView4.setText(precioBaseText4);
-        String valorActualText4 = String.format("%,d", element.getValorActual());
+        String valorActualText4 = String.format("%,d", element.getBasePrice()); // no deberia estar
         valorActualDescriptionTextView4.setText(valorActualText4);
         valorActualDescriptionTextView4.setTextColor(Color.GRAY);
-        fullTitleDescriptionTextView4.setText(element.getDescripcionCompleta());
-        monedaBaseDescriptionTextView4.setText(element.getMoneda());
-        monedaActualDescriptionTextView4.setText(element.getMoneda());
+        fullTitleDescriptionTextView4.setText(element.getDescription());
+        monedaBaseDescriptionTextView4.setText("USD"); // harcodeado, se obtiene de subasta
+        monedaActualDescriptionTextView4.setText("USD");
 
         editarNumeroDeTexto4 = findViewById(R.id.editarNumeroDeTexto4);
         botonOfertar4 = findViewById(R.id.botonOfertar4);
@@ -143,10 +139,13 @@ public class DestalleMisObjetosActivity extends AppCompatActivity {
             botonRegistrar4.setVisibility(View.GONE);
         }
 
-        String estado = element.getEstado();
+        String estado = element.getStatus();
+        if(estado == null) {
+            estado = "test";
+        }
 
         switch (estado) {
-            case "En Curso":
+            case "Auctioning":
                 valorActualOVendido4.setText("Valor Actual:");
                 valorActualDescriptionTextView4.setTextColor(Color.parseColor("#FF669900"));
                 break;
@@ -184,6 +183,8 @@ public class DestalleMisObjetosActivity extends AppCompatActivity {
                 rechazarPendienteBoton.setVisibility(View.VISIBLE);
                 break;
             case "Rechazado":
+                break;
+            default:
                 break;
         }
     }
@@ -229,82 +230,4 @@ public class DestalleMisObjetosActivity extends AppCompatActivity {
                 .setPositiveButton("Aceptar", null)
                 .show();
     }
-
-
-    private void ofertar() {
-        botonOfertar4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                int valorPrecioActual = element.getValorActual();
-                int valorPrecioBase = element.getPrecioBase();
-                boolean hayError = false;
-
-                String categoria = getIntent().getStringExtra("categoria");
-                if (categoria == null) {
-                    categoria = "oro";
-                }
-
-                int valorPuja = 0;
-                String texto = editarNumeroDeTexto4.getText().toString();
-                if(!texto.equals("")){
-                    valorPuja = Integer.parseInt(editarNumeroDeTexto4.getText().toString());
-                }
-
-
-                if(valorPuja == 0){
-                    showAlert("Monto vacio","Debe ingresar un Monto para poder Ofertar.");
-                } else if(valorPuja > (valorPrecioActual * 1.2) && (categoria.equals("Oro") || categoria.equals("Platino")) ){
-                    showAlert("Monto inválido","La oferta no puede exceder el 20 % de la última oferta realizada.");
-                } else if(valorPuja <= (valorPrecioBase * 0.01 + valorPrecioActual)){
-                    showAlert("Monto inválido","La oferta debe ser 1 % mayor al valor base del bien.");
-                } else if(valorPuja <= valorPrecioActual){
-                    showAlert("Monto inválido","La oferta no puede ser menor o igual a la última oferta realizada.");
-                } else{
-                    pujar(valorPuja);
-                }
-            }
-        });
-    }
-
-    private void pujar(int offer) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://URL-de-la-API.com")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        ApiUtils as = retrofit.create(ApiUtils.class);
-
-        element.setValorActual(offer);
-
-        Call<ItemCatalogo> call = as.postBid(element);
-
-        call.enqueue(new Callback<ItemCatalogo>() {
-            @Override
-            public void onResponse(Call<ItemCatalogo> call, Response<ItemCatalogo> response) {
-                if(response.body() != null) {
-                    Toast toast1 = Toast.makeText(getApplicationContext(),"Oferta realizada con exito!", Toast.LENGTH_LONG);
-                    toast1.show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ItemCatalogo> call, Throwable t) {
-                Toast toast1 = Toast.makeText(getApplicationContext(),"Error al ofertar!", Toast.LENGTH_LONG);
-                toast1.show();
-            }
-        });
-    }
-
-    private void verHistorialPujas() {
-        historialPujasView4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //HARDCODEADO
-                String historialPujasTexto = "\nRodríguezxxx ofertó $2.000 \n\nGómezxxx ofertó $3.000 \n\nPerezxxx ofertó $4.000 \n\nGonzalesxxx ofertó $5.000 \n\nFernándezxxx ofertó $6.000 \n\nLópezxxx ofertó $7.000 \n\nDíazxxx ofertó $8.000 \n\nMartínezxxx ofertó $9.000 \n\nTu has ofertado $10.000 \n\n ";
-                showAlert("Historial de ofertas",historialPujasTexto);
-            }
-        });
-    }
-
-
 }

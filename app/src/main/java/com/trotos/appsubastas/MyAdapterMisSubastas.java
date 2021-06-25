@@ -74,10 +74,10 @@ public class MyAdapterMisSubastas extends RecyclerView.Adapter<MyAdapterMisSubas
         }
 
         public void bindData(final ItemCatalogo item){
-            iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
-            descripcion.setText(item.getDescripcion());
-            descripcionBreve.setText(item.getDescripcionBreve());
-            estado.setText(item.getEstado());
+            //iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
+            descripcion.setText(item.getDescription());
+            descripcionBreve.setText(item.getDescription());
+            estado.setText(item.getStatus());
             estado.setTextColor(Color.parseColor("#ff8000"));
 
             //String valorActualText = String.format("%,d", item.getValorActual());

@@ -60,7 +60,7 @@ public class DestalleMisSubastasActivity extends AppCompatActivity {
         estaRegistrado = (Boolean) getIntent().getBooleanExtra("estadoLoggeado", false);
         configureUI();
         cargar();
-        verHistorialPujas();
+        //verHistorialPujas();
         //ofertar();
         //logIn();
     }
@@ -83,17 +83,17 @@ public class DestalleMisSubastasActivity extends AppCompatActivity {
         monedaBaseDescriptionTextView5 = findViewById(R.id.monedaBaseDescriptionTextView5);
         monedaActualDescriptionTextView5 = findViewById(R.id.monedaActualDescriptionTextView5);
 
-        titleDescriptionTextView5.setText(element.getDescripcion());
-        titleDescriptionTextView5.setTextColor(Color.parseColor(element.getColor()));
+        titleDescriptionTextView5.setText(element.getDescription());
+        //titleDescriptionTextView5.setTextColor(Color.parseColor(element.getColor()));
 
-        String precioBaseText5 = String.format("%,d", element.getPrecioBase());
+        String precioBaseText5 = String.format("%,d", element.getBasePrice());
         precioBaseDescriptionTextView5.setText(precioBaseText5);
-        String valorActualText5 = String.format("%,d", element.getValorActual());
+        String valorActualText5 = String.format("%,d", element.getBasePrice());
         valorActualDescriptionTextView5.setText(valorActualText5);
         valorActualDescriptionTextView5.setTextColor(Color.GRAY);
-        fullTitleDescriptionTextView5.setText(element.getDescripcionCompleta());
-        monedaBaseDescriptionTextView5.setText(element.getMoneda());
-        monedaActualDescriptionTextView5.setText(element.getMoneda());
+        fullTitleDescriptionTextView5.setText(element.getDescription());
+        monedaBaseDescriptionTextView5.setText("USD");
+        monedaActualDescriptionTextView5.setText("USD");
 
         //editarNumeroDeTexto5 = findViewById(R.id.editarNumeroDeTexto5);
         //botonOfertar5 = findViewById(R.id.botonOfertar5);
@@ -116,7 +116,7 @@ public class DestalleMisSubastasActivity extends AppCompatActivity {
             //botonRegistrar5.setVisibility(View.GONE);
         }
 
-        String estado = element.getEstado();
+        String estado = element.getStatus();
 
         switch (estado) {
             case "En Curso":
@@ -186,14 +186,14 @@ public class DestalleMisSubastasActivity extends AppCompatActivity {
                 .show();
     }
 
-
+/*
     private void ofertar() {
         botonOfertar5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                int valorPrecioActual = element.getValorActual();
-                int valorPrecioBase = element.getPrecioBase();
+                int valorPrecioActual = element.getBasePrice();
+                int valorPrecioBase = element.getBasePrice();
                 boolean hayError = false;
 
                 String categoria = getIntent().getStringExtra("categoria");
@@ -261,6 +261,6 @@ public class DestalleMisSubastasActivity extends AppCompatActivity {
             }
         });
     }
-
+*/
 
 }

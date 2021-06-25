@@ -40,7 +40,7 @@
         //estadoLoggeado = (Boolean) getIntent().getSerializableExtra("estadoLoggeado");
 
         //HARDCODEADO
-        testCreateSubastas();
+        //testCreateSubastas();
         //getDatos();
 
         MyAdapterSubasta myAdapterSubasta = new MyAdapterSubasta(subastas, this, new MyAdapterSubasta.OnItemClickListener() {
@@ -91,7 +91,7 @@
          });
      }
 
-     //Funcion test sin API
+     /*
      private void testCreateSubastas() {
 
          catalogos = new ArrayList<>();
@@ -122,7 +122,7 @@
 
          //subastas.add(new Subasta("#335435","ROPA","Activa - Restante 15:32 min","Platino", null    ));
          //subastas.add(new Subasta("#486648","CAMARAS","Comienza en 20:00 min","Oro", null    ));
-     }
+     }*/
 
      private void moveToDescription(Subasta item) {
          Intent intent = new Intent(this, CatalogoActivity.class);
