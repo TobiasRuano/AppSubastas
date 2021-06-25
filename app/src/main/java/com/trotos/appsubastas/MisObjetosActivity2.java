@@ -17,7 +17,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.trotos.appsubastas.Modelos.Item;
 import com.trotos.appsubastas.Modelos.ResponseItems;
-import com.trotos.appsubastas.Modelos.Subasta;
+import com.trotos.appsubastas.Modelos.Auction;
 import com.trotos.appsubastas.Modelos.User;
 
 import java.lang.reflect.Type;
@@ -43,7 +43,7 @@ public class MisObjetosActivity2<animFadeIn> extends AppCompatActivity {
     ViewGroup.LayoutParams params;
     LinearLayout linearLayout4;
 
-    Subasta element;
+    Auction element;
     User user;
 
     List<Item> catalogos= new ArrayList<Item>();

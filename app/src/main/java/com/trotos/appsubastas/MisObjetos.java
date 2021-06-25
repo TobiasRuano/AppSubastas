@@ -21,9 +21,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.trotos.appsubastas.Modelos.Item;
-import com.trotos.appsubastas.Modelos.MPTarjeta;
 import com.trotos.appsubastas.Modelos.ResponseItems;
-import com.trotos.appsubastas.Modelos.Subasta;
+import com.trotos.appsubastas.Modelos.Auction;
 import com.trotos.appsubastas.Modelos.User;
 
 import org.jetbrains.annotations.NotNull;
@@ -54,7 +53,7 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
     ViewGroup.LayoutParams params;
     LinearLayout linearLayout4;
 
-    Subasta element;
+    Auction element;
     User user;
 
     List<Item> catalogos = new ArrayList<Item>();
@@ -90,7 +89,7 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.homeLogueado:
-                        startActivity(new Intent(MisObjetos.this, MenuLogueado.class));
+                        startActivity(new Intent(MisObjetos.this, SubastaActivity.class));
                         overridePendingTransition(0,0);
                         break;
                     case R.id.mpLogueado:

@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.trotos.appsubastas.Modelos.MPTarjeta;
+import com.trotos.appsubastas.Modelos.ResponseCreateMP;
 
 import java.util.Date;
 
@@ -67,7 +68,7 @@ public class AgregarMedioPagoActivity extends AppCompatActivity {
                 String number = cardNumber.getText().toString();
                 String exp = expDate.getText().toString();
                 String cvc = cvcNumber.getText().toString();
-                return !name.isEmpty() && !number.isEmpty() && !exp.isEmpty() && !cvc.isEmpty();
+                return !name.isEmpty() && !number.isEmpty() && !exp.isEmpty() && !cvc.isEmpty() && number.length() == 16;
             }
         });
     }
@@ -100,21 +101,22 @@ public class AgregarMedioPagoActivity extends AppCompatActivity {
         String cvc1 = cvcNumber.getText().toString();
         int cvc2 = Integer.parseInt(cvc1);
 
-        MPTarjeta tarjeta = new MPTarjeta(0, userId, name,false, number, cvc2, expiracionTarjeta);
+        MPTarjeta tarjetaBody = new MPTarjeta(0, userId, name,false, number, cvc2, expiracionTarjeta, null);
 
-        Call<MPTarjeta> call = as.postTarjeta(tarjeta, "Bearer "+ token);
+        Call<ResponseCreateMP> call = as.postTarjeta(tarjetaBody, "Bearer "+ token);
 
-        call.enqueue(new Callback<MPTarjeta>() {
+        call.enqueue(new Callback<ResponseCreateMP>() {
             @Override
-            public void onResponse(Call<MPTarjeta> call, Response<MPTarjeta> response) {
-                if(response.body() != null) {
+            public void onResponse(Call<ResponseCreateMP> call, Response<ResponseCreateMP> response) {
+                if(response.isSuccessful()) {
+                    MPTarjeta tarjeta = response.body().getData();
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Tarjeta agregada correctamente!", Toast.LENGTH_LONG);
                     toast1.show();
-                    passDataBack();
+                    passDataBack(tarjeta);
                 }
             }
 
-            private void passDataBack() {
+            private void passDataBack(MPTarjeta tarjeta) {
                 Intent intent = new Intent();
                 intent.putExtra("nuevaTarjeta", tarjeta);
                 setResult(RESULT_OK, intent);
@@ -122,10 +124,9 @@ public class AgregarMedioPagoActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<MPTarjeta> call, Throwable t) {
+            public void onFailure(Call<ResponseCreateMP> call, Throwable t) {
                 Toast toast1 = Toast.makeText(getApplicationContext(),"Error al intentar agregar la tarjeta", Toast.LENGTH_LONG);
                 toast1.show();
-                passDataBack();
             }
         });
     }

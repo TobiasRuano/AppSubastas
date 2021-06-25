@@ -1,6 +1,7 @@
 package com.trotos.appsubastas;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -12,9 +13,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.trotos.appsubastas.Modelos.Item;
 import com.trotos.appsubastas.Modelos.ItemCatalogo;
-import com.trotos.appsubastas.Modelos.Subasta;
+import com.trotos.appsubastas.Modelos.Auction;
+import com.trotos.appsubastas.Modelos.ResponseItemsCatalog;
+import com.trotos.appsubastas.Modelos.User;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +44,9 @@ public class MisSubastasActivity<animFadeIn> extends AppCompatActivity {
     ViewGroup.LayoutParams params;
     LinearLayout linearLayout5;
 
-    Subasta element;
-
-    List<ItemCatalogo> catalogos;
+    Auction element;
+    User user;
+    List<ItemCatalogo> catalogos = new ArrayList<ItemCatalogo>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,16 +55,12 @@ public class MisSubastasActivity<animFadeIn> extends AppCompatActivity {
 
         //estaRegistrado = getIntent().getBooleanExtra("estadoLoggeado", false);
 
+        getUser();
+        getDatos();
         init();
-        //getDatos();
     }
 
-
     public void init(){
-        /*
-        //getDatos();
-        */
-
         MyAdapterMisSubastas myAdapterMisSubastas = new MyAdapterMisSubastas(catalogos, estaRegistrado, this, new MyAdapterMisSubastas.OnItemClickListener() {
             @Override
             public void onItemClick(ItemCatalogo item) {
@@ -65,12 +68,10 @@ public class MisSubastasActivity<animFadeIn> extends AppCompatActivity {
             }
         });
 
-        RecyclerView recyclerView5 = findViewById(R.id.listRecyclerView5);
-        recyclerView5.setHasFixedSize(true);
-        recyclerView5.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView5.setAdapter(myAdapterMisSubastas);
-
         listRecyclerView5  = findViewById(R.id.listRecyclerView5);
+        listRecyclerView5.setHasFixedSize(true);
+        listRecyclerView5.setLayoutManager(new LinearLayoutManager(this));
+        listRecyclerView5.setAdapter(myAdapterMisSubastas);
 
         nameDescriptionTextView5 = findViewById(R.id.nameDescriptionTextView5);
         //stateDescriptionTextView5 = findViewById(R.id.stateDescriptionTextView5);
@@ -78,6 +79,14 @@ public class MisSubastasActivity<animFadeIn> extends AppCompatActivity {
 
         linearLayout5 = findViewById(R.id.linearLayout5);
 
+    }
+
+    private void getUser() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("User", null);
+        Type type = new TypeToken<User>() {}.getType();
+        user = gson.fromJson(json, type);
     }
 
     private void moveToDescription(ItemCatalogo item) {
@@ -88,48 +97,33 @@ public class MisSubastasActivity<animFadeIn> extends AppCompatActivity {
     }
 
     private void getDatos() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        String token = sharedPreferences.getString("Token", null);
+
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.111/")
+                .baseUrl("http://10.0.2.2:3000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
-
-
-
-
-        //System.out.println(element.getId());
-        //System.out.println(element.getName());
-        Call<List<ItemCatalogo>> call = as.getItemsSubasta(element.getId());
-
-        System.out.println(element.getId());
-
-
-        call.enqueue(new Callback<List<ItemCatalogo>>() {
+        Call<ResponseItemsCatalog> call = as.getItemsParticipados(user, "Bearer "+ token);
+        call.enqueue(new Callback<ResponseItemsCatalog>() {
             @Override
-            public void onResponse(Call<List<ItemCatalogo>> call, Response<List<ItemCatalogo>> response) {
-
-                List<ItemCatalogo> itemsCatalogo = response.body();
-
-
-                for(ItemCatalogo itemCatalogo: itemsCatalogo){
-                    catalogos.add(itemCatalogo);
+            public void onResponse(Call<ResponseItemsCatalog> call, Response<ResponseItemsCatalog> response) {
+                if(response.isSuccessful()) {
+                    ResponseItemsCatalog itemsCatalogo = response.body();
+                    catalogos.addAll(itemsCatalogo.getData());
+                    listRecyclerView5.getAdapter().notifyDataSetChanged();
+                } else {
+                    Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener los Catalogos", Toast.LENGTH_LONG);
+                    toast1.show();
                 }
-
-
-                //RecyclerView recyclerView2 = findViewById(R.id.listRecyclerView2);
-                listRecyclerView5.getAdapter().notifyDataSetChanged();
             }
 
             @Override
-            public void onFailure(Call<List<ItemCatalogo>> call, Throwable t) {
+            public void onFailure(Call<ResponseItemsCatalog> call, Throwable t) {
                 Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener los Catalogos", Toast.LENGTH_LONG);
-                //Toast toast2 = Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG);
                 toast1.show();
             }
         });
     }
-
-
-
-
 }

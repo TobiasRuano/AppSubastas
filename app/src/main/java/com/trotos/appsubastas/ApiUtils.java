@@ -7,11 +7,14 @@ import com.trotos.appsubastas.Modelos.ItemCatalogo;
 import com.trotos.appsubastas.Modelos.LoginInformation;
 import com.trotos.appsubastas.Modelos.MPTarjeta;
 import com.trotos.appsubastas.Modelos.Item;
+import com.trotos.appsubastas.Modelos.ResponseAuctions;
+import com.trotos.appsubastas.Modelos.ResponseCreateMP;
 import com.trotos.appsubastas.Modelos.ResponseItems;
+import com.trotos.appsubastas.Modelos.ResponseItemsCatalog;
 import com.trotos.appsubastas.Modelos.ResponseLogIn;
 import com.trotos.appsubastas.Modelos.ResponseMPTarjetas;
 import com.trotos.appsubastas.Modelos.ResponseStatisticsUser;
-import com.trotos.appsubastas.Modelos.Subasta;
+import com.trotos.appsubastas.Modelos.Auction;
 import com.trotos.appsubastas.Modelos.User;
 
 import java.util.List;
@@ -26,27 +29,26 @@ import retrofit2.http.Query;
 
 interface ApiUtils {
 
-    @GET("subastas/")
-    Call<List<Subasta>> getSubastas();
-    @GET("ItemCatalogo")
-    Call<List<ItemCatalogo>> getItemsSubasta(@Query("subastaid") int subastaid);
+    @HTTP(method = "GET", path = "auction")
+    Call<ResponseAuctions> getSubastas();
+
+    @HTTP(method = "POST", path = "auction/items", hasBody = true)
+    Call<ResponseItemsCatalog> getItemsSubasta(@Body Auction auction);
 
     @HTTP(method = "POST", path = "auction/bid", hasBody = true)
     Call<String> postBid(@Body Bid bid);
 
-    @GET("Usuario")
-    Call<User> getUsuario(@Query("id") int id);
-
     @HTTP(method = "POST", path = "user/items/won", hasBody = true)
-    Call<ResponseStatisticsUser> getItemsWonCount(@Body User user, @Header("Authorization") String auth);
+    Call<ResponseStatisticsUser> getUserStatistics(@Body User user, @Header("Authorization") String auth);
 
     @HTTP(method = "POST", path = "user/checkpass", hasBody = true)
     Call<User> checkPasswordUsuario(@Body LoginInformation logIn);
 
     @HTTP(method = "POST", path = "user/getitems", hasBody = true)
     Call<ResponseItems> getObjetosPropuestos(@Body User user, @Header("Authorization") String auth);
-    @GET("users")
-    Call<List<Subasta>> getSubastasParticipadas(@Body String userID);
+
+    @HTTP(method = "POST", path = "user/items/bidded", hasBody = true)
+    Call<ResponseItemsCatalog> getItemsParticipados(@Body User user, @Header("Authorization") String auth);
 
     @HTTP(method = "POST", path = "user/getpayment", hasBody = true)
     Call<ResponseMPTarjetas> getTarjetas(@Body User user, @Header("Authorization") String auth);
@@ -56,7 +58,7 @@ interface ApiUtils {
     @POST("users/{userId}/items")
     Call<Item> postProducto(@Body Item item);
     @POST("user/payment")
-    Call<MPTarjeta> postTarjeta(@Body MPTarjeta tarjeta, @Header("Authorization") String auth);
+    Call<ResponseCreateMP> postTarjeta(@Body MPTarjeta tarjeta, @Header("Authorization") String auth);
 
     @HTTP(method = "PATCH", path = "user/update", hasBody = true)
     Call<Pair<String, String>> modifyUser(@Body User user, @Header("Authorization") String auth);
