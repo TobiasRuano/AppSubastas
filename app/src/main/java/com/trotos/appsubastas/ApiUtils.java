@@ -1,5 +1,7 @@
 package com.trotos.appsubastas;
 
+import android.util.Pair;
+
 import com.trotos.appsubastas.Modelos.ItemCatalogo;
 import com.trotos.appsubastas.Modelos.LoginInformation;
 import com.trotos.appsubastas.Modelos.MPTarjeta;
@@ -16,7 +18,6 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Header;
-import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -49,8 +50,8 @@ interface ApiUtils {
     @POST("user/payment")
     Call<MPTarjeta> postTarjeta(@Body MPTarjeta tarjeta, @Header("Authorization") String auth);
 
-    @PATCH("users/{userId}")
-    Call<User> modifyUser(@Body User user);
+    @HTTP(method = "PATCH", path = "user/update", hasBody = true)
+    Call<Pair<String, String>> modifyUser(@Body User user, @Header("Authorization") String auth);
 
     @HTTP(method = "DELETE", path = "user/payment", hasBody = true)
     Call<MPTarjeta> deleteTarjeta(@Body MPTarjeta tarjeta, @Header("Authorization") String auth);
