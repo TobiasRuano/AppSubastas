@@ -81,7 +81,6 @@ public class MiUsuario extends AppCompatActivity {
         }
 
         bottomNavigationView.setSelectedItemId(R.id.usuarioLogueado);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
@@ -95,6 +94,8 @@ public class MiUsuario extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         break;
                     case R.id.msLogueado:
+                        startActivity(new Intent(MiUsuario.this, MisSubastasActivity.class));
+                        overridePendingTransition(0,0);
                         break;
                     case R.id.moLogueado:
                         startActivity(new Intent(MiUsuario.this, MisObjetos.class));

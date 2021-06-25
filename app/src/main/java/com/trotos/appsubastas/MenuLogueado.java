@@ -34,8 +34,9 @@ public class MenuLogueado extends AppCompatActivity{
         getSupportActionBar().hide();
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
-        bottomNavigationView.setSelectedItemId(R.id.homeLogueado);
 
+
+        bottomNavigationView.setSelectedItemId(R.id.homeLogueado);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
@@ -47,6 +48,8 @@ public class MenuLogueado extends AppCompatActivity{
                         overridePendingTransition(0,0);
                         break;
                     case R.id.msLogueado:
+                        startActivity(new Intent(MenuLogueado.this, MisSubastasActivity.class));
+                        overridePendingTransition(0,0);
                         break;
                     case R.id.moLogueado:
                         startActivity(new Intent(MenuLogueado.this, MisObjetos.class));

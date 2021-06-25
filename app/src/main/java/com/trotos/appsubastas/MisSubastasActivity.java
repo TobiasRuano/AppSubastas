@@ -3,16 +3,19 @@ package com.trotos.appsubastas;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.trotos.appsubastas.Modelos.Item;
@@ -20,6 +23,8 @@ import com.trotos.appsubastas.Modelos.ItemCatalogo;
 import com.trotos.appsubastas.Modelos.Auction;
 import com.trotos.appsubastas.Modelos.ResponseItemsCatalog;
 import com.trotos.appsubastas.Modelos.User;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -48,6 +53,8 @@ public class MisSubastasActivity<animFadeIn> extends AppCompatActivity {
     User user;
     List<ItemCatalogo> catalogos = new ArrayList<ItemCatalogo>();
 
+    BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +65,37 @@ public class MisSubastasActivity<animFadeIn> extends AppCompatActivity {
         getUser();
         getDatos();
         init();
+
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
+
+        bottomNavigationView.setSelectedItemId(R.id.msLogueado);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.homeLogueado:
+                        startActivity(new Intent(MisSubastasActivity.this, MenuLogueado.class));
+                        overridePendingTransition(0,0);
+                        break;
+                    case R.id.mpLogueado:
+                        startActivity(new Intent(MisSubastasActivity.this, MediosPagoActivity.class));
+                        overridePendingTransition(0,0);
+                        break;
+                    case R.id.msLogueado:
+                        break;
+                    case R.id.moLogueado:
+                        startActivity(new Intent(MisSubastasActivity.this, MisObjetos.class));
+                        overridePendingTransition(0,0);
+                        break;
+                    case R.id.usuarioLogueado:
+                        startActivity(new Intent(MisSubastasActivity.this, MiUsuario.class));
+                        overridePendingTransition(0,0);
+                        break;
+                }
+                return false;
+            }
+        });
+
     }
 
     public void init(){

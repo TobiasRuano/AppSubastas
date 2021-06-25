@@ -84,12 +84,14 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
             }
         });
 
+
+        bottomNavigationView.setSelectedItemId(R.id.moLogueado);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.homeLogueado:
-                        startActivity(new Intent(MisObjetos.this, SubastaActivity.class));
+                        startActivity(new Intent(MisObjetos.this, MenuLogueado.class));
                         overridePendingTransition(0,0);
                         break;
                     case R.id.mpLogueado:
@@ -97,6 +99,8 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         break;
                     case R.id.msLogueado:
+                        startActivity(new Intent(MisObjetos.this, MisSubastasActivity.class));
+                        overridePendingTransition(0,0);
                         break;
                     case R.id.moLogueado:
                         break;
