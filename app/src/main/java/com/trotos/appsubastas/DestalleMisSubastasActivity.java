@@ -118,6 +118,9 @@ public class DestalleMisSubastasActivity extends AppCompatActivity {
 
         String estado = element.getStatus();
 
+        if(estado == null) {
+            estado = "En curso"; // para que no crashee
+        }
         switch (estado) {
             case "En Curso":
                 valorActualOVendido5.setText("Valor Actual:");

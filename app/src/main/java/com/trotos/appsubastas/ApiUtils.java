@@ -37,19 +37,17 @@ interface ApiUtils {
     @HTTP(method = "POST", path = "auction/bid", hasBody = true)
     Call<String> postBid(@Body Bid bid);
 
-    @GET("Usuario")
-    Call<User> getUsuario(@Query("id") int id);
-
     @HTTP(method = "POST", path = "user/items/won", hasBody = true)
-    Call<ResponseStatisticsUser> getItemsWonCount(@Body User user, @Header("Authorization") String auth);
+    Call<ResponseStatisticsUser> getUserStatistics(@Body User user, @Header("Authorization") String auth);
 
     @HTTP(method = "POST", path = "user/checkpass", hasBody = true)
     Call<User> checkPasswordUsuario(@Body LoginInformation logIn);
 
     @HTTP(method = "POST", path = "user/getitems", hasBody = true)
     Call<ResponseItems> getObjetosPropuestos(@Body User user, @Header("Authorization") String auth);
-    @GET("users")
-    Call<List<Auction>> getSubastasParticipadas(@Body String userID);
+
+    @HTTP(method = "POST", path = "user/items/bidded", hasBody = true)
+    Call<ResponseItemsCatalog> getItemsParticipados(@Body User user, @Header("Authorization") String auth);
 
     @HTTP(method = "POST", path = "user/getpayment", hasBody = true)
     Call<ResponseMPTarjetas> getTarjetas(@Body User user, @Header("Authorization") String auth);
