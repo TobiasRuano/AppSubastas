@@ -2,10 +2,12 @@ package com.trotos.appsubastas;
 
 import android.util.Pair;
 
+import com.trotos.appsubastas.Modelos.Bid;
 import com.trotos.appsubastas.Modelos.ItemCatalogo;
 import com.trotos.appsubastas.Modelos.LoginInformation;
 import com.trotos.appsubastas.Modelos.MPTarjeta;
-import com.trotos.appsubastas.Modelos.Producto;
+import com.trotos.appsubastas.Modelos.Item;
+import com.trotos.appsubastas.Modelos.ResponseItems;
 import com.trotos.appsubastas.Modelos.ResponseLogIn;
 import com.trotos.appsubastas.Modelos.ResponseMPTarjetas;
 import com.trotos.appsubastas.Modelos.ResponseStatisticsUser;
@@ -28,8 +30,9 @@ interface ApiUtils {
     Call<List<Subasta>> getSubastas();
     @GET("ItemCatalogo")
     Call<List<ItemCatalogo>> getItemsSubasta(@Query("subastaid") int subastaid);
-    @POST("auctions/{auctionId}/bid")
-    Call<ItemCatalogo> postBid(@Body ItemCatalogo item);
+
+    @HTTP(method = "POST", path = "auction/bid", hasBody = true)
+    Call<String> postBid(@Body Bid bid);
 
     @GET("Usuario")
     Call<User> getUsuario(@Query("id") int id);
@@ -39,8 +42,9 @@ interface ApiUtils {
 
     @HTTP(method = "POST", path = "user/checkpass", hasBody = true)
     Call<User> checkPasswordUsuario(@Body LoginInformation logIn);
-    @GET("users/{userId}/items")
-    Call<List<Producto>> getObjetosPropuestos();
+
+    @HTTP(method = "POST", path = "user/getitems", hasBody = true)
+    Call<ResponseItems> getObjetosPropuestos(@Body User user, @Header("Authorization") String auth);
     @GET("users")
     Call<List<Subasta>> getSubastasParticipadas(@Body String userID);
 
@@ -50,7 +54,7 @@ interface ApiUtils {
     @HTTP(method = "POST", path = "user/sign-up", hasBody = true)
     Call<User> createAccount(@Body User user);
     @POST("users/{userId}/items")
-    Call<Producto> postProducto(@Body Producto producto);
+    Call<Item> postProducto(@Body Item item);
     @POST("user/payment")
     Call<MPTarjeta> postTarjeta(@Body MPTarjeta tarjeta, @Header("Authorization") String auth);
 

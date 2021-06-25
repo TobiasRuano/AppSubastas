@@ -1,42 +1,41 @@
 package com.trotos.appsubastas.Modelos;
 
 import java.io.Serializable;
+import java.util.Date;
 
-public class ItemCatalogo extends Producto implements Serializable {
+public class ItemCatalogo extends Item implements Serializable {
 
-    private String estado;
-    private int precioBase;
-    private int valorActual;
-    private String color;
-    private String moneda;
-    private int subastaid;
+    private int shippingPrice;
+    private int auctionId;
     private int itemId;
-    private String comision;
-    private String precioEnvio;
-    private String ganador;
+    private int winnerId;
+    private Date startTime;
+    private Date endTime;
 
-    public ItemCatalogo(String id, String estado, String descripcion, int precioBase, int valorActual, String color, String descripcionCompleta, String descripcionBreve, String moneda, int subastaid) {
-        super(id, descripcion, descripcionCompleta, descripcionBreve);
-        this.estado = estado;
-        this.precioBase = precioBase;
-        this.valorActual = valorActual;
-        this.color = color;
-        this.moneda = moneda;
-        this.subastaid = subastaid;
+    public ItemCatalogo(int id, String title, String description, String urlImage, int commission, int basePrice, String status, int commission1, int basePrice1, int shippingPrice, int auctionId, int itemId, int winnerId, Date startTime, Date endTime) {
+        super(id, title, description, urlImage, commission, basePrice, status);
+        this.shippingPrice = shippingPrice;
+        this.auctionId = auctionId;
+        this.itemId = itemId;
+        this.winnerId = winnerId;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
-    public ItemCatalogo(String id, String descripcion, String descripcionCompleta, String descripcionBreve, String estado, int precioBase, int valorActual, String color, String moneda, int subastaid, int itemId, String comision, String precioEnvio, String ganador) {
-        super(id, descripcion, descripcionCompleta, descripcionBreve);
-        this.estado = estado;
-        this.precioBase = precioBase;
-        this.valorActual = valorActual;
-        this.color = color;
-        this.moneda = moneda;
-        this.subastaid = subastaid;
-        this.itemId = itemId;
-        this.comision = comision;
-        this.precioEnvio = precioEnvio;
-        this.ganador = ganador;
+    public int getShippingPrice() {
+        return shippingPrice;
+    }
+
+    public void setShippingPrice(int shippingPrice) {
+        this.shippingPrice = shippingPrice;
+    }
+
+    public int getAuctionId() {
+        return auctionId;
+    }
+
+    public void setAuctionId(int auctionId) {
+        this.auctionId = auctionId;
     }
 
     public int getItemId() {
@@ -47,71 +46,27 @@ public class ItemCatalogo extends Producto implements Serializable {
         this.itemId = itemId;
     }
 
-    public String getComision() {
-        return comision;
+    public int getWinnerId() {
+        return winnerId;
     }
 
-    public void setComision(String comision) {
-        this.comision = comision;
+    public void setWinnerId(int winnerId) {
+        this.winnerId = winnerId;
     }
 
-    public String getPrecioEnvio() {
-        return precioEnvio;
+    public Date getStartTime() {
+        return startTime;
     }
 
-    public void setPrecioEnvio(String precioEnvio) {
-        this.precioEnvio = precioEnvio;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
-    public String getGanador() {
-        return ganador;
+    public Date getEndTime() {
+        return endTime;
     }
 
-    public void setGanador(String ganador) {
-        this.ganador = ganador;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public int getPrecioBase() {
-        return precioBase;
-    }
-
-    public void setPrecioBase(int precioBase) {
-        this.precioBase = precioBase;
-    }
-
-    public int getValorActual() {
-        return valorActual;
-    }
-
-    public void setValorActual(int valorActual) {
-        this.valorActual = valorActual;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public void setMoneda(String moneda) {
-        this.moneda = moneda;
-    }
-
-    public String getMoneda() {
-        return moneda;
-    }
-
-    public int getSubastaid() { return subastaid; }
-
-    public void setSubastaid(int subastaid) { this.subastaid = subastaid; }
 }
