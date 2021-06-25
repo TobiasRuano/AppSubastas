@@ -7,13 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.trotos.appsubastas.Modelos.Item;
-import com.trotos.appsubastas.Modelos.ItemCatalogo;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
@@ -23,14 +21,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-
-public class DestalleMisObjetosActivity extends AppCompatActivity {
+public class DetalleMisObjetosActivity extends AppCompatActivity {
 
     TextView titleDescriptionTextView4;
     TextView precioBaseDescriptionTextView4;
@@ -89,7 +81,7 @@ public class DestalleMisObjetosActivity extends AppCompatActivity {
         botonRegistrar4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DestalleMisObjetosActivity.this, IniciarSesionActivity.class);
+                Intent intent = new Intent(DetalleMisObjetosActivity.this, IniciarSesionActivity.class);
                 startActivity(intent);
             }
         });
@@ -224,7 +216,7 @@ public class DestalleMisObjetosActivity extends AppCompatActivity {
     }
 
     private void showAlert(String titulo, String mensaje) {
-        new AlertDialog.Builder(DestalleMisObjetosActivity.this)
+        new AlertDialog.Builder(DetalleMisObjetosActivity.this)
                 .setTitle(titulo)
                 .setMessage(mensaje)
                 .setPositiveButton("Aceptar", null)

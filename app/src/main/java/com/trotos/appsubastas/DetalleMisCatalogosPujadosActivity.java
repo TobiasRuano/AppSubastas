@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class DestalleMisCatalogosPujadosActivity extends AppCompatActivity {
+public class DetalleMisCatalogosPujadosActivity extends AppCompatActivity {
 
     TextView titleDescriptionTextView5;
     TextView precioBaseDescriptionTextView5;
@@ -62,7 +62,7 @@ public class DestalleMisCatalogosPujadosActivity extends AppCompatActivity {
         botonRegistrar5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DestalleMisCatalogosPujadosActivity.this, IniciarSesionActivity.class);
+                Intent intent = new Intent(DetalleMisCatalogosPujadosActivity.this, IniciarSesionActivity.class);
                 startActivity(intent);
             }
         });
@@ -175,7 +175,7 @@ public class DestalleMisCatalogosPujadosActivity extends AppCompatActivity {
     }
 
     private void showAlert(String titulo, String mensaje) {
-        new AlertDialog.Builder(DestalleMisCatalogosPujadosActivity.this)
+        new AlertDialog.Builder(DetalleMisCatalogosPujadosActivity.this)
                 .setTitle(titulo)
                 .setMessage(mensaje)
                 .setPositiveButton("Aceptar", null)

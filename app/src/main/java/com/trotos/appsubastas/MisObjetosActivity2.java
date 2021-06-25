@@ -81,7 +81,7 @@ public class MisObjetosActivity2<animFadeIn> extends AppCompatActivity {
     }
 
     private void moveToDescription(Item item) {
-        Intent intent = new Intent(this,   DestalleMisObjetosActivity.class);
+        Intent intent = new Intent(this,   DetalleMisObjetosActivity.class);
         intent.putExtra("MisObjetos",item);
         intent.putExtra("estadoLoggeado", estaRegistrado);
         startActivity(intent);
