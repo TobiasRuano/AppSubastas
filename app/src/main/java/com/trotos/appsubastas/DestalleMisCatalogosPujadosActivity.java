@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,14 +21,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-
-public class DestalleMisSubastasActivity extends AppCompatActivity {
+public class DestalleMisCatalogosPujadosActivity extends AppCompatActivity {
 
     TextView titleDescriptionTextView5;
     TextView precioBaseDescriptionTextView5;
@@ -54,7 +47,7 @@ public class DestalleMisSubastasActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalle_mis_subastas);
+        setContentView(R.layout.activity_detalle_mis_catalogos_pujados);
 
         element = (ItemCatalogo) getIntent().getSerializableExtra("MisSubastas");
         estaRegistrado = (Boolean) getIntent().getBooleanExtra("estadoLoggeado", false);
@@ -69,7 +62,7 @@ public class DestalleMisSubastasActivity extends AppCompatActivity {
         botonRegistrar5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DestalleMisSubastasActivity.this, IniciarSesionActivity.class);
+                Intent intent = new Intent(DestalleMisCatalogosPujadosActivity.this, IniciarSesionActivity.class);
                 startActivity(intent);
             }
         });
@@ -182,7 +175,7 @@ public class DestalleMisSubastasActivity extends AppCompatActivity {
     }
 
     private void showAlert(String titulo, String mensaje) {
-        new AlertDialog.Builder(DestalleMisSubastasActivity.this)
+        new AlertDialog.Builder(DestalleMisCatalogosPujadosActivity.this)
                 .setTitle(titulo)
                 .setMessage(mensaje)
                 .setPositiveButton("Aceptar", null)

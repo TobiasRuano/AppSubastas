@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.trotos.appsubastas.Modelos.Item;
 import com.trotos.appsubastas.Modelos.ItemCatalogo;
 import com.trotos.appsubastas.Modelos.Auction;
 import com.trotos.appsubastas.Modelos.ResponseItemsCatalog;
@@ -36,7 +35,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MisSubastasActivity<animFadeIn> extends AppCompatActivity {
+public class MisCatalogosPujadosActivity<animFadeIn> extends AppCompatActivity {
 
     TextView nameDescriptionTextView5;
     TextView stateDescriptionTextView5;
@@ -58,7 +57,7 @@ public class MisSubastasActivity<animFadeIn> extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mis_subastas);
+        setContentView(R.layout.activity_mis_catalogos_pujados);
 
         //estaRegistrado = getIntent().getBooleanExtra("estadoLoggeado", false);
 
@@ -74,21 +73,21 @@ public class MisSubastasActivity<animFadeIn> extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.homeLogueado:
-                        startActivity(new Intent(MisSubastasActivity.this, MenuLogueado.class));
+                        startActivity(new Intent(MisCatalogosPujadosActivity.this, MenuLogueado.class));
                         overridePendingTransition(0,0);
                         break;
                     case R.id.mpLogueado:
-                        startActivity(new Intent(MisSubastasActivity.this, MediosPagoActivity.class));
+                        startActivity(new Intent(MisCatalogosPujadosActivity.this, MediosPagoActivity.class));
                         overridePendingTransition(0,0);
                         break;
                     case R.id.msLogueado:
                         break;
                     case R.id.moLogueado:
-                        startActivity(new Intent(MisSubastasActivity.this, MisObjetos.class));
+                        startActivity(new Intent(MisCatalogosPujadosActivity.this, MisObjetos.class));
                         overridePendingTransition(0,0);
                         break;
                     case R.id.usuarioLogueado:
-                        startActivity(new Intent(MisSubastasActivity.this, MiUsuario.class));
+                        startActivity(new Intent(MisCatalogosPujadosActivity.this, MiUsuario.class));
                         overridePendingTransition(0,0);
                         break;
                 }
@@ -99,7 +98,7 @@ public class MisSubastasActivity<animFadeIn> extends AppCompatActivity {
     }
 
     public void init(){
-        MyAdapterMisSubastas myAdapterMisSubastas = new MyAdapterMisSubastas(catalogos, estaRegistrado, this, new MyAdapterMisSubastas.OnItemClickListener() {
+        MyAdapterMisCatalogosPujados myAdapterMisCatalogosPujados = new MyAdapterMisCatalogosPujados(catalogos, estaRegistrado, this, new MyAdapterMisCatalogosPujados.OnItemClickListener() {
             @Override
             public void onItemClick(ItemCatalogo item) {
                 moveToDescription(item);
@@ -109,7 +108,7 @@ public class MisSubastasActivity<animFadeIn> extends AppCompatActivity {
         listRecyclerView5  = findViewById(R.id.listRecyclerView5);
         listRecyclerView5.setHasFixedSize(true);
         listRecyclerView5.setLayoutManager(new LinearLayoutManager(this));
-        listRecyclerView5.setAdapter(myAdapterMisSubastas);
+        listRecyclerView5.setAdapter(myAdapterMisCatalogosPujados);
 
         nameDescriptionTextView5 = findViewById(R.id.nameDescriptionTextView5);
         //stateDescriptionTextView5 = findViewById(R.id.stateDescriptionTextView5);
@@ -128,7 +127,7 @@ public class MisSubastasActivity<animFadeIn> extends AppCompatActivity {
     }
 
     private void moveToDescription(ItemCatalogo item) {
-        Intent intent = new Intent(this,   DestalleMisSubastasActivity.class);
+        Intent intent = new Intent(this,   DestalleMisCatalogosPujadosActivity.class);
         intent.putExtra("MisSubastas",item);
         intent.putExtra("estadoLoggeado", estaRegistrado);
         startActivity(intent);

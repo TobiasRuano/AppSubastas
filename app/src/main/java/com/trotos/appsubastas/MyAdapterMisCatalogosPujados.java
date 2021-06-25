@@ -17,7 +17,7 @@ import com.trotos.appsubastas.Modelos.ItemCatalogo;
 
 import java.util.List;
 
-public class MyAdapterMisSubastas extends RecyclerView.Adapter<MyAdapterMisSubastas.ViewHolder> {
+public class MyAdapterMisCatalogosPujados extends RecyclerView.Adapter<MyAdapterMisCatalogosPujados.ViewHolder> {
     private List<ItemCatalogo> mData;
     private LayoutInflater mInflater;
     private Context context;
@@ -29,7 +29,7 @@ public class MyAdapterMisSubastas extends RecyclerView.Adapter<MyAdapterMisSubas
         void onItemClick(ItemCatalogo item);
     }
 
-    public MyAdapterMisSubastas(List<ItemCatalogo> itemList, Boolean estaRegistrado, Context context, OnItemClickListener listener5){
+    public MyAdapterMisCatalogosPujados(List<ItemCatalogo> itemList, Boolean estaRegistrado, Context context, OnItemClickListener listener5){
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
@@ -44,7 +44,7 @@ public class MyAdapterMisSubastas extends RecyclerView.Adapter<MyAdapterMisSubas
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
-        View view = mInflater.from(parent.getContext()).inflate(R.layout.list_element_mis_subastas,parent,false);
+        View view = mInflater.from(parent.getContext()).inflate(R.layout.list_element_mis_catalogos_pujados,parent,false);
         return new ViewHolder(view);
     }
 
