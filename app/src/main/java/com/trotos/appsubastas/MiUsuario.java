@@ -1,15 +1,15 @@
 package com.trotos.appsubastas;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,11 +17,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.trotos.appsubastas.Modelos.ResponseStatisticsUser;
+import com.trotos.appsubastas.Modelos.User;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.lang.reflect.Type;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MiUsuario extends AppCompatActivity {
 
@@ -29,6 +43,11 @@ public class MiUsuario extends AppCompatActivity {
     FloatingActionButton subirFoto;
     Button editarPerfilBoton;
     BottomNavigationView bottomNavigationView;
+    TextView nombre;
+    TextView categoriaUsuario;
+    TextView cantGanados;
+    TextView cantParticipados;
+    User user;
 
     Integer REQUEST_CAMERA = 1, SELECT_FILE = 0;
 
@@ -38,11 +57,27 @@ public class MiUsuario extends AppCompatActivity {
         setContentView(R.layout.activity_mi_usuario);
 
         getSupportActionBar().hide();
+        getUser();
+        getItemsWonCount();
 
         subirFoto = findViewById(R.id.subirFoto);
         editarPerfilBoton = findViewById(R.id.editarPerfilBoton);
         bottomNavigationView = findViewById(R.id.bottomNavigation);
+        nombre = findViewById(R.id.nombre);
+        categoriaUsuario = findViewById(R.id.categoriaUsuario);
+        String name = user.getName() + ' ' + user.getSurname();
+        nombre.setText(name);
+        String cat = user.getCategory();
+        categoriaUsuario.setText(cat);
+        cantGanados = findViewById(R.id.objetosGanados);
+        cantParticipados = findViewById(R.id.objetosParticipados);
 
+        switch (cat) {
+            case "Bronce": categoriaUsuario.setTextColor(Color.rgb(80,50,20));
+            case "Plata": categoriaUsuario.setTextColor(Color.rgb(192,192,192));
+            case "Oro": categoriaUsuario.setTextColor(Color.rgb(255,215,0));
+            case "Platino": categoriaUsuario.setTextColor(Color.rgb(229, 228, 226));
+        }
 
         bottomNavigationView.setSelectedItemId(R.id.usuarioLogueado);
 
@@ -87,8 +122,47 @@ public class MiUsuario extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
+    private void getUser() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("User", null);
+        Type type = new TypeToken<User>() {}.getType();
+        user = gson.fromJson(json, type);
+    }
 
+    private void getItemsWonCount() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        String token = sharedPreferences.getString("Token", null);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:3000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiUtils as = retrofit.create(ApiUtils.class);
+        Call<ResponseStatisticsUser> call = as.getItemsWonCount(user, "Bearer "+ token);
+
+        call.enqueue(new Callback<ResponseStatisticsUser>() {
+            @Override
+            public void onResponse(Call<ResponseStatisticsUser> call, Response<ResponseStatisticsUser> response) {
+                if(response.isSuccessful()) {
+                    String textGanados = Integer.toString(response.body().getGanados());
+                    String textParticipados = Integer.toString(response.body().getParticipados());
+                    cantGanados.setText(textGanados);
+                    cantParticipados.setText(textParticipados);
+                } else {
+                    Toast toast1 = Toast.makeText(getApplicationContext(),"Error al intentar obtener los objetos ganados", Toast.LENGTH_LONG);
+                    toast1.show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseStatisticsUser> call, Throwable t) {
+                Toast toast1 = Toast.makeText(getApplicationContext(),"Hubo un problema", Toast.LENGTH_LONG);
+                toast1.show();
+            }
+        });
     }
 
     private void SeleccionImagen() {

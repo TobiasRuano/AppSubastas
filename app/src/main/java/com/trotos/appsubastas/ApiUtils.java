@@ -8,6 +8,7 @@ import com.trotos.appsubastas.Modelos.MPTarjeta;
 import com.trotos.appsubastas.Modelos.Producto;
 import com.trotos.appsubastas.Modelos.ResponseLogIn;
 import com.trotos.appsubastas.Modelos.ResponseMPTarjetas;
+import com.trotos.appsubastas.Modelos.ResponseStatisticsUser;
 import com.trotos.appsubastas.Modelos.Subasta;
 import com.trotos.appsubastas.Modelos.User;
 
@@ -32,6 +33,9 @@ interface ApiUtils {
 
     @GET("Usuario")
     Call<User> getUsuario(@Query("id") int id);
+
+    @HTTP(method = "POST", path = "user/items/won", hasBody = true)
+    Call<ResponseStatisticsUser> getItemsWonCount(@Body User user, @Header("Authorization") String auth);
 
     @HTTP(method = "POST", path = "user/checkpass", hasBody = true)
     Call<User> checkPasswordUsuario(@Body LoginInformation logIn);

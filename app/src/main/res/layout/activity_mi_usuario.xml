@@ -7,7 +7,9 @@
     tools:context=".MiUsuario">
 
 
-    <include layout="@layout/toolbarlogueado"></include>
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbarlogueado"></include>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -15,12 +17,6 @@
         android:layout_height="320dp"
         android:background="#8C0707"
         tools:ignore="MissingConstraints">
-
-        <ImageView
-            android:id="@+id/flechaAbajoMiUsuario"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/flechaabajo" />
 
         <ImageView
             android:id="@+id/fotoUsuario"
@@ -33,6 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nombre Usuario"
@@ -41,9 +38,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fotoUsuario"
-            tools:layout_editor_absoluteX="29dp"
-            tools:layout_editor_absoluteY="75dp" />
+            app:layout_constraintTop_toBottomOf="@id/fotoUsuario" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/subirFoto"
@@ -62,10 +57,23 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif-condensed-medium"
         android:text="Categoria: "
         android:textSize="25dp"
-        android:fontFamily="sans-serif-condensed-medium"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/categoriaUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="Oro "
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
         tools:ignore="MissingConstraints" />
 
@@ -83,6 +91,19 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
+        android:id="@+id/objetosGanados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="-"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoriaMiUsuario"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
         android:id="@+id/participacionesMiUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -95,6 +116,20 @@
         app:layout_constraintTop_toBottomOf="@+id/objetosMiUsuario"
         tools:ignore="MissingConstraints" />
 
+
+    <TextView
+        android:id="@+id/objetosParticipados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="-"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/objetosGanados"
+        app:layout_constraintTop_toBottomOf="@+id/objetosMiUsuario"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/editarPerfilBoton"
