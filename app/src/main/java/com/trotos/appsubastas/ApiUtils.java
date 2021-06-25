@@ -8,6 +8,7 @@ import com.trotos.appsubastas.Modelos.LoginInformation;
 import com.trotos.appsubastas.Modelos.MPTarjeta;
 import com.trotos.appsubastas.Modelos.Item;
 import com.trotos.appsubastas.Modelos.ResponseAuctions;
+import com.trotos.appsubastas.Modelos.ResponseCreateMP;
 import com.trotos.appsubastas.Modelos.ResponseItems;
 import com.trotos.appsubastas.Modelos.ResponseItemsCatalog;
 import com.trotos.appsubastas.Modelos.ResponseLogIn;
@@ -57,7 +58,7 @@ interface ApiUtils {
     @POST("users/{userId}/items")
     Call<Item> postProducto(@Body Item item);
     @POST("user/payment")
-    Call<MPTarjeta> postTarjeta(@Body MPTarjeta tarjeta, @Header("Authorization") String auth);
+    Call<ResponseCreateMP> postTarjeta(@Body MPTarjeta tarjeta, @Header("Authorization") String auth);
 
     @HTTP(method = "PATCH", path = "user/update", hasBody = true)
     Call<Pair<String, String>> modifyUser(@Body User user, @Header("Authorization") String auth);

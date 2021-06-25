@@ -14,13 +14,14 @@ public class MPTarjeta implements Serializable {
     private String company;
     private int code;
 
-    public MPTarjeta(int id, int userId, String cardHolderName, Boolean isDefaultCard, String cardNumber, int code, Date expiration) {
+    public MPTarjeta(int id, int userId, String cardHolderName, Boolean isDefaultCard, String cardNumber, int code, Date expiration, String company) {
         this.id = id;
         this.userId = userId;
         this.cardHolderName = cardHolderName;
         this.isDefaultCard = isDefaultCard;
         this.cardNumber = cardNumber;
         this.code = code;
+        this.company = company;
         this.expiration = expiration;
     }
 
