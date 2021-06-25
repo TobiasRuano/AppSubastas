@@ -79,7 +79,6 @@ public class AgregarMedioPagoActivity extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 final String selectedDate = day + " / " + (month+1) + " / " + year;
                 expDate.setText(selectedDate);
-
                 expiracionTarjeta = new Date(year - 1900, month, day);
             }
         });
