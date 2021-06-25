@@ -23,7 +23,7 @@
         android:theme="@style/Theme.AppSubastas">
         <activity android:name=".MisObjetosActivity2"></activity>
         <activity android:name=".MisSubastasActivity"></activity>
-        <activity android:name=".SubastaActivity"></activity>
+        <activity android:name=".SubastaActivity" />
         <activity android:name=".AgregarObjeto" />
         <activity android:name=".MenuInvitado" />
         <activity android:name=".EditarPerfil" />

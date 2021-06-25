@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.trotos.appsubastas.Modelos.ItemCatalogo;
-import com.trotos.appsubastas.Modelos.Subasta;
+import com.trotos.appsubastas.Modelos.Auction;
+import com.trotos.appsubastas.Modelos.ResponseItemsCatalog;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -37,7 +37,7 @@ public class MisSubastasActivity<animFadeIn> extends AppCompatActivity {
     ViewGroup.LayoutParams params;
     LinearLayout linearLayout5;
 
-    Subasta element;
+    Auction element;
 
     List<ItemCatalogo> catalogos;
 
@@ -89,39 +89,31 @@ public class MisSubastasActivity<animFadeIn> extends AppCompatActivity {
 
     private void getDatos() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.111/")
+                .baseUrl("http://10.0.2.2:3000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
-
-
-
-
-        //System.out.println(element.getId());
-        //System.out.println(element.getName());
-        Call<List<ItemCatalogo>> call = as.getItemsSubasta(element.getId());
+        Call<ResponseItemsCatalog> call = as.getItemsSubasta(element);
 
         System.out.println(element.getId());
 
 
-        call.enqueue(new Callback<List<ItemCatalogo>>() {
+        call.enqueue(new Callback<ResponseItemsCatalog>() {
             @Override
-            public void onResponse(Call<List<ItemCatalogo>> call, Response<List<ItemCatalogo>> response) {
+            public void onResponse(Call<ResponseItemsCatalog> call, Response<ResponseItemsCatalog> response) {
 
-                List<ItemCatalogo> itemsCatalogo = response.body();
-
-
-                for(ItemCatalogo itemCatalogo: itemsCatalogo){
-                    catalogos.add(itemCatalogo);
+                if(response.isSuccessful()) {
+                    ResponseItemsCatalog itemsCatalogo = response.body();
+                    catalogos.addAll(itemsCatalogo.getData());
+                    listRecyclerView5.getAdapter().notifyDataSetChanged();
+                } else {
+                    Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener los Catalogos", Toast.LENGTH_LONG);
+                    toast1.show();
                 }
-
-
-                //RecyclerView recyclerView2 = findViewById(R.id.listRecyclerView2);
-                listRecyclerView5.getAdapter().notifyDataSetChanged();
             }
 
             @Override
-            public void onFailure(Call<List<ItemCatalogo>> call, Throwable t) {
+            public void onFailure(Call<ResponseItemsCatalog> call, Throwable t) {
                 Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener los Catalogos", Toast.LENGTH_LONG);
                 //Toast toast2 = Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG);
                 toast1.show();

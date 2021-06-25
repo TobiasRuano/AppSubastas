@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Subasta implements Serializable {
-    private String color;
-    private String name;
+public class Auction implements Serializable {
+    private String title;
     private String status;
     private String category;
+    private int auctioneerId;
     private int id;
     private Date startTime;
     private Date endTime;
@@ -16,9 +16,8 @@ public class Subasta implements Serializable {
 
     private List<ItemCatalogo> catalogos;
 
-    public Subasta(String color, String name, String status, String category, int id, Date startTime, Date endTime, String currency, List<ItemCatalogo> catalogos) {
-        this.color = color;
-        this.name = name;
+    public Auction(String title, String status, String category, int id, Date startTime, Date endTime, String currency, List<ItemCatalogo> catalogos) {
+        this.title = title;
         this.status = status;
         this.category = category;
         this.id = id;
@@ -28,12 +27,12 @@ public class Subasta implements Serializable {
         this.catalogos = catalogos;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getStatus() {
@@ -58,14 +57,6 @@ public class Subasta implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 
     public Date getStartTime() {

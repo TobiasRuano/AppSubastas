@@ -14,21 +14,21 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.trotos.appsubastas.Modelos.Subasta;
+import com.trotos.appsubastas.Modelos.Auction;
 
 import java.util.List;
 
 public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.ViewHolder> {
-    private List<Subasta> mData;
+    private List<Auction> mData;
     private LayoutInflater mInflater;
     private Context context;
     final OnItemClickListener listener;
 
     public interface OnItemClickListener {
-        void onItemClick(Subasta item);
+        void onItemClick(Auction item);
     }
 
-    public MyAdapterSubasta(List<Subasta> itemList, Context context, OnItemClickListener listener){
+    public MyAdapterSubasta(List<Auction> itemList, Context context, OnItemClickListener listener){
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
@@ -40,17 +40,19 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
     }
 
     @NonNull
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
         View view = mInflater.from(parent.getContext()).inflate(R.layout.list_element_subastas,parent,false);
         return new ViewHolder(view);
     }
 
-    public void onBindViewHolder(final ViewHolder holder, final int position){
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position){
         holder.cv.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_transition));
         holder.bindData(mData.get(position));
     }
 
-    public void setItems(List<Subasta> items){
+    public void setItems(List<Auction> items){
         mData = items;
     }
 
@@ -59,7 +61,7 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
         TextView name, state, category;
         CardView cv;
 
-        ViewHolder(View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             iconImage = itemView.findViewById(R.id.iconImageView);
@@ -67,15 +69,11 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
             state = itemView.findViewById(R.id.stateTextView);
             category = itemView.findViewById(R.id.categoryTextView);
             cv = itemView.findViewById(R.id.cv2);
-
-
         }
 
-        public void bindData(final Subasta item){
-
-
-            iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
-            name.setText(item.getName());
+        public void bindData(final Auction item){
+            //iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
+            name.setText(item.getTitle());
             state.setText(item.getStatus());
             category.setText(item.getCategory());
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -84,11 +82,6 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
                     listener.onItemClick(item);
                 }
             });
-
-
-
-
         }
-
     }
 }
