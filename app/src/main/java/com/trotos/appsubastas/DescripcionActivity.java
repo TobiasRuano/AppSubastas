@@ -90,16 +90,8 @@ public class DescripcionActivity extends AppCompatActivity {
         monedaActualDescriptionTextView3 = findViewById(R.id.monedaActualDescriptionTextView3);
 
         titleDescriptionTextView3.setText(element.getDescription());
-        //titleDescriptionTextView3.setTextColor(Color.parseColor(element.getColor()));
 
-        //String precioBaseText = String.format("%,d", element.getPrecioBase());
-        //precioBaseDescriptionTextView3.setText(precioBaseText);
-        //String valorActualText = String.format("%,d", element.getValorActual());
-        //valorActualDescriptionTextView3.setText(valorActualText);
         valorActualDescriptionTextView3.setTextColor(Color.GRAY);
-        //fullTitleDescriptionTextView3.setText(element.getDescription());
-        //monedaBaseDescriptionTextView3.setText(element.getMoneda());
-        //monedaActualDescriptionTextView3.setText(element.getMoneda());
 
         editarNumeroDeTexto = findViewById(R.id.editarNumeroDeTexto);
         botonOfertar = findViewById(R.id.botonOfertar);
@@ -107,6 +99,15 @@ public class DescripcionActivity extends AppCompatActivity {
         precioBaseView = findViewById(R.id.precioBaseView);
         botonRegistrar = findViewById(R.id.botonRegistrar);
         historialPujasView = findViewById(R.id.historialPujasView);
+
+        fullTitleDescriptionTextView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),DetalleDeLaDescripcionActivity.class);
+                intent.putExtra("valorDescription",fullTitleDescriptionTextView3.getText());
+                startActivity(intent);
+            }
+        });
 
         if(!estaRegistrado){
             editarNumeroDeTexto.setVisibility(View.GONE);

@@ -117,6 +117,15 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
         botonRegistrar4 = findViewById(R.id.botonRegistrar4);
         historialPujasView4 = findViewById(R.id.historialPujasView4);
 
+        fullTitleDescriptionTextView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),DetalleDeLaDescripcionActivity.class);
+                intent.putExtra("fullTitle",fullTitleDescriptionTextView4.getText().toString());
+                startActivity(intent);
+            }
+        });
+
         if(!estaRegistrado){
             editarNumeroDeTexto4.setVisibility(View.GONE);
             botonOfertar4.setVisibility(View.GONE);

@@ -95,6 +95,16 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
         //botonRegistrar5 = findViewById(R.id.botonRegistrar5);
         historialPujasView5 = findViewById(R.id.historialPujasView5);
 
+        fullTitleDescriptionTextView5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),DetalleDeLaDescripcionActivity.class);
+                intent.putExtra("fullTitle",fullTitleDescriptionTextView5.getText().toString());
+                startActivity(intent);
+            }
+        });
+
+
         if(!estaRegistrado){
             //editarNumeroDeTexto5.setVisibility(View.GONE);
             //botonOfertar5.setVisibility(View.GONE);
