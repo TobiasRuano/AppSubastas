@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class DetalleMisCatalogosPujadosActivity extends AppCompatActivity {
+public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
 
     TextView titleDescriptionTextView5;
     TextView precioBaseDescriptionTextView5;
@@ -47,7 +47,7 @@ public class DetalleMisCatalogosPujadosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalle_mis_catalogos_pujados);
+        setContentView(R.layout.activity_descripcion_mis_catalogos_pujados);
 
         element = (ItemCatalogo) getIntent().getSerializableExtra("MisSubastas");
         estaRegistrado = (Boolean) getIntent().getBooleanExtra("estadoLoggeado", false);
@@ -62,7 +62,7 @@ public class DetalleMisCatalogosPujadosActivity extends AppCompatActivity {
         botonRegistrar5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetalleMisCatalogosPujadosActivity.this, IniciarSesionActivity.class);
+                Intent intent = new Intent(DescripcionMisCatalogosPujadosActivity.this, IniciarSesionActivity.class);
                 startActivity(intent);
             }
         });
@@ -175,7 +175,7 @@ public class DetalleMisCatalogosPujadosActivity extends AppCompatActivity {
     }
 
     private void showAlert(String titulo, String mensaje) {
-        new AlertDialog.Builder(DetalleMisCatalogosPujadosActivity.this)
+        new AlertDialog.Builder(DescripcionMisCatalogosPujadosActivity.this)
                 .setTitle(titulo)
                 .setMessage(mensaje)
                 .setPositiveButton("Aceptar", null)

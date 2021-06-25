@@ -127,7 +127,7 @@ public class MisCatalogosPujadosActivity<animFadeIn> extends AppCompatActivity {
     }
 
     private void moveToDescription(ItemCatalogo item) {
-        Intent intent = new Intent(this,   DetalleMisCatalogosPujadosActivity.class);
+        Intent intent = new Intent(this,   DescripcionMisCatalogosPujadosActivity.class);
         intent.putExtra("MisSubastas",item);
         intent.putExtra("estadoLoggeado", estaRegistrado);
         startActivity(intent);

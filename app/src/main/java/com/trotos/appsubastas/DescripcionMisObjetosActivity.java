@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class DetalleMisObjetosActivity extends AppCompatActivity {
+public class DescripcionMisObjetosActivity extends AppCompatActivity {
 
     TextView titleDescriptionTextView4;
     TextView precioBaseDescriptionTextView4;
@@ -48,7 +48,7 @@ public class DetalleMisObjetosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalle_mis_objetos);
+        setContentView(R.layout.activity_descripcion_mis_objetos);
 
         element = (Item) getIntent().getSerializableExtra("MisObjetos");
         System.out.println(element.getTitle());
@@ -81,7 +81,7 @@ public class DetalleMisObjetosActivity extends AppCompatActivity {
         botonRegistrar4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetalleMisObjetosActivity.this, IniciarSesionActivity.class);
+                Intent intent = new Intent(DescripcionMisObjetosActivity.this, IniciarSesionActivity.class);
                 startActivity(intent);
             }
         });
@@ -216,7 +216,7 @@ public class DetalleMisObjetosActivity extends AppCompatActivity {
     }
 
     private void showAlert(String titulo, String mensaje) {
-        new AlertDialog.Builder(DetalleMisObjetosActivity.this)
+        new AlertDialog.Builder(DescripcionMisObjetosActivity.this)
                 .setTitle(titulo)
                 .setMessage(mensaje)
                 .setPositiveButton("Aceptar", null)

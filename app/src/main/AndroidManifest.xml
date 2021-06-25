@@ -34,8 +34,8 @@
         <activity android:name=".CrearUsuarioActivity" />
         <activity android:name=".MenuLogueado" />
         <activity android:name=".DescripcionActivity" />
-        <activity android:name=".DetalleMisObjetosActivity" />
-        <activity android:name=".DetalleMisCatalogosPujadosActivity" />
+        <activity android:name=".DescripcionMisObjetosActivity" />
+        <activity android:name=".DescripcionMisCatalogosPujadosActivity" />
         <activity android:name=".CatalogoActivity" />
         <activity android:name=".MisObjetos">
             <intent-filter>
