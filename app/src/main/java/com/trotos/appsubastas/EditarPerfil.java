@@ -93,7 +93,6 @@ public class EditarPerfil extends AppCompatActivity {
         String stringMail = mail.getText().toString();
         String stringDireccion = direccion.getText().toString();
         getUser();
-        System.out.println(user.getAddress());
         if(!stringMail.isEmpty()) {
             user.setMail(stringMail);
         }

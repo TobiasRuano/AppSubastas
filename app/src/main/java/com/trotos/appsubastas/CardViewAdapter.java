@@ -126,11 +126,11 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.CardVi
             case "Amex":
                 holder.card.setCardBackgroundColor(Color.parseColor("#4d4f53"));
                 break;
-            case "MasterCard":
+            case "Master Card":
                 holder.card.setCardBackgroundColor(Color.parseColor("#EB001B"));
                 break;
             default:
-                holder.card.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
+                holder.card.setCardBackgroundColor(Color.parseColor("#000000"));
                 break;
         }
     }

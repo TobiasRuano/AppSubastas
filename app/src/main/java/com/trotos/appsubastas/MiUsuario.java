@@ -73,7 +73,8 @@ public class MiUsuario extends AppCompatActivity {
         cantParticipados = findViewById(R.id.objetosParticipados);
 
         switch (cat) {
-            case "Bronce": categoriaUsuario.setTextColor(Color.rgb(80,50,20));
+            case "Comun": categoriaUsuario.setTextColor(Color.rgb(80,50,20));
+            case "Especial": categoriaUsuario.setTextColor(Color.rgb(80,50,20));
             case "Plata": categoriaUsuario.setTextColor(Color.rgb(192,192,192));
             case "Oro": categoriaUsuario.setTextColor(Color.rgb(255,215,0));
             case "Platino": categoriaUsuario.setTextColor(Color.rgb(229, 228, 226));
@@ -141,7 +142,7 @@ public class MiUsuario extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
-        Call<ResponseStatisticsUser> call = as.getItemsWonCount(user, "Bearer "+ token);
+        Call<ResponseStatisticsUser> call = as.getUserStatistics(user, "Bearer "+ token);
 
         call.enqueue(new Callback<ResponseStatisticsUser>() {
             @Override
