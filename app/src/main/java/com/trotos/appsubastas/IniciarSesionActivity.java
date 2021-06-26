@@ -40,77 +40,89 @@ public class IniciarSesionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_iniciar_sesion);
 
-        configureUI();
+        if(checkLogInStatus()) {
+            Intent intent = new Intent(IniciarSesionActivity.this, MenuLogueado.class);
+            startActivity(intent);
+        } else {
+            setContentView(R.layout.activity_iniciar_sesion);
 
-        hasPassSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean hasPass) {
-                if (hasPass) {
-                    passText.setFocusableInTouchMode(true);
-                    passText.setEnabled(true);
-                    logInButton.setText("Iniciar Sesion");
-                    userHasPass = true;
-                } else {
-                    passText.setFocusable(false);
-                    passText.setEnabled(false);
-                    passText.setText("");
-                    logInButton.setText("Crear Contraseña");
-                    userHasPass = false;
+            configureUI();
+
+            hasPassSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean hasPass) {
+                    if (hasPass) {
+                        passText.setFocusableInTouchMode(true);
+                        passText.setEnabled(true);
+                        logInButton.setText("Iniciar Sesion");
+                        userHasPass = true;
+                    } else {
+                        passText.setFocusable(false);
+                        passText.setEnabled(false);
+                        passText.setText("");
+                        logInButton.setText("Crear Contraseña");
+                        userHasPass = false;
+                    }
                 }
-            }
-        });
+            });
 
-        logInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (checkEstadoMail()) {
-                    String mail = mailText.getText().toString();
-                    if (userHasPass) {
-                        if (checkPassword()) {
-                            String password = passText.getText().toString();
-                            logIn(mail, password);
+            logInButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (checkEstadoMail()) {
+                        String mail = mailText.getText().toString();
+                        if (userHasPass) {
+                            if (checkPassword()) {
+                                String password = passText.getText().toString();
+                                logIn(mail, password);
+                            } else {
+                                showAlert("Usuario o Contraseña invalidos", "Por favor, chequea que los datos ingresados sean correctos.");
+                            }
                         } else {
-                            showAlert("Usuario o Contraseña invalidos", "Por favor, chequea que los datos ingresados sean correctos.");
+                            getEstadoPassword(mail);
                         }
                     } else {
-                        getEstadoPassword(mail);
+                        showAlert("Mail invalido", "Debes ingresar un mail valido para continuar.");
                     }
-                } else {
-                    showAlert("Mail invalido", "Debes ingresar un mail valido para continuar.");
                 }
-            }
 
-            private boolean checkEstadoMail() {
-                String mail = mailText.getText().toString();
-                if (!mail.isEmpty() && isEmailValid(mail)) {
-                    return true;
-                } else {
-                    return false;
+                private boolean checkEstadoMail() {
+                    String mail = mailText.getText().toString();
+                    if (!mail.isEmpty() && isEmailValid(mail)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }
-            }
 
-            private boolean checkPassword() {
-                String pass = passText.getText().toString();
-                return !pass.isEmpty();
-            }
+                private boolean checkPassword() {
+                    String pass = passText.getText().toString();
+                    return !pass.isEmpty();
+                }
 
-            private boolean isEmailValid(String email) {
-                String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-                Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-                Matcher matcher = pattern.matcher(email);
-                return matcher.matches();
-            }
-        });
+                private boolean isEmailValid(String email) {
+                    String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+                    Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+                    Matcher matcher = pattern.matcher(email);
+                    return matcher.matches();
+                }
+            });
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(IniciarSesionActivity.this, CrearUsuarioActivity.class);
-                startActivity(intent);
-            }
-        });
+            registerButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(IniciarSesionActivity.this, CrearUsuarioActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+    }
+
+    private Boolean checkLogInStatus() {
+        SharedPreferences  sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        String token = sharedPreferences.getString("Token", null);
+        return token !=null;
     }
 
     private void configureUI() {
