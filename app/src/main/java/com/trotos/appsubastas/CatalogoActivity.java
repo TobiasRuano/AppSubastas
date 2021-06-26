@@ -1,6 +1,7 @@
 package com.trotos.appsubastas;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.ViewGroup;
@@ -13,10 +14,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.trotos.appsubastas.Modelos.ItemCatalogo;
 import com.trotos.appsubastas.Modelos.Auction;
 import com.trotos.appsubastas.Modelos.ResponseItemsCatalog;
+import com.trotos.appsubastas.Modelos.User;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +45,8 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
     LinearLayout linearLayout1;
 
     Auction element;
+    String category;
+    User user;
 
     List<ItemCatalogo> catalogos = new ArrayList<>();
 
@@ -49,6 +56,7 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
         setContentView(R.layout.activity_catalogo);
 
         element = (Auction) getIntent().getSerializableExtra("subasta");
+        category = (String) getIntent().getSerializableExtra("category");
         estaRegistrado = getIntent().getBooleanExtra("estadoLoggeado", false);
         nameDescriptionTextView = findViewById(R.id.nameDescriptionTextView);
         stateDescriptionTextView = findViewById(R.id.stateDescriptionTextView);
@@ -65,6 +73,7 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
         //HARDCODEADO
 
         init();
+        getUser();
         getDatos();
     }
 
@@ -93,10 +102,40 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
     }
 
     private void moveToDescription(ItemCatalogo item) {
-        Intent intent = new Intent(this,   com.trotos.appsubastas.DescripcionActivity.class);
+        Intent intent = new Intent(this, DescripcionActivity.class);
         intent.putExtra("Catalogos",item);
         intent.putExtra("estadoLoggeado", estaRegistrado);
-        startActivity(intent);
+
+        switch (user.getCategory()){
+            case "Comun":
+                if(category.equals("Comun"))
+                    startActivity(intent);
+                break;
+            case "Especial":
+                if(category.equals("Comun") || category.equals("Bronce"))
+                    startActivity(intent);
+                break;
+            case "Plata":
+                if(category.equals("Comun") || category.equals("Bronce") || category.equals("Plata"))
+                    startActivity(intent);
+                break;
+            case "Oro":
+                if(!category.equals("Platino"))
+                    startActivity(intent);
+                break;
+            case "Platino":
+                startActivity(intent);
+                break;
+            default:
+        }
+    }
+
+    private void getUser() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("User", null);
+        Type type = new TypeToken<User>() {}.getType();
+        user = gson.fromJson(json, type);
     }
 
     private void getDatos() {
