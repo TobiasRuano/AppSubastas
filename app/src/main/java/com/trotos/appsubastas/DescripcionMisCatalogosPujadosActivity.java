@@ -104,6 +104,18 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
             }
         });
 
+        historialPujasView5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),DetalleDeLaDescripcionActivity.class);
+                //HARDCODEADO
+
+
+                intent.putExtra("historialPujasDetalle",fullTitleDescriptionTextView5.getText().toString());
+                startActivity(intent);
+            }
+        });
+
 
         if(!estaRegistrado){
             //editarNumeroDeTexto5.setVisibility(View.GONE);

@@ -138,7 +138,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
                     ResponseLogIn responseLogin = response.body();
                     saveUser(responseLogin.getUser());
                     saveToken(responseLogin.getToken());
-                    Intent intent = new Intent(IniciarSesionActivity.this, SubastaActivity.class);
+                    Intent intent = new Intent(IniciarSesionActivity.this, MenuLogueado.class);
                     intent.putExtra("estadoLoggeado",true);
                     startActivity(intent);
                 } else {
