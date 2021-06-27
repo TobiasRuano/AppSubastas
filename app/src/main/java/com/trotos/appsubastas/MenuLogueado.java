@@ -1,6 +1,7 @@
 package com.trotos.appsubastas;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -37,7 +38,6 @@ public class MenuLogueado extends AppCompatActivity{
     RecyclerView recyclerView;
 
     List<Auction> auctions = new ArrayList<>();
-    List<Auction> auctionsAux = new ArrayList<>();
     Boolean estadoLoggeado;
     User user;
 
@@ -48,7 +48,10 @@ public class MenuLogueado extends AppCompatActivity{
 
         getUser();
         init();
-        getSupportActionBar().hide();
+        ActionBar bar = getSupportActionBar();
+        if(bar != null) {
+            bar.hide();
+        }
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.homeLogueado);
@@ -83,7 +86,7 @@ public class MenuLogueado extends AppCompatActivity{
     public void init(){
         estadoLoggeado = checkLogInStatus();
         getDatos();
-        MyAdapterSubasta myAdapterSubasta = new MyAdapterSubasta(auctionsAux, this, new MyAdapterSubasta.OnItemClickListener() {
+        MyAdapterSubasta myAdapterSubasta = new MyAdapterSubasta(auctions, this, new MyAdapterSubasta.OnItemClickListener() {
             @Override
             public void onItemClick(Auction item) {
                 moveToDescription(item);

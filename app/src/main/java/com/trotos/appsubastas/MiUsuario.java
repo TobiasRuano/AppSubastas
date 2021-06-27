@@ -1,6 +1,7 @@
 package com.trotos.appsubastas;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -56,7 +57,10 @@ public class MiUsuario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mi_usuario);
 
-        getSupportActionBar().hide();
+        ActionBar bar = getSupportActionBar();
+        if(bar != null) {
+            bar.hide();
+        }
         getUser();
         getItemsWonCount();
 
