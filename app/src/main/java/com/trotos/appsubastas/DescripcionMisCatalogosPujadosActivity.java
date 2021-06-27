@@ -53,7 +53,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
         estaRegistrado = (Boolean) getIntent().getBooleanExtra("estadoLoggeado", false);
         configureUI();
         cargar();
-        //verHistorialPujas();
+        verHistorialPujas();
         //ofertar();
         //logIn();
     }
@@ -268,17 +268,15 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
             }
         });
     }
-
+*/
     private void verHistorialPujas() {
         historialPujasView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //HARDCODEADO
-                String historialPujasTexto = "\nRodríguezxxx ofertó $2.000 \n\nGómezxxx ofertó $3.000 \n\nPerezxxx ofertó $4.000 \n\nGonzalesxxx ofertó $5.000 \n\nFernándezxxx ofertó $6.000 \n\nLópezxxx ofertó $7.000 \n\nDíazxxx ofertó $8.000 \n\nMartínezxxx ofertó $9.000 \n\nTu has ofertado $10.000 \n\n ";
-                showAlert("Historial de ofertas",historialPujasTexto);
+                Intent intent = new Intent(getApplicationContext(), HistorialPujasDescripcionActivity.class);
+                intent.putExtra("itemCatalogo", element);
+                startActivity(intent);
             }
         });
     }
-*/
-
 }

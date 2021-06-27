@@ -251,7 +251,7 @@ public class DescripcionActivity extends AppCompatActivity {
         ApiUtils as = retrofit.create(ApiUtils.class);
 
         Bid bid = new Bid(element.getItemId(), valorPuja, user.getId());
-        Call<String> call = as.postBid(bid);
+        Call<String> call = as.postBid(bid, "Bearer "+ token);
 
         call.enqueue(new Callback<String>() {
             @Override
@@ -274,7 +274,9 @@ public class DescripcionActivity extends AppCompatActivity {
         historialPujasView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // a la vista con la lista de pujas
+                Intent intent = new Intent(getApplicationContext(), HistorialPujasDescripcionActivity.class);
+                intent.putExtra("itemCatalogo", element);
+                startActivity(intent);
             }
         });
     }

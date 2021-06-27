@@ -22,7 +22,7 @@
 
         >
 
-
+        <activity android:name=".HistorialPujasDescripcionActivity" />
         <activity android:name=".DetalleDeLaDescripcionActivity"></activity>
         <activity android:name=".IniciarSesionActivity" />
         <activity android:name=".SubastaActivity" />

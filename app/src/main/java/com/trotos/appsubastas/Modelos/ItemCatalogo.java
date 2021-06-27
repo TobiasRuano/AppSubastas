@@ -12,11 +12,11 @@ public class ItemCatalogo extends Item implements Serializable {
     private Date startTime;
     private Date endTime;
 
-    public ItemCatalogo(int id, String title, String description, String urlImage, int commission, int basePrice, String status, int commission1, int basePrice1, int shippingPrice, int auctionId, int itemId, int winnerId, Date startTime, Date endTime) {
-        super(id, title, description, urlImage, commission, basePrice, status);
+    public ItemCatalogo(int id, String title, String description, String urlImage, int commission, int basePrice, String status, int shippingPrice, int auctionId, int itemId, int winnerId, Date startTime, Date endTime) {
+        super(itemId, title, description, urlImage, commission, basePrice, status);
         this.shippingPrice = shippingPrice;
         this.auctionId = auctionId;
-        this.itemId = itemId;
+        this.itemId = id;
         this.winnerId = winnerId;
         this.startTime = startTime;
         this.endTime = endTime;

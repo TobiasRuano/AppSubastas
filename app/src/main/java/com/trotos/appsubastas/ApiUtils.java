@@ -8,6 +8,7 @@ import com.trotos.appsubastas.Modelos.LoginInformation;
 import com.trotos.appsubastas.Modelos.MPTarjeta;
 import com.trotos.appsubastas.Modelos.Item;
 import com.trotos.appsubastas.Modelos.ResponseAuctions;
+import com.trotos.appsubastas.Modelos.ResponseBids;
 import com.trotos.appsubastas.Modelos.ResponseCreateMP;
 import com.trotos.appsubastas.Modelos.ResponseItems;
 import com.trotos.appsubastas.Modelos.ResponseItemsCatalog;
@@ -36,7 +37,10 @@ interface ApiUtils {
     Call<ResponseItemsCatalog> getItemsSubasta(@Body Auction auction);
 
     @HTTP(method = "POST", path = "auction/bid", hasBody = true)
-    Call<String> postBid(@Body Bid bid);
+    Call<String> postBid(@Body Bid bid, @Header("Authorization") String auth);
+
+    @HTTP(method = "POST", path = "auction/items/bids", hasBody = true)
+    Call<ResponseBids> getBids(@Body ItemCatalogo item, @Header("Authorization") String auth);
 
     @HTTP(method = "POST", path = "user/items/won", hasBody = true)
     Call<ResponseStatisticsUser> getUserStatistics(@Body User user, @Header("Authorization") String auth);

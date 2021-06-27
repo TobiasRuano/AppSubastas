@@ -146,6 +146,7 @@ public class MenuLogueado extends AppCompatActivity{
         Intent intent = new Intent(this, CatalogoActivity.class);
         intent.putExtra("subasta", item);
         intent.putExtra("category", item.getCategory());
+        intent.putExtra("currency", item.getCurrency());
         intent.putExtra("estadoLoggeado", estadoLoggeado);
         startActivity(intent);
     }
