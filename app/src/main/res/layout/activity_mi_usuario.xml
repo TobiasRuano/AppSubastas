@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MiUsuario">
+    tools:context=".MiUsuario"
+    android:background="@drawable/estilo_degradado_fondo"
+    >
 
 
     <include
@@ -15,7 +17,6 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="320dp"
-        android:background="#8C0707"
         tools:ignore="MissingConstraints">
 
         <ImageView
@@ -49,98 +50,154 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/categoriaMiUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="Categoria: "
-        android:textSize="25dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/categoriaUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="20dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="Oro "
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        tools:ignore="MissingConstraints" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/objetosMiUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="Objetos ganados: "
-        android:textSize="25dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoriaMiUsuario"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/objetosGanados"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="20dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="-"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoriaMiUsuario"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/participacionesMiUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:text="Participaciones: "
-        android:textSize="25dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/objetosMiUsuario"
-        tools:ignore="MissingConstraints" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvDatosMiPerfil"
+        android:layout_width="409dp"
+        android:layout_height="300dp"
+        android:animateLayoutChanges="true"
+        android:outlineAmbientShadowColor="#000000"
+        android:outlineProvider="paddedBounds"
+        android:outlineSpotShadowColor="#000000"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true"
+        android:layout_marginTop="310dp">
 
 
-    <TextView
-        android:id="@+id/objetosParticipados"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="20dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="-"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/objetosGanados"
-        app:layout_constraintTop_toBottomOf="@+id/objetosMiUsuario"
-        tools:ignore="MissingConstraints" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/categoriaMiUsuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="Categoria: "
+                    android:textSize="25dp"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/categoriaUsuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="Oro "
+                    android:textSize="25dp"
+                    tools:ignore="MissingConstraints" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/objetosMiUsuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="Objetos ganados: "
+                    android:textSize="25dp"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/objetosGanados"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="-"
+                    android:textSize="25dp"
+                    tools:ignore="MissingConstraints" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/participacionesMiUsuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="Participaciones: "
+                    android:textSize="25dp"
+                    tools:ignore="MissingConstraints" />
+
+
+                <TextView
+                    android:id="@+id/objetosParticipados"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="-"
+                    android:textSize="25dp"
+                    tools:ignore="MissingConstraints" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
 
     <Button
         android:id="@+id/editarPerfilBoton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="5dp"
         android:text="Editar Perfil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/participacionesMiUsuario" />
+        app:layout_constraintTop_toBottomOf="@+id/cvDatosMiPerfil" />
 
+
+    </LinearLayout>
 
 
 

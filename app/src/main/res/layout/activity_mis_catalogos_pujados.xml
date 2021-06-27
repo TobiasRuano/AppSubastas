@@ -5,11 +5,12 @@
     android:id="@+id/titleTextView5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SubastaActivity">
+    tools:context=".SubastaActivity"
+    android:background="@drawable/estilo_degradado_fondo"
+    >
 
 
     <RelativeLayout
-
         android:id="@+id/relativeLayout5"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -25,16 +26,15 @@
                 android:id="@+id/nameDescriptionTextView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16sp"
-                android:layout_marginLeft="16sp"
-                android:layout_marginTop="5sp"
+                android:layout_marginTop="15sp"
+                android:layout_marginBottom="20sp"
                 android:text="Mis Participaciones"
-                android:textColor="@android:color/black"
+                android:textColor="#ffffff"
                 android:textSize="34sp"
                 android:textStyle="bold"
                 android:gravity="bottom|center"
+                android:fontFamily="@font/montserrat_medium"
                 />
-
 
         </LinearLayout>
 
@@ -44,6 +44,7 @@
             android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_below="@+id/linearLayout5"
+            android:layout_marginBottom="55sp"
             />
 
 

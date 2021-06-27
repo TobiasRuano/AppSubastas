@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BottomNavigation">
+        <item name="android:background">@color/barraPrimaria</item>
+        <item name="itemBackground">@color/barraSecundaria</item>
+        <item name="itemIconTint">@color/barraTerciaria</item>
+        <item name="itemTextColor">@color/barraCuarta</item>
+    </style>
+</resources>
