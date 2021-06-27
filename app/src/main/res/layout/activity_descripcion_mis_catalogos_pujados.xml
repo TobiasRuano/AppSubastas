@@ -63,11 +63,6 @@
             <org.imaginativeworld.whynotimagecarousel.ImageCarousel
                 android:id="@+id/carousel5"
                 android:layout_width="match_parent"
-<<<<<<< Updated upstream
-                android:layout_height="300dp"/>
-
-
-=======
                 android:layout_height="300dp" />
 
             <TextView
@@ -104,113 +99,11 @@
             android:textSize="30sp"
             android:fontFamily="@font/montserrat_medium"
             />
->>>>>>> Stashed changes
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/monedaActualDescriptionTextView5"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-<<<<<<< Updated upstream
-                android:orientation="horizontal"
-                android:layout_marginTop="16dp">
-
-                <TextView
-                    android:id="@+id/valorActualOVendido5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/titleDescriptionTextView5"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:text="Valor Actual:"
-                    android:textColor="@android:color/holo_green_dark"
-                    android:textStyle="bold"
-                    android:textSize="28sp" />
-
-                <TextView
-                    android:id="@+id/valorActualDescriptionTextView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/titleDescriptionTextView5"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:text="Valor Actual (info)"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:textSize="28sp" />
-
-                <TextView
-                    android:id="@+id/monedaActualDescriptionTextView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/titleDescriptionTextView5"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_weight="1"
-                    android:text="ARS"
-                    android:textColor="@android:color/black"
-                    android:textSize="28sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/precioBaseView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/precioBaseDescriptionTextView5"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Precio Base:"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:textSize="16sp" />
-                <TextView
-                    android:id="@+id/precioBaseDescriptionTextView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/precioBaseDescriptionTextView5"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Precio Base (info)"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/monedaBaseDescriptionTextView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/precioBaseDescriptionTextView5"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:text="ARS"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-=======
                 android:layout_below="@+id/titleDescriptionTextView5"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
@@ -299,11 +192,9 @@
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:fontFamily="@font/montserrat_medium_italic"/>
->>>>>>> Stashed changes
 
+        </LinearLayout>
 
-<<<<<<< Updated upstream
-=======
 
             <View
                 android:id="@+id/divider"
@@ -312,7 +203,6 @@
                 android:layout_height="2dp"
                 android:background="?android:attr/listDivider" />
 
->>>>>>> Stashed changes
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -324,13 +214,6 @@
                 android:layout_marginTop="10dp"
                 android:text="Descripción"
                 android:textColor="@android:color/black"
-<<<<<<< Updated upstream
-                android:textSize="28sp" />
-
-
-            <TextView
-                android:id="@+id/fullTitleDescriptionTextView5"
-=======
                 android:textSize="25sp"
             android:fontFamily="@font/montserrat_regular"/>
 
@@ -384,7 +267,7 @@
 
 
             <View
-                android:id="@+id/divider"
+                android:id="@+id/divider2"
                 android:layout_width="match_parent"
                 android:layout_marginTop="8dp"
                 android:layout_height="2dp"
@@ -416,7 +299,6 @@
 
             <TextView
                 android:id="@+id/pendienteEnvioDescriptionTextView5"
->>>>>>> Stashed changes
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/titleDescriptionTextView5"
@@ -424,13 +306,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-<<<<<<< Updated upstream
-                android:maxLines="3"
-                android:ellipsize="end"
-                android:text="Descripcion Completa (info)"
-=======
                 android:text="Pendiente ->"
->>>>>>> Stashed changes
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:fontFamily="@font/montserrat_regular"/>
@@ -449,45 +325,6 @@
                 android:textSize="20sp"
                 android:fontFamily="@font/montserrat_regular"/>
 
-<<<<<<< Updated upstream
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-
-                android:gravity="bottom"
-                android:layout_marginBottom="5dp"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/titleDescriptionTextView5"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Estado del Envio:"
-                    android:textColor="@android:color/black"
-                    android:textSize="28sp" />
-
-                <TextView
-                    android:id="@+id/envioDescriptionTextView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/titleDescriptionTextView5"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:text="Pendiente -> Enviado -> Recibido"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp" />
-
-
-            </LinearLayout>
-=======
             <TextView
                 android:id="@+id/recibidoEnvioDescriptionTextView5"
                 android:layout_width="wrap_content"
@@ -504,7 +341,6 @@
 
 
         </LinearLayout>
->>>>>>> Stashed changes
 
 
 
