@@ -76,7 +76,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
         monedaBaseDescriptionTextView5 = findViewById(R.id.monedaBaseDescriptionTextView5);
         monedaActualDescriptionTextView5 = findViewById(R.id.monedaActualDescriptionTextView5);
 
-        titleDescriptionTextView5.setText(element.getDescription());
+        titleDescriptionTextView5.setText(element.getTitle());
         //titleDescriptionTextView5.setTextColor(Color.parseColor(element.getColor()));
 
         String precioBaseText5 = String.format("%,d", element.getBasePrice());

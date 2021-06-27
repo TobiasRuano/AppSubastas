@@ -39,6 +39,7 @@
                 android:id="@+id/titleDescriptionTextView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="-50dp"
                 android:gravity="center"
                 android:text="Description"
                 android:textColor="@android:color/black"

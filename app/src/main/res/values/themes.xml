@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.AppSubastas" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        Primary brand color.
+        <!--  Primary brand color. -->
          <item name="colorPrimary">#009efa</item>
           <item name="colorPrimaryVariant">#009efa</item>
           <item name="colorOnPrimary">@color/white</item>
@@ -12,5 +12,13 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
     </style>
+
+
+
 </resources>

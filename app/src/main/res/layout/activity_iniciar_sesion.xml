@@ -21,18 +21,13 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="200dp"
-
             android:layout_height="200dp"
             android:layout_centerVertical="true"
-
             android:layout_gravity="center"
             android:layout_marginTop="80dp"
             android:layout_marginBottom="0dp"
             app:srcCompat="@drawable/ic_hammer"
             tools:ignore="VectorDrawableCompat"
-
-
-
             />
 
         <TextView
