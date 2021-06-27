@@ -75,7 +75,7 @@ public class MyAdapterMisCatalogosPujados extends RecyclerView.Adapter<MyAdapter
 
         public void bindData(final ItemCatalogo item){
             //iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
-            descripcion.setText(item.getDescription());
+            descripcion.setText(item.getTitle());
             descripcionBreve.setText(item.getDescription());
             estado.setText(item.getStatus());
             estado.setTextColor(Color.parseColor("#ff8000"));

@@ -75,7 +75,7 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
 
         public void bindData(final ItemCatalogo item){
             //iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
-            descripcion.setText(item.getDescription());
+            descripcion.setText(item.getTitle());
             descripcionBreve.setText(item.getDescription());
             moneda.setText("USD"); // harcodeado
 

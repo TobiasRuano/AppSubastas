@@ -188,6 +188,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
+                android:maxLines="3"
                 android:text="Descripcion Completa (info)"
                 android:textColor="@android:color/black"
                 android:textSize="28sp" />
