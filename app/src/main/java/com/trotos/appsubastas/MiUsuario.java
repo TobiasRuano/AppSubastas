@@ -125,6 +125,8 @@ public class MiUsuario extends AppCompatActivity {
     }
 
     private void setCategory(String category) {
+        user.setCategory(category);
+        saveUser(user);
         switch (category) {
             case "Comun": categoriaUsuario.setTextColor(Color.rgb(80,50,20));
             case "Especial": categoriaUsuario.setTextColor(Color.rgb(80,50,20));
@@ -140,6 +142,15 @@ public class MiUsuario extends AppCompatActivity {
         String json = sharedPreferences.getString("User", null);
         Type type = new TypeToken<User>() {}.getType();
         user = gson.fromJson(json, type);
+    }
+
+    private void saveUser(User userToSave) {
+        SharedPreferences  sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(userToSave);
+        prefsEditor.putString("User", json);
+        prefsEditor.apply();
     }
 
     private void getItemsWonCount() {
@@ -163,6 +174,7 @@ public class MiUsuario extends AppCompatActivity {
                     cantGanados.setText(textGanados);
                     cantParticipados.setText(textParticipados);
                     categoriaUsuario.setText(textCategoria);
+
                     setCategory(textCategoria);
                 } else {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Error al intentar obtener los objetos ganados", Toast.LENGTH_LONG);

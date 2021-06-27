@@ -1,8 +1,6 @@
 package com.trotos.appsubastas;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,13 +41,14 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
     }
 
     @NonNull
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
         View view = mInflater.from(parent.getContext()).inflate(R.layout.list_element_catalogos,parent,false);
         return new ViewHolder(view);
     }
 
-    public void onBindViewHolder(final ViewHolder holder, final int position){
-        holder.cv2.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_transition));
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position){
+        //holder.cv2.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_transition));
         holder.bindData(mData.get(position));
     }
 
@@ -62,14 +61,13 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
         TextView descripcion, descripcionBreve, ValorActual, moneda;
         CardView cv2;
 
-        ViewHolder(View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             iconImage = itemView.findViewById(R.id.iconImageView2);
             descripcion = itemView.findViewById(R.id.descripcionTextView2);
             descripcionBreve = itemView.findViewById(R.id.descripcionBreveTextView2);
             ValorActual = itemView.findViewById(R.id.valorActualTextView2);
             moneda = itemView.findViewById(R.id.monedaActualTextView2);
-
             cv2 = itemView.findViewById(R.id.cv2);
         }
 

@@ -124,6 +124,9 @@ public class DescripcionActivity extends AppCompatActivity {
         }
 
         String estado = element.getStatus();
+        if(estado == null) {
+            estado = "Programada";
+        }
 
         switch (estado) {
             case "En Curso":

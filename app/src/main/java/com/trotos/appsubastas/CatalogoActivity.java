@@ -47,7 +47,6 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
     Auction element;
     String category;
     User user;
-
     List<ItemCatalogo> catalogos = new ArrayList<>();
 
     @Override
@@ -61,22 +60,14 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
         nameDescriptionTextView = findViewById(R.id.nameDescriptionTextView);
         stateDescriptionTextView = findViewById(R.id.stateDescriptionTextView);
         categoryDescriptionTextView = findViewById(R.id.categoryDescriptionTextView);
-
         nameDescriptionTextView.setText(element.getTitle());
         //nameDescriptionTextView.setTextColor(Color.parseColor(element.getColor()));
-
         stateDescriptionTextView.setText(element.getStatus());
-
         categoryDescriptionTextView.setText(element.getCategory());
-        categoryDescriptionTextView.setTextColor(Color.GRAY);
-
-        //HARDCODEADO
-
         init();
         getUser();
         getDatos();
     }
-
 
     public void init(){
         MyAdapterCatalogo myAdapterCatalogo = new MyAdapterCatalogo(catalogos, estaRegistrado, this, new MyAdapterCatalogo.OnItemClickListener() {
@@ -86,19 +77,16 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
             }
         });
 
-        RecyclerView recyclerView2 = findViewById(R.id.listRecyclerView2);
-        recyclerView2.setHasFixedSize(true);
-        recyclerView2.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView2.setAdapter(myAdapterCatalogo);
-
         listRecyclerView2  = findViewById(R.id.listRecyclerView2);
+        listRecyclerView2.setHasFixedSize(true);
+        listRecyclerView2.setLayoutManager(new LinearLayoutManager(this));
+        listRecyclerView2.setAdapter(myAdapterCatalogo);
 
         nameDescriptionTextView = findViewById(R.id.nameDescriptionTextView);
         stateDescriptionTextView = findViewById(R.id.stateDescriptionTextView);
         categoryDescriptionTextView = findViewById(R.id.categoryDescriptionTextView);
 
         linearLayout1 = findViewById(R.id.linearLayout1);
-
     }
 
     private void moveToDescription(ItemCatalogo item) {
@@ -165,8 +153,4 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
             }
         });
     }
-
-
-
-
 }
