@@ -72,13 +72,7 @@ public class MiUsuario extends AppCompatActivity {
         cantGanados = findViewById(R.id.objetosGanados);
         cantParticipados = findViewById(R.id.objetosParticipados);
 
-        switch (cat) {
-            case "Comun": categoriaUsuario.setTextColor(Color.rgb(80,50,20));
-            case "Especial": categoriaUsuario.setTextColor(Color.rgb(80,50,20));
-            case "Plata": categoriaUsuario.setTextColor(Color.rgb(192,192,192));
-            case "Oro": categoriaUsuario.setTextColor(Color.rgb(255,215,0));
-            case "Platino": categoriaUsuario.setTextColor(Color.rgb(229, 228, 226));
-        }
+        setCategory(cat);
 
         bottomNavigationView.setSelectedItemId(R.id.usuarioLogueado);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -126,6 +120,16 @@ public class MiUsuario extends AppCompatActivity {
         });
     }
 
+    private void setCategory(String category) {
+        switch (category) {
+            case "Comun": categoriaUsuario.setTextColor(Color.rgb(80,50,20));
+            case "Especial": categoriaUsuario.setTextColor(Color.rgb(80,50,20));
+            case "Plata": categoriaUsuario.setTextColor(Color.rgb(192,192,192));
+            case "Oro": categoriaUsuario.setTextColor(Color.rgb(255,215,0));
+            case "Platino": categoriaUsuario.setTextColor(Color.rgb(229, 228, 226));
+        }
+    }
+
     private void getUser() {
         SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
         Gson gson = new Gson();
@@ -151,8 +155,11 @@ public class MiUsuario extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     String textGanados = Integer.toString(response.body().getGanados());
                     String textParticipados = Integer.toString(response.body().getParticipados());
+                    String textCategoria = response.body().getCategoria();
                     cantGanados.setText(textGanados);
                     cantParticipados.setText(textParticipados);
+                    categoriaUsuario.setText(textCategoria);
+                    setCategory(textCategoria);
                 } else {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Error al intentar obtener los objetos ganados", Toast.LENGTH_LONG);
                     toast1.show();
