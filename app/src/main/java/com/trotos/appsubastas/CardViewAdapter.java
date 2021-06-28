@@ -49,7 +49,9 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.CardVi
 
     @Override
     public void onBindViewHolder(@NonNull CardViewAdapter.CardViewHolder holder, int position) {
-        String dashedString = createDashedString(tarjetas.get(position).getCardNumber());
+        String substring = (tarjetas.get(position).getCardNumber()).substring(12);
+        String cardNumber = "************" + substring;
+        String dashedString = separateString(cardNumber);
         holder.number.setText(dashedString);
         holder.name.setText(tarjetas.get(position).getCardHolderName());
         String prov = tarjetas.get(position).getCompany();
@@ -135,12 +137,12 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.CardVi
         }
     }
 
-    private String createDashedString(String numeroTarjeta) {
+    private String separateString(String numeroTarjeta) {
         String s1 = numeroTarjeta.substring(0, 4);
         String s2 = numeroTarjeta.substring(4, 8);
         String s3 = numeroTarjeta.substring(8, 12);
         String s4 = numeroTarjeta.substring(12, 16);
-        return s1 + "-" + s2 + "-" + s3 + "-" + s4;
+        return s1 + " " + s2 + " " + s3 + " " + s4;
     }
 
     @Override
