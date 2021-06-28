@@ -98,7 +98,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
         aceptarPendienteBoton = findViewById(R.id.aceptarPendienteBoton);
         rechazarPendienteBoton = findViewById(R.id.rechazarPendienteBoton);
 
-        titleDescriptionTextView4.setText(element.getDescription());
+        titleDescriptionTextView4.setText(element.getTitle());
         //titleDescriptionTextView4.setTextColor(Color.parseColor(element.getColor()));
 
         String precioBaseText4 = String.format("%,d", element.getBasePrice());

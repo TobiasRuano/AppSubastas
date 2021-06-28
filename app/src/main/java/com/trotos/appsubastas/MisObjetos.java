@@ -22,6 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.trotos.appsubastas.Modelos.Item;
+import com.trotos.appsubastas.Modelos.MPTarjeta;
 import com.trotos.appsubastas.Modelos.ResponseItems;
 import com.trotos.appsubastas.Modelos.Auction;
 import com.trotos.appsubastas.Modelos.User;
@@ -85,7 +86,8 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
         newObjectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MisObjetos.this,AgregarObjeto.class));
+                Intent intent = new Intent(MisObjetos.this,AgregarObjeto.class);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -195,5 +197,16 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
                 System.out.println(t);
             }
         });
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+                Item item = (Item) data.getSerializableExtra("nuevoObjeto");
+                catalogos.add(item);
+                listRecyclerView4.getAdapter().notifyDataSetChanged();
+            }
+        }
     }
 }

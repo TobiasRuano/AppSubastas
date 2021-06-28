@@ -12,6 +12,7 @@ import com.trotos.appsubastas.Modelos.ResponseBids;
 import com.trotos.appsubastas.Modelos.ResponseCreateMP;
 import com.trotos.appsubastas.Modelos.ResponseItems;
 import com.trotos.appsubastas.Modelos.ResponseItemsCatalog;
+import com.trotos.appsubastas.Modelos.ResponseItemsPropuestos;
 import com.trotos.appsubastas.Modelos.ResponseLogIn;
 import com.trotos.appsubastas.Modelos.ResponseMPTarjetas;
 import com.trotos.appsubastas.Modelos.ResponseStatisticsUser;
@@ -59,8 +60,9 @@ interface ApiUtils {
 
     @HTTP(method = "POST", path = "user/sign-up", hasBody = true)
     Call<User> createAccount(@Body User user);
-    @POST("users/{userId}/items")
-    Call<Item> postProducto(@Body Item item);
+
+    @HTTP(method = "POST", path = "user/items", hasBody = true)
+    Call<ResponseItemsPropuestos> postProducto(@Body Item item, @Header("Authorization") String auth);
     @POST("user/payment")
     Call<ResponseCreateMP> postTarjeta(@Body MPTarjeta tarjeta, @Header("Authorization") String auth);
 

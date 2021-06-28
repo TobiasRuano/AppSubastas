@@ -92,6 +92,4 @@
 
     </RelativeLayout>
 
-    <include layout="@layout/toolbarlogueado"></include>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

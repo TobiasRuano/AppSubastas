@@ -1,5 +1,6 @@
 package com.trotos.appsubastas;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -7,6 +8,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
@@ -19,25 +21,32 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.trotos.appsubastas.Modelos.Item;
+import com.trotos.appsubastas.Modelos.LoginInformation;
+import com.trotos.appsubastas.Modelos.MPTarjeta;
+import com.trotos.appsubastas.Modelos.ResponseItemsPropuestos;
+import com.trotos.appsubastas.Modelos.ResponseLogIn;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AgregarObjeto extends AppCompatActivity {
 
     TextInputLayout artista;
     Button cargarObjeto;
-
     TextInputEditText nombreBox, artistaBox, nPlazaBox, descBox;
-
     ImageView imagenObjetos;
-
     FloatingActionButton subirFoto;
-
     RadioGroup radioGroup;
     RadioButton botonEstandar, botonObra;
-
     Integer REQUEST_CAMERA = 1, SELECT_FILE = 0;
 
     @Override
@@ -45,20 +54,18 @@ public class AgregarObjeto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_objeto);
 
-        getSupportActionBar().hide();
+        ActionBar bar = getSupportActionBar();
+        if(bar != null) {
+            bar.hide();
+        }
 
         imagenObjetos = findViewById(R.id.imagenObjetos);
         subirFoto = findViewById(R.id.subirFotoObjeto);
-
-
         botonEstandar = findViewById(R.id.estandarBoton);
         botonObra = findViewById(R.id.obraBoton);
-
         radioGroup = findViewById(R.id.radioGroupObjetos);
-
         artista = findViewById(R.id.nombreArtistaTextoObjetoEstandar);
         artistaBox = findViewById(R.id.nombreArtistaObjetoEstandar);
-
         nombreBox = findViewById(R.id.nombreObjetoEstandar);
         nPlazaBox = findViewById(R.id.nPlazaObjetoEstandar);
         descBox = findViewById(R.id.descripcionObjetoEstandar);
@@ -78,7 +85,7 @@ public class AgregarObjeto extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 if(checkEstadoCamposObjetos()){
-                                    showAlert("Exito!", "Objeto Cargado de forma exitosa. Le avisaremos si es seleccionado");
+                                    proponerObjeto();
                                 }else{
                                     showAlert("Error al cargar el objeto", "Hubo un error al cargar el objeto. Por favor intenta de nuevo mas tarde");
                                 }
@@ -102,7 +109,6 @@ public class AgregarObjeto extends AppCompatActivity {
                             }
                         });
                         break;
-
                 }
             }
         });
@@ -180,23 +186,64 @@ public class AgregarObjeto extends AppCompatActivity {
         super.onActivityResult(requestCode,resultCode,data);
 
         if(resultCode == Activity.RESULT_OK){
-
             if (requestCode == REQUEST_CAMERA){
-
                 Bundle bundle = data.getExtras();
                 final Bitmap bmp = (Bitmap) bundle.get("data");
                 imagenObjetos.setImageBitmap(bmp);
-
             }else if (requestCode == SELECT_FILE){
-
                 Uri selectImageUri = data.getData();
                 imagenObjetos.setImageURI(selectImageUri);
-
-
             }
 
         }
     }
 
+    private void proponerObjeto() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        String token = sharedPreferences.getString("Token", null);
 
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:3000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiUtils as = retrofit.create(ApiUtils.class);
+        String nombre = nombreBox.getText().toString();
+        String nArtista = artistaBox.getText().toString();
+        String nPlaza = nPlazaBox.getText().toString();
+        String descripcion = descBox.getText().toString();
+        String result = "";
+        if(nArtista != null) {
+            result ="Nombre del Artista: " + nArtista + " \n";
+        }
+        result = result + "Numero de pieza: " + nPlaza + "\n" + descripcion;
+        Item item = new Item(0, nombre, result, "", 0, 0, "Pending");
+        Call<ResponseItemsPropuestos> call = as.postProducto(item, "Bearer "+ token);
+
+        call.enqueue(new Callback<ResponseItemsPropuestos>() {
+            @Override
+            public void onResponse(Call<ResponseItemsPropuestos> call, Response<ResponseItemsPropuestos> response) {
+                if(response.isSuccessful()) {
+                    ResponseItemsPropuestos itemResponse = response.body();
+                    passDataBack(itemResponse.getData());
+                } else {
+                    Toast toast1 = Toast.makeText(getApplicationContext(),"Error al proponer el objeto", Toast.LENGTH_LONG);
+                    toast1.show();
+                    System.out.println(response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseItemsPropuestos> call, Throwable t) {
+                Toast toast1 = Toast.makeText(getApplicationContext(),"Error al intentar hacer la request", Toast.LENGTH_LONG);
+                toast1.show();
+            }
+        });
+    }
+
+    private void passDataBack(Item item) {
+        Intent intent = new Intent();
+        intent.putExtra("nuevoObjeto", item);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
 }
