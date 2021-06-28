@@ -9,10 +9,30 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        tools:layout_editor_absoluteY="1dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:text="Agregar Medio de Pago"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="34sp"
+            android:textStyle="bold"
+
+            android:shadowColor="#000055"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:shadowRadius="20"
+            android:fontFamily="@font/montserrat_medium"
+
+            />
 
         <TextView
             android:id="@+id/textView7"
@@ -21,47 +41,67 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:text="Numero de Tarjeta:"
+            android:text="Número de Tarjeta:"
             tools:layout_marginEnd="20dp"
-            tools:layout_marginStart="20dp" />
+            tools:layout_marginStart="20dp"
+
+            android:fontFamily="@font/montserrat_medium"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            />
 
         <EditText
             android:id="@+id/cardNumberEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:ems="10"
             android:maxLength="16"
             android:hint="0000-0000-0000-0000"
-            android:inputType="number" />
+            android:inputType="number"
+
+            android:background="@drawable/estilo_borde"
+            android:fontFamily="@font/montserrat_regular"
+            />
 
         <TextView
             android:id="@+id/textView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:layout_marginEnd="20dp"
-            android:text="Nombre que figura en la tarjeta:" />
+            android:text="Nombre que figura en la tarjeta:"
+
+            android:fontFamily="@font/montserrat_medium"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            />
 
         <EditText
             android:id="@+id/cardNameEditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:ems="10"
             android:hint="Nombre y Apellido"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+
+            android:background="@drawable/estilo_borde"
+            android:fontFamily="@font/montserrat_regular"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="30dp"
+            >
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -74,12 +114,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:text="Expiracion:" />
+                    android:text="Expiración:"
+
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"/>
 
                 <EditText
                     android:id="@+id/expDateEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
@@ -87,7 +131,11 @@
                     android:ems="10"
                     android:focusable="false"
                     android:hint="dd/mm/aaaa"
-                    android:inputType="date" />
+                    android:inputType="date"
+
+                    android:background="@drawable/estilo_borde"
+                    android:fontFamily="@font/montserrat_regular"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -101,29 +149,53 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:text="CVC" />
+                    android:text="CVC:"
+
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"/>
 
                 <EditText
                     android:id="@+id/cvcEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
                     android:ems="10"
                     android:maxLength="3"
                     android:hint="CVC"
-                    android:inputType="number" />
+                    android:inputType="number"
+
+                    android:background="@drawable/estilo_borde"
+                    android:fontFamily="@font/montserrat_regular"
+                    />
 
             </LinearLayout>
+
+
+
         </LinearLayout>
 
-        <Button
-            android:id="@+id/addCardButton"
-            android:layout_width="150dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Agregar"
-            tools:layout_marginTop="100dp" />
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/addCardButton"
+                android:layout_width="350dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Agregar"
+
+                android:fontFamily="@font/montserrat_regular"
+                android:background="@drawable/estilo_sombra"
+                />
+
+        </LinearLayout>
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
