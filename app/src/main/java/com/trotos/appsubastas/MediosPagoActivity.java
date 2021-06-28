@@ -151,6 +151,7 @@ public class MediosPagoActivity extends AppCompatActivity {
             if(resultCode == RESULT_OK) {
                 MPTarjeta tarjeta = (MPTarjeta) data.getSerializableExtra("nuevaTarjeta");
                 tarjetas.add(tarjeta);
+                reciclerView.getAdapter().notifyDataSetChanged();
             }
         }
     }
