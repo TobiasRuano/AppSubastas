@@ -48,7 +48,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nameEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/estilo_borde"/>
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -70,7 +71,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/apellidoEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/estilo_borde"/>
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -92,7 +94,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/mailEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/estilo_borde"/>
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -114,7 +117,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/direccionEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/estilo_borde"/>
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -137,7 +141,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/dniEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/estilo_borde"/>
 
 
             </com.google.android.material.textfield.TextInputLayout>
