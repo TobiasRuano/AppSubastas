@@ -272,14 +272,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
         carousel.registerLifecycle(getLifecycle());
         list.add(
                 new CarouselItem(
-                        "https://www.uade.edu.ar/media/pfqfuh4i/monserrat.jpeg?center=0.70307819516856551,0.54415877733959017&mode=crop&width=1240&height=910&rnd=132386837151700000",
-                        "Edificio UADE"
-                )
-        );
-        list.add(
-                new CarouselItem(
-                        "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080",
-                        "FOTO"
+                        element.getUrlImage()
                 )
         );
         carousel.setData(list);
