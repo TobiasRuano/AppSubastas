@@ -24,7 +24,7 @@
 
         <activity android:name=".HistorialPujasDescripcionActivity" />
         <activity android:name=".DetalleDeLaDescripcionActivity"></activity>
-        <activity android:name=".IniciarSesionActivity" />
+        <activity android:name=".MisCatalogosPujadosActivity" />
         <activity android:name=".SubastaActivity" />
         <activity android:name=".AgregarObjeto" />
         <activity android:name=".MenuInvitado" />
@@ -40,7 +40,7 @@
         <activity android:name=".DescripcionMisObjetosActivity" />
         <activity android:name=".DescripcionMisCatalogosPujadosActivity" />
         <activity android:name=".CatalogoActivity" />
-        <activity android:name=".MisCatalogosPujadosActivity">
+        <activity android:name=".IniciarSesionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

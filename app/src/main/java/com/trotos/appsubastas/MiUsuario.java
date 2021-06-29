@@ -40,7 +40,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MiUsuario extends AppCompatActivity {
 
-    ImageView fotoPerfil;
+    ImageView fotoPerfil, logout;
     FloatingActionButton subirFoto;
     Button editarPerfilBoton;
     BottomNavigationView bottomNavigationView;
@@ -76,7 +76,38 @@ public class MiUsuario extends AppCompatActivity {
         cantGanados = findViewById(R.id.objetosGanados);
         cantParticipados = findViewById(R.id.objetosParticipados);
 
+        logout = findViewById(R.id.logout);
+
         setCategory(cat);
+
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder alerta = new AlertDialog.Builder(MiUsuario.this);
+                alerta.setMessage("¿Desea cerrar sesion?")
+                .setCancelable(false)
+                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                logOutUser();
+                                startActivity(new Intent(MiUsuario.this, IniciarSesionActivity.class));
+                                finish();
+                            }
+                        })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog titulo = alerta.create();
+                titulo.setTitle("Salida");
+                titulo.show();
+                System.out.println("HOLAAAAAA");
+            }
+        });
 
         bottomNavigationView.setSelectedItemId(R.id.usuarioLogueado);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -123,6 +154,15 @@ public class MiUsuario extends AppCompatActivity {
             }
         });
     }
+
+
+    private void logOutUser() {
+        SharedPreferences  sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
+        prefsEditor.clear();
+        prefsEditor.commit();
+    }
+
 
     private void setCategory(String category) {
         user.setCategory(category);
