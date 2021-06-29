@@ -65,12 +65,22 @@ public class AgregarObjeto extends AppCompatActivity {
         botonObra = findViewById(R.id.obraBoton);
         radioGroup = findViewById(R.id.radioGroupObjetos);
         artista = findViewById(R.id.nombreArtistaTextoObjetoEstandar);
+        artista.setVisibility(View.GONE);
         artistaBox = findViewById(R.id.nombreArtistaObjetoEstandar);
         nombreBox = findViewById(R.id.nombreObjetoEstandar);
         nPlazaBox = findViewById(R.id.nPlazaObjetoEstandar);
         descBox = findViewById(R.id.descripcionObjetoEstandar);
-
         cargarObjeto = findViewById(R.id.botonGargarObjeto);
+        cargarObjeto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkEstadoCamposObjetos()){
+                    proponerObjeto();
+                }else{
+                    showAlert("Error.", "Debe completar todos los campos pertinentes para continuar.");
+                }
+            }
+        });
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -78,36 +88,18 @@ public class AgregarObjeto extends AppCompatActivity {
                 switch (checkedId){
                     case R.id.estandarBoton:
                         botonEstandar.setTextColor(Color.WHITE);
+                        botonEstandar.setBackground(getDrawable(R.drawable.radio_button_left_checked));
                         botonObra.setTextColor(Color.RED);
+                        botonObra.setBackground(getDrawable(R.drawable.radio_button_right_unchecked));
                         artista.setVisibility(View.GONE);
-                        artistaBox.setVisibility(View.GONE);
-                        cargarObjeto.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                if(checkEstadoCamposObjetos()){
-                                    proponerObjeto();
-                                }else{
-                                    showAlert("Error al cargar el objeto", "Hubo un error al cargar el objeto. Por favor intenta de nuevo mas tarde");
-                                }
-                            }
-                        });
                         break;
                     case R.id.obraBoton:
                         botonEstandar.setTextColor(Color.RED);
+                        botonEstandar.setBackground(getDrawable(R.drawable.radio_button_left_unchecked));
                         botonObra.setTextColor(Color.WHITE);
+                        botonObra.setBackground(getDrawable(R.drawable.radio_button_right_checked));
                         artista.setVisibility(View.VISIBLE);
                         artistaBox.setVisibility(View.VISIBLE);
-                        cargarObjeto.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                if(checkEstadoCamposObjetos()){
-                                    showAlert("Exito!", "Objeto Cargado de forma exitosa. Le avisaremos si es seleccionado");
-                                }else{
-                                    showAlert("Error al cargar el objeto", "Hubo un error al cargar el objeto. Por favor intenta de nuevo mas tarde");
-                                }
-
-                            }
-                        });
                         break;
                 }
             }
@@ -119,7 +111,6 @@ public class AgregarObjeto extends AppCompatActivity {
                 SeleccionImagen();
             }
         });
-
     }
 
     private boolean checkEstadoCamposObjetos(){
@@ -127,13 +118,16 @@ public class AgregarObjeto extends AppCompatActivity {
         String nArtista = artistaBox.getText().toString();
         String nPlaza = nPlazaBox.getText().toString();
         String descripcion = descBox.getText().toString();
-        if (!botonEstandar.isChecked() && botonObra.isChecked()) {
+        System.out.println("Por aca");
+        System.out.println(botonEstandar.isChecked());
+        System.out.println(botonObra.isChecked());
+        if (botonObra.isChecked()) {
             if (!nombre.isEmpty() && !nArtista.isEmpty() && !nPlaza.isEmpty() && !descripcion.isEmpty()) {
                 return true;
             } else {
                 return false;
             }
-        }else{
+        }else {
             if (!nombre.isEmpty() && !nPlaza.isEmpty() && !descripcion.isEmpty()) {
                 return true;
             } else {
@@ -151,7 +145,6 @@ public class AgregarObjeto extends AppCompatActivity {
     }
 
     private void SeleccionImagen() {
-
         final CharSequence[] items={"Camara", "Galeria", "Cancelar"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(AgregarObjeto.this);
@@ -160,21 +153,15 @@ public class AgregarObjeto extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int i) {
                 if(items[i].equals("Camara")){
-
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(intent,REQUEST_CAMERA);
-
                 }else if(items[i].equals("Galeria")){
-
                     Intent intent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intent.setType("image/*");
                     startActivityForResult(intent.createChooser(intent,"Select File"),SELECT_FILE);
-
                 }else if (items[i].equals("Cancelar")){
-
                     dialog.dismiss();
                 }
-
             }
         });
         builder.show();
@@ -184,7 +171,6 @@ public class AgregarObjeto extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
-
         if(resultCode == Activity.RESULT_OK){
             if (requestCode == REQUEST_CAMERA){
                 Bundle bundle = data.getExtras();
@@ -194,7 +180,6 @@ public class AgregarObjeto extends AppCompatActivity {
                 Uri selectImageUri = data.getData();
                 imagenObjetos.setImageURI(selectImageUri);
             }
-
         }
     }
 
@@ -212,10 +197,12 @@ public class AgregarObjeto extends AppCompatActivity {
         String nPlaza = nPlazaBox.getText().toString();
         String descripcion = descBox.getText().toString();
         String result = "";
-        if(nArtista != null) {
-            result ="Nombre del Artista: " + nArtista + " \n";
+        if(nArtista != null && !nArtista.isEmpty()) {
+            result = "Nombre del Artista: " + nArtista + " \n";
         }
+        System.out.println(result);
         result = result + "Numero de pieza: " + nPlaza + "\n" + descripcion;
+        System.out.println(result);
         Item item = new Item(0, nombre, result, "", 0, 0, "Pending");
         Call<ResponseItemsPropuestos> call = as.postProducto(item, "Bearer "+ token);
 
