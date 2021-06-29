@@ -161,28 +161,7 @@ public class DescripcionActivity extends AppCompatActivity {
 
         list.add(
                 new CarouselItem(
-                        "https://www.uade.edu.ar/media/pfqfuh4i/monserrat.jpeg?center=0.70307819516856551,0.54415877733959017&mode=crop&width=1240&height=910&rnd=132386837151700000",
-                        "Edificio UADE"
-                )
-        );
-        list.add(
-                new CarouselItem(
-                        "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080",
-                        "FOTO"
-                )
-        );
-        Map<String, String> headers = new HashMap<>();
-        headers.put("header_key", "header_value");
-        list.add(
-                new CarouselItem(
-                        "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080",
-                        headers
-                )
-        );
-        list.add(
-                new CarouselItem(
-                        "https://resizer.iproimg.com/unsafe/880x495/filters:format(webp)/https://assets.iprofesional.com/assets/jpg/2016/01/427212.jpg?7.1.0",
-                        "Pinamar UADE"
+                        element.getUrlImage()
                 )
         );
         carousel.setData(list);
