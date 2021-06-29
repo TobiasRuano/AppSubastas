@@ -63,6 +63,10 @@ interface ApiUtils {
 
     @HTTP(method = "POST", path = "user/items", hasBody = true)
     Call<ResponseItemsPropuestos> postProducto(@Body Item item, @Header("Authorization") String auth);
+
+    @HTTP(method = "PATCH", path = "user/items/offer", hasBody = true)
+    Call<Item> actOnOffer(@Body Item item, @Header("Authorization") String auth);
+
     @POST("user/payment")
     Call<ResponseCreateMP> postTarjeta(@Body MPTarjeta tarjeta, @Header("Authorization") String auth);
 

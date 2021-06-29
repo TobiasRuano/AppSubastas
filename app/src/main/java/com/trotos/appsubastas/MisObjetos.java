@@ -56,7 +56,6 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
     ViewGroup.LayoutParams params;
     LinearLayout linearLayout4;
 
-    Auction element;
     User user;
 
     List<Item> catalogos = new ArrayList<Item>();
@@ -76,9 +75,6 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.moLogueado);
         newObjectButton = findViewById(R.id.newObjectButton);
-
-        Item item = new Item(1,"hola", "descripcion", "d", 20, 100, "Pendiente");
-        //catalogos.add(item);
 
         getDatos();
         init();
@@ -152,7 +148,7 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
         Intent intent = new Intent(this,   DescripcionMisObjetosActivity.class);
         intent.putExtra("MisObjetos", item);
         intent.putExtra("estadoLoggeado", estaRegistrado);
-        startActivity(intent);
+        startActivityForResult(intent, 2);
     }
 
     private void getUser() {
@@ -181,12 +177,10 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     ResponseItems items = response.body();
                     catalogos.addAll(items.getData());
-                    System.out.println(catalogos.size());
                     listRecyclerView4.getAdapter().notifyDataSetChanged();
                 } else {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Respuesta con error", Toast.LENGTH_LONG);
                     toast1.show();
-                    System.out.println(response.code());
                 }
             }
 
@@ -194,7 +188,6 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
             public void onFailure(Call<ResponseItems> call, Throwable t) {
                 Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener los Catalogos", Toast.LENGTH_LONG);
                 toast1.show();
-                System.out.println(t);
             }
         });
     }
@@ -205,6 +198,20 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
             if(resultCode == RESULT_OK) {
                 Item item = (Item) data.getSerializableExtra("nuevoObjeto");
                 catalogos.add(item);
+                listRecyclerView4.getAdapter().notifyDataSetChanged();
+            }
+        } else if (requestCode == 2) {
+            if(resultCode == RESULT_OK) {
+                Item item = (Item) data.getSerializableExtra("item");
+                int index = -1;
+                for(int i = 0; i < catalogos.size(); i++) {
+                    if(catalogos.get(i).getId() == item.getId()) {
+                        index = i;
+                    }
+                }
+                if(index != -1) {
+                    catalogos.set(index, item);
+                }
                 listRecyclerView4.getAdapter().notifyDataSetChanged();
             }
         }
