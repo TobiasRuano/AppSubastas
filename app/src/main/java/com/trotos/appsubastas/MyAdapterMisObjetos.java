@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
 import com.trotos.appsubastas.Modelos.Item;
 
 import java.util.List;
@@ -73,7 +74,7 @@ public class MyAdapterMisObjetos extends RecyclerView.Adapter<MyAdapterMisObjeto
         }
 
         public void bindData(final Item item){
-            //iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
+            Picasso.with(context).load(item.getUrlImage()).into(iconImage);
             title.setText(item.getTitle());
             descripcionBreve.setText(item.getDescription());
             estado.setText(item.getStatus());
