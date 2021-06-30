@@ -8,7 +8,6 @@
     android:background="@drawable/estilo_degradado_fondo"
     >
 
-
     <include
         android:id="@+id/include"
         layout="@layout/toolbarlogueado" />
@@ -19,20 +18,41 @@
         android:layout_height="320dp"
         tools:ignore="MissingConstraints">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
+            android:gravity="right"
+
+            android:shadowColor="#000055"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:shadowRadius="20"
+            android:text="Salir"
+            android:textColor="#FFFFFF"
+
+            app:layout_constraintBottom_toTopOf="@+id/logout"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="12dp"
+            />
+
+
         <ImageView
             android:id="@+id/logout"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="4dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="0dp"
+            android:background="@drawable/logout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/logout"/>
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageView>
 
         <ImageView
             android:id="@+id/fotoUsuario"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:background="@drawable/usuario"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,12 +64,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nombre Usuario"
-            android:textColor="@color/white"
-            android:textSize="24dp"
+            android:textSize="30dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fotoUsuario" />
+            app:layout_constraintTop_toBottomOf="@id/fotoUsuario"
+
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:shadowColor="#000055"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:shadowRadius="20"
+            android:fontFamily="@font/montserrat_medium"
+            />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/subirFoto"
@@ -59,6 +87,8 @@
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -73,8 +103,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvDatosMiPerfil"
-        android:layout_width="409dp"
-        android:layout_height="300dp"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
         android:animateLayoutChanges="true"
         android:outlineAmbientShadowColor="#000000"
         android:outlineProvider="paddedBounds"
@@ -82,7 +112,10 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
         app:cardUseCompatPadding="true"
-        android:layout_marginTop="310dp">
+        android:layout_marginTop="340dp"
+
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
 
 
         <LinearLayout
@@ -94,9 +127,11 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="25dp"
+                >
 
 
                 <TextView
@@ -104,23 +139,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
-                    android:fontFamily="sans-serif-condensed-medium"
                     android:text="Categoria: "
                     android:textSize="25dp"
-                    tools:ignore="MissingConstraints" />
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textStyle="bold"
+
+                    android:textColor="#000000"
+                    />
 
                 <TextView
                     android:id="@+id/categoriaUsuario"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="20dp"
-                    android:fontFamily="sans-serif-condensed-medium"
                     android:text="Oro "
                     android:textSize="25dp"
-                    tools:ignore="MissingConstraints"
-                    android:textColor="@null" />
+                    android:textColor="@null"
+                    android:gravity="right"
+                    android:fontFamily="@font/montserrat_medium"/>
 
 
             </LinearLayout>
@@ -130,7 +166,9 @@
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="25dp"
+                >
 
 
                 <TextView
@@ -138,22 +176,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
-                    android:fontFamily="sans-serif-condensed-medium"
                     android:text="Objetos ganados: "
                     android:textSize="25dp"
-                    tools:ignore="MissingConstraints" />
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textStyle="bold"
+                    android:textColor="#000000"/>
 
                 <TextView
                     android:id="@+id/objetosGanados"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="20dp"
-                    android:fontFamily="sans-serif-condensed-medium"
                     android:text="-"
                     android:textSize="25dp"
-                    tools:ignore="MissingConstraints" />
+                    android:gravity="right"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textColor="#009fff"/>
 
 
             </LinearLayout>
@@ -163,30 +201,32 @@
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="25dp"
+                >
 
                 <TextView
                     android:id="@+id/participacionesMiUsuario"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
-                    android:fontFamily="sans-serif-condensed-medium"
                     android:text="Participaciones: "
                     android:textSize="25dp"
-                    tools:ignore="MissingConstraints" />
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textStyle="bold"
+                    android:textColor="#000000"/>
 
 
                 <TextView
                     android:id="@+id/objetosParticipados"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="20dp"
-                    android:fontFamily="sans-serif-condensed-medium"
                     android:text="-"
                     android:textSize="25dp"
-                    tools:ignore="MissingConstraints" />
+                    android:gravity="right"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textColor="#009fff"/>
 
 
             </LinearLayout>
@@ -199,13 +239,14 @@
 
     <Button
         android:id="@+id/editarPerfilBoton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="15dp"
         android:text="Editar Perfil"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cvDatosMiPerfil" />
+        android:textStyle="bold"
+
+        android:fontFamily="@font/montserrat_medium"
+        android:background="@drawable/estilo_sombra"/>
 
 
     </LinearLayout>
