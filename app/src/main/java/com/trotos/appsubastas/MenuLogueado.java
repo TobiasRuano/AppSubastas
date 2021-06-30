@@ -24,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -130,8 +131,11 @@ public class MenuLogueado extends AppCompatActivity implements SearchView.OnQuer
             public void onResponse(Call<ResponseAuctions> call, Response<ResponseAuctions> response) {
                 if(response.isSuccessful()) {
                     ResponseAuctions subastas = response.body();
-                    auctions.addAll(subastas.getData());
-                    adapter.setItems(subastas.getData());
+                    if (subastas != null) {
+                        auctions.addAll(subastas.getData());
+                        auctions.sort(Comparator.comparing(Auction::getEndTime));
+                        adapter.setItems(auctions);
+                    }
                 } else {
                     Toast toast2 = Toast.makeText(getApplicationContext(), "Hubo un error al obtener los datos", Toast.LENGTH_LONG);
                     toast2.show();

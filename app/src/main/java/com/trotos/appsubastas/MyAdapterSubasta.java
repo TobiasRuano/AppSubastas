@@ -1,6 +1,7 @@
 package com.trotos.appsubastas;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 
 import android.view.LayoutInflater;
@@ -83,12 +84,30 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
             name.setText(item.getTitle());
             state.setText(stateString);
             category.setText(item.getCategory());
+            setCategoryTextColor(item.getCategory());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     listener.onItemClick(item);
                 }
             });
+        }
+
+        private void setCategoryTextColor(String category) {
+            switch (category) {
+                case "Plata":
+                    this.category.setTextColor(Color.rgb(192,192,192));
+                    break;
+                case "Oro":
+                    this.category.setTextColor(Color.rgb(255,215,0));
+                    break;
+                case "Platino":
+                    this.category.setTextColor(Color.rgb(32, 211, 214));
+                    break;
+                default:
+                    this.category.setTextColor(Color.rgb(80,50,20));
+                    break;
+            }
         }
     }
 
