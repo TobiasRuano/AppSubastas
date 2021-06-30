@@ -175,7 +175,7 @@ public class MiUsuario extends AppCompatActivity {
                 categoriaUsuario.setTextColor(Color.rgb(255,215,0));
                 break;
             case "Platino": 
-                categoriaUsuario.setTextColor(Color.rgb(229, 228, 226));
+                categoriaUsuario.setTextColor(Color.rgb(32, 211, 214));
                 break;
             default:
                 categoriaUsuario.setTextColor(Color.rgb(80,50,20));

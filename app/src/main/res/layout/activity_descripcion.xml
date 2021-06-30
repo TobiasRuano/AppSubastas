@@ -193,7 +193,8 @@
                 android:maxLines="3"
                 android:text="Descripcion Completa (info)"
                 android:textColor="@android:color/black"
-                android:textSize="28sp" />
+                android:textSize="28sp"
+                android:ellipsize="end"/>
 
 
         <LinearLayout

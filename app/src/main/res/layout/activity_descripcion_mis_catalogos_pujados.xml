@@ -231,7 +231,8 @@
                 android:text="Descripcion Completa (info)"
                 android:textColor="@android:color/black"
                 android:textSize="20dp"
-                android:fontFamily="@font/montserrat_regular"/>
+                android:fontFamily="@font/montserrat_regular"
+                android:ellipsize="end"/>
 
 
         <LinearLayout

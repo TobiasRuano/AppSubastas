@@ -33,14 +33,14 @@
             android:id="@+id/fullCompleteTitleDescriptionTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Texto con info"
-            android:scrollbars="vertical"
             android:layout_gravity="center"
             android:layout_marginLeft="16dp"
-            android:textColor="#ffffff"
-            android:textSize="20sp"
+            android:layout_marginRight="16dp"
             android:fontFamily="@font/montserrat_regular"
-            />
+            android:scrollbars="vertical"
+            android:text="Texto con info"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
