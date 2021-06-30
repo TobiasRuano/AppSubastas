@@ -10,17 +10,17 @@ import android.widget.TextView;
 public class DetalleDeLaDescripcionActivity extends AppCompatActivity {
 
     String texto;
-    TextView fullCompleteTitleDescriptionTextView;
+    TextView descriptionTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_de_la_descripcion);
-        fullCompleteTitleDescriptionTextView = findViewById(R.id.fullCompleteTitleDescriptionTextView);
+        descriptionTextView = findViewById(R.id.fullCompleteTitleDescriptionTextView);
 
         Intent intent = getIntent();
-        texto = intent.getStringExtra("fullTitle");
-        fullCompleteTitleDescriptionTextView.setText(texto);
-        fullCompleteTitleDescriptionTextView.setMovementMethod(new ScrollingMovementMethod());
+        texto = intent.getStringExtra("valorDescription");
+        descriptionTextView.setText(texto);
+        descriptionTextView.setMovementMethod(new ScrollingMovementMethod());
     }
 }

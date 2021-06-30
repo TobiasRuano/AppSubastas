@@ -24,12 +24,12 @@ import java.util.Map;
 
 public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
 
-    TextView titleDescriptionTextView5;
-    TextView precioBaseDescriptionTextView5;
-    TextView valorActualDescriptionTextView5;
-    TextView fullTitleDescriptionTextView5;
-    TextView monedaBaseDescriptionTextView5;
-    TextView monedaActualDescriptionTextView5;
+    TextView titleTextView5;
+    TextView precioBaseTextView5;
+    TextView valorActualTextView5;
+    TextView descriptionTextView5;
+    TextView monedaBaseTextView5;
+    TextView monedaActualTextView5;
 
     EditText editarNumeroDeTexto5;
     Button botonOfertar5;
@@ -69,24 +69,24 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
     }
 
     private void configureUI() {
-        titleDescriptionTextView5 = findViewById(R.id.titleDescriptionTextView5);
-        precioBaseDescriptionTextView5 = findViewById(R.id.precioBaseDescriptionTextView5);
-        valorActualDescriptionTextView5 = findViewById(R.id.valorActualDescriptionTextView5);
-        fullTitleDescriptionTextView5 = findViewById(R.id.fullTitleDescriptionTextView5);
-        monedaBaseDescriptionTextView5 = findViewById(R.id.monedaBaseDescriptionTextView5);
-        monedaActualDescriptionTextView5 = findViewById(R.id.monedaActualDescriptionTextView5);
+        titleTextView5 = findViewById(R.id.titleDescriptionTextView5);
+        precioBaseTextView5 = findViewById(R.id.precioBaseDescriptionTextView5);
+        valorActualTextView5 = findViewById(R.id.valorActualDescriptionTextView5);
+        descriptionTextView5 = findViewById(R.id.fullTitleDescriptionTextView5);
+        monedaBaseTextView5 = findViewById(R.id.monedaBaseDescriptionTextView5);
+        monedaActualTextView5 = findViewById(R.id.monedaActualDescriptionTextView5);
 
-        titleDescriptionTextView5.setText(element.getTitle());
-        //titleDescriptionTextView5.setTextColor(Color.parseColor(element.getColor()));
+        titleTextView5.setText(element.getTitle());
+        //titleTextView5.setTextColor(Color.parseColor(element.getColor()));
 
         String precioBaseText5 = String.format("%,d", element.getBasePrice());
-        precioBaseDescriptionTextView5.setText(precioBaseText5);
+        precioBaseTextView5.setText(precioBaseText5);
         String valorActualText5 = String.format("%,d", element.getBasePrice());
-        valorActualDescriptionTextView5.setText(valorActualText5);
-        valorActualDescriptionTextView5.setTextColor(Color.GRAY);
-        fullTitleDescriptionTextView5.setText(element.getDescription());
-        monedaBaseDescriptionTextView5.setText("USD");
-        monedaActualDescriptionTextView5.setText("USD");
+        valorActualTextView5.setText(valorActualText5);
+        valorActualTextView5.setTextColor(Color.GRAY);
+        descriptionTextView5.setText(element.getDescription());
+        monedaBaseTextView5.setText("USD");
+        monedaActualTextView5.setText("USD");
 
         //editarNumeroDeTexto5 = findViewById(R.id.editarNumeroDeTexto5);
         //botonOfertar5 = findViewById(R.id.botonOfertar5);
@@ -95,11 +95,11 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
         //botonRegistrar5 = findViewById(R.id.botonRegistrar5);
         historialPujasView5 = findViewById(R.id.historialPujasView5);
 
-        fullTitleDescriptionTextView5.setOnClickListener(new View.OnClickListener() {
+        descriptionTextView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),DetalleDeLaDescripcionActivity.class);
-                intent.putExtra("fullTitle",fullTitleDescriptionTextView5.getText().toString());
+                intent.putExtra("valorDescription", descriptionTextView5.getText().toString());
                 startActivity(intent);
             }
         });
@@ -111,7 +111,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
                 //HARDCODEADO
 
 
-                intent.putExtra("historialPujasDetalle",fullTitleDescriptionTextView5.getText().toString());
+                intent.putExtra("historialPujasDetalle", descriptionTextView5.getText().toString());
                 startActivity(intent);
             }
         });
@@ -121,10 +121,10 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
             //editarNumeroDeTexto5.setVisibility(View.GONE);
             //botonOfertar5.setVisibility(View.GONE);
             valorActualOVendido5.setVisibility(View.GONE);
-            monedaActualDescriptionTextView5.setVisibility(View.GONE);
-            valorActualDescriptionTextView5.setVisibility(View.GONE);
-            precioBaseDescriptionTextView5.setVisibility(View.GONE);
-            monedaBaseDescriptionTextView5.setVisibility(View.GONE);
+            monedaActualTextView5.setVisibility(View.GONE);
+            valorActualTextView5.setVisibility(View.GONE);
+            precioBaseTextView5.setVisibility(View.GONE);
+            monedaBaseTextView5.setVisibility(View.GONE);
             precioBaseView5.setVisibility(View.GONE);
             historialPujasView5.setVisibility(View.GONE);
         }else {
@@ -139,17 +139,17 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
         switch (estado) {
             case "En Curso":
                 valorActualOVendido5.setText("Valor Actual:");
-                valorActualDescriptionTextView5.setTextColor(Color.parseColor("#FF669900"));
+                valorActualTextView5.setTextColor(Color.parseColor("#FF669900"));
                 break;
             case "Programada":
                 valorActualOVendido5.setVisibility(View.GONE);
-                valorActualDescriptionTextView5.setVisibility(View.GONE);
-                monedaActualDescriptionTextView5.setVisibility(View.GONE);
+                valorActualTextView5.setVisibility(View.GONE);
+                monedaActualTextView5.setVisibility(View.GONE);
                 //editarNumeroDeTexto5.setVisibility(View.GONE);
                 //botonOfertar5.setVisibility(View.GONE);
                 historialPujasView5.setVisibility(View.GONE);
-                precioBaseDescriptionTextView5.setTextSize(30);
-                precioBaseDescriptionTextView5.setTextColor(Color.parseColor("#FF669900"));
+                precioBaseTextView5.setTextSize(30);
+                precioBaseTextView5.setTextColor(Color.parseColor("#FF669900"));
                 precioBaseView5.setTextSize(30);
                 precioBaseView5.setTextColor(Color.parseColor("#FF669900"));
                 break;
@@ -157,7 +157,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
                 //editarNumeroDeTexto5.setVisibility(View.GONE);
                 //botonOfertar5.setVisibility(View.GONE);
                 valorActualOVendido5.setText("Vendido:");
-                valorActualDescriptionTextView5.setTextColor(Color.parseColor("#FF669900"));
+                valorActualTextView5.setTextColor(Color.parseColor("#FF669900"));
                 break;
         }
     }
@@ -169,28 +169,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
 
         list.add(
                 new CarouselItem(
-                        "https://www.uade.edu.ar/media/pfqfuh4i/monserrat.jpeg?center=0.70307819516856551,0.54415877733959017&mode=crop&width=1240&height=910&rnd=132386837151700000",
-                        "Edificio UADE"
-                )
-        );
-        list.add(
-                new CarouselItem(
-                        "https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?w=1080",
-                        "FOTO"
-                )
-        );
-        Map<String, String> headers = new HashMap<>();
-        headers.put("header_key", "header_value");
-        list.add(
-                new CarouselItem(
-                        "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1080",
-                        headers
-                )
-        );
-        list.add(
-                new CarouselItem(
-                        "https://resizer.iproimg.com/unsafe/880x495/filters:format(webp)/https://assets.iprofesional.com/assets/jpg/2016/01/427212.jpg?7.1.0",
-                        "Pinamar UADE"
+                        element.getUrlImage()
                 )
         );
         carousel.setData(list);

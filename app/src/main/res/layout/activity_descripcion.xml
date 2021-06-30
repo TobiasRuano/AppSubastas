@@ -37,12 +37,12 @@
 
 
             <TextView
-                android:id="@+id/titleDescriptionTextView3"
+                android:id="@+id/titleTextView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginStart="-45dp"
-                android:text="Description"
+                android:gravity="center"
+                android:text="Titulo"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -74,7 +74,7 @@
             android:id="@+id/valorActualOVendido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/titleDescriptionTextView3"
+            android:layout_below="@+id/titleTextView3"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_marginStart="16dp"
@@ -88,7 +88,7 @@
             android:id="@+id/valorActualDescriptionTextView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/titleDescriptionTextView3"
+            android:layout_below="@+id/titleTextView3"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_marginStart="16dp"
@@ -102,7 +102,7 @@
                 android:id="@+id/monedaActualDescriptionTextView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/titleDescriptionTextView3"
+                android:layout_below="@+id/titleTextView3"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="16dp"
@@ -172,7 +172,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/titleDescriptionTextView3"
+                android:layout_below="@+id/titleTextView3"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="16dp"
@@ -182,10 +182,10 @@
                 android:textColor="@android:color/black"
                 android:textSize="28sp" />
             <TextView
-                android:id="@+id/fullTitleDescriptionTextView3"
+                android:id="@+id/descriptionTextView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/titleDescriptionTextView3"
+                android:layout_below="@+id/titleTextView3"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="16dp"

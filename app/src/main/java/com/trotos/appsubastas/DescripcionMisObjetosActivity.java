@@ -14,16 +14,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.trotos.appsubastas.Modelos.Item;
-import com.trotos.appsubastas.Modelos.MPTarjeta;
-import com.trotos.appsubastas.Modelos.ResponseCreateMP;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,12 +30,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DescripcionMisObjetosActivity extends AppCompatActivity {
 
-    TextView titleDescriptionTextView4;
-    TextView precioBaseDescriptionTextView4;
-    TextView valorActualDescriptionTextView4;
-    TextView fullTitleDescriptionTextView4;
-    TextView monedaBaseDescriptionTextView4;
-    TextView monedaActualDescriptionTextView4;
+    TextView titleTextView4;
+    TextView precioBaseTextView4;
+    TextView valorActualTextView4;
+    TextView descriptionTextView4;
+    TextView monedaBaseTextView4;
+    TextView monedaActualTextView4;
 
     EditText editarNumeroDeTexto4;
     Button botonOfertar4;
@@ -140,27 +136,27 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
     }
 
     private void configureUI() {
-        titleDescriptionTextView4 = findViewById(R.id.titleDescriptionTextView4);
-        precioBaseDescriptionTextView4 = findViewById(R.id.precioBaseDescriptionTextView4);
-        valorActualDescriptionTextView4 = findViewById(R.id.valorActualDescriptionTextView4);
-        fullTitleDescriptionTextView4 = findViewById(R.id.fullTitleDescriptionTextView4);
-        monedaBaseDescriptionTextView4 = findViewById(R.id.monedaBaseDescriptionTextView4);
-        monedaActualDescriptionTextView4 = findViewById(R.id.monedaActualDescriptionTextView4);
+        titleTextView4 = findViewById(R.id.titleDescriptionTextView4);
+        precioBaseTextView4 = findViewById(R.id.precioBaseDescriptionTextView4);
+        valorActualTextView4 = findViewById(R.id.valorActualDescriptionTextView4);
+        descriptionTextView4 = findViewById(R.id.fullTitleDescriptionTextView4);
+        monedaBaseTextView4 = findViewById(R.id.monedaBaseDescriptionTextView4);
+        monedaActualTextView4 = findViewById(R.id.monedaActualDescriptionTextView4);
 
         aceptarPendienteBoton = findViewById(R.id.aceptarPendienteBoton);
         rechazarPendienteBoton = findViewById(R.id.rechazarPendienteBoton);
 
-        titleDescriptionTextView4.setText(element.getTitle());
+        titleTextView4.setText(element.getTitle());
         //titleDescriptionTextView4.setTextColor(Color.parseColor(element.getColor()));
 
         String precioBaseText4 = String.format("%,d", element.getBasePrice());
-        precioBaseDescriptionTextView4.setText(precioBaseText4);
+        precioBaseTextView4.setText(precioBaseText4);
         String valorActualText4 = String.format("%,d", element.getBasePrice()); // no deberia estar
-        valorActualDescriptionTextView4.setText(valorActualText4);
-        valorActualDescriptionTextView4.setTextColor(Color.GRAY);
-        fullTitleDescriptionTextView4.setText(element.getDescription());
-        monedaBaseDescriptionTextView4.setText("USD"); // harcodeado, se obtiene de item
-        monedaActualDescriptionTextView4.setText("USD");
+        valorActualTextView4.setText(valorActualText4);
+        valorActualTextView4.setTextColor(Color.GRAY);
+        descriptionTextView4.setText(element.getDescription());
+        monedaBaseTextView4.setText("USD"); // harcodeado, se obtiene de item
+        monedaActualTextView4.setText("USD");
 
         editarNumeroDeTexto4 = findViewById(R.id.editarNumeroDeTexto4);
         botonOfertar4 = findViewById(R.id.botonOfertar4);
@@ -169,11 +165,11 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
         botonRegistrar4 = findViewById(R.id.botonRegistrar4);
         historialPujasView4 = findViewById(R.id.historialPujasView4);
 
-        fullTitleDescriptionTextView4.setOnClickListener(new View.OnClickListener() {
+        descriptionTextView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),DetalleDeLaDescripcionActivity.class);
-                intent.putExtra("fullTitle",fullTitleDescriptionTextView4.getText().toString());
+                intent.putExtra("valorDescription", descriptionTextView4.getText().toString());
                 startActivity(intent);
             }
         });
@@ -182,10 +178,10 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
             editarNumeroDeTexto4.setVisibility(View.GONE);
             botonOfertar4.setVisibility(View.GONE);
             valorActualOVendido4.setVisibility(View.GONE);
-            monedaActualDescriptionTextView4.setVisibility(View.GONE);
-            valorActualDescriptionTextView4.setVisibility(View.GONE);
-            precioBaseDescriptionTextView4.setVisibility(View.GONE);
-            monedaBaseDescriptionTextView4.setVisibility(View.GONE);
+            monedaActualTextView4.setVisibility(View.GONE);
+            valorActualTextView4.setVisibility(View.GONE);
+            precioBaseTextView4.setVisibility(View.GONE);
+            monedaBaseTextView4.setVisibility(View.GONE);
             precioBaseView4.setVisibility(View.GONE);
             historialPujasView4.setVisibility(View.GONE);
         }else {
@@ -203,17 +199,17 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
         switch (estado) {
             case "Auctioning":
                 valorActualOVendido4.setText("Valor Actual:");
-                valorActualDescriptionTextView4.setTextColor(Color.parseColor("#FF669900"));
+                valorActualTextView4.setTextColor(Color.parseColor("#FF669900"));
                 break;
             case "Programed":
                 valorActualOVendido4.setVisibility(View.GONE);
-                valorActualDescriptionTextView4.setVisibility(View.GONE);
-                monedaActualDescriptionTextView4.setVisibility(View.GONE);
+                valorActualTextView4.setVisibility(View.GONE);
+                monedaActualTextView4.setVisibility(View.GONE);
                 editarNumeroDeTexto4.setVisibility(View.GONE);
                 botonOfertar4.setVisibility(View.GONE);
                 historialPujasView4.setVisibility(View.GONE);
-                precioBaseDescriptionTextView4.setTextSize(30);
-                precioBaseDescriptionTextView4.setTextColor(Color.parseColor("#FF669900"));
+                precioBaseTextView4.setTextSize(30);
+                precioBaseTextView4.setTextColor(Color.parseColor("#FF669900"));
                 precioBaseView4.setTextSize(30);
                 precioBaseView4.setTextColor(Color.parseColor("#FF669900"));
                 break;
@@ -221,7 +217,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 editarNumeroDeTexto4.setVisibility(View.GONE);
                 botonOfertar4.setVisibility(View.GONE);
                 valorActualOVendido4.setText("Vendido:");
-                valorActualDescriptionTextView4.setTextColor(Color.parseColor("#FF669900"));
+                valorActualTextView4.setTextColor(Color.parseColor("#FF669900"));
                 break;
             case "Waiting Response":
                 botonOfertar4.setVisibility(View.GONE);
@@ -236,13 +232,13 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 editarNumeroDeTexto4.setVisibility(View.GONE);
                 break;
             case "Pending":
-                monedaBaseDescriptionTextView4.setVisibility(View.GONE);
+                monedaBaseTextView4.setVisibility(View.GONE);
                 historialPujasView4.setVisibility(View.GONE);
                 valorActualOVendido4.setVisibility(View.GONE);
                 editarNumeroDeTexto4.setVisibility(View.GONE);
-                monedaActualDescriptionTextView4.setVisibility(View.GONE);
-                valorActualDescriptionTextView4.setVisibility(View.GONE);
-                precioBaseDescriptionTextView4.setVisibility(View.GONE);
+                monedaActualTextView4.setVisibility(View.GONE);
+                valorActualTextView4.setVisibility(View.GONE);
+                precioBaseTextView4.setVisibility(View.GONE);
                 precioBaseView4.setVisibility(View.GONE);
                 botonOfertar4.setVisibility(View.GONE);
                 aceptarPendienteBoton.setVisibility(View.GONE);
@@ -251,13 +247,13 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
             case "Denied":
                 aceptarPendienteBoton.setVisibility(View.GONE);
                 rechazarPendienteBoton.setVisibility(View.GONE);
-                monedaBaseDescriptionTextView4.setVisibility(View.GONE);
+                monedaBaseTextView4.setVisibility(View.GONE);
                 historialPujasView4.setVisibility(View.GONE);
                 valorActualOVendido4.setVisibility(View.GONE);
                 editarNumeroDeTexto4.setVisibility(View.GONE);
-                monedaActualDescriptionTextView4.setVisibility(View.GONE);
-                valorActualDescriptionTextView4.setVisibility(View.GONE);
-                precioBaseDescriptionTextView4.setVisibility(View.GONE);
+                monedaActualTextView4.setVisibility(View.GONE);
+                valorActualTextView4.setVisibility(View.GONE);
+                precioBaseTextView4.setVisibility(View.GONE);
                 precioBaseView4.setVisibility(View.GONE);
                 botonOfertar4.setVisibility(View.GONE);
                 break;

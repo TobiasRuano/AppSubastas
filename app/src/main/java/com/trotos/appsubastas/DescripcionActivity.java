@@ -34,10 +34,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DescripcionActivity extends AppCompatActivity {
 
-    TextView titleDescriptionTextView3;
+    TextView titleTextView3;
     TextView precioBaseDescriptionTextView3;
     TextView valorActualDescriptionTextView3;
-    TextView fullTitleDescriptionTextView3;
+    TextView descriptionTextView3;
     TextView monedaBaseDescriptionTextView3;
     TextView monedaActualDescriptionTextView3;
 
@@ -82,14 +82,15 @@ public class DescripcionActivity extends AppCompatActivity {
     }
 
     private void configureUI() {
-        titleDescriptionTextView3 = findViewById(R.id.titleDescriptionTextView3);
+        titleTextView3 = findViewById(R.id.titleTextView3);
         precioBaseDescriptionTextView3 = findViewById(R.id.precioBaseDescriptionTextView3);
         valorActualDescriptionTextView3 = findViewById(R.id.valorActualDescriptionTextView3);
-        fullTitleDescriptionTextView3 = findViewById(R.id.fullTitleDescriptionTextView3);
+        descriptionTextView3 = findViewById(R.id.descriptionTextView3);
         monedaBaseDescriptionTextView3 = findViewById(R.id.monedaBaseDescriptionTextView3);
         monedaActualDescriptionTextView3 = findViewById(R.id.monedaActualDescriptionTextView3);
 
-        titleDescriptionTextView3.setText(element.getDescription());
+        titleTextView3.setText(element.getTitle());
+        descriptionTextView3.setText(element.getDescription());
 
         valorActualDescriptionTextView3.setTextColor(Color.GRAY);
 
@@ -100,11 +101,11 @@ public class DescripcionActivity extends AppCompatActivity {
         botonRegistrar = findViewById(R.id.botonRegistrar);
         historialPujasView = findViewById(R.id.historialPujasView);
 
-        fullTitleDescriptionTextView3.setOnClickListener(new View.OnClickListener() {
+        descriptionTextView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),DetalleDeLaDescripcionActivity.class);
-                intent.putExtra("valorDescription",fullTitleDescriptionTextView3.getText());
+                intent.putExtra("valorDescription", descriptionTextView3.getText());
                 startActivity(intent);
             }
         });
