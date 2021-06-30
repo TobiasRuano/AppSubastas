@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.SearchView;
 import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,7 +33,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class MenuLogueado extends AppCompatActivity{
+public class MenuLogueado extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
     BottomNavigationView bottomNavigationView;
     RecyclerView recyclerView;
@@ -41,17 +42,62 @@ public class MenuLogueado extends AppCompatActivity{
     Boolean estadoLoggeado;
     User user;
 
+    SearchView buscadorMenu;
+
+    MyAdapterSubasta myAdapterSubasta;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_logueado);
 
         getUser();
-        init();
+        //init();
+
+
+
+
+        estadoLoggeado = checkLogInStatus();
+        getDatos();
+        myAdapterSubasta = new MyAdapterSubasta(auctions, this, new MyAdapterSubasta.OnItemClickListener() {
+            @Override
+            public void onItemClick(Auction item) {
+                moveToDescription(item);
+            }
+        });
+        recyclerView = findViewById(R.id.listRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(  this    ));
+        recyclerView.setAdapter(myAdapterSubasta);
+
+        buscadorMenu = findViewById(R.id.buscadorMenu);
+
+        buscadorMenu.setOnQueryTextListener(this);
+
+
+
+
+
+
+
+
+
+
+
+        buscadorMenu = findViewById(R.id.buscadorMenu);
+
+        buscadorMenu.setOnQueryTextListener(this);
+
+
+
+
         ActionBar bar = getSupportActionBar();
         if(bar != null) {
             bar.hide();
         }
+
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.homeLogueado);
@@ -96,6 +142,11 @@ public class MenuLogueado extends AppCompatActivity{
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(  this    ));
         recyclerView.setAdapter(myAdapterSubasta);
+
+        buscadorMenu = findViewById(R.id.buscadorMenu);
+
+        buscadorMenu.setOnQueryTextListener(this);
+
     }
 
     private Boolean checkLogInStatus() {
@@ -149,5 +200,16 @@ public class MenuLogueado extends AppCompatActivity{
         intent.putExtra("currency", item.getCurrency());
         intent.putExtra("estadoLoggeado", estadoLoggeado);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        myAdapterSubasta.filtrado(newText);
+        return false;
     }
 }

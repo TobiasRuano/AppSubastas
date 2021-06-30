@@ -2,6 +2,10 @@ package com.trotos.appsubastas;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.os.Build;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,17 +19,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.trotos.appsubastas.Modelos.Auction;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+
 public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.ViewHolder> {
     private List<Auction> mData;
     private LayoutInflater mInflater;
     private Context context;
     final OnItemClickListener listener;
+
+    private ArrayList<Auction> mDataOriginal;
 
     public interface OnItemClickListener {
         void onItemClick(Auction item);
@@ -36,6 +46,8 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
         this.context = context;
         this.mData = itemList;
         this.listener = listener;
+        mDataOriginal = new ArrayList<>();
+        mDataOriginal.addAll(mData);
     }
 
     public int getItemCount() {
@@ -86,4 +98,29 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
             });
         }
     }
+
+    public void filtrado(final String txtBuscar){
+        int longitud = txtBuscar.length();
+        if(longitud == 0){
+            mData.clear();
+            mData.addAll(mDataOriginal);
+        }else{
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+                List<Auction> subastas = mData.stream()
+                        .filter(i -> i.getTitle().toLowerCase().contains(txtBuscar.toLowerCase()))
+                        .collect(Collectors.toList());
+                mData.clear();
+                mData.addAll(subastas);
+            }else{
+                for(Auction a: mDataOriginal){
+                    if(a.getTitle().toLowerCase().contains(txtBuscar.toLowerCase())){
+                        mData.add(a);
+                    }
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+
 }

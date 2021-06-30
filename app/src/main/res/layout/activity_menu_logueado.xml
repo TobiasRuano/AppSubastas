@@ -15,44 +15,45 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-
-        <TextView
-            android:id="@+id/textView"
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15sp"
-            android:layout_marginBottom="10sp"
-            android:text="Subastas"
-            android:textColor="#ffffff"
-            android:textSize="34sp"
-            android:textStyle="bold"
-            android:gravity="bottom|center"
-            android:fontFamily="@font/montserrat_medium"
-            />
-
-        <SearchView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"
-            android:textColor="#ffffff"
-            android:fontFamily="@font/montserrat_regular"
-
-            />
+            android:orientation="vertical">
 
 
-    </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:layout_marginBottom="10sp"
+                android:text="Subastas"
+                android:textColor="#ffffff"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                android:gravity="bottom|center"
+                android:fontFamily="@font/montserrat_medium"
+                />
+
+            <SearchView
+                android:id="@+id/buscadorMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints"
+                android:textColor="#ffffff"
+                android:fontFamily="@font/montserrat_regular"
+
+                />
+
+
+        </LinearLayout>
 
 
         <androidx.recyclerview.widget.RecyclerView
