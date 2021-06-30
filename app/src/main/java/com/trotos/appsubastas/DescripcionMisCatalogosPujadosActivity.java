@@ -13,18 +13,21 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.trotos.appsubastas.Modelos.Bid;
 import com.trotos.appsubastas.Modelos.ItemCatalogo;
 import com.trotos.appsubastas.Modelos.ResponseBids;
+import com.trotos.appsubastas.Modelos.User;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
 
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,6 +44,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
     TextView descriptionTextView5;
     TextView monedaBaseTextView5;
     TextView monedaActualTextView5;
+    TextView estadosubastaTextView;
 
     EditText editarNumeroDeTexto5;
     Button botonOfertar5;
@@ -53,6 +57,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
     List<CarouselItem> list = new ArrayList<>();
     List<Bid> bids = new ArrayList<>();
     ArrayList<String> aux = new ArrayList<>();
+    User user;
 
     ItemCatalogo element;
     boolean estaRegistrado;
@@ -66,6 +71,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
         estaRegistrado = (Boolean) getIntent().getBooleanExtra("estadoLoggeado", false);
         configureUI();
         cargar();
+        getUser();
         getBids();
         verHistorialPujas();
         //ofertar();
@@ -88,6 +94,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
         descriptionTextView5 = findViewById(R.id.fullTitleDescriptionTextView5);
         monedaBaseTextView5 = findViewById(R.id.monedaBaseDescriptionTextView5);
         monedaActualTextView5 = findViewById(R.id.monedaActualDescriptionTextView5);
+        estadosubastaTextView = findViewById(R.id.estadoDetalleDescriptionTextView5);
 
         titleTextView5.setText(element.getTitle());
         //titleTextView5.setTextColor(Color.parseColor(element.getColor()));
@@ -281,6 +288,22 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
                     bids.addAll(responseBids.getData());
                     int valorActual = bids.get(bids.size() - 1).getAmount();
                     valorActualTextView5.setText(String.valueOf(valorActual));
+                    Date fechaActual = new Date();
+                    if(bids.get(bids.size() - 1).getUserId() == user.getId()) {
+                        if(fechaActual.after(element.getEndTime())) {
+                            estadosubastaTextView.setText("Ganada!");
+                        } else {
+                            estadosubastaTextView.setText("Ganando!");
+                        }
+                        estadosubastaTextView.setTextColor(Color.GREEN);
+                    } else {
+                        if(fechaActual.after(element.getEndTime())) {
+                            estadosubastaTextView.setText("Perdida.");
+                        } else {
+                            estadosubastaTextView.setText("Perdiendo.");
+                        }
+                        estadosubastaTextView.setTextColor(Color.RED);
+                    }
                 } else {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener las ofertas", Toast.LENGTH_LONG);
                     toast1.show();
@@ -293,6 +316,14 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
                 toast1.show();
             }
         });
+    }
+
+    private void getUser() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("User", null);
+        Type type = new TypeToken<User>() {}.getType();
+        user = gson.fromJson(json, type);
     }
 
     private void verHistorialPujas() {
