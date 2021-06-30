@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -91,6 +92,10 @@ public class DescripcionActivity extends AppCompatActivity {
 
         titleTextView3.setText(element.getTitle());
         descriptionTextView3.setText(element.getDescription());
+        precioBaseDescriptionTextView3.setText(String.valueOf(element.getBasePrice()));
+        valorActualDescriptionTextView3.setText(String.valueOf(element.getBasePrice()));
+        monedaBaseDescriptionTextView3.setText(element.getCurrency());
+        monedaActualDescriptionTextView3.setText(element.getCurrency());
 
         valorActualDescriptionTextView3.setTextColor(Color.GRAY);
 
@@ -134,13 +139,15 @@ public class DescripcionActivity extends AppCompatActivity {
                 valorActualOVendido.setText("Valor Actual:");
                 valorActualDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
                 break;
-            case "Programed":
+            case "Programmed":
                 valorActualOVendido.setVisibility(View.GONE);
                 valorActualDescriptionTextView3.setVisibility(View.GONE);
                 monedaActualDescriptionTextView3.setVisibility(View.GONE);
                 editarNumeroDeTexto.setVisibility(View.GONE);
                 botonOfertar.setVisibility(View.GONE);
                 historialPujasView.setVisibility(View.GONE);
+                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) titleTextView3.getLayoutParams();
+                params.leftMargin = 0;
                 precioBaseDescriptionTextView3.setTextSize(30);
                 precioBaseDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
                 precioBaseView.setTextSize(30);
@@ -248,6 +255,4 @@ public class DescripcionActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
