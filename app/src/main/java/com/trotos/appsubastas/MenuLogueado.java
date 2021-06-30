@@ -37,16 +37,11 @@ public class MenuLogueado extends AppCompatActivity implements SearchView.OnQuer
 
     BottomNavigationView bottomNavigationView;
     RecyclerView recyclerView;
-
     List<Auction> auctions = new ArrayList<>();
     Boolean estadoLoggeado;
     User user;
-
     SearchView buscadorMenu;
-
-    MyAdapterSubasta myAdapterSubasta;
-
-
+    MyAdapterSubasta adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,50 +49,12 @@ public class MenuLogueado extends AppCompatActivity implements SearchView.OnQuer
         setContentView(R.layout.activity_menu_logueado);
 
         getUser();
-        //init();
-
-
-
-
-        estadoLoggeado = checkLogInStatus();
-        getDatos();
-        myAdapterSubasta = new MyAdapterSubasta(auctions, this, new MyAdapterSubasta.OnItemClickListener() {
-            @Override
-            public void onItemClick(Auction item) {
-                moveToDescription(item);
-            }
-        });
-        recyclerView = findViewById(R.id.listRecyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(  this    ));
-        recyclerView.setAdapter(myAdapterSubasta);
-
-        buscadorMenu = findViewById(R.id.buscadorMenu);
-
-        buscadorMenu.setOnQueryTextListener(this);
-
-
-
-
-
-
-
-
-
-
-
-        buscadorMenu = findViewById(R.id.buscadorMenu);
-
-        buscadorMenu.setOnQueryTextListener(this);
-
-
-
+        init();
 
         ActionBar bar = getSupportActionBar();
         if(bar != null) {
             bar.hide();
         }
-
 
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setSelectedItemId(R.id.homeLogueado);
@@ -132,7 +89,7 @@ public class MenuLogueado extends AppCompatActivity implements SearchView.OnQuer
     public void init(){
         estadoLoggeado = checkLogInStatus();
         getDatos();
-        MyAdapterSubasta myAdapterSubasta = new MyAdapterSubasta(auctions, this, new MyAdapterSubasta.OnItemClickListener() {
+        adapter = new MyAdapterSubasta(auctions, this, new MyAdapterSubasta.OnItemClickListener() {
             @Override
             public void onItemClick(Auction item) {
                 moveToDescription(item);
@@ -140,13 +97,10 @@ public class MenuLogueado extends AppCompatActivity implements SearchView.OnQuer
         });
         recyclerView = findViewById(R.id.listRecyclerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(  this    ));
-        recyclerView.setAdapter(myAdapterSubasta);
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
         buscadorMenu = findViewById(R.id.buscadorMenu);
-
         buscadorMenu.setOnQueryTextListener(this);
-
     }
 
     private Boolean checkLogInStatus() {
@@ -163,7 +117,6 @@ public class MenuLogueado extends AppCompatActivity implements SearchView.OnQuer
         user = gson.fromJson(json, type);
     }
 
-
     private void getDatos() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:3000/")
@@ -178,7 +131,7 @@ public class MenuLogueado extends AppCompatActivity implements SearchView.OnQuer
                 if(response.isSuccessful()) {
                     ResponseAuctions subastas = response.body();
                     auctions.addAll(subastas.getData());
-                    recyclerView.getAdapter().notifyDataSetChanged();
+                    adapter.setItems(subastas.getData());
                 } else {
                     Toast toast2 = Toast.makeText(getApplicationContext(), "Hubo un error al obtener los datos", Toast.LENGTH_LONG);
                     toast2.show();
@@ -209,7 +162,7 @@ public class MenuLogueado extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        myAdapterSubasta.filtrado(newText);
+        adapter.filtrado(newText);
         return false;
     }
 }

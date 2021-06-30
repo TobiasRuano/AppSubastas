@@ -1,9 +1,6 @@
 package com.trotos.appsubastas;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Build;
 
 import android.view.LayoutInflater;
@@ -22,20 +19,14 @@ import com.trotos.appsubastas.Modelos.Auction;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.text.Format;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.ViewHolder> {
     private List<Auction> mData;
+    private List<Auction> mDataOriginal;
     private LayoutInflater mInflater;
     private Context context;
     final OnItemClickListener listener;
-
-    private ArrayList<Auction> mDataOriginal;
 
     public interface OnItemClickListener {
         void onItemClick(Auction item);
@@ -46,8 +37,8 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
         this.context = context;
         this.mData = itemList;
         this.listener = listener;
-        mDataOriginal = new ArrayList<>();
-        mDataOriginal.addAll(mData);
+        this.mDataOriginal = new ArrayList<>();
+        this.mDataOriginal.addAll(mData);
     }
 
     public int getItemCount() {
@@ -69,6 +60,8 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
 
     public void setItems(List<Auction> items){
         mData = items;
+        mDataOriginal.addAll(mData);
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -100,8 +93,7 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
     }
 
     public void filtrado(final String txtBuscar){
-        int longitud = txtBuscar.length();
-        if(longitud == 0){
+        if(txtBuscar.isEmpty()){
             mData.clear();
             mData.addAll(mDataOriginal);
         }else{
@@ -111,6 +103,8 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
                         .collect(Collectors.toList());
                 mData.clear();
                 mData.addAll(subastas);
+                System.out.println(mData.size());
+                System.out.println("El tamaño de mdataoriginal es: " + mDataOriginal.size());
             }else{
                 for(Auction a: mDataOriginal){
                     if(a.getTitle().toLowerCase().contains(txtBuscar.toLowerCase())){
@@ -121,6 +115,4 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
         }
         notifyDataSetChanged();
     }
-
-
 }
