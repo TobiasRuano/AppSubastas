@@ -1,8 +1,7 @@
 package com.trotos.appsubastas;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.trotos.appsubastas.Modelos.Auction;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.ViewHolder> {
     private List<Auction> mData;
@@ -63,7 +66,6 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             iconImage = itemView.findViewById(R.id.iconImageView);
             name = itemView.findViewById(R.id.nameTextView);
             state = itemView.findViewById(R.id.stateTextView);
@@ -72,9 +74,9 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
         }
 
         public void bindData(final Auction item){
-            //iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
+            String stateString = item.getTimeStatus();
             name.setText(item.getTitle());
-            state.setText(item.getStatus());
+            state.setText(stateString);
             category.setText(item.getCategory());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

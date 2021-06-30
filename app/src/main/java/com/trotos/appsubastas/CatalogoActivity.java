@@ -64,7 +64,7 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
         categoryDescriptionTextView = findViewById(R.id.categoryDescriptionTextView);
         nameDescriptionTextView.setText(element.getTitle());
         //nameDescriptionTextView.setTextColor(Color.parseColor(element.getColor()));
-        stateDescriptionTextView.setText(element.getStatus());
+        stateDescriptionTextView.setText(element.getTimeStatus());
         categoryDescriptionTextView.setText(element.getCategory());
         init();
         getUser();
