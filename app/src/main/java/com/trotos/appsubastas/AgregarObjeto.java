@@ -48,6 +48,7 @@ public class AgregarObjeto extends AppCompatActivity {
     RadioGroup radioGroup;
     RadioButton botonEstandar, botonObra;
     Integer REQUEST_CAMERA = 1, SELECT_FILE = 0;
+    TextView labelNombreArtistaTextoObjetoEstandar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,7 @@ public class AgregarObjeto extends AppCompatActivity {
         artista = findViewById(R.id.nombreArtistaTextoObjetoEstandar);
         artista.setVisibility(View.GONE);
         artistaBox = findViewById(R.id.nombreArtistaObjetoEstandar);
+        labelNombreArtistaTextoObjetoEstandar = findViewById(R.id.labelNombreArtistaTextoObjetoEstandar);
         nombreBox = findViewById(R.id.nombreObjetoEstandar);
         nPlazaBox = findViewById(R.id.nPlazaObjetoEstandar);
         descBox = findViewById(R.id.descripcionObjetoEstandar);
@@ -92,6 +94,7 @@ public class AgregarObjeto extends AppCompatActivity {
                         botonObra.setTextColor(Color.RED);
                         botonObra.setBackground(getDrawable(R.drawable.radio_button_right_unchecked));
                         artista.setVisibility(View.GONE);
+                        labelNombreArtistaTextoObjetoEstandar.setVisibility(View.GONE);
                         break;
                     case R.id.obraBoton:
                         botonEstandar.setTextColor(Color.RED);
@@ -99,6 +102,7 @@ public class AgregarObjeto extends AppCompatActivity {
                         botonObra.setTextColor(Color.WHITE);
                         botonObra.setBackground(getDrawable(R.drawable.radio_button_right_checked));
                         artista.setVisibility(View.VISIBLE);
+                        labelNombreArtistaTextoObjetoEstandar.setVisibility(View.VISIBLE);
                         artistaBox.setVisibility(View.VISIBLE);
                         break;
                 }

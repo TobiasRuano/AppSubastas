@@ -16,12 +16,17 @@
         android:textColor="#ffffff"
         android:textSize="34sp"
         android:textStyle="bold"
-        android:fontFamily="@font/montserrat_medium"
         android:layout_marginTop="15sp"
         android:layout_marginBottom="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+
+        android:shadowColor="#000055"
+        android:shadowDx="10"
+        android:shadowDy="10"
+        android:shadowRadius="20"
+        android:fontFamily="@font/montserrat_medium"
         />
 
     <ScrollView
@@ -35,7 +40,7 @@
             android:id="@+id/radioButtonLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="25dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             tools:ignore="MissingConstraints">
@@ -49,7 +54,9 @@
                     android:id="@+id/radioGroupObjetos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+
+                    >
                     <androidx.appcompat.widget.AppCompatRadioButton
                         android:id="@+id/estandarBoton"
                         android:layout_width="wrap_content"
@@ -61,48 +68,97 @@
                         android:checked="true"
                         android:background="@drawable/radio_button_left_selector"
                         android:layout_weight="1"
+
+                        android:fontFamily="@font/montserrat_regular"
                         />
                     <androidx.appcompat.widget.AppCompatRadioButton
                         android:id="@+id/obraBoton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/holo_red_light"
+                        android:textColor="#ff0000"
                         android:text="Obra Especial"
                         android:button="@android:color/transparent"
                         android:gravity="center"
                         android:checked="false"
                         android:background="@drawable/radio_button_right_selector"
                         android:layout_weight="1"
+
+                        android:fontFamily="@font/montserrat_regular"
                         />
                 </RadioGroup>
             </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/nombreTextoObjetoEstandar"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:hint="Nombre"
-                android:textColorHint="#FFFFFF"
-                app:endIconMode="clear_text"
-                app:hintTextColor="#FFFFFF"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layoutRadioGroup"
-                app:placeholderTextColor="#FFFFFF"
-                app:prefixTextColor="#FFFFFF"
-                app:suffixTextColor="#FFFFFF">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/layoutRadioGroup"
+                tools:layout_editor_absoluteX="1dp"
+                android:layout_marginTop="15dp"
+                >
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Nombre:"
+                    android:textColor="#FFFFFF"
+
+                    android:textSize="20sp"
+                    tools:layout_marginEnd="20dp"
+                    tools:layout_marginStart="20dp" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nombreTextoObjetoEstandar"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:hint="Nombre"
+                    android:textColorHint="#FFFFFF"
+                    app:endIconMode="clear_text"
+                    app:hintTextColor="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layoutRadioGroup"
+                    app:placeholderTextColor="#FFFFFF"
+                    app:prefixTextColor="#FFFFFF"
+                    app:suffixTextColor="#FFFFFF"
+                    android:fontFamily="@font/montserrat_regular"
+                    >
+
+
+
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nombreObjetoEstandar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
-                    android:textColorHint="#FFFFFF" />
+                    android:textColorHint="#FFFFFF"
+                    android:fontFamily="@font/montserrat_regular"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/labelNombreArtistaTextoObjetoEstandar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Nombre del Artista:"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:visibility="gone"
+                />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/nombreArtistaTextoObjetoEstandar"
@@ -110,7 +166,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
                 android:hint="Nombre del Artista"
                 android:textColorHint="#FFFFFF"
@@ -120,15 +176,33 @@
                 app:layout_constraintTop_toBottomOf="@id/nombreTextoObjetoEstandar"
                 app:placeholderTextColor="#FFFFFF"
                 app:prefixTextColor="#FFFFFF"
-                app:suffixTextColor="#FFFFFF">
+                app:suffixTextColor="#FFFFFF"
+                android:fontFamily="@font/montserrat_regular">
+
+
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nombreArtistaObjetoEstandar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
-                    android:textColorHint="#FFFFFF" />
+                    android:textColorHint="#FFFFFF"
+                    android:fontFamily="@font/montserrat_regular" />
             </com.google.android.material.textfield.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Número de Pieza:"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    tools:layout_marginEnd="20dp"
+                    tools:layout_marginStart="20dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/nPlazaTextoObjetoEstandar"
@@ -136,9 +210,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
-                android:hint="Numero de Pieza"
+                android:hint="Número de Pieza"
                 android:textColorHint="#FFFFFF"
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -148,13 +222,30 @@
                 app:prefixTextColor="#FFFFFF"
                 app:suffixTextColor="#FFFFFF">
 
+
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nPlazaObjetoEstandar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
-                    android:textColorHint="#FFFFFF" />
+                    android:textColorHint="#FFFFFF"
+                    android:fontFamily="@font/montserrat_regular"/>
             </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Descripción:"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                tools:layout_marginEnd="20dp"
+                tools:layout_marginStart="20dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/descripcionTextoObjetoEstandar"
@@ -162,9 +253,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
-                android:hint="Descripcion"
+                android:hint="Descripción"
                 android:textColorHint="#FFFFFF"
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -172,58 +263,84 @@
                 app:layout_constraintTop_toBottomOf="@id/nPlazaTextoObjetoEstandar"
                 app:placeholderTextColor="#FFFFFF"
                 app:prefixTextColor="#FFFFFF"
-                app:suffixTextColor="#FFFFFF">
+                app:suffixTextColor="#FFFFFF"
+                android:fontFamily="@font/montserrat_regular">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/descripcionObjetoEstandar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
-                    android:textColorHint="#FFFFFF" />
+                    android:textColorHint="#FFFFFF"
+                    android:fontFamily="@font/montserrat_regular"/>
             </com.google.android.material.textfield.TextInputLayout>
 
+
             <TextView
-                android:id="@+id/fotoTextoObjetoEstandar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_medium"
                 android:text="Foto:"
                 android:textColor="#FFFFFF"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/descripcionTextoObjetoEstandar" />
+                android:textSize="20sp"
+                tools:layout_marginEnd="20dp"
+                tools:layout_marginStart="20dp"
+                />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/subirFotoObjeto"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fotoTextoObjetoEstandar" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:layout_editor_absoluteX="1dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="0dp"
+                    >
 
-            <ImageView
-                android:id="@+id/imagenObjetos"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/subirFotoObjeto" />
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/subirFotoObjeto"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="right"
+                        />
+
+                    <ImageView
+                        android:id="@+id/imagenObjetos"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        />
+
+                </LinearLayout>
 
             <Button
                 android:id="@+id/botonGargarObjeto"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="350dp"
+                android:layout_height="80dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="100dp"
+                android:layout_marginBottom="80dp"
+                android:layout_marginTop="0dp"
                 android:text="Cargar Objeto"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imagenObjetos" />
+                app:layout_constraintTop_toBottomOf="@+id/imagenObjetos"
+                android:layout_gravity="center"
+
+                android:fontFamily="@font/montserrat_medium"
+                android:background="@drawable/estilo_sombra"
+                />
+
+            </LinearLayout>
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
