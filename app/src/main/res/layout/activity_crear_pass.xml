@@ -19,12 +19,20 @@
             android:id="@+id/titleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
             android:text="Hola XXXXX"
+
             android:textAlignment="center"
-            android:textColor="#E91E63"
+            android:textColor="#FFFFFF"
             android:textSize="34sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:shadowColor="#000055"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:shadowRadius="20"
+            android:fontFamily="@font/montserrat_medium"
+            />
 
         <TextView
             android:id="@+id/textView8"
@@ -32,9 +40,27 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="75dp"
             android:layout_marginEnd="75dp"
+            android:layout_marginBottom="30dp"
             android:text="Para terminar el proceso de registro, debe crear una contraseña"
             android:textAlignment="center"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/montserrat_medium_italic"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="20dp"
+            android:text="Ingrese Contraseña:"
+            tools:layout_marginEnd="20dp"
+            tools:layout_marginStart="20dp"
+
+            android:fontFamily="@font/montserrat_medium"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            />
 
         <EditText
             android:id="@+id/passwordEditText"
@@ -42,8 +68,10 @@
             android:layout_height="60dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/estilo_borde"
+            android:fontFamily="@font/montserrat_regular"
             app:endIconMode="clear_text"
             android:hint="Contraseña"
             android:inputType="textPassword" />
@@ -54,19 +82,25 @@
             android:layout_height="60dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/estilo_borde"
+            android:fontFamily="@font/montserrat_regular"
             app:endIconMode="clear_text"
             android:hint="Re ingrese la contraseña"
             android:inputType="textPassword" />
 
         <Button
             android:id="@+id/createPasswordButton"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
-            android:gravity="center_horizontal|center_vertical"
+            android:layout_width="350dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
             android:text="Crear Contraseña"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+
+            android:fontFamily="@font/montserrat_medium"
+            android:background="@drawable/estilo_sombra"
+            />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

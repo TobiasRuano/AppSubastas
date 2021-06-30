@@ -26,7 +26,6 @@
             android:textColor="#FFFFFF"
             android:textSize="34sp"
             android:textStyle="bold"
-
             android:shadowColor="#000055"
             android:shadowDx="10"
             android:shadowDy="10"
