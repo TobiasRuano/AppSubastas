@@ -2,12 +2,22 @@ package com.trotos.appsubastas.Modelos;
 
 public class Bid {
 
-    public int getCatalogItemid() {
-        return catalogItemid;
+    private int catalogItemId;
+    private int amount;
+    private int userId;
+
+    public Bid(int catalogItemId, int amount, int userId) {
+        this.catalogItemId = catalogItemId;
+        this.amount = amount;
+        this.userId = userId;
     }
 
-    public void setCatalogItemid(int catalogItemid) {
-        this.catalogItemid = catalogItemid;
+    public int getCatalogItemId() {
+        return catalogItemId;
+    }
+
+    public void setCatalogItemId(int catalogItemId) {
+        this.catalogItemId = catalogItemId;
     }
 
     public int getAmount() {
@@ -23,16 +33,6 @@ public class Bid {
     }
 
     public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    private int catalogItemid;
-    private int amount;
-    private int userId;
-
-    public Bid(int catalogItemid, int amount, int userId) {
-        this.catalogItemid = catalogItemid;
-        this.amount = amount;
         this.userId = userId;
     }
 }

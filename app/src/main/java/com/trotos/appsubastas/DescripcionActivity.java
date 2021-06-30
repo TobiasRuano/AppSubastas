@@ -125,15 +125,15 @@ public class DescripcionActivity extends AppCompatActivity {
 
         String estado = element.getStatus();
         if(estado == null) {
-            estado = "Programada";
+            estado = "Programed";
         }
 
         switch (estado) {
-            case "En Curso":
+            case "Auctioning":
                 valorActualOVendido.setText("Valor Actual:");
                 valorActualDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
                 break;
-            case "Programada":
+            case "Programed":
                 valorActualOVendido.setVisibility(View.GONE);
                 valorActualDescriptionTextView3.setVisibility(View.GONE);
                 monedaActualDescriptionTextView3.setVisibility(View.GONE);
@@ -145,7 +145,7 @@ public class DescripcionActivity extends AppCompatActivity {
                 precioBaseView.setTextSize(30);
                 precioBaseView.setTextColor(Color.parseColor("#FF669900"));
                 break;
-            case "Finalizada":
+            case "Ended":
                 editarNumeroDeTexto.setVisibility(View.GONE);
                 botonOfertar.setVisibility(View.GONE);
                 valorActualOVendido.setText("Vendido:");
@@ -180,32 +180,17 @@ public class DescripcionActivity extends AppCompatActivity {
         botonOfertar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                int valorPrecioActual = element.getBasePrice(); // no es esto
-                int valorPrecioBase = element.getBasePrice();
-                boolean hayError = false;
-
-                String categoria = getIntent().getStringExtra("categoria");
-                if (categoria == null) {
-                    categoria = "oro";
-                }
-
                 String texto = editarNumeroDeTexto.getText().toString();
-                if(!texto.equals("")){
+                if(!texto.isEmpty()){
                     valorPuja = Integer.parseInt(editarNumeroDeTexto.getText().toString());
                 }
 
-
                 if(valorPuja == 0){
                     showAlert("Monto vacio","Debe ingresar un Monto para poder Ofertar.");
-                } else if(valorPuja > (valorPrecioActual * 1.2) && (categoria.equals("Oro") || categoria.equals("Platino")) ){
-                    showAlert("Monto inválido","La oferta no puede exceder el 20 % de la última oferta realizada.");
-                } else if(valorPuja <= (valorPrecioBase * 0.01 + valorPrecioActual)){
-                    showAlert("Monto inválido","La oferta debe ser 1 % mayor al valor base del bien.");
-                } else if(valorPuja <= valorPrecioActual){
-                    showAlert("Monto inválido","La oferta no puede ser menor o igual a la última oferta realizada.");
-                } else{
-                    pujar(valorPuja);
+                } else if(valorPuja <= element.getBasePrice()) {
+                    showAlert("Monto Incorrecto","Debe ingresar un Monto mayor al precio base.");
+                }else{
+                    placeBid();
                 }
             }
         });
@@ -219,7 +204,7 @@ public class DescripcionActivity extends AppCompatActivity {
         user = gson.fromJson(json, type);
     }
 
-    private void pujar(int offer) {
+    private void placeBid() {
         SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
         String token = sharedPreferences.getString("Token", null);
 
@@ -235,15 +220,18 @@ public class DescripcionActivity extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                Toast toast1;
                 if(response.isSuccessful()) {
-                    Toast toast1 = Toast.makeText(getApplicationContext(),"Oferta realizada con exito!", Toast.LENGTH_LONG);
-                    toast1.show();
+                    toast1 = Toast.makeText(getApplicationContext(), "Oferta realizada con exito!", Toast.LENGTH_LONG);
+                } else {
+                    toast1 = Toast.makeText(getApplicationContext(), response.message(), Toast.LENGTH_LONG);
                 }
+                toast1.show();
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast toast1 = Toast.makeText(getApplicationContext(),"Error al ofertar!", Toast.LENGTH_LONG);
+                Toast toast1 = Toast.makeText(getApplicationContext(),t.getMessage(), Toast.LENGTH_LONG);
                 toast1.show();
             }
         });
