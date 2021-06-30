@@ -11,7 +11,7 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/toolbarlogueado"></include>
+        layout="@layout/toolbarlogueado" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -119,7 +119,8 @@
                     android:fontFamily="sans-serif-condensed-medium"
                     android:text="Oro "
                     android:textSize="25dp"
-                    tools:ignore="MissingConstraints" />
+                    tools:ignore="MissingConstraints"
+                    android:textColor="@null" />
 
 
             </LinearLayout>

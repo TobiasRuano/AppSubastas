@@ -31,6 +31,7 @@ import com.trotos.appsubastas.Modelos.User;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -105,7 +106,6 @@ public class MiUsuario extends AppCompatActivity {
                 AlertDialog titulo = alerta.create();
                 titulo.setTitle("Salida");
                 titulo.show();
-                System.out.println("HOLAAAAAA");
             }
         });
 
@@ -160,7 +160,7 @@ public class MiUsuario extends AppCompatActivity {
         SharedPreferences  sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
         prefsEditor.clear();
-        prefsEditor.commit();
+        prefsEditor.apply();
     }
 
 
@@ -168,11 +168,18 @@ public class MiUsuario extends AppCompatActivity {
         user.setCategory(category);
         saveUser(user);
         switch (category) {
-            case "Comun": categoriaUsuario.setTextColor(Color.rgb(80,50,20));
-            case "Especial": categoriaUsuario.setTextColor(Color.rgb(80,50,20));
-            case "Plata": categoriaUsuario.setTextColor(Color.rgb(192,192,192));
-            case "Oro": categoriaUsuario.setTextColor(Color.rgb(255,215,0));
-            case "Platino": categoriaUsuario.setTextColor(Color.rgb(229, 228, 226));
+            case "Plata":
+                categoriaUsuario.setTextColor(Color.rgb(192,192,192));
+                break;
+            case "Oro": 
+                categoriaUsuario.setTextColor(Color.rgb(255,215,0));
+                break;
+            case "Platino": 
+                categoriaUsuario.setTextColor(Color.rgb(229, 228, 226));
+                break;
+            default:
+                categoriaUsuario.setTextColor(Color.rgb(80,50,20));
+                break;
         }
     }
 
@@ -231,58 +238,39 @@ public class MiUsuario extends AppCompatActivity {
     }
 
     private void SeleccionImagen() {
-
         final CharSequence[] items={"Camara", "Galeria", "Cancelar"};
-
         AlertDialog.Builder builder = new AlertDialog.Builder(MiUsuario.this);
         builder.setTitle("Agregar Imagen");
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
                 if(items[i].equals("Camara")){
-
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(intent,REQUEST_CAMERA);
-
                 }else if(items[i].equals("Galeria")){
-
                     Intent intent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intent.setType("image/*");
                     startActivityForResult(intent.createChooser(intent,"Select File"),SELECT_FILE);
-
                 }else if (items[i].equals("Cancelar")){
-
                     dialog.dismiss();
                 }
-
             }
         });
         builder.show();
-
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
-
         if(resultCode == Activity.RESULT_OK){
-
             if (requestCode == REQUEST_CAMERA){
-
                 Bundle bundle = data.getExtras();
                 final Bitmap bmp = (Bitmap) bundle.get("data");
                 fotoPerfil.setImageBitmap(bmp);
-
             }else if (requestCode == SELECT_FILE){
-
                 Uri selectImageUri = data.getData();
                 fotoPerfil.setImageURI(selectImageUri);
-
-
             }
-
         }
     }
-
-
 }
