@@ -1,6 +1,8 @@
 package com.trotos.appsubastas.Modelos;
 
-public class Bid {
+import java.io.Serializable;
+
+public class Bid implements Serializable {
 
     private int catalogItemId;
     private int amount;

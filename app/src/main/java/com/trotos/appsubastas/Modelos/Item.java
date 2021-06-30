@@ -10,9 +10,10 @@ public class Item implements Serializable {
     private String urlImage;
     private int commission;
     private int basePrice;
+    private String currency;
     private String status;
 
-    public Item(int id, String title, String description, String urlImage, int commission, int basePrice, String status) {
+    public Item(int id, String title, String description, String urlImage, int commission, int basePrice, String status, String currency) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -20,6 +21,7 @@ public class Item implements Serializable {
         this.commission = commission;
         this.basePrice = basePrice;
         this.status = status;
+        this.currency = currency;
     }
 
     public int getId() {
@@ -76,5 +78,13 @@ public class Item implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 }

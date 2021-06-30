@@ -23,19 +23,17 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
     final OnItemClickListener listener2;
 
     boolean estaRegistrado;
-    String currency;
 
     public interface OnItemClickListener {
         void onItemClick(ItemCatalogo item);
     }
 
-    public MyAdapterCatalogo(String currency, List<ItemCatalogo> itemList, Boolean estaRegistrado, Context context, OnItemClickListener listener2){
+    public MyAdapterCatalogo(List<ItemCatalogo> itemList, Boolean estaRegistrado, Context context, OnItemClickListener listener2){
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
         this.listener2 = listener2;
         this.estaRegistrado = estaRegistrado;
-        this.currency = currency;
     }
 
     public int getItemCount() {
@@ -77,7 +75,7 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
             Picasso.with(context).load(item.getUrlImage()).into(iconImage);
             descripcion.setText(item.getTitle());
             descripcionBreve.setText(item.getDescription());
-            moneda.setText(currency);
+            moneda.setText(item.getCurrency());
 
             String valorActualText = String.format("%,d", item.getBasePrice());
             ValorActual.setText(valorActualText);

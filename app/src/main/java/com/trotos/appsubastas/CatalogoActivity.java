@@ -46,7 +46,6 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
 
     Auction element;
     String category;
-    String currency;
     User user;
     List<ItemCatalogo> catalogos = new ArrayList<>();
 
@@ -57,7 +56,6 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
 
         element = (Auction) getIntent().getSerializableExtra("subasta");
         category = (String) getIntent().getSerializableExtra("category");
-        currency = (String) getIntent().getSerializableExtra("currency");
         estaRegistrado = getIntent().getBooleanExtra("estadoLoggeado", false);
         nameDescriptionTextView = findViewById(R.id.nameDescriptionTextView);
         stateDescriptionTextView = findViewById(R.id.stateDescriptionTextView);
@@ -72,7 +70,7 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
     }
 
     public void init(){
-        MyAdapterCatalogo myAdapterCatalogo = new MyAdapterCatalogo(currency, catalogos, estaRegistrado, this, new MyAdapterCatalogo.OnItemClickListener() {
+        MyAdapterCatalogo myAdapterCatalogo = new MyAdapterCatalogo(catalogos, estaRegistrado, this, new MyAdapterCatalogo.OnItemClickListener() {
             @Override
             public void onItemClick(ItemCatalogo item) {
                 moveToDescription(item);

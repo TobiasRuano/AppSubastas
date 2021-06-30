@@ -155,8 +155,8 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
         valorActualTextView4.setText(valorActualText4);
         valorActualTextView4.setTextColor(Color.GRAY);
         descriptionTextView4.setText(element.getDescription());
-        monedaBaseTextView4.setText("USD"); // harcodeado, se obtiene de item
-        monedaActualTextView4.setText("USD");
+        monedaBaseTextView4.setText(element.getCurrency());
+        monedaActualTextView4.setText(element.getCurrency());
 
         editarNumeroDeTexto4 = findViewById(R.id.editarNumeroDeTexto4);
         botonOfertar4 = findViewById(R.id.botonOfertar4);

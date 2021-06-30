@@ -207,7 +207,7 @@ public class AgregarObjeto extends AppCompatActivity {
         System.out.println(result);
         result = result + "Numero de pieza: " + nPlaza + "\n" + descripcion;
         System.out.println(result);
-        Item item = new Item(0, nombre, result, "", 0, 0, "Pending");
+        Item item = new Item(0, nombre, result, "", 0, 0, "Pending", null);
         Call<ResponseItemsPropuestos> call = as.postProducto(item, "Bearer "+ token);
 
         call.enqueue(new Callback<ResponseItemsPropuestos>() {

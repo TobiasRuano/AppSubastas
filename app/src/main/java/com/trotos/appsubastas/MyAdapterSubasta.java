@@ -103,8 +103,6 @@ public class MyAdapterSubasta extends RecyclerView.Adapter<MyAdapterSubasta.View
                         .collect(Collectors.toList());
                 mData.clear();
                 mData.addAll(subastas);
-                System.out.println(mData.size());
-                System.out.println("El tamaño de mdataoriginal es: " + mDataOriginal.size());
             }else{
                 for(Auction a: mDataOriginal){
                     if(a.getTitle().toLowerCase().contains(txtBuscar.toLowerCase())){

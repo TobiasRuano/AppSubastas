@@ -1,25 +1,36 @@
 package com.trotos.appsubastas;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.trotos.appsubastas.Modelos.Bid;
 import com.trotos.appsubastas.Modelos.ItemCatalogo;
+import com.trotos.appsubastas.Modelos.ResponseBids;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
@@ -40,6 +51,8 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
     TextView historialPujasView5;
 
     List<CarouselItem> list = new ArrayList<>();
+    List<Bid> bids = new ArrayList<>();
+    ArrayList<String> aux = new ArrayList<>();
 
     ItemCatalogo element;
     boolean estaRegistrado;
@@ -53,9 +66,9 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
         estaRegistrado = (Boolean) getIntent().getBooleanExtra("estadoLoggeado", false);
         configureUI();
         cargar();
+        getBids();
         verHistorialPujas();
         //ofertar();
-        //logIn();
     }
 
     private void logIn() {
@@ -81,12 +94,12 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
 
         String precioBaseText5 = String.format("%,d", element.getBasePrice());
         precioBaseTextView5.setText(precioBaseText5);
-        String valorActualText5 = String.format("%,d", element.getBasePrice());
-        valorActualTextView5.setText(valorActualText5);
-        valorActualTextView5.setTextColor(Color.GRAY);
+        //String valorActualText5 = String.format("%,d", element.getBasePrice());
+        valorActualTextView5.setText("testt");
+        //valorActualTextView5.setTextColor(Color.GRAY);
         descriptionTextView5.setText(element.getDescription());
-        monedaBaseTextView5.setText("USD");
-        monedaActualTextView5.setText("USD");
+        monedaBaseTextView5.setText(element.getCurrency());
+        monedaActualTextView5.setText(element.getCurrency());
 
         //editarNumeroDeTexto5 = findViewById(R.id.editarNumeroDeTexto5);
         //botonOfertar5 = findViewById(R.id.botonOfertar5);
@@ -134,14 +147,15 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
         String estado = element.getStatus();
 
         if(estado == null) {
-            estado = "En curso"; // para que no crashee
+            estado = "Auctioning"; // para que no crashee
         }
+        System.out.println(element.getStatus());
         switch (estado) {
-            case "En Curso":
-                valorActualOVendido5.setText("Valor Actual:");
+            case "Auctioning":
+                valorActualOVendido5.setText("Valor Actual");
                 valorActualTextView5.setTextColor(Color.parseColor("#FF669900"));
                 break;
-            case "Programada":
+            case "Programmed":
                 valorActualOVendido5.setVisibility(View.GONE);
                 valorActualTextView5.setVisibility(View.GONE);
                 monedaActualTextView5.setVisibility(View.GONE);
@@ -153,7 +167,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
                 precioBaseView5.setTextSize(30);
                 precioBaseView5.setTextColor(Color.parseColor("#FF669900"));
                 break;
-            case "Finalizada":
+            case "Ended":
                 //editarNumeroDeTexto5.setVisibility(View.GONE);
                 //botonOfertar5.setVisibility(View.GONE);
                 valorActualOVendido5.setText("Vendido:");
@@ -183,77 +197,110 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
                 .show();
     }
 
-/*
-    private void ofertar() {
-        botonOfertar5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    /*
+        private void ofertar() {
+            botonOfertar5.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-                int valorPrecioActual = element.getBasePrice();
-                int valorPrecioBase = element.getBasePrice();
-                boolean hayError = false;
+                    int valorPrecioActual = element.getBasePrice();
+                    int valorPrecioBase = element.getBasePrice();
+                    boolean hayError = false;
 
-                String categoria = getIntent().getStringExtra("categoria");
-                if (categoria == null) {
-                    categoria = "oro";
+                    String categoria = getIntent().getStringExtra("categoria");
+                    if (categoria == null) {
+                        categoria = "oro";
+                    }
+
+                    int valorPuja = 0;
+                    String texto = editarNumeroDeTexto5.getText().toString();
+                    if(!texto.equals("")){
+                        valorPuja = Integer.parseInt(editarNumeroDeTexto5.getText().toString());
+                    }
+
+
+                    if(valorPuja == 0){
+                        showAlert("Monto vacio","Debe ingresar un Monto para poder Ofertar.");
+                    } else if(valorPuja > (valorPrecioActual * 1.2) && (categoria.equals("Oro") || categoria.equals("Platino")) ){
+                        showAlert("Monto inválido","La oferta no puede exceder el 20 % de la última oferta realizada.");
+                    } else if(valorPuja <= (valorPrecioBase * 0.01 + valorPrecioActual)){
+                        showAlert("Monto inválido","La oferta debe ser 1 % mayor al valor base del bien.");
+                    } else if(valorPuja <= valorPrecioActual){
+                        showAlert("Monto inválido","La oferta no puede ser menor o igual a la última oferta realizada.");
+                    } else{
+                        pujar(valorPuja);
+                    }
+                }
+            });
+        }
+
+        private void pujar(int offer) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("https://URL-de-la-API.com")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            ApiUtils as = retrofit.create(ApiUtils.class);
+
+            element.setValorActual(offer);
+
+            Call<ItemCatalogo> call = as.postBid(element);
+
+            call.enqueue(new Callback<ItemCatalogo>() {
+                @Override
+                public void onResponse(Call<ItemCatalogo> call, Response<ItemCatalogo> response) {
+                    if(response.body() != null) {
+                        Toast toast1 = Toast.makeText(getApplicationContext(),"Oferta realizada con exito!", Toast.LENGTH_LONG);
+                        toast1.show();
+                    }
                 }
 
-                int valorPuja = 0;
-                String texto = editarNumeroDeTexto5.getText().toString();
-                if(!texto.equals("")){
-                    valorPuja = Integer.parseInt(editarNumeroDeTexto5.getText().toString());
+                @Override
+                public void onFailure(Call<ItemCatalogo> call, Throwable t) {
+                    Toast toast1 = Toast.makeText(getApplicationContext(),"Error al ofertar!", Toast.LENGTH_LONG);
+                    toast1.show();
                 }
+            });
+        }
+    */
+    private void getBids() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        String token = sharedPreferences.getString("Token", null);
 
-
-                if(valorPuja == 0){
-                    showAlert("Monto vacio","Debe ingresar un Monto para poder Ofertar.");
-                } else if(valorPuja > (valorPrecioActual * 1.2) && (categoria.equals("Oro") || categoria.equals("Platino")) ){
-                    showAlert("Monto inválido","La oferta no puede exceder el 20 % de la última oferta realizada.");
-                } else if(valorPuja <= (valorPrecioBase * 0.01 + valorPrecioActual)){
-                    showAlert("Monto inválido","La oferta debe ser 1 % mayor al valor base del bien.");
-                } else if(valorPuja <= valorPrecioActual){
-                    showAlert("Monto inválido","La oferta no puede ser menor o igual a la última oferta realizada.");
-                } else{
-                    pujar(valorPuja);
-                }
-            }
-        });
-    }
-
-    private void pujar(int offer) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://URL-de-la-API.com")
+                .baseUrl("http://10.0.2.2:3000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
+        Call<ResponseBids> call = as.getBids(element, "Bearer "+ token);
 
-        element.setValorActual(offer);
-
-        Call<ItemCatalogo> call = as.postBid(element);
-
-        call.enqueue(new Callback<ItemCatalogo>() {
+        call.enqueue(new Callback<ResponseBids>() {
             @Override
-            public void onResponse(Call<ItemCatalogo> call, Response<ItemCatalogo> response) {
-                if(response.body() != null) {
-                    Toast toast1 = Toast.makeText(getApplicationContext(),"Oferta realizada con exito!", Toast.LENGTH_LONG);
+            public void onResponse(Call<ResponseBids> call, Response<ResponseBids> response) {
+                if(response.isSuccessful()) {
+                    ResponseBids responseBids = response.body();
+                    bids.addAll(responseBids.getData());
+                    int valorActual = bids.get(bids.size() - 1).getAmount();
+                    valorActualTextView5.setText(String.valueOf(valorActual));
+                } else {
+                    Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener las ofertas", Toast.LENGTH_LONG);
                     toast1.show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ItemCatalogo> call, Throwable t) {
-                Toast toast1 = Toast.makeText(getApplicationContext(),"Error al ofertar!", Toast.LENGTH_LONG);
+            public void onFailure(Call<ResponseBids> call, Throwable t) {
+                Toast toast1 = Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG);
                 toast1.show();
             }
         });
     }
-*/
+
     private void verHistorialPujas() {
         historialPujasView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), HistorialPujasDescripcionActivity.class);
-                intent.putExtra("itemCatalogo", element);
+                intent.putExtra("bids", (Serializable) bids);
                 startActivity(intent);
             }
         });
