@@ -47,6 +47,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
     TextView monedaBaseTextView5;
     TextView monedaActualTextView5;
     TextView estadosubastaTextView;
+    View lineaViewEstadosubastaTextView;
 
     LinearLayout linearLayoutfullTitleDescripcion;
 
@@ -101,6 +102,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
         monedaBaseTextView5 = findViewById(R.id.monedaBaseDescriptionTextView5);
         monedaActualTextView5 = findViewById(R.id.monedaActualDescriptionTextView5);
         estadosubastaTextView = findViewById(R.id.estadoDetalleDescriptionTextView5);
+        lineaViewEstadosubastaTextView = findViewById(R.id.lineaViewEstadoDetalleDescriptionTextView5);
 
         titleTextView5.setText(element.getTitle());
         //titleTextView5.setTextColor(Color.parseColor(element.getColor()));
@@ -297,18 +299,20 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
                     Date fechaActual = new Date();
                     if(bids.get(bids.size() - 1).getUserId() == user.getId()) {
                         if(fechaActual.after(element.getEndTime())) {
-                            estadosubastaTextView.setText("Ganada!");
+                            estadosubastaTextView.setText("Ganada!\uD83D\uDE0D");
                         } else {
-                            estadosubastaTextView.setText("Ganando!");
+                            estadosubastaTextView.setText("Ganando!\uD83D\uDE0E");
                         }
                         estadosubastaTextView.setTextColor(Color.GREEN);
+                        lineaViewEstadosubastaTextView.setBackgroundColor(Color.GREEN);
                     } else {
                         if(fechaActual.after(element.getEndTime())) {
-                            estadosubastaTextView.setText("Perdida.");
+                            estadosubastaTextView.setText("Perdida\uD83D\uDE2D");
                         } else {
-                            estadosubastaTextView.setText("Perdiendo.");
+                            estadosubastaTextView.setText("Perdiendo\uD83D\uDE27");
                         }
                         estadosubastaTextView.setTextColor(Color.RED);
+                        lineaViewEstadosubastaTextView.setBackgroundColor(Color.RED);
                     }
                 } else {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener las ofertas", Toast.LENGTH_LONG);

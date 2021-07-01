@@ -41,6 +41,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
     TextView descriptionTextView4;
     TextView monedaBaseTextView4;
     TextView monedaActualTextView4;
+    TextView estadoItem;
 
     LinearLayout linearLayoutfullTitleDescripcion;
 
@@ -150,26 +151,20 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
         precioBaseTextView4 = findViewById(R.id.precioBaseDescriptionTextView4);
         valorActualTextView4 = findViewById(R.id.valorActualDescriptionTextView4);
         descriptionTextView4 = findViewById(R.id.fullTitleDescriptionTextView4);
-
+        estadoItem = findViewById(R.id.estadoDetalleDescriptionTextView5);
         linearLayoutfullTitleDescripcion = findViewById(R.id.linearLayoutfullTitleDescripcion);
-
         monedaBaseTextView4 = findViewById(R.id.monedaBaseDescriptionTextView4);
         monedaActualTextView4 = findViewById(R.id.monedaActualDescriptionTextView4);
-
         aceptarPendienteBoton = findViewById(R.id.aceptarPendienteBoton);
         rechazarPendienteBoton = findViewById(R.id.rechazarPendienteBoton);
 
         titleTextView4.setText(element.getTitle());
-        //titleDescriptionTextView4.setTextColor(Color.parseColor(element.getColor()));
 
-        String precioBaseText4 = String.format("%,d", element.getBasePrice());
-        precioBaseTextView4.setText(precioBaseText4);
-        String valorActualText4 = String.format("%,d", element.getBasePrice()); // no deberia estar
-        valorActualTextView4.setText(valorActualText4);
         valorActualTextView4.setTextColor(Color.GRAY);
         descriptionTextView4.setText(element.getDescription());
         monedaBaseTextView4.setText(element.getCurrency());
         monedaActualTextView4.setText(element.getCurrency());
+        estadoItem.setText(element.getStatus());
 
         editarNumeroDeTexto4 = findViewById(R.id.editarNumeroDeTexto4);
         botonOfertar4 = findViewById(R.id.botonOfertar4);
@@ -177,6 +172,11 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
         precioBaseView4 = findViewById(R.id.precioBaseView4);
         botonRegistrar4 = findViewById(R.id.botonRegistrar4);
         historialPujasView4 = findViewById(R.id.historialPujasView4);
+
+        String valorActualText4 = String.format("%,d", element.getBasePrice()); // no deberia estar
+        valorActualOVendido4.setText(valorActualText4);
+        String precioBaseText4 = String.format("%,d", element.getBasePrice());
+        precioBaseView4.setText(precioBaseText4);
 
         linearLayoutfullTitleDescripcion.setOnClickListener(new View.OnClickListener() {
             @Override

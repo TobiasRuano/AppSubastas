@@ -98,8 +98,6 @@ public class DescripcionActivity extends AppCompatActivity {
 
         titleTextView3.setText(element.getTitle());
         descriptionTextView3.setText(element.getDescription());
-        precioBaseDescriptionTextView3.setText(String.valueOf(element.getBasePrice()));
-        valorActualDescriptionTextView3.setText(String.valueOf(element.getBasePrice()));
         monedaBaseDescriptionTextView3.setText(element.getCurrency());
         monedaActualDescriptionTextView3.setText(element.getCurrency());
         estadoSubasta.setText(element.getTimeStatus());
@@ -112,6 +110,8 @@ public class DescripcionActivity extends AppCompatActivity {
         precioBaseView = findViewById(R.id.precioBaseView);
         botonRegistrar = findViewById(R.id.botonRegistrar);
         historialPujasView = findViewById(R.id.historialPujasView);
+
+        precioBaseView.setText(String.valueOf(element.getBasePrice()));
 
         descriptionTextView3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,7 +143,6 @@ public class DescripcionActivity extends AppCompatActivity {
 
         switch (estado) {
             case "Auctioning":
-                valorActualOVendido.setText("Valor Actual:");
                 valorActualDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
                 break;
             case "Programmed":
@@ -163,7 +162,6 @@ public class DescripcionActivity extends AppCompatActivity {
             case "Ended":
                 editarNumeroDeTexto.setVisibility(View.GONE);
                 botonOfertar.setVisibility(View.GONE);
-                valorActualOVendido.setText("Vendido:");
                 valorActualDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
                 break;
         }
@@ -270,7 +268,7 @@ public class DescripcionActivity extends AppCompatActivity {
                     ResponseBids responseBids = response.body();
                     bids.addAll(responseBids.getData());
                     if(bids.size() != 0) {
-                        valorActualDescriptionTextView3.setText(String.valueOf(bids.get(bids.size() - 1).getAmount()));
+                        valorActualOVendido.setText(String.valueOf(bids.get(bids.size() - 1).getAmount()));
                     }
                 } else {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener las ofertas", Toast.LENGTH_LONG);

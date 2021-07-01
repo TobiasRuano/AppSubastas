@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="20dp"
-            android:text="Agregar Medio de Pago"
+            android:text="Agregar Medio de Pago 💳"
 
             android:textAlignment="center"
             android:textColor="#FFFFFF"

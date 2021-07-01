@@ -12,7 +12,7 @@
         android:id="@+id/textView17"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Medios de Pago"
+        android:text="Medios de Pago 💳"
         android:gravity="bottom|center"
         android:textColor="#ffffff"
         android:textSize="34sp"
@@ -23,6 +23,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+
+        android:shadowColor="#000055"
+        android:shadowDx="10"
+        android:shadowDy="10"
+        android:shadowRadius="20"
+        android:textAlignment="center"
         />
 
     <androidx.recyclerview.widget.RecyclerView
