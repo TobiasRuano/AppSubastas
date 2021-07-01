@@ -189,6 +189,7 @@
                 android:layout_height="80dp"
                 android:layout_gravity="center_horizontal"
                 android:text="Agregar"
+                android:textStyle="bold"
 
                 android:fontFamily="@font/montserrat_medium"
                 android:background="@drawable/estilo_sombra"

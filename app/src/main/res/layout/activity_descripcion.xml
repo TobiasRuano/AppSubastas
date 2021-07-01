@@ -326,7 +326,7 @@
                 android:layout_marginTop="0dp">
 
                 <EditText
-                    android:id="@+id/editarNumeroDeTexto4"
+                    android:id="@+id/editarNumeroDeTexto"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:background="@drawable/estilo_borde"
@@ -343,7 +343,7 @@
                     android:layout_marginRight="20dp"/>
 
                 <Button
-                    android:id="@+id/botonOfertar4"
+                    android:id="@+id/botonOfertar"
                     android:layout_width="wrap_content"
                     android:layout_height="80dp"
                     android:background="@drawable/estilo_sombra"
@@ -368,7 +368,7 @@
 
 
                 <Button
-                    android:id="@+id/botonRegistrar4"
+                    android:id="@+id/botonRegistrar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="25"

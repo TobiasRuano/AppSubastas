@@ -231,6 +231,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:text="Crear Cuenta"
+                android:textStyle="bold"
 
                 android:fontFamily="@font/montserrat_medium"
                 android:background="@drawable/estilo_sombra"

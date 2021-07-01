@@ -119,6 +119,7 @@
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/montserrat_medium"
                 android:background="@drawable/estilo_sombra"
+                android:textStyle="bold"
                 />
         </LinearLayout>
 

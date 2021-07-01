@@ -23,9 +23,15 @@
         android:scrollbars="vertical"
         android:layout_gravity="center"
         android:layout_margin="40dp"
-        android:textColor="#ffffff"
+
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
         android:textStyle="bold"
-        android:textSize="30sp"
+        android:shadowColor="#000055"
+        android:shadowDx="10"
+        android:shadowDy="10"
+        android:shadowRadius="20"
         android:fontFamily="@font/montserrat_medium"
         />
 
@@ -33,6 +39,8 @@
             android:id="@+id/fullCompleteTitleDescriptionTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_gravity="center"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
