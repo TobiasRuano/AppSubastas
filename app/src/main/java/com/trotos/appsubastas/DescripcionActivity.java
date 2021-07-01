@@ -18,11 +18,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.trotos.appsubastas.Modelos.Bid;
 import com.trotos.appsubastas.Modelos.ItemCatalogo;
+import com.trotos.appsubastas.Modelos.ResponseBids;
 import com.trotos.appsubastas.Modelos.User;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.*;
 
@@ -53,6 +55,7 @@ public class DescripcionActivity extends AppCompatActivity {
     User user;
 
     List<CarouselItem> list = new ArrayList<>();
+    List<Bid> bids = new ArrayList<>();
 
     ItemCatalogo element;
     boolean estaRegistrado;
@@ -67,6 +70,7 @@ public class DescripcionActivity extends AppCompatActivity {
         estaRegistrado = (Boolean) getIntent().getBooleanExtra("estadoLoggeado", false);
         configureUI();
         cargar();
+        getBids();
         verHistorialPujas();
         ofertar();
         logIn();
@@ -245,13 +249,46 @@ public class DescripcionActivity extends AppCompatActivity {
         });
     }
 
+    private void getBids() {
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        String token = sharedPreferences.getString("Token", null);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:3000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiUtils as = retrofit.create(ApiUtils.class);
+        Call<ResponseBids> call = as.getBids(new ItemCatalogo(null, 0, null, null, null, 0, 0, null, 0, 0, element.getId(),0, null, null), "Bearer "+ token);
+
+        call.enqueue(new Callback<ResponseBids>() {
+            @Override
+            public void onResponse(Call<ResponseBids> call, Response<ResponseBids> response) {
+                if(response.isSuccessful()) {
+                    ResponseBids responseBids = response.body();
+                    bids.addAll(responseBids.getData());
+                } else {
+                    Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener las ofertas", Toast.LENGTH_LONG);
+                    toast1.show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBids> call, Throwable t) {
+                Toast toast1 = Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG);
+                toast1.show();
+            }
+        });
+    }
+
     private void verHistorialPujas() {
         historialPujasView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HistorialPujasDescripcionActivity.class);
-                intent.putExtra("itemCatalogo", element);
-                startActivity(intent);
+                if(bids != null) {
+                    Intent intent = new Intent(getApplicationContext(), HistorialPujasDescripcionActivity.class);
+                    intent.putExtra("bids", (Serializable) bids);
+                    startActivity(intent);
+                }
             }
         });
     }

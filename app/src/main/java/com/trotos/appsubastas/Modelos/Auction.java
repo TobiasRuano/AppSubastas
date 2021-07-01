@@ -49,7 +49,7 @@ public class Auction implements Serializable {
     }
 
     private String parseDate(Date date) {
-        @SuppressLint("SimpleDateFormat") Format formatter = new SimpleDateFormat("dd-MM-yy HH:mm");
+        @SuppressLint("SimpleDateFormat") Format formatter = new SimpleDateFormat("dd-MM-yy HH:mm a");
         return formatter.format(date);
     }
 
