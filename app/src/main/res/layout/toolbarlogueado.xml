@@ -6,11 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".MenuLogueado"
     android:id="@+id/drawerLogueado"
-
     >
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:background="#80D3BAFF"
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/navloguado"
         tools:ignore="MissingConstraints"
-
+        android:background="@drawable/estilo_degradado_toobar"
         >
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>

@@ -9,8 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
 
-
-    <color name="barraPrimaria">#ff0000</color>
+    <color name="barraPrimaria">#009fff</color>
     <color name="barraSecundaria">#00ff00</color>
     <color name="barraTerciaria">#0000ff</color>
     <color name="barraCuarta">#f0f0f0</color>

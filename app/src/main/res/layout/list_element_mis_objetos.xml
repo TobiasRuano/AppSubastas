@@ -10,7 +10,7 @@
     android:outlineProvider="paddedBounds"
     android:outlineSpotShadowColor="#000000"
     app:cardCornerRadius="10dp"
-    app:cardElevation="5dp"
+    app:cardElevation="10dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
@@ -72,9 +72,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_regular"
-                    android:text="Breve descripcion del item"
+                    android:text="Breve descripcion del item Breve descripcion del item Breve descripcion del item"
                     android:textSize="15sp"
-                    android:maxLines="1"
+                    android:maxLines="2"
                     android:ellipsize="end"/>
 
                 <LinearLayout

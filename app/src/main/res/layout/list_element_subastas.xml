@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
     app:cardCornerRadius="10dp"
-    app:cardElevation="4dp"
+    app:cardElevation="10dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
@@ -47,15 +47,18 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="RELOJES"
+                    android:fontFamily="@font/montserrat_medium"
                     android:textColor="@android:color/black"
                     android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    />
 
                 <TextView
                     android:id="@+id/stateTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Activa - Restante 15:32 min"
+                    android:fontFamily="@font/montserrat_regular"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -70,7 +73,8 @@
                 android:layout_marginRight="6dp"
                 android:text="Oro"
                 android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat_medium" />
 
         </RelativeLayout>
     </LinearLayout>

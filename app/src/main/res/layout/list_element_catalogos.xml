@@ -10,7 +10,7 @@
     android:outlineProvider="paddedBounds"
     android:outlineSpotShadowColor="#000000"
     app:cardCornerRadius="10dp"
-    app:cardElevation="5dp"
+    app:cardElevation="10dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
@@ -30,7 +30,8 @@
             android:paddingLeft="14dp"
             android:paddingRight="14dp"
             app:srcCompat="@drawable/ic_image_black_24dp"
-            tools:ignore="VectorDrawableCompat" />
+            tools:ignore="VectorDrawableCompat"
+            />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -59,13 +60,13 @@
                     android:id="@+id/descripcionTextView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_medium"
                     android:text="RELOJES"
-                    android:textColor="@android:color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:maxLines="1"
                     android:ellipsize="end"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textColor="#000000"
                     />
 
                 <TextView
@@ -73,7 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_regular"
-                    android:text="Breve descripcion del item"
+                    android:text="Breve descripcion del item Breve descripcion del item Breve descripcion del item"
                     android:textSize="15sp"
                     android:maxLines="2"
                     android:ellipsize="end"/>
