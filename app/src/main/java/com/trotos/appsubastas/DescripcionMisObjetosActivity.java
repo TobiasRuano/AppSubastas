@@ -49,6 +49,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
     Button botonRegistrar4;
     Button aceptarPendienteBoton, rechazarPendienteBoton;
 
+
     TextView valorActualOVendido4;
     TextView precioBaseView4;
     TextView historialPujasView4;

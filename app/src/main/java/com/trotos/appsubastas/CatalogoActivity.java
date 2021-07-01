@@ -1,11 +1,15 @@
 package com.trotos.appsubastas;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +52,10 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
     String category;
     User user;
     List<ItemCatalogo> catalogos = new ArrayList<>();
+
+    Dialog myDialog;
+
+    Button registrarsePopUp, iniciarSesionPopUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,27 +102,56 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
         intent.putExtra("Catalogos",item);
         intent.putExtra("estadoLoggeado", estaRegistrado);
 
-        switch (user.getCategory()){
-            case "Comun":
-                if(category.equals("Comun"))
+        if(estaRegistrado){
+            switch (user.getCategory()){
+                case "Comun":
+                    if(category.equals("Comun"))
+                        startActivity(intent);
+                    break;
+                case "Especial":
+                    if(category.equals("Comun") || category.equals("Bronce"))
+                        startActivity(intent);
+                    break;
+                case "Plata":
+                    if(category.equals("Comun") || category.equals("Bronce") || category.equals("Plata"))
+                        startActivity(intent);
+                    break;
+                case "Oro":
+                    if(!category.equals("Platino"))
+                        startActivity(intent);
+                    break;
+                case "Platino":
                     startActivity(intent);
-                break;
-            case "Especial":
-                if(category.equals("Comun") || category.equals("Bronce"))
-                    startActivity(intent);
-                break;
-            case "Plata":
-                if(category.equals("Comun") || category.equals("Bronce") || category.equals("Plata"))
-                    startActivity(intent);
-                break;
-            case "Oro":
-                if(!category.equals("Platino"))
-                    startActivity(intent);
-                break;
-            case "Platino":
-                startActivity(intent);
-                break;
-            default:
+                    break;
+                default:
+            }
+
+        }else{
+            myDialog = new Dialog(this);
+            myDialog.setContentView(R.layout.pop_up_iniciar_sesion_registrarse);
+
+            iniciarSesionPopUp = myDialog.findViewById(R.id.iniciarSesionPopup);
+            registrarsePopUp = myDialog.findViewById(R.id.registrarsePopup);
+
+            registrarsePopUp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(CatalogoActivity.this, CrearUsuarioActivity.class));
+                }
+            });
+
+            iniciarSesionPopUp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(CatalogoActivity.this, IniciarSesionActivity.class));
+                }
+            });
+
+
+            myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            myDialog.show();
+
+            //startActivity(intent);
         }
     }
 

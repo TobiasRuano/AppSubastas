@@ -27,7 +27,7 @@
         <activity android:name=".MisCatalogosPujadosActivity" />
         <activity android:name=".SubastaActivity" />
         <activity android:name=".AgregarObjeto" />
-        <activity android:name=".MenuInvitado" />
+        <activity android:name=".IniciarSesionActivity" />
         <activity android:name=".EditarPerfil" />
         <activity android:name=".MiUsuario" />
         <activity android:name=".AgregarMedioPagoActivity" />
@@ -40,7 +40,7 @@
         <activity android:name=".DescripcionMisObjetosActivity" />
         <activity android:name=".DescripcionMisCatalogosPujadosActivity" />
         <activity android:name=".CatalogoActivity" />
-        <activity android:name=".IniciarSesionActivity">
+        <activity android:name=".MenuInvitado">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

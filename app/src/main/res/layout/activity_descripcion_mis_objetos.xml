@@ -379,7 +379,8 @@
                         android:textSize="16dp"
                         android:textStyle="bold"
                         android:text="Precio Base: "
-                        android:layout_marginRight="10dp"/>
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/montserrat_medium"/>
 
 
                     <TextView
@@ -389,7 +390,8 @@
                         android:textColor="#8A8A8A"
                         android:textSize="16dp"
                         android:textStyle="bold"
-                        android:text="Comision: "/>
+                        android:text="Comision: "
+                        android:fontFamily="@font/montserrat_medium"/>
 
 
                 </LinearLayout>
