@@ -71,9 +71,6 @@
 
 
             <androidx.cardview.widget.CardView
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/card_view"
                 android:layout_width="match_parent"
                 android:layout_height="310dp"
@@ -123,16 +120,15 @@
                 android:layout_marginEnd="16dp"
                 >
 
-            <TextView
-                android:id="@+id/valorActualOVendido"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Valor (info)"
-                android:textColor="#000000"
-                android:textStyle="bold"
-                android:textSize="30sp"
-                android:fontFamily="@font/montserrat_medium"
-                />
+                <TextView
+                    android:id="@+id/valorActualOVendido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="1000000"
+                    android:textColor="#000000"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/monedaActualDescriptionTextView3"
@@ -185,18 +181,17 @@
             >
 
             <TextView
-            android:id="@+id/precioBaseView"
+                android:id="@+id/precioBaseView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="10dp"
-                android:text="Precio-Base(info)"
-                android:textColor="@android:color/black"
-                android:textStyle="bold"
-                android:textSize="16sp"
                 android:fontFamily="@font/montserrat_medium_italic"
-                />
+                android:text="1000000"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
 
             <TextView
