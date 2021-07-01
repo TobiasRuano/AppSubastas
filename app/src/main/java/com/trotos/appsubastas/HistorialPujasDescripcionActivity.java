@@ -47,7 +47,11 @@ public class HistorialPujasDescripcionActivity extends AppCompatActivity {
     private void formatText() {
         if(bids != null) {
             for (int i = 0; i < bids.size(); i++) {
-                aux.add("Nueva puja de: " + bids.get(i).getAmount());
+                if(i == bids.size() - 1) {
+                    aux.add("Oferta Maxima de: " + bids.get(i).getAmount());
+                } else {
+                    aux.add("Nueva puja de: " + bids.get(i).getAmount());
+                }
             }
             adapter.notifyDataSetChanged();
         }

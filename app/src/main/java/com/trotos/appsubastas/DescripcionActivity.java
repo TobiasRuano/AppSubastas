@@ -43,6 +43,7 @@ public class DescripcionActivity extends AppCompatActivity {
     TextView descriptionTextView3;
     TextView monedaBaseDescriptionTextView3;
     TextView monedaActualDescriptionTextView3;
+    TextView estadoSubasta;
 
     EditText editarNumeroDeTexto;
     Button botonOfertar;
@@ -93,6 +94,7 @@ public class DescripcionActivity extends AppCompatActivity {
         descriptionTextView3 = findViewById(R.id.descriptionTextView3);
         monedaBaseDescriptionTextView3 = findViewById(R.id.monedaBaseDescriptionTextView3);
         monedaActualDescriptionTextView3 = findViewById(R.id.monedaActualDescriptionTextView3);
+        estadoSubasta = findViewById(R.id.estadoDetalleDescriptionTextView5);
 
         titleTextView3.setText(element.getTitle());
         descriptionTextView3.setText(element.getDescription());
@@ -100,6 +102,7 @@ public class DescripcionActivity extends AppCompatActivity {
         valorActualDescriptionTextView3.setText(String.valueOf(element.getBasePrice()));
         monedaBaseDescriptionTextView3.setText(element.getCurrency());
         monedaActualDescriptionTextView3.setText(element.getCurrency());
+        estadoSubasta.setText(element.getTimeStatus());
 
         valorActualDescriptionTextView3.setTextColor(Color.GRAY);
 
@@ -258,7 +261,7 @@ public class DescripcionActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
-        Call<ResponseBids> call = as.getBids(new ItemCatalogo(null, 0, null, null, null, 0, 0, null, 0, 0, element.getId(),0, null, null), "Bearer "+ token);
+        Call<ResponseBids> call = as.getBids(element, "Bearer "+ token);
 
         call.enqueue(new Callback<ResponseBids>() {
             @Override
@@ -266,6 +269,9 @@ public class DescripcionActivity extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     ResponseBids responseBids = response.body();
                     bids.addAll(responseBids.getData());
+                    if(bids.size() != 0) {
+                        valorActualDescriptionTextView3.setText(String.valueOf(bids.get(bids.size() - 1).getAmount()));
+                    }
                 } else {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener las ofertas", Toast.LENGTH_LONG);
                     toast1.show();

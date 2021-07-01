@@ -1,7 +1,12 @@
 package com.trotos.appsubastas.Modelos;
 
+import android.annotation.SuppressLint;
+
 import java.io.Serializable;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class ItemCatalogo extends Item implements Serializable {
 
@@ -20,6 +25,27 @@ public class ItemCatalogo extends Item implements Serializable {
         this.winnerId = winnerId;
         this.startTime = startTime;
         this.endTime = endTime;
+    }
+
+    public String getTimeStatus() {
+        Date nowDate = new Date();
+        String stateString;
+        if(nowDate.after(getStartTime()) && nowDate.before(getEndTime())) {
+            long time = getEndTime().getTime() - nowDate.getTime();
+            long minutes = TimeUnit.MILLISECONDS.toMinutes(time);
+            stateString = "Finaliza en: " + minutes + " minutos";
+        } else if (nowDate.before(getStartTime())) {
+            String date = parseDate(getStartTime());
+            stateString = "Inicio: " + date;
+        } else {
+            stateString = "Finalizada";
+        }
+        return stateString;
+    }
+
+    private String parseDate(Date date) {
+        @SuppressLint("SimpleDateFormat") Format formatter = new SimpleDateFormat("dd-MM-yy HH:mm a");
+        return formatter.format(date);
     }
 
     public int getShippingPrice() {
