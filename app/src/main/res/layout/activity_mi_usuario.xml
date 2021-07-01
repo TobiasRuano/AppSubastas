@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
+        android:layout_height="350dp"
         tools:ignore="MissingConstraints">
 
         <TextView
@@ -81,12 +81,16 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/subirFoto"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="00dp"
+            android:backgroundTint="#00FBFF"
+            app:srcCompat="@drawable/ic_anadir"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fotoUsuario"
+            />
 
 
 
@@ -112,7 +116,7 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
         app:cardUseCompatPadding="true"
-        android:layout_marginTop="340dp"
+        android:layout_marginTop="360dp"
 
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp">
@@ -239,15 +243,13 @@
     <Button
         android:id="@+id/editarPerfilBoton"
         android:layout_width="350dp"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:layout_marginTop="15dp"
         android:text="Editar Perfil"
 
         android:textStyle="bold"
         android:fontFamily="@font/montserrat_medium"
         android:background="@drawable/estilo_sombra"/>
-
-
     </LinearLayout>
 
 

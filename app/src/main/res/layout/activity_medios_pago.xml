@@ -41,10 +41,14 @@
         android:id="@+id/newCardButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="80dp"
         android:layout_marginRight="15dp"
+        android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="#00FBFF"
+        app:srcCompat="@drawable/ic_anadir"
+        app:useCompatPadding="true"
+        />
 
     <include
         android:id="@+id/include2"
