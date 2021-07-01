@@ -243,8 +243,8 @@
     <Button
         android:id="@+id/editarPerfilBoton"
         android:layout_width="350dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="15dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="5dp"
         android:text="Editar Perfil"
 
         android:textStyle="bold"
