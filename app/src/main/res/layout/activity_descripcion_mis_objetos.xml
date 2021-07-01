@@ -363,31 +363,71 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="0dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/aceptarPendienteBoton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="60dp"
-                    android:background="@drawable/estilo_sombra"
-                    android:ems="12"
-                    android:fontFamily="@font/montserrat_medium"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
 
-                    android:text="Aceptar"
-                    android:textStyle="bold"
-                    app:backgroundTint="#009fff" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="#8A8A8A"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:text="Precio Base: "
+                        android:layout_marginRight="10dp"/>
 
-                <Button
-                    android:id="@+id/rechazarPendienteBoton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="60dp"
-                    android:background="@drawable/estilo_sombra"
-                    android:ems="12"
-                    android:fontFamily="@font/montserrat_medium"
 
-                    android:text="Rechazar"
-                    android:textStyle="bold"
-                    app:backgroundTint="#FF3636" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="#8A8A8A"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:text="Comision: "/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/aceptarPendienteBoton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:background="@drawable/estilo_sombra"
+                        android:ems="12"
+                        android:fontFamily="@font/montserrat_medium"
+
+                        android:text="Aceptar"
+                        android:textStyle="bold"
+                        app:backgroundTint="#009fff" />
+
+                    <Button
+                        android:id="@+id/rechazarPendienteBoton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:background="@drawable/estilo_sombra"
+                        android:ems="12"
+                        android:fontFamily="@font/montserrat_medium"
+
+                        android:text="Rechazar"
+                        android:textStyle="bold"
+                        app:backgroundTint="#FF3636" />
+
+
+
+                </LinearLayout>
+
+
 
             </LinearLayout>
 
