@@ -51,7 +51,8 @@
                 android:shadowDx="10"
                 android:shadowDy="10"
                 android:shadowRadius="20"
-                android:fontFamily="@font/montserrat_medium"/>
+                android:fontFamily="@font/montserrat_medium"
+                />
 
 
         </LinearLayout>
@@ -119,13 +120,14 @@
                     android:orientation="horizontal"
                     android:layout_marginTop="35dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp">
+                    android:layout_marginEnd="16dp"
+                    >
 
                     <TextView
                         android:id="@+id/valorActualOVendido4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Valor (info)"
+                        android:text="Valor-(info)"
                         android:textColor="#000000"
                         android:textStyle="bold"
                         android:textSize="30sp"
@@ -181,7 +183,8 @@
                     android:orientation="horizontal"
                     android:layout_marginTop="85dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp">
+                    android:layout_marginLeft="16dp"
+                    >
 
                         <TextView
                             android:id="@+id/precioBaseView4"
@@ -190,7 +193,7 @@
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
                             android:layout_marginTop="10dp"
-                            android:text="Precio Base (info)"
+                            android:text="Precio-Base(info)"
                             android:textColor="@android:color/black"
                             android:textStyle="bold"
                             android:textSize="16sp"
@@ -255,11 +258,11 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="130dp"
                     />
+
                     <TextView
                         android:id="@+id/fullTitleDescriptionTextView4"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
-                        android:layout_below="@+id/titleDescriptionTextView5"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:text="Descripcion Completa (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) "
@@ -308,7 +311,6 @@
                         android:textStyle="bold"
                         android:layout_marginTop="0dp"
                         />
-
 
                 </LinearLayout>
 
