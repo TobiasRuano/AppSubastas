@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15sp"
                 android:layout_marginBottom="20sp"
-                android:text="Mis Participaciones"
+                android:text="Mis Participaciones 🛍️"
                 android:textSize="34sp"
                 android:textStyle="bold"
                 android:gravity="bottom|center"
