@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,8 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
     TextView descriptionTextView4;
     TextView monedaBaseTextView4;
     TextView monedaActualTextView4;
+
+    LinearLayout linearLayoutfullTitleDescripcion;
 
     EditText editarNumeroDeTexto4;
     Button botonOfertar4;
@@ -146,6 +149,9 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
         precioBaseTextView4 = findViewById(R.id.precioBaseDescriptionTextView4);
         valorActualTextView4 = findViewById(R.id.valorActualDescriptionTextView4);
         descriptionTextView4 = findViewById(R.id.fullTitleDescriptionTextView4);
+
+        linearLayoutfullTitleDescripcion = findViewById(R.id.linearLayoutfullTitleDescripcion);
+
         monedaBaseTextView4 = findViewById(R.id.monedaBaseDescriptionTextView4);
         monedaActualTextView4 = findViewById(R.id.monedaActualDescriptionTextView4);
 
@@ -170,6 +176,15 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
         precioBaseView4 = findViewById(R.id.precioBaseView4);
         botonRegistrar4 = findViewById(R.id.botonRegistrar4);
         historialPujasView4 = findViewById(R.id.historialPujasView4);
+
+        linearLayoutfullTitleDescripcion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),DetalleDeLaDescripcionActivity.class);
+                intent.putExtra("valorDescription", descriptionTextView4.getText().toString());
+                startActivity(intent);
+            }
+        });
 
         descriptionTextView4.setOnClickListener(new View.OnClickListener() {
             @Override

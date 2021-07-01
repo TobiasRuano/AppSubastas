@@ -243,8 +243,8 @@
         android:layout_height="80dp"
         android:layout_marginTop="15dp"
         android:text="Editar Perfil"
-        android:textStyle="bold"
 
+        android:textStyle="bold"
         android:fontFamily="@font/montserrat_medium"
         android:background="@drawable/estilo_sombra"/>
 

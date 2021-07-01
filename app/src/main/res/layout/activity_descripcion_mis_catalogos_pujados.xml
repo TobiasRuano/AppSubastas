@@ -123,7 +123,6 @@
                         android:id="@+id/valorActualDescriptionTextView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/titleDescriptionTextView5"
                         android:text="Valor (info)"
                         android:textColor="#000000"
                         android:textStyle="bold"
@@ -135,7 +134,6 @@
                             android:id="@+id/monedaActualDescriptionTextView5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/titleDescriptionTextView5"
                             android:layout_marginRight="5dp"
                             android:text="ARS"
                             android:textColor="@android:color/black"
@@ -149,7 +147,6 @@
                             android:id="@+id/valorActualOVendido5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/titleDescriptionTextView5"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
                             android:layout_marginStart="5dp"
@@ -178,23 +175,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginTop="85dp">
+                        android:layout_marginTop="85dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        >
 
                     <TextView
                         android:id="@+id/precioBaseDescriptionTextView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/precioBaseDescriptionTextView5"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
                         android:layout_marginTop="10dp"
                         android:text="Precio Base (info)"
                         android:textColor="@android:color/black"
                         android:textStyle="bold"
                         android:textSize="16sp"
-
                         android:fontFamily="@font/montserrat_medium_italic"
                         />
 
@@ -202,7 +198,6 @@
                             android:id="@+id/monedaBaseDescriptionTextView5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/precioBaseDescriptionTextView5"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
                             android:layout_marginStart="5dp"
@@ -212,14 +207,14 @@
                             android:textColor="@android:color/black"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            android:fontFamily="@font/montserrat_medium_italic"/>
+                            android:fontFamily="@font/montserrat_medium_italic"
+                            />
 
 
                         <TextView
                             android:id="@+id/precioBaseView5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/precioBaseDescriptionTextView5"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentLeft="true"
                             android:layout_marginStart="5dp"
@@ -230,7 +225,8 @@
                             android:textColor="@android:color/black"
                             android:textStyle="bold"
                             android:textSize="16sp"
-                            android:fontFamily="@font/montserrat_medium_italic"/>
+                            android:fontFamily="@font/montserrat_medium_italic"
+                            />
 
                     </LinearLayout>
 
@@ -249,18 +245,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/titleDescriptionTextView5"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:text="Descripción"
                         android:textColor="@android:color/black"
                         android:textSize="25sp"
                         android:fontFamily="@font/montserrat_regular"
-
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="130dp"
-                        tools:ignore="NotSibling" />
+                        />
 
                     <TextView
                         android:id="@+id/fullTitleDescriptionTextView5"
@@ -278,11 +272,10 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
                         android:layout_marginTop="160dp"
-
                         android:ellipsize="end"
                         android:inputType="none"
                         android:maxLines="3"
-                        tools:ignore="NotSibling" />
+                        />
 
                 <LinearLayout
                     android:id="@+id/linearLayoutfullTitleDescripcion"
