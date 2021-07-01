@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +47,8 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
     TextView monedaBaseTextView5;
     TextView monedaActualTextView5;
     TextView estadosubastaTextView;
+
+    LinearLayout linearLayoutfullTitleDescripcion;
 
     EditText editarNumeroDeTexto5;
     Button botonOfertar5;
@@ -92,6 +96,8 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
         precioBaseTextView5 = findViewById(R.id.precioBaseDescriptionTextView5);
         valorActualTextView5 = findViewById(R.id.valorActualDescriptionTextView5);
         descriptionTextView5 = findViewById(R.id.fullTitleDescriptionTextView5);
+        linearLayoutfullTitleDescripcion = findViewById(R.id.linearLayoutfullTitleDescripcion);
+
         monedaBaseTextView5 = findViewById(R.id.monedaBaseDescriptionTextView5);
         monedaActualTextView5 = findViewById(R.id.monedaActualDescriptionTextView5);
         estadosubastaTextView = findViewById(R.id.estadoDetalleDescriptionTextView5);
@@ -115,7 +121,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
         //botonRegistrar5 = findViewById(R.id.botonRegistrar5);
         historialPujasView5 = findViewById(R.id.historialPujasView5);
 
-        descriptionTextView5.setOnClickListener(new View.OnClickListener() {
+        linearLayoutfullTitleDescripcion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),DetalleDeLaDescripcionActivity.class);

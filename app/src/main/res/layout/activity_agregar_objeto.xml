@@ -284,7 +284,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    tools:layout_editor_absoluteX="1dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
@@ -303,6 +302,29 @@
                         android:id="@+id/imagenObjetos"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:layout_marginLeft="20dp"
+
+                        />
+
+                    <ImageView
+                        android:id="@+id/imagenObjetos2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="20dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/imagenObjetos3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="20dp"
+                        />
+
+                    <ImageView
+                        android:id="@+id/imagenObjetos4"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="20dp"
                         />
 
                 </LinearLayout>
