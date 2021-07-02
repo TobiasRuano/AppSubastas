@@ -127,11 +127,6 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
             }
         });
 
-        RecyclerView recyclerView4 = findViewById(R.id.listRecyclerView4);
-        //recyclerView4.setHasFixedSize(true);
-        //recyclerView4.setLayoutManager(new LinearLayoutManager(this));
-        //recyclerView4.setAdapter(myAdapterMisObjetos);
-
         listRecyclerView4  = findViewById(R.id.listRecyclerView4);
         listRecyclerView4.setHasFixedSize(true);
         listRecyclerView4.setAdapter(myAdapterMisObjetos);
