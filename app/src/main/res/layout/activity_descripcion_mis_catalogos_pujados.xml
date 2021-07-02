@@ -5,17 +5,14 @@
     android:id="@+id/titleTextView5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SubastaActivity"
     android:background="@drawable/estilo_degradado_fondo"
-    >
+    tools:context=".SubastaActivity">
 
 
     <RelativeLayout
-
         android:id="@+id/relativeLayout5"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <LinearLayout
             android:id="@+id/primerLinearLayout5"
@@ -27,32 +24,29 @@
                 android:id="@+id/historialPujasView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
                 android:layout_marginStart="16sp"
                 android:layout_marginLeft="16sp"
                 android:text="⏱️"
                 android:textColor="@android:color/black"
                 android:textSize="25sp"
-                android:textStyle="bold"
-                android:layout_marginVertical="5dp"
-                />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/titleDescriptionTextView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginStart="-45dp"
-                android:text="Description"
-                android:textSize="20sp"
-                android:textStyle="bold"
-
-                android:textColor="#FFFFFF"
+                android:fontFamily="@font/montserrat_medium"
+                android:gravity="center"
                 android:shadowColor="#000055"
                 android:shadowDx="10"
                 android:shadowDy="10"
                 android:shadowRadius="20"
-                android:fontFamily="@font/montserrat_medium"
-                />
+                android:text="Description"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -61,8 +55,8 @@
             android:id="@+id/segundoLinearLayout5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_below="@+id/primerLinearLayout5">
+            android:layout_below="@+id/primerLinearLayout5"
+            android:orientation="vertical">
 
             <org.imaginativeworld.whynotimagecarousel.ImageCarousel
                 android:id="@+id/carousel5"
@@ -70,56 +64,50 @@
                 android:layout_height="300dp" />
 
 
-            <androidx.cardview.widget.CardView
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/card_view"
                 android:layout_width="match_parent"
                 android:layout_height="310dp"
-                android:layout_marginTop="-10dp"
                 android:layout_marginStart="0dp"
+                android:layout_marginTop="-10dp"
                 android:layout_marginEnd="0dp"
                 android:layout_marginBottom="0dp"
-
                 android:animateLayoutChanges="true"
                 android:outlineAmbientShadowColor="#000000"
                 android:outlineProvider="paddedBounds"
                 android:outlineSpotShadowColor="#000000"
-                app:cardUseCompatPadding="true"
                 app:cardCornerRadius="25dp"
                 app:cardElevation="10dp"
-                >
+                app:cardUseCompatPadding="true">
 
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_gravity="center_horizontal"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/estadoDetalleDescriptionTextView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ganada!😍"
                         android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="0dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Ganada!😍"
                         android:textColor="#00FF00"
                         android:textSize="25sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:layout_marginTop="0dp"
-                        />
+                        android:textStyle="bold" />
 
                     <View
                         android:id="@+id/lineaViewEstadoDetalleDescriptionTextView5"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="#000000"
-                        android:layout_marginTop="0dp"
                         android:layout_gravity="center_horizontal"
-                        />
+                        android:layout_marginTop="0dp"
+                        android:background="#000000" />
 
                 </LinearLayout>
 
@@ -127,70 +115,66 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="35dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp">
+                    android:layout_marginTop="35dp"
+                    android:layout_marginEnd="0dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/valorActualDescriptionTextView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Valor-(info)"
-                        android:textColor="#000000"
-                        android:textStyle="bold"
-                        android:textSize="30sp"
+                        android:layout_marginRight="5dp"
                         android:fontFamily="@font/montserrat_medium"
-                        />
+                        android:text="1234567890"
+                        android:textColor="#000000"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/monedaActualDescriptionTextView5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:text="ARS"
-                            android:textColor="@android:color/black"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/montserrat_medium"
-                           />
+                    <TextView
+                        android:id="@+id/monedaActualDescriptionTextView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="ARS"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
 
-                        <TextView
-                            android:id="@+id/valorActualOVendido5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="16dp"
-                            android:text="Valor Actual"
-                            android:textColor="#009fff"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/montserrat_medium_italic"
-                            android:maxLines="1"
-                            />
+                    <TextView
+                        android:id="@+id/valorActualOVendido5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="16dp"
+                        android:fontFamily="@font/montserrat_medium_italic"
+                        android:maxLines="1"
+                        android:text="Precio Actual"
+                        android:textColor="#009fff"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-                    </LinearLayout>
+                </LinearLayout>
 
                 <View
                     android:id="@+id/divider3"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_marginTop="85dp"
-                    android:background="#33009fff"
-                    />
+                    android:background="#33009fff" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="85dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="85dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/precioBaseDescriptionTextView5"
@@ -199,49 +183,45 @@
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:layout_marginTop="10dp"
-                        android:text="Precio-Base(info)"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
                         android:fontFamily="@font/montserrat_medium_italic"
-                        />
+                        android:text="1000000"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/monedaBaseDescriptionTextView5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:text="ARS"
-                            android:textColor="@android:color/black"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/montserrat_medium_italic"
-                            />
+                    <TextView
+                        android:id="@+id/monedaBaseDescriptionTextView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat_medium_italic"
+                        android:text="ARS"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
 
-                        <TextView
-                            android:id="@+id/precioBaseView5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentLeft="true"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="16dp"
-                            android:layout_marginTop="10dp"
-                            android:text="Precio Base"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/montserrat_medium_italic"
-                            />
+                    <TextView
+                        android:id="@+id/precioBaseView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
+                        android:fontFamily="@font/montserrat_medium_italic"
+                        android:text="Precio Base"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                    </LinearLayout>
-
+                </LinearLayout>
 
 
                 <View
@@ -249,51 +229,48 @@
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_marginTop="125dp"
-                    android:background="#33009fff"
-                    />
+                    android:background="#33009fff" />
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:text="Descripción"
-                        android:textColor="@android:color/black"
-                        android:textSize="25sp"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="130dp"
-                        />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="130dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Descripción"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp" />
 
-                    <TextView
-                        android:id="@+id/fullTitleDescriptionTextView5"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:layout_below="@+id/titleDescriptionTextView5"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:text="Descripcion Completa (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) "
-                        android:textColor="@android:color/black"
-                        android:textSize="20dp"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginTop="160dp"
-                        android:ellipsize="end"
-                        android:inputType="none"
-                        android:maxLines="3"
-                        />
+                <TextView
+                    android:id="@+id/fullTitleDescriptionTextView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_below="@+id/titleDescriptionTextView5"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="160dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:inputType="none"
+                    android:maxLines="3"
+                    android:text="Descripcion Completa (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) "
+                    android:textColor="@android:color/black"
+                    android:textSize="20dp" />
 
                 <LinearLayout
                     android:id="@+id/linearLayoutfullTitleDescripcion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginTop="240dp"
+                    android:orientation="horizontal"
 
                     >
 
@@ -302,110 +279,100 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
                         android:layout_marginLeft="16dp"
-                        android:text="Ver descripción completa "
+                        android:layout_marginEnd="16dp"
                         android:fontFamily="@font/montserrat_medium_italic"
-                        android:textColor="#3483fa"
-                        />
+                        android:text="Ver descripción completa "
+                        android:textColor="#3483fa" />
 
                     <ImageView
                         android:id="@+id/imageView2"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        app:srcCompat="@drawable/ic_downarrow_121316"
-                        android:gravity="bottom"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:textStyle="bold"
                         android:layout_marginTop="0dp"
-                        />
+                        android:fontFamily="@font/montserrat_medium"
+                        android:gravity="bottom"
+                        android:textStyle="bold"
+                        app:srcCompat="@drawable/ic_downarrow_121316" />
 
 
                 </LinearLayout>
 
 
-
             </androidx.cardview.widget.CardView>
 
 
-            <androidx.cardview.widget.CardView
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
-
-                android:layout_marginTop="-34dp"
                 android:layout_marginStart="0dp"
+                android:layout_marginTop="-34dp"
                 android:layout_marginEnd="0dp"
                 android:layout_marginBottom="0dp"
-
                 android:animateLayoutChanges="true"
                 android:outlineAmbientShadowColor="#000000"
                 android:outlineProvider="paddedBounds"
                 android:outlineSpotShadowColor="#000000"
-                app:cardUseCompatPadding="true"
                 app:cardCornerRadius="25dp"
                 app:cardElevation="10dp"
-                >
+                app:cardUseCompatPadding="true">
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/titleDescriptionTextView5"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="0dp"
-                android:text="Estado del Envío"
-                android:textColor="@android:color/black"
-                android:textSize="25sp"
-                android:fontFamily="@font/montserrat_regular"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/titleDescriptionTextView5"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="0dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Estado del Envío"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp" />
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="50dp"
-                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/pendienteEnvioDescriptionTextView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Pendiente ☑"
-                android:textColor="#F39C12"
-                android:textSize="18sp"
-                android:fontFamily="@font/montserrat_medium"/>
+                    <TextView
+                        android:id="@+id/pendienteEnvioDescriptionTextView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Pendiente ☑"
+                        android:textColor="#F39C12"
+                        android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/enviadoEnvioDescriptionTextView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Enviado ☑"
-                android:textColor="#2ECC71"
-                android:textSize="18sp"
-                android:fontFamily="@font/montserrat_medium"/>
+                    <TextView
+                        android:id="@+id/enviadoEnvioDescriptionTextView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Enviado ☑"
+                        android:textColor="#2ECC71"
+                        android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/recibidoEnvioDescriptionTextView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Recibido ☑"
-                android:textColor="#2980B9"
-                android:textSize="18sp"
+                    <TextView
+                        android:id="@+id/recibidoEnvioDescriptionTextView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="Recibido ☑"
+                        android:textColor="#2980B9"
+                        android:textSize="18sp" />
 
-                android:fontFamily="@font/montserrat_medium"/>
-
-
-            </LinearLayout>
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
