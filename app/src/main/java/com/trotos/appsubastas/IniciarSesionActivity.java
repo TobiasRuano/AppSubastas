@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -33,6 +34,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
     EditText passText;
     Button logInButton;
     Button registerButton;
+    Button invitadoButton;
     Switch hasPassSwitch;
 
     Boolean userHasPass = true;
@@ -116,6 +118,13 @@ public class IniciarSesionActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+
+            invitadoButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(IniciarSesionActivity.this, MenuInvitado.class));
+                }
+            });
         }
     }
 
@@ -130,6 +139,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
         passText = (EditText) findViewById(R.id.passText);
         logInButton = (Button) findViewById(R.id.submitButton);
         registerButton = (Button) findViewById(R.id.RegisterButton);
+        invitadoButton = findViewById(R.id.InvitadoButton);
         hasPassSwitch = (Switch) findViewById(R.id.hasPassSwitch);
     }
 
