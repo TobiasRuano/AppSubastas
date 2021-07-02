@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 import com.trotos.appsubastas.Modelos.LoginInformation;
 import com.trotos.appsubastas.Modelos.ResponseLogIn;
@@ -36,8 +37,11 @@ public class IniciarSesionActivity extends AppCompatActivity {
     Button registerButton;
     Button invitadoButton;
     Switch hasPassSwitch;
+    TextInputLayout passTextView;
 
     Boolean userHasPass = true;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +61,15 @@ public class IniciarSesionActivity extends AppCompatActivity {
                     if (hasPass) {
                         passText.setFocusableInTouchMode(true);
                         passText.setEnabled(true);
+                        passText.setVisibility(View.VISIBLE);
+                        passTextView.setVisibility(View.VISIBLE);
                         logInButton.setText("Iniciar Sesion");
                         userHasPass = true;
                     } else {
                         passText.setFocusable(false);
                         passText.setEnabled(false);
+                        passText.setVisibility(View.GONE);
+                        passTextView.setVisibility(View.GONE);
                         passText.setText("");
                         logInButton.setText("Crear Contraseña");
                         userHasPass = false;
@@ -141,6 +149,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
         registerButton = (Button) findViewById(R.id.RegisterButton);
         invitadoButton = findViewById(R.id.InvitadoButton);
         hasPassSwitch = (Switch) findViewById(R.id.hasPassSwitch);
+        passTextView = findViewById(R.id.passTextView);
     }
 
     private void logIn(String mail, String password) {
