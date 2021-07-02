@@ -19,6 +19,7 @@ import com.google.gson.reflect.TypeToken;
 import com.trotos.appsubastas.Modelos.Bid;
 import com.trotos.appsubastas.Modelos.ItemCatalogo;
 import com.trotos.appsubastas.Modelos.ResponseBids;
+import com.trotos.appsubastas.Modelos.ResponseSuccessfulBid;
 import com.trotos.appsubastas.Modelos.User;
 
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
@@ -227,15 +228,16 @@ public class DescripcionActivity extends AppCompatActivity {
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
 
-        Bid bid = new Bid(element.getItemId(), valorPuja, user.getId());
-        Call<String> call = as.postBid(bid, "Bearer "+ token);
+        Bid bid = new Bid(element.getId(), valorPuja, user.getId());
+        Call<ResponseSuccessfulBid> call = as.postBid(bid, "Bearer "+ token);
 
-        call.enqueue(new Callback<String>() {
+        call.enqueue(new Callback<ResponseSuccessfulBid>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<ResponseSuccessfulBid> call, Response<ResponseSuccessfulBid> response) {
                 Toast toast1;
                 if(response.isSuccessful()) {
                     toast1 = Toast.makeText(getApplicationContext(), "Oferta realizada con exito!", Toast.LENGTH_LONG);
+                    getBids();
                 } else {
                     toast1 = Toast.makeText(getApplicationContext(), response.message(), Toast.LENGTH_LONG);
                 }
@@ -243,8 +245,8 @@ public class DescripcionActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Toast toast1 = Toast.makeText(getApplicationContext(),t.getMessage(), Toast.LENGTH_LONG);
+            public void onFailure(Call<ResponseSuccessfulBid> call, Throwable t) {
+                Toast toast1 = Toast.makeText(getApplicationContext(),t.getLocalizedMessage(), Toast.LENGTH_LONG);
                 toast1.show();
             }
         });

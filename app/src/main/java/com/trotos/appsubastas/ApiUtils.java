@@ -17,6 +17,7 @@ import com.trotos.appsubastas.Modelos.ResponseLogIn;
 import com.trotos.appsubastas.Modelos.ResponseMPTarjetas;
 import com.trotos.appsubastas.Modelos.ResponseStatisticsUser;
 import com.trotos.appsubastas.Modelos.Auction;
+import com.trotos.appsubastas.Modelos.ResponseSuccessfulBid;
 import com.trotos.appsubastas.Modelos.User;
 
 import java.util.List;
@@ -38,7 +39,7 @@ interface ApiUtils {
     Call<ResponseItemsCatalog> getItemsSubasta(@Body Auction auction);
 
     @HTTP(method = "POST", path = "auction/bid", hasBody = true)
-    Call<String> postBid(@Body Bid bid, @Header("Authorization") String auth);
+    Call<ResponseSuccessfulBid> postBid(@Body Bid bid, @Header("Authorization") String auth);
 
     @HTTP(method = "POST", path = "auction/items/bids", hasBody = true)
     Call<ResponseBids> getBids(@Body ItemCatalogo item, @Header("Authorization") String auth);
