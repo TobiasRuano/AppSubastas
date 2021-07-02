@@ -43,7 +43,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
     TextView monedaActualTextView4;
     TextView estadoItem;
 
-    LinearLayout linearLayoutfullTitleDescripcion;
+    LinearLayout linearLayoutfullTitleDescripcion, layoutPrecioComision;
 
     EditText editarNumeroDeTexto4;
     Button botonOfertar4;
@@ -173,6 +173,8 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
         botonRegistrar4 = findViewById(R.id.botonRegistrar4);
         historialPujasView4 = findViewById(R.id.historialPujasView4);
 
+        layoutPrecioComision = findViewById(R.id.LayoutPrecioComision);
+
         String valorActualText4 = String.format("%,d", element.getBasePrice()); // no deberia estar
         valorActualOVendido4.setText(valorActualText4);
         String precioBaseText4 = String.format("%,d", element.getBasePrice());
@@ -222,6 +224,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
             case "Auctioning":
                 valorActualOVendido4.setText("Valor Actual:");
                 valorActualTextView4.setTextColor(Color.parseColor("#FF669900"));
+                layoutPrecioComision.setVisibility(View.GONE);
                 break;
             case "Programed":
                 valorActualOVendido4.setVisibility(View.GONE);
@@ -234,12 +237,14 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 precioBaseTextView4.setTextColor(Color.parseColor("#FF669900"));
                 precioBaseView4.setTextSize(30);
                 precioBaseView4.setTextColor(Color.parseColor("#FF669900"));
+                layoutPrecioComision.setVisibility(View.GONE);
                 break;
             case "Ended":
                 editarNumeroDeTexto4.setVisibility(View.GONE);
                 botonOfertar4.setVisibility(View.GONE);
                 valorActualOVendido4.setText("Vendido:");
                 valorActualTextView4.setTextColor(Color.parseColor("#FF669900"));
+                layoutPrecioComision.setVisibility(View.GONE);
                 break;
             case "Waiting Response":
                 botonOfertar4.setVisibility(View.GONE);
@@ -249,9 +254,8 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
             case "Pending Auction":
                 historialPujasView4.setVisibility(View.GONE);
                 botonOfertar4.setVisibility(View.GONE);
-                aceptarPendienteBoton.setVisibility(View.GONE);
-                rechazarPendienteBoton.setVisibility(View.GONE);
                 editarNumeroDeTexto4.setVisibility(View.GONE);
+                layoutPrecioComision.setVisibility(View.GONE);
                 break;
             case "Pending":
                 monedaBaseTextView4.setVisibility(View.GONE);
@@ -263,8 +267,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 precioBaseTextView4.setVisibility(View.GONE);
                 precioBaseView4.setVisibility(View.GONE);
                 botonOfertar4.setVisibility(View.GONE);
-                aceptarPendienteBoton.setVisibility(View.GONE);
-                rechazarPendienteBoton.setVisibility(View.GONE);
+                layoutPrecioComision.setVisibility(View.GONE);
                 break;
             case "Denied":
                 aceptarPendienteBoton.setVisibility(View.GONE);
@@ -278,6 +281,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 precioBaseTextView4.setVisibility(View.GONE);
                 precioBaseView4.setVisibility(View.GONE);
                 botonOfertar4.setVisibility(View.GONE);
+                layoutPrecioComision.setVisibility(View.GONE);
                 break;
             default:
                 break;
