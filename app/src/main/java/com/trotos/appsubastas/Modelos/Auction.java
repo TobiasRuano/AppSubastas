@@ -5,8 +5,10 @@ import android.annotation.SuppressLint;
 import java.io.Serializable;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 public class Auction implements Serializable {
@@ -39,11 +41,14 @@ public class Auction implements Serializable {
             long time = getEndTime().getTime() - nowDate.getTime();
             long minutes = TimeUnit.MILLISECONDS.toMinutes(time);
             stateString = "Finaliza en: " + minutes + " minutos";
+            this.setStatus("Auctioning");
         } else if (nowDate.before(getStartTime())) {
             String date = parseDate(getStartTime());
             stateString = "Inicio: " + date;
+            this.setStatus("Programmed");
         } else {
             stateString = "Finalizada";
+            this.setStatus("Ended");
         }
         return stateString;
     }

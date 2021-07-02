@@ -78,6 +78,7 @@ public class MyAdapterMisCatalogosPujados extends RecyclerView.Adapter<MyAdapter
             Picasso.with(context).load(item.getUrlImage()).into(iconImage);
             descripcion.setText(item.getTitle());
             descripcionBreve.setText(item.getDescription());
+            item.getTimeStatus();
             estado.setText(item.getStatus());
             estado.setTextColor(Color.parseColor("#ff8000"));
 
