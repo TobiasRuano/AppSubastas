@@ -98,12 +98,14 @@ public class CrearUsuarioActivity extends AppCompatActivity{
                 if(response.isSuccessful()) {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Usuario creado de forma satisfactoria!", Toast.LENGTH_LONG);
                     toast1.show();
-                    //Intent intent = new Intent(CrearUsuarioActivity.this, SubastaActivity.class);
-                    //startActivity(intent);
-                    // ir a log in
                     finish();
                 } else {
-                    Toast toast1 = Toast.makeText(getApplicationContext(),"Error al intentar crear la cuenta.", Toast.LENGTH_LONG);
+                    Toast toast1;
+                    if (response.code() == 400) {
+                        toast1 = Toast.makeText(getApplicationContext(), "El mail ya esta en uso.", Toast.LENGTH_LONG);
+                    } else {
+                        toast1 = Toast.makeText(getApplicationContext(), "Error al intentar crear la cuenta.", Toast.LENGTH_LONG);
+                    }
                     toast1.show();
                 }
             }

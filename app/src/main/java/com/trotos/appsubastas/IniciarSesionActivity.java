@@ -165,8 +165,28 @@ public class IniciarSesionActivity extends AppCompatActivity {
                     intent.putExtra("estadoLoggeado",true);
                     startActivity(intent);
                 } else {
-                    Toast toast1 = Toast.makeText(getApplicationContext(),"Contraseña Incorrecta", Toast.LENGTH_LONG);
-                    toast1.show();
+                    switch (response.code()) {
+                        case 404: {
+                            Toast toast1 = Toast.makeText(getApplicationContext(), "No existe el usuario.", Toast.LENGTH_LONG);
+                            toast1.show();
+                            break;
+                        }
+                        case 406: {
+                            Toast toast1 = Toast.makeText(getApplicationContext(), "El usuario no posee contraseña.", Toast.LENGTH_LONG);
+                            toast1.show();
+                            break;
+                        }
+                        case 401: {
+                            Toast toast1 = Toast.makeText(getApplicationContext(), "Contraseña Incorrecta.", Toast.LENGTH_LONG);
+                            toast1.show();
+                            break;
+                        }
+                        default: {
+                            Toast toast1 = Toast.makeText(getApplicationContext(), "Error en el servidor.", Toast.LENGTH_LONG);
+                            toast1.show();
+                            break;
+                        }
+                    }
                 }
             }
 
@@ -211,8 +231,19 @@ public class IniciarSesionActivity extends AppCompatActivity {
                     intent.putExtra("usuario", usuario);
                     startActivity(intent);
                 } else {
-                    Toast toast1 = Toast.makeText(getApplicationContext(),"No puede crear una contraseña para su cuenta", Toast.LENGTH_LONG);
-                    toast1.show();
+                    if(response.code() == 401) {
+                        Toast toast1 = Toast.makeText(getApplicationContext(),"El usuario aun no esta habilitado para crear la contraseña.", Toast.LENGTH_LONG);
+                        toast1.show();
+                    } else if(response.code() == 400) {
+                        Toast toast1 = Toast.makeText(getApplicationContext(),"El usuario ya posee contraseña.", Toast.LENGTH_LONG);
+                        toast1.show();
+                    } else if(response.code() == 404) {
+                        Toast toast1 = Toast.makeText(getApplicationContext(),"No existe un usuario con el mail dado.", Toast.LENGTH_LONG);
+                        toast1.show();
+                    } else {
+                        Toast toast1 = Toast.makeText(getApplicationContext(),"Error en el servidor.", Toast.LENGTH_LONG);
+                        toast1.show();
+                    }
                 }
             }
 

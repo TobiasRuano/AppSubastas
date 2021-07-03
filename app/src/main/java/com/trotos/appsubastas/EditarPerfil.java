@@ -114,9 +114,16 @@ public class EditarPerfil extends AppCompatActivity {
                     done = true;
                     showAlert("Exito!", "Usuario modificado correctamente.");
                 } else {
-                    Toast toast2 = Toast.makeText(getApplicationContext(), "Error al modificar el usuario.", Toast.LENGTH_LONG);
-                    toast2.show();
-                    System.out.println(response.message());
+                    if(response.code() == 404) {
+                        Toast toast2 = Toast.makeText(getApplicationContext(), "Usuario no encontrado.", Toast.LENGTH_LONG);
+                        toast2.show();
+                    } else if(response.code() == 403) {
+                        Toast toast2 = Toast.makeText(getApplicationContext(), "El mail indicado ya esta en uso.", Toast.LENGTH_LONG);
+                        toast2.show();
+                    } else {
+                        Toast toast2 = Toast.makeText(getApplicationContext(), "Error en el servidor.", Toast.LENGTH_LONG);
+                        toast2.show();
+                    }
                 }
             }
 

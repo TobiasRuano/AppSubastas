@@ -85,8 +85,16 @@ public class CrearPassActivity extends AppCompatActivity {
                     toast1.show();
                     finish();
                 } else {
-                    Toast toast1 = Toast.makeText(getApplicationContext(),"Hubo un error en la respuesta", Toast.LENGTH_LONG);
-                    toast1.show();
+                    if(response.code() == 404) {
+                        Toast toast1 = Toast.makeText(getApplicationContext(),"Usuario incorrecto.", Toast.LENGTH_LONG);
+                        toast1.show();
+                    }else if(response.code() == 409) {
+                        Toast toast1 = Toast.makeText(getApplicationContext(),"El usuario ya posee una contraseña.", Toast.LENGTH_LONG);
+                        toast1.show();
+                    }else {
+                        Toast toast1 = Toast.makeText(getApplicationContext(),"Error en el servidor.", Toast.LENGTH_LONG);
+                        toast1.show();
+                    }
                 }
             }
 
