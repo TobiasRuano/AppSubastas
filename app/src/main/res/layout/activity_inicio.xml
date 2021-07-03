@@ -51,7 +51,7 @@
         android:shadowDx="10"
         android:shadowDy="10"
         android:shadowRadius="20"
-        android:text="¿Estás prepadado para ser Ganador?"
+        android:text="¿Estás preparado para ser Ganador?"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="17sp"
