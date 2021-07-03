@@ -29,19 +29,21 @@ public class ItemCatalogo extends Item implements Serializable {
 
     public String getTimeStatus() {
         Date nowDate = new Date();
-        String stateString;
-        if(nowDate.after(getStartTime()) && nowDate.before(getEndTime())) {
-            long time = getEndTime().getTime() - nowDate.getTime();
-            long minutes = TimeUnit.MILLISECONDS.toMinutes(time);
-            stateString = "Finaliza en: " + minutes + " minutos";
-            this.setStatus("Auctioning");
-        } else if (nowDate.before(getStartTime())) {
-            String date = parseDate(getStartTime());
-            stateString = "Inicio: " + date;
-            this.setStatus("Programmed");
-        } else {
-            stateString = "Finalizada";
-            this.setStatus("Ended");
+        String stateString = "Pending";
+        if(getStartTime() != null && getEndTime() != null) {
+            if(nowDate.after(getStartTime()) && nowDate.before(getEndTime())) {
+                long time = getEndTime().getTime() - nowDate.getTime();
+                long minutes = TimeUnit.MILLISECONDS.toMinutes(time);
+                stateString = "Finaliza en: " + minutes + " minutos";
+                this.setStatus("Auctioning");
+            } else if (nowDate.before(getStartTime())) {
+                String date = parseDate(getStartTime());
+                stateString = "Inicio: " + date;
+                this.setStatus("Programmed");
+            } else {
+                stateString = "Finalizada";
+                this.setStatus("Ended");
+            }
         }
         return stateString;
     }

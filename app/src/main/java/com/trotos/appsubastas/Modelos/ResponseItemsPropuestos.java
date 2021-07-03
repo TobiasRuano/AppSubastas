@@ -3,7 +3,7 @@ package com.trotos.appsubastas.Modelos;
 public class ResponseItemsPropuestos {
 
     private String message;
-    private Item data;
+    private ItemCatalogo data;
 
     public String getMessage() {
         return message;
@@ -13,11 +13,11 @@ public class ResponseItemsPropuestos {
         this.message = message;
     }
 
-    public Item getData() {
+    public ItemCatalogo getData() {
         return data;
     }
 
-    public void setData(Item data) {
+    public void setData(ItemCatalogo data) {
         this.data = data;
     }
 }

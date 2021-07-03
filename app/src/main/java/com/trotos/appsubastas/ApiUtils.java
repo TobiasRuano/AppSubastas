@@ -51,7 +51,7 @@ interface ApiUtils {
     Call<User> checkPasswordUsuario(@Body LoginInformation logIn);
 
     @HTTP(method = "POST", path = "user/getitems", hasBody = true)
-    Call<ResponseItems> getObjetosPropuestos(@Body User user, @Header("Authorization") String auth);
+    Call<ResponseItemsCatalog> getObjetosPropuestos(@Body User user, @Header("Authorization") String auth);
 
     @HTTP(method = "POST", path = "user/items/bidded", hasBody = true)
     Call<ResponseItemsCatalog> getItemsParticipados(@Body User user, @Header("Authorization") String auth);
@@ -66,7 +66,7 @@ interface ApiUtils {
     Call<ResponseItemsPropuestos> postProducto(@Body Item item, @Header("Authorization") String auth);
 
     @HTTP(method = "PATCH", path = "user/items/offer", hasBody = true)
-    Call<Item> actOnOffer(@Body Item item, @Header("Authorization") String auth);
+    Call<ItemCatalogo> actOnOffer(@Body ItemCatalogo item, @Header("Authorization") String auth);
 
     @POST("user/payment")
     Call<ResponseCreateMP> postTarjeta(@Body MPTarjeta tarjeta, @Header("Authorization") String auth);

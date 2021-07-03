@@ -14,11 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 import com.trotos.appsubastas.Modelos.Item;
+import com.trotos.appsubastas.Modelos.ItemCatalogo;
 
 import java.util.List;
 
 public class MyAdapterMisObjetos extends RecyclerView.Adapter<MyAdapterMisObjetos.ViewHolder> {
-    private List<Item> mData;
+    private List<ItemCatalogo> mData;
     private LayoutInflater mInflater;
     private Context context;
     final OnItemClickListener listener4;
@@ -29,7 +30,7 @@ public class MyAdapterMisObjetos extends RecyclerView.Adapter<MyAdapterMisObjeto
         void onItemClick(Item item);
     }
 
-    public MyAdapterMisObjetos(List<Item> itemList, Boolean estaRegistrado, Context context, OnItemClickListener listener4){
+    public MyAdapterMisObjetos(List<ItemCatalogo> itemList, Boolean estaRegistrado, Context context, OnItemClickListener listener4){
         this.mInflater = LayoutInflater.from(context);
         this.context = context;
         this.mData = itemList;
@@ -53,13 +54,13 @@ public class MyAdapterMisObjetos extends RecyclerView.Adapter<MyAdapterMisObjeto
         holder.bindData(mData.get(position));
     }
 
-    public void setItems(List<Item> items){
+    public void setItems(List<ItemCatalogo> items){
         mData = items;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iconImage;
-        TextView title, descripcionBreve, ValorActual, estado;
+        TextView title, descripcionBreve, estado;
         CardView cv4;
 
         ViewHolder(@NonNull View itemView) {
@@ -67,23 +68,19 @@ public class MyAdapterMisObjetos extends RecyclerView.Adapter<MyAdapterMisObjeto
             iconImage = itemView.findViewById(R.id.iconImageView4);
             title = itemView.findViewById(R.id.descripcionTextView4);
             descripcionBreve = itemView.findViewById(R.id.descripcionBreveTextView4);
-            //ValorActual = itemView.findViewById(R.id.valorActualTextView4);
             estado = itemView.findViewById(R.id.estadoActualTextView4);
 
             cv4 = itemView.findViewById(R.id.cv4);
         }
 
-        public void bindData(final Item item){
+        public void bindData(final ItemCatalogo item){
             Picasso.with(context).load(item.getUrlImage()).into(iconImage);
             title.setText(item.getTitle());
             descripcionBreve.setText(item.getDescription());
+            item.getTimeStatus();
             estado.setText(item.getStatus());
 
-            //String valorActualText = String.format("%,d", item.getValorActual());
-            //ValorActual.setText(valorActualText);
-
             if(!estaRegistrado){
-                //ValorActual.setVisibility(View.GONE);
                 estado.setVisibility(View.GONE);
             }
 

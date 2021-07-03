@@ -15,7 +15,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.trotos.appsubastas.Modelos.Bid;
-import com.trotos.appsubastas.Modelos.Item;
 import com.trotos.appsubastas.Modelos.ItemCatalogo;
 import com.trotos.appsubastas.Modelos.ResponseBids;
 
@@ -23,7 +22,6 @@ import org.imaginativeworld.whynotimagecarousel.ImageCarousel;
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -50,7 +48,6 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
     Button botonRegistrar4;
     Button aceptarPendienteBoton, rechazarPendienteBoton;
 
-
     TextView valorActualOVendido4;
     TextView precioBaseView4;
     TextView historialPujasView4;
@@ -58,7 +55,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
     List<CarouselItem> list = new ArrayList<>();
     List<Bid> bids = new ArrayList<>();
 
-    Item element;
+    ItemCatalogo element;
     boolean estaRegistrado;
 
     @Override
@@ -66,7 +63,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_descripcion_mis_objetos);
 
-        element = (Item) getIntent().getSerializableExtra("MisObjetos");
+        element = (ItemCatalogo) getIntent().getSerializableExtra("MisObjetos");
         System.out.println(element.getTitle());
         estaRegistrado = (Boolean) getIntent().getBooleanExtra("estadoLoggeado", false);
         configureUI();
@@ -105,11 +102,11 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
 
-        Call<Item> call = as.actOnOffer(element, "Bearer "+ token);
+        Call<ItemCatalogo> call = as.actOnOffer(element, "Bearer "+ token);
 
-        call.enqueue(new Callback<Item>() {
+        call.enqueue(new Callback<ItemCatalogo>() {
             @Override
-            public void onResponse(Call<Item> call, Response<Item> response) {
+            public void onResponse(Call<ItemCatalogo> call, Response<ItemCatalogo> response) {
                 if(response.isSuccessful()) {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Exito!", Toast.LENGTH_LONG);
                     toast1.show();
@@ -121,7 +118,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Item> call, Throwable t) {
+            public void onFailure(Call<ItemCatalogo> call, Throwable t) {
                 Toast toast1 = Toast.makeText(getApplicationContext(),"Error al intentar Aceptar o rechazar la oferta", Toast.LENGTH_LONG);
                 toast1.show();
             }
@@ -175,8 +172,8 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
 
         layoutPrecioComision = findViewById(R.id.LayoutPrecioComision);
 
-        String valorActualText4 = String.format("%,d", element.getBasePrice()); // no deberia estar
-        valorActualOVendido4.setText(valorActualText4);
+        //String valorActualText4 = String.format("%,d", element.getBasePrice()); // no deberia estar
+        //valorActualOVendido4.setText(valorActualText4);
         String precioBaseText4 = String.format("%,d", element.getBasePrice());
         precioBaseView4.setText(precioBaseText4);
 
@@ -226,7 +223,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 valorActualTextView4.setTextColor(Color.parseColor("#FF669900"));
                 layoutPrecioComision.setVisibility(View.GONE);
                 break;
-            case "Programed":
+            case "Programmed":
                 valorActualOVendido4.setVisibility(View.GONE);
                 valorActualTextView4.setVisibility(View.GONE);
                 monedaActualTextView4.setVisibility(View.GONE);
@@ -297,17 +294,19 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
-        Call<ResponseBids> call = as.getBids(new ItemCatalogo(null, 0, null, null, null, 0, 0, null, 0, 0, element.getId(),0, null, null), "Bearer "+ token);
+        Call<ResponseBids> call = as.getBids(element, "Bearer "+ token);
 
         call.enqueue(new Callback<ResponseBids>() {
             @Override
             public void onResponse(Call<ResponseBids> call, Response<ResponseBids> response) {
                 if(response.isSuccessful()) {
                     ResponseBids responseBids = response.body();
-                    bids.addAll(responseBids.getData());
-                    if(bids.size() > 0) {
-                        int valorActual = bids.get(bids.size() - 1).getAmount();
-                        valorActualTextView4.setText(String.valueOf(valorActual));
+                    if (responseBids != null) {
+                        bids.addAll(responseBids.getData());
+                        if(bids.size() > 0) {
+                            int valorActual = bids.get(bids.size() - 1).getAmount();
+                            valorActualOVendido4.setText(String.valueOf(valorActual));
+                        }
                     }
                 } else {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener las ofertas", Toast.LENGTH_LONG);

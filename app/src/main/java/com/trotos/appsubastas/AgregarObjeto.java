@@ -27,6 +27,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.trotos.appsubastas.Modelos.Item;
+import com.trotos.appsubastas.Modelos.ItemCatalogo;
 import com.trotos.appsubastas.Modelos.LoginInformation;
 import com.trotos.appsubastas.Modelos.MPTarjeta;
 import com.trotos.appsubastas.Modelos.ResponseItemsPropuestos;
@@ -215,11 +216,15 @@ public class AgregarObjeto extends AppCompatActivity {
             public void onResponse(Call<ResponseItemsPropuestos> call, Response<ResponseItemsPropuestos> response) {
                 if(response.isSuccessful()) {
                     ResponseItemsPropuestos itemResponse = response.body();
-                    passDataBack(itemResponse.getData());
+                    if (itemResponse != null) {
+                        passDataBack(itemResponse.getData());
+                    } else {
+                        Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener datos del BackEnd.", Toast.LENGTH_LONG);
+                        toast1.show();
+                    }
                 } else {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Error al proponer el objeto", Toast.LENGTH_LONG);
                     toast1.show();
-                    System.out.println(response.errorBody());
                 }
             }
 
@@ -231,7 +236,7 @@ public class AgregarObjeto extends AppCompatActivity {
         });
     }
 
-    private void passDataBack(Item item) {
+    private void passDataBack(ItemCatalogo item) {
         Intent intent = new Intent();
         intent.putExtra("nuevoObjeto", item);
         setResult(RESULT_OK, intent);

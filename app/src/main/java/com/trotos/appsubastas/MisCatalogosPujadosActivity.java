@@ -27,6 +27,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -149,6 +150,7 @@ public class MisCatalogosPujadosActivity<animFadeIn> extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     ResponseItemsCatalog itemsCatalogo = response.body();
                     catalogos.addAll(itemsCatalogo.getData());
+                    catalogos.sort(Comparator.comparing(ItemCatalogo::getEndTime));
                     listRecyclerView5.getAdapter().notifyDataSetChanged();
                 } else {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener los Catalogos", Toast.LENGTH_LONG);

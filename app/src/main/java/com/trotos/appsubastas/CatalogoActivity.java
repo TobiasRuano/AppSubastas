@@ -43,14 +43,12 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
     TextView categoryDescriptionTextView;
     RecyclerView listRecyclerView2;
 
-    Animation animFadeIn;
-    boolean banderaAnimation = false;
-    boolean estaRegistrado;
     ViewGroup.LayoutParams params;
     LinearLayout linearLayout1;
 
     Auction element;
     String category;
+    boolean estaRegistrado;
     User user;
     List<ItemCatalogo> catalogos = new ArrayList<>();
 
@@ -94,7 +92,6 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
         nameDescriptionTextView = findViewById(R.id.nameDescriptionTextView);
         stateDescriptionTextView = findViewById(R.id.stateDescriptionTextView);
         categoryDescriptionTextView = findViewById(R.id.categoryDescriptionTextView);
-
         linearLayout1 = findViewById(R.id.linearLayout1);
     }
 
@@ -126,7 +123,6 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
                     break;
                 default:
             }
-
         }else{
             myDialog = new Dialog(this);
             myDialog.setContentView(R.layout.pop_up_iniciar_sesion_registrarse);
@@ -148,11 +144,8 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
                 }
             });
 
-
             myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             myDialog.show();
-
-            //startActivity(intent);
         }
     }
 

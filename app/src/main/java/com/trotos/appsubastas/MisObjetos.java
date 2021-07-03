@@ -22,9 +22,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.trotos.appsubastas.Modelos.Item;
+import com.trotos.appsubastas.Modelos.ItemCatalogo;
 import com.trotos.appsubastas.Modelos.MPTarjeta;
 import com.trotos.appsubastas.Modelos.ResponseItems;
 import com.trotos.appsubastas.Modelos.Auction;
+import com.trotos.appsubastas.Modelos.ResponseItemsCatalog;
 import com.trotos.appsubastas.Modelos.User;
 
 import org.jetbrains.annotations.NotNull;
@@ -58,7 +60,7 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
 
     User user;
 
-    List<Item> catalogos = new ArrayList<Item>();
+    List<ItemCatalogo> catalogos = new ArrayList<>();
 
 
     @Override
@@ -164,13 +166,13 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
                 .build();
         ApiUtils as = retrofit.create(ApiUtils.class);
 
-        Call<ResponseItems> call = as.getObjetosPropuestos(user, "Bearer "+ token);
+        Call<ResponseItemsCatalog> call = as.getObjetosPropuestos(user, "Bearer "+ token);
 
-        call.enqueue(new Callback<ResponseItems>() {
+        call.enqueue(new Callback<ResponseItemsCatalog>() {
             @Override
-            public void onResponse(Call<ResponseItems> call, Response<ResponseItems> response) {
+            public void onResponse(Call<ResponseItemsCatalog> call, Response<ResponseItemsCatalog> response) {
                 if(response.isSuccessful()) {
-                    ResponseItems items = response.body();
+                    ResponseItemsCatalog items = response.body();
                     catalogos.addAll(items.getData());
                     listRecyclerView4.getAdapter().notifyDataSetChanged();
                 } else {
@@ -180,7 +182,7 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ResponseItems> call, Throwable t) {
+            public void onFailure(Call<ResponseItemsCatalog> call, Throwable t) {
                 Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener los Catalogos", Toast.LENGTH_LONG);
                 toast1.show();
             }
@@ -191,13 +193,13 @@ public class MisObjetos<animFadeIn> extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if(resultCode == RESULT_OK) {
-                Item item = (Item) data.getSerializableExtra("nuevoObjeto");
+                ItemCatalogo item = (ItemCatalogo) data.getSerializableExtra("nuevoObjeto");
                 catalogos.add(item);
                 listRecyclerView4.getAdapter().notifyDataSetChanged();
             }
         } else if (requestCode == 2) {
             if(resultCode == RESULT_OK) {
-                Item item = (Item) data.getSerializableExtra("item");
+                ItemCatalogo item = (ItemCatalogo) data.getSerializableExtra("item");
                 int index = -1;
                 for(int i = 0; i < catalogos.size(); i++) {
                     if(catalogos.get(i).getId() == item.getId()) {
