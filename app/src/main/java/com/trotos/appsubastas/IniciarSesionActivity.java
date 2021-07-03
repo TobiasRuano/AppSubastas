@@ -35,7 +35,6 @@ public class IniciarSesionActivity extends AppCompatActivity {
     EditText passText;
     Button logInButton;
     Button registerButton;
-    Button invitadoButton;
     Switch hasPassSwitch;
     TextInputLayout passTextView;
 
@@ -127,12 +126,6 @@ public class IniciarSesionActivity extends AppCompatActivity {
                 }
             });
 
-            invitadoButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(IniciarSesionActivity.this, MenuInvitado.class));
-                }
-            });
         }
     }
 
@@ -147,7 +140,6 @@ public class IniciarSesionActivity extends AppCompatActivity {
         passText = (EditText) findViewById(R.id.passText);
         logInButton = (Button) findViewById(R.id.submitButton);
         registerButton = (Button) findViewById(R.id.RegisterButton);
-        invitadoButton = findViewById(R.id.InvitadoButton);
         hasPassSwitch = (Switch) findViewById(R.id.hasPassSwitch);
         passTextView = findViewById(R.id.passTextView);
     }

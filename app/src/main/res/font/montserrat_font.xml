@@ -14,6 +14,10 @@
         android:fontWeight="500"
         android:font="@font/montserrat_medium" />
 
+    <font
+        android:textStyle="bold"
+        android:fontWeight="500"
+        android:font="@font/shrikhandregular" />
 
 
 </font-family>

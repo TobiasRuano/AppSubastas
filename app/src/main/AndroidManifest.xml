@@ -19,9 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppSubastas"
         android:usesCleartextTraffic="true"
-
         >
 
+        <activity android:name=".IniciarSesionActivity" />
         <activity android:name=".HistorialPujasDescripcionActivity" />
         <activity android:name=".DetalleDeLaDescripcionActivity"></activity>
         <activity android:name=".MisCatalogosPujadosActivity" />
@@ -40,7 +40,7 @@
         <activity android:name=".DescripcionMisObjetosActivity" />
         <activity android:name=".DescripcionMisCatalogosPujadosActivity" />
         <activity android:name=".CatalogoActivity" />
-        <activity android:name=".IniciarSesionActivity">
+        <activity android:name=".Inicio">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

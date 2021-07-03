@@ -4,30 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AgregarObjeto"
-    android:background="@drawable/estilo_degradado_fondo">
+    android:background="@drawable/estilo_degradado_fondo"
+    tools:context=".AgregarObjeto">
 
     <TextView
         android:id="@+id/textView00"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Proponer Objeto 💭"
-        android:gravity="bottom|center"
-        android:textColor="#ffffff"
-        android:textSize="34sp"
-        android:textStyle="bold"
         android:layout_marginTop="15sp"
         android:layout_marginBottom="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="bottom|center"
         android:shadowColor="#000055"
         android:shadowDx="10"
         android:shadowDy="10"
         android:shadowRadius="20"
-        android:fontFamily="@font/montserrat_medium"
-        />
+        android:text="Proponer Objeto 💭"
+        android:textColor="#ffffff"
+
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -50,6 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center">
+
                 <RadioGroup
                     android:id="@+id/radioGroupObjetos"
                     android:layout_width="match_parent"
@@ -57,45 +57,44 @@
                     android:orientation="horizontal"
 
                     >
+
                     <androidx.appcompat.widget.AppCompatRadioButton
                         android:id="@+id/estandarBoton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:text="Estandar"
-                        android:button="@android:color/transparent"
-                        android:gravity="center"
-                        android:checked="true"
-                        android:background="@drawable/radio_button_left_selector"
                         android:layout_weight="1"
-
+                        android:background="@drawable/radio_button_left_selector"
+                        android:button="@android:color/transparent"
+                        android:checked="true"
                         android:fontFamily="@font/montserrat_regular"
-                        />
+                        android:gravity="center"
+                        android:text="Estandar"
+
+                        android:textColor="@color/white" />
+
                     <androidx.appcompat.widget.AppCompatRadioButton
                         android:id="@+id/obraBoton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#ff0000"
-                        android:text="Obra Especial"
-                        android:button="@android:color/transparent"
-                        android:gravity="center"
-                        android:checked="false"
-                        android:background="@drawable/radio_button_right_selector"
                         android:layout_weight="1"
-
+                        android:background="@drawable/radio_button_right_selector"
+                        android:button="@android:color/transparent"
+                        android:checked="false"
                         android:fontFamily="@font/montserrat_regular"
-                        />
+                        android:gravity="center"
+                        android:text="Obra Especial"
+
+                        android:textColor="#ff0000" />
                 </RadioGroup>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/layoutRadioGroup"
-                tools:layout_editor_absoluteX="1dp"
-                android:layout_marginTop="15dp"
-                >
+                tools:layout_editor_absoluteX="1dp">
 
 
                 <TextView
@@ -120,76 +119,71 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
+                    android:fontFamily="@font/montserrat_regular"
                     android:hint="Nombre"
+                    android:textColor="#000000"
+                    android:textColorHint="#8e8e8e"
                     app:endIconMode="clear_text"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layoutRadioGroup"
+                    app:layout_constraintTop_toBottomOf="@id/layoutRadioGroup">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nombreObjetoEstandar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/estilo_borde"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="#000000" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/labelNombreArtistaTextoObjetoEstandar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Nombre del Artista:"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nombreArtistaTextoObjetoEstandar"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
                     android:fontFamily="@font/montserrat_regular"
+                    android:hint="Nombre del Artista"
+                    android:textColor="#000000"
                     android:textColorHint="#8e8e8e"
-                    android:textColor="#000000"
-                    >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nombreObjetoEstandar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000000"
-                    android:background="@drawable/estilo_borde"
-                    android:fontFamily="@font/montserrat_regular"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/labelNombreArtistaTextoObjetoEstandar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="Nombre del Artista:"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:visibility="gone"
-                />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/nombreArtistaTextoObjetoEstandar"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:hint="Nombre del Artista"
-                app:endIconMode="clear_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nombreTextoObjetoEstandar"
-                android:fontFamily="@font/montserrat_regular"
-                android:textColorHint="#8e8e8e"
-                android:textColor="#000000"
-                >
+                    app:endIconMode="clear_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/nombreTextoObjetoEstandar">
 
 
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nombreArtistaObjetoEstandar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/estilo_borde"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:textColor="#000000"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nombreArtistaObjetoEstandar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/estilo_borde"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="#000000" />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
                     android:fontFamily="@font/montserrat_medium"
                     android:text="Número de Pieza:"
                     android:textColor="#FFFFFF"
@@ -197,108 +191,103 @@
                     tools:layout_marginEnd="20dp"
                     tools:layout_marginStart="20dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/nPlazaTextoObjetoEstandar"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:hint="Número de Pieza"
-                app:endIconMode="clear_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nombreArtistaTextoObjetoEstandar"
-
-                android:textColor="#000000"
-                android:textColorHint="#8e8e8e"
-                >
-
-
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nPlazaObjetoEstandar"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nPlazaTextoObjetoEstandar"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/estilo_borde"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:textColor="#000000"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="Descripción:"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                tools:layout_marginEnd="20dp"
-                tools:layout_marginStart="20dp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/descripcionTextoObjetoEstandar"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:hint="Descripción"
-                android:textColorHint="#8e8e8e"
-                app:endIconMode="clear_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nPlazaTextoObjetoEstandar"
-                android:fontFamily="@font/montserrat_regular">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/descripcionObjetoEstandar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:hint="Número de Pieza"
                     android:textColor="#000000"
-                    android:background="@drawable/estilo_borde"
-                    android:fontFamily="@font/montserrat_regular"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:textColorHint="#8e8e8e"
+                    app:endIconMode="clear_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/nombreArtistaTextoObjetoEstandar">
 
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="Foto: 📸"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                tools:layout_marginEnd="20dp"
-                tools:layout_marginStart="20dp"
-                />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nPlazaObjetoEstandar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/estilo_borde"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="#000000" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Descripción:"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    tools:layout_marginEnd="20dp"
+                    tools:layout_marginStart="20dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/descripcionTextoObjetoEstandar"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:hint="Descripción"
+                    android:textColorHint="#8e8e8e"
+                    app:endIconMode="clear_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/nPlazaTextoObjetoEstandar">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/descripcionObjetoEstandar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/estilo_borde"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="#000000" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Foto: 📸"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    tools:layout_marginEnd="20dp"
+                    tools:layout_marginStart="20dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="0dp"
-                    >
+                    android:orientation="horizontal">
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/subirFotoObjeto"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_marginTop="10dp"
                         android:layout_gravity="right"
+                        android:layout_marginTop="10dp"
                         android:backgroundTint="#00FBFF"
-                        app:srcCompat="@drawable/ic_anadir"
-                        />
+                        app:srcCompat="@drawable/ic_anadir" />
 
                     <ImageView
                         android:id="@+id/imagenObjetos"
@@ -312,47 +301,43 @@
                         android:id="@+id/imagenObjetos2"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_marginLeft="20dp"
-                        />
+                        android:layout_marginLeft="20dp" />
 
                     <ImageView
                         android:id="@+id/imagenObjetos3"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_marginLeft="20dp"
-                        />
+                        android:layout_marginLeft="20dp" />
 
                     <ImageView
                         android:id="@+id/imagenObjetos4"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_marginLeft="20dp"
-                        />
+                        android:layout_marginLeft="20dp" />
 
                 </LinearLayout>
 
-            <Button
-                android:id="@+id/botonGargarObjeto"
-                android:layout_width="350dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="80dp"
-                android:layout_marginTop="0dp"
-                android:text="Cargar Objeto"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imagenObjetos"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-
-                android:fontFamily="@font/montserrat_medium"
-                android:background="@drawable/estilo_sombra"
-                />
+                <Button
+                    android:id="@+id/botonGargarObjeto"
+                    android:layout_width="350dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="80dp"
+                    android:background="@drawable/estilo_sombra"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Cargar Objeto"
+                    android:textStyle="bold"
+                    app:backgroundTint="#009fff"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imagenObjetos"
+                    />
 
             </LinearLayout>
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

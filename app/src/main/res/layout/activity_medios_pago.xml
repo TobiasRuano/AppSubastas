@@ -4,32 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MediosPagoActivity"
-    android:background="@drawable/estilo_degradado_fondo">
-
+    android:background="@drawable/estilo_degradado_fondo"
+    tools:context=".MediosPagoActivity">
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Medios de Pago 💳"
-        android:gravity="bottom|center"
-        android:textColor="#ffffff"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/montserrat_medium"
         android:layout_marginTop="15sp"
         android:layout_marginBottom="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="bottom|center"
         android:shadowColor="#000055"
         android:shadowDx="10"
         android:shadowDy="10"
         android:shadowRadius="20"
+        android:text="Medios de Pago 💳"
         android:textAlignment="center"
-        />
+        android:textColor="#ffffff"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cardView"
@@ -49,12 +46,11 @@
         android:layout_height="50dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="80dp"
+        android:backgroundTint="#00FBFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="#00FBFF"
         app:srcCompat="@drawable/ic_anadir"
-        app:useCompatPadding="true"
-        />
+        app:useCompatPadding="true" />
 
     <include
         android:id="@+id/include2"

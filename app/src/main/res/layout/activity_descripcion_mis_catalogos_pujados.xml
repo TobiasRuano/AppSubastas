@@ -8,7 +8,6 @@
     android:background="@drawable/estilo_degradado_fondo"
     tools:context=".SubastaActivity">
 
-
     <RelativeLayout
         android:id="@+id/relativeLayout5"
         android:layout_width="match_parent"
@@ -270,9 +269,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="240dp"
-                    android:orientation="horizontal"
-
-                    >
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/full2TitleDescriptionTextView5"
@@ -295,9 +292,7 @@
                         android:textStyle="bold"
                         app:srcCompat="@drawable/ic_downarrow_121316" />
 
-
                 </LinearLayout>
-
 
             </androidx.cardview.widget.CardView>
 

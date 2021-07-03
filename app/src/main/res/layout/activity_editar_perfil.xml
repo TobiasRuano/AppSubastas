@@ -4,23 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditarPerfil"
-    android:background="@drawable/estilo_degradado_fondo">
+    android:background="@drawable/estilo_degradado_fondo"
+    tools:context=".EditarPerfil">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:ignore="MissingConstraints"
-        >
-
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:id="@+id/titleEditarPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/montserrat_medium"
-
             android:shadowColor="#000055"
             android:shadowDx="10"
             android:shadowDy="10"
@@ -29,9 +27,7 @@
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="34sp"
-            android:textStyle="bold"
-            android:layout_marginTop="40dp"
-            />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/editarMailTitulo"
@@ -40,33 +36,30 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:text="Mail: 📬"
-            tools:layout_marginEnd="20dp"
-            tools:layout_marginStart="20dp"
-
             android:fontFamily="@font/montserrat_medium"
+            android:text="Mail: 📬"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
-            />
+            tools:layout_marginEnd="20dp"
+            tools:layout_marginStart="20dp" />
 
         <EditText
             android:id="@+id/editarMailBox"
-            android:ems="10"
-            android:hint="Mail"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editarMailTitulo"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-
             android:background="@drawable/estilo_borde"
+            android:ems="10"
             android:fontFamily="@font/montserrat_regular"
+            android:hint="Mail"
+            android:inputType="textPersonName"
             android:paddingHorizontal="10dp"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editarMailTitulo" />
+
         <TextView
             android:id="@+id/editarDireccionTitulo"
             android:layout_width="match_parent"
@@ -74,52 +67,48 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:text="Dirección: 🗺️"
-            tools:layout_marginEnd="20dp"
-            tools:layout_marginStart="20dp"
-
             android:fontFamily="@font/montserrat_medium"
+            android:text="Dirección: 🗺️"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
-            />
-
+            tools:layout_marginEnd="20dp"
+            tools:layout_marginStart="20dp" />
 
         <EditText
             android:id="@+id/editarDireccionBox"
-            android:ems="10"
-            android:hint="Direccion"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editarDireccionTitulo"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-
             android:background="@drawable/estilo_borde"
+            android:ems="10"
             android:fontFamily="@font/montserrat_regular"
+            android:hint="Direccion"
+            android:inputType="textPersonName"
             android:paddingHorizontal="10dp"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editarDireccionTitulo" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/botonEditarPerfil"
                 android:layout_width="350dp"
                 android:layout_height="80dp"
-                android:text="Actualizar Datos"
                 android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/montserrat_medium"
                 android:background="@drawable/estilo_sombra"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Actualizar Datos"
                 android:textStyle="bold"
-                />
+                app:backgroundTint="#009fff" />
+
         </LinearLayout>
 
     </LinearLayout>

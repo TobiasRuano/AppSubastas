@@ -5,9 +5,8 @@
     android:id="@+id/titleTextView5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SubastaActivity"
     android:background="@drawable/estilo_degradado_fondo"
-    >
+    tools:context=".SubastaActivity">
 
     <RelativeLayout
 
@@ -21,27 +20,23 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15sp"
                 android:layout_marginBottom="10sp"
-                android:text="Subastas"
-                android:textSize="34sp"
-                android:textStyle="bold"
+                android:fontFamily="@font/montserrat_medium"
                 android:gravity="bottom|center"
-
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
                 android:shadowColor="#000055"
                 android:shadowDx="10"
                 android:shadowDy="10"
                 android:shadowRadius="20"
-                android:fontFamily="@font/montserrat_medium"
-                />
+                android:text="Subastas"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="34sp"
+                android:textStyle="bold" />
 
             <SearchView
                 android:id="@+id/buscadorMenu"
@@ -49,21 +44,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:iconifiedByDefault="false"
+                android:queryHint="Buscar la Categoria de la Subasta"
+                android:textColor="#FFFFFF"
+                android:theme="@style/SearchViewStyle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints"
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/montserrat_regular"
-                android:queryHint="Buscar la Categoria de la Subasta"
-                android:iconifiedByDefault="false"
-                android:theme="@style/SearchViewStyle"
-
                 />
 
-
         </LinearLayout>
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listRecyclerView"
@@ -73,9 +65,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="185dp" />
 
-
     </RelativeLayout>
-
 
     <include layout="@layout/toolbarlogueado"></include>
 
