@@ -31,7 +31,6 @@ import com.trotos.appsubastas.Modelos.User;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;

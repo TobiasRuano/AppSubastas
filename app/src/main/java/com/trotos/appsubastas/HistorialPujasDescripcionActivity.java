@@ -2,27 +2,16 @@ package com.trotos.appsubastas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.trotos.appsubastas.Modelos.Bid;
-import com.trotos.appsubastas.Modelos.ItemCatalogo;
-import com.trotos.appsubastas.Modelos.ResponseBids;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HistorialPujasDescripcionActivity extends AppCompatActivity {
 
@@ -30,11 +19,13 @@ public class HistorialPujasDescripcionActivity extends AppCompatActivity {
     ArrayList<String> aux = new ArrayList<>();
     ListView list;
     ArrayAdapter adapter;
+    Button volverButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historial_pujas_descripcion);
+        volverButton = findViewById(R.id.salirHistorialPujas);
 
         list = (ListView) findViewById(R.id.listView);
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, aux);
@@ -42,6 +33,13 @@ public class HistorialPujasDescripcionActivity extends AppCompatActivity {
         bids = (List<Bid>) getIntent().getSerializableExtra("bids");
 
         formatText();
+
+        volverButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     private void formatText() {
@@ -50,7 +48,7 @@ public class HistorialPujasDescripcionActivity extends AppCompatActivity {
                 if(i == bids.size() - 1) {
                     aux.add("Oferta Maxima de: " + bids.get(i).getAmount());
                 } else {
-                    aux.add("Nueva puja de: " + bids.get(i).getAmount());
+                    aux.add("Un usuario a ofertado: " + bids.get(i).getAmount());
                 }
             }
             adapter.notifyDataSetChanged();

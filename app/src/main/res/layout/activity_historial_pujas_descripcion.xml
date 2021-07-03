@@ -12,33 +12,75 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView19"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
-            android:fontFamily="@font/montserrat_medium"
-            android:scrollbars="vertical"
-            android:shadowColor="#000055"
-            android:shadowDx="10"
-            android:shadowDy="10"
-            android:shadowRadius="20"
-            android:text="Historial de Pujas 📈"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="34sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent">
 
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp"
-            android:textColor="#FFFFFF" />
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:scrollbars="vertical"
+                android:shadowColor="#000055"
+                android:shadowDx="10"
+                android:shadowDy="10"
+                android:shadowRadius="20"
+                android:text="Historial de Pujas 📈"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="20dp"
+                android:animateLayoutChanges="true"
+                android:outlineAmbientShadowColor="#000000"
+                android:outlineProvider="paddedBounds"
+                android:outlineSpotShadowColor="#000000"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="10dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintBottom_toTopOf="@+id/salirHistorialPujas"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView19">
+
+                <ListView
+                    android:id="@+id/listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="#000000" />
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/salirHistorialPujas"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:background="@drawable/estilo_sombra"
+                android:ems="12"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Volver"
+                android:textStyle="bold"
+                app:backgroundTint="#FF0000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
