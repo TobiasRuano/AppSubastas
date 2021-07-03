@@ -155,9 +155,7 @@ public class DescripcionActivity extends AppCompatActivity {
                 historialPujasView.setVisibility(View.GONE);
                 ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) titleTextView3.getLayoutParams();
                 params.leftMargin = 0;
-                precioBaseDescriptionTextView3.setTextSize(30);
                 precioBaseDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
-                precioBaseView.setTextSize(30);
                 precioBaseView.setTextColor(Color.parseColor("#FF669900"));
                 break;
             case "Ended":
@@ -268,6 +266,7 @@ public class DescripcionActivity extends AppCompatActivity {
             public void onResponse(Call<ResponseBids> call, Response<ResponseBids> response) {
                 if(response.isSuccessful()) {
                     ResponseBids responseBids = response.body();
+                    bids.clear();
                     bids.addAll(responseBids.getData());
                     if(bids.size() != 0) {
                         valorActualOVendido.setText(String.valueOf(bids.get(bids.size() - 1).getAmount()));

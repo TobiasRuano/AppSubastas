@@ -3,7 +3,6 @@ package com.trotos.appsubastas;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -46,22 +45,17 @@ public class CrearPassActivity extends AppCompatActivity {
                     showAlert("Contraseña invalida", "Debes ingresar una contraseña y re escribirla para continuar");
                 }
             }
-
-            private boolean checkInput() {
-                String first = firstPasswordText.getText().toString();
-                String second = secondPasswordText.getText().toString();
-
-                if (first.isEmpty() || second.isEmpty()) {
-                    return false;
-                } else {
-                    if (first.equals(second)) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-            }
         });
+    }
+
+    private boolean checkInput() {
+        String first = firstPasswordText.getText().toString();
+        String second = secondPasswordText.getText().toString();
+        if (first.isEmpty() || second.isEmpty()) {
+            return false;
+        } else {
+            return first.equals(second);
+        }
     }
 
     private void configureUI() {
@@ -89,10 +83,7 @@ public class CrearPassActivity extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Contraseña creada de forma satisfactoria!", Toast.LENGTH_LONG);
                     toast1.show();
-                    //Intent intent = new Intent(CrearPassActivity.this, SubastaActivity.class);
-                    //startActivity(intent);
                     finish();
-
                 } else {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Hubo un error en la respuesta", Toast.LENGTH_LONG);
                     toast1.show();

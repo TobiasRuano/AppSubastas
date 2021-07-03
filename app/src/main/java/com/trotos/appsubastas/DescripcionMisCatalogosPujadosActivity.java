@@ -177,9 +177,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
                 //editarNumeroDeTexto5.setVisibility(View.GONE);
                 //botonOfertar5.setVisibility(View.GONE);
                 historialPujasView5.setVisibility(View.GONE);
-                precioBaseTextView5.setTextSize(30);
                 precioBaseTextView5.setTextColor(Color.parseColor("#FF669900"));
-                precioBaseView5.setTextSize(30);
                 precioBaseView5.setTextColor(Color.parseColor("#FF669900"));
                 break;
             case "Ended":
@@ -212,71 +210,6 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
                 .show();
     }
 
-    /*
-        private void ofertar() {
-            botonOfertar5.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    int valorPrecioActual = element.getBasePrice();
-                    int valorPrecioBase = element.getBasePrice();
-                    boolean hayError = false;
-
-                    String categoria = getIntent().getStringExtra("categoria");
-                    if (categoria == null) {
-                        categoria = "oro";
-                    }
-
-                    int valorPuja = 0;
-                    String texto = editarNumeroDeTexto5.getText().toString();
-                    if(!texto.equals("")){
-                        valorPuja = Integer.parseInt(editarNumeroDeTexto5.getText().toString());
-                    }
-
-
-                    if(valorPuja == 0){
-                        showAlert("Monto vacio","Debe ingresar un Monto para poder Ofertar.");
-                    } else if(valorPuja > (valorPrecioActual * 1.2) && (categoria.equals("Oro") || categoria.equals("Platino")) ){
-                        showAlert("Monto inválido","La oferta no puede exceder el 20 % de la última oferta realizada.");
-                    } else if(valorPuja <= (valorPrecioBase * 0.01 + valorPrecioActual)){
-                        showAlert("Monto inválido","La oferta debe ser 1 % mayor al valor base del bien.");
-                    } else if(valorPuja <= valorPrecioActual){
-                        showAlert("Monto inválido","La oferta no puede ser menor o igual a la última oferta realizada.");
-                    } else{
-                        pujar(valorPuja);
-                    }
-                }
-            });
-        }
-
-        private void pujar(int offer) {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("https://URL-de-la-API.com")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            ApiUtils as = retrofit.create(ApiUtils.class);
-
-            element.setValorActual(offer);
-
-            Call<ItemCatalogo> call = as.postBid(element);
-
-            call.enqueue(new Callback<ItemCatalogo>() {
-                @Override
-                public void onResponse(Call<ItemCatalogo> call, Response<ItemCatalogo> response) {
-                    if(response.body() != null) {
-                        Toast toast1 = Toast.makeText(getApplicationContext(),"Oferta realizada con exito!", Toast.LENGTH_LONG);
-                        toast1.show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ItemCatalogo> call, Throwable t) {
-                    Toast toast1 = Toast.makeText(getApplicationContext(),"Error al ofertar!", Toast.LENGTH_LONG);
-                    toast1.show();
-                }
-            });
-        }
-    */
     private void getBids() {
         SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
         String token = sharedPreferences.getString("Token", null);
@@ -300,6 +233,9 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
                     if(bids.get(bids.size() - 1).getUserId() == user.getId()) {
                         if(fechaActual.after(element.getEndTime())) {
                             estadosubastaTextView.setText("Ganada!\uD83D\uDE0D");
+
+                            // agregar funcion shipping status
+                            System.out.println("Shipping status: " + element.getShippingStatus());
                         } else {
                             estadosubastaTextView.setText("Ganando!\uD83D\uDE0E");
                         }

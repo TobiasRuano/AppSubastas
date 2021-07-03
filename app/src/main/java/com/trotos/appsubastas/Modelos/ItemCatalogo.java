@@ -11,13 +11,14 @@ import java.util.concurrent.TimeUnit;
 public class ItemCatalogo extends Item implements Serializable {
 
     private int shippingPrice;
+    private String shippingStatus;
     private int auctionId;
     private int itemId;
     private int winnerId;
     private Date startTime;
     private Date endTime;
 
-    public ItemCatalogo(String currency, int id, String title, String description, String urlImage, int commission, int basePrice, String status, int shippingPrice, int auctionId, int itemId, int winnerId, Date startTime, Date endTime) {
+    public ItemCatalogo(String currency, int id, String title, String description, String urlImage, int commission, int basePrice, String status, int shippingPrice, int auctionId, int itemId, int winnerId, Date startTime, Date endTime, String shippingStatus) {
         super(itemId, title, description, urlImage, commission, basePrice, status, currency);
         this.shippingPrice = shippingPrice;
         this.auctionId = auctionId;
@@ -25,6 +26,7 @@ public class ItemCatalogo extends Item implements Serializable {
         this.winnerId = winnerId;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.shippingStatus = shippingStatus;
     }
 
     public String getTimeStatus() {
@@ -51,6 +53,14 @@ public class ItemCatalogo extends Item implements Serializable {
     private String parseDate(Date date) {
         @SuppressLint("SimpleDateFormat") Format formatter = new SimpleDateFormat("dd-MM-yy HH:mm a");
         return formatter.format(date);
+    }
+
+    public String getShippingStatus() {
+        return shippingStatus;
+    }
+
+    public void setShippingStatus(String shippingStatus) {
+        this.shippingStatus = shippingStatus;
     }
 
     public int getShippingPrice() {

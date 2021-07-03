@@ -79,6 +79,8 @@ public class MyAdapterMisCatalogosPujados extends RecyclerView.Adapter<MyAdapter
             descripcion.setText(item.getTitle());
             descripcionBreve.setText(item.getDescription());
             item.getTimeStatus();
+            System.out.println("Tiempo de fin: " + item.getEndTime());
+            System.out.println("Estado: " + item.getTimeStatus());
             estado.setText(item.getStatus());
             estado.setTextColor(Color.parseColor("#ff8000"));
 

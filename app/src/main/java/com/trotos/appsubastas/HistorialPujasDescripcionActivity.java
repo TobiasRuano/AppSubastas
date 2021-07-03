@@ -48,7 +48,7 @@ public class HistorialPujasDescripcionActivity extends AppCompatActivity {
                 if(i == bids.size() - 1) {
                     aux.add("Oferta Maxima de: " + bids.get(i).getAmount());
                 } else {
-                    aux.add("Un usuario a ofertado: " + bids.get(i).getAmount());
+                    aux.add("Anonimo a ofertado: " + bids.get(i).getAmount());
                 }
             }
             adapter.notifyDataSetChanged();

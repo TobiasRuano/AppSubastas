@@ -230,9 +230,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 editarNumeroDeTexto4.setVisibility(View.GONE);
                 botonOfertar4.setVisibility(View.GONE);
                 historialPujasView4.setVisibility(View.GONE);
-                precioBaseTextView4.setTextSize(30);
                 precioBaseTextView4.setTextColor(Color.parseColor("#FF669900"));
-                precioBaseView4.setTextSize(30);
                 precioBaseView4.setTextColor(Color.parseColor("#FF669900"));
                 layoutPrecioComision.setVisibility(View.GONE);
                 break;

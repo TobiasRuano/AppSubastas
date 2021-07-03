@@ -8,7 +8,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -68,7 +67,6 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
         stateDescriptionTextView = findViewById(R.id.stateDescriptionTextView);
         categoryDescriptionTextView = findViewById(R.id.categoryDescriptionTextView);
         nameDescriptionTextView.setText(element.getTitle());
-        //nameDescriptionTextView.setTextColor(Color.parseColor(element.getColor()));
         stateDescriptionTextView.setText(element.getTimeStatus());
         categoryDescriptionTextView.setText(element.getCategory());
         init();

@@ -108,10 +108,16 @@ public class AgregarMedioPagoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseCreateMP> call, Response<ResponseCreateMP> response) {
                 if(response.isSuccessful()) {
-                    MPTarjeta tarjeta = response.body().getData();
-                    Toast toast1 = Toast.makeText(getApplicationContext(),"Tarjeta agregada correctamente!", Toast.LENGTH_LONG);
-                    toast1.show();
-                    passDataBack(tarjeta);
+                    MPTarjeta tarjeta = null;
+                    if (response.body() != null) {
+                        tarjeta = response.body().getData();
+                        Toast toast1 = Toast.makeText(getApplicationContext(),"Tarjeta agregada correctamente!", Toast.LENGTH_LONG);
+                        toast1.show();
+                        passDataBack(tarjeta);
+                    } else {
+                        Toast toast1 = Toast.makeText(getApplicationContext(), "Error al obtener losd atos del backend", Toast.LENGTH_LONG);
+                        toast1.show();
+                    }
                 }
             }
 

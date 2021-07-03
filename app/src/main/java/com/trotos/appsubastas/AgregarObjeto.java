@@ -3,7 +3,6 @@ package com.trotos.appsubastas;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -16,7 +15,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -28,10 +26,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.trotos.appsubastas.Modelos.Item;
 import com.trotos.appsubastas.Modelos.ItemCatalogo;
-import com.trotos.appsubastas.Modelos.LoginInformation;
-import com.trotos.appsubastas.Modelos.MPTarjeta;
 import com.trotos.appsubastas.Modelos.ResponseItemsPropuestos;
-import com.trotos.appsubastas.Modelos.ResponseLogIn;
 
 import retrofit2.Call;
 import retrofit2.Callback;

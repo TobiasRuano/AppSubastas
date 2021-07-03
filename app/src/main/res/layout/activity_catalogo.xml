@@ -5,8 +5,7 @@
     android:id="@+id/titleTextView5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/estilo_degradado_fondo"
-    tools:context=".SubastaActivity">
+    android:background="@drawable/estilo_degradado_fondo">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"

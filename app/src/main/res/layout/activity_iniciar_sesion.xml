@@ -113,6 +113,7 @@
                 android:id="@+id/passText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 android:background="@drawable/estilo_borde"
                 android:fontFamily="@font/montserrat_regular" />
 
