@@ -93,7 +93,7 @@ public class MiUsuario extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 logOutUser();
-                                startActivity(new Intent(MiUsuario.this, IniciarSesionActivity.class));
+                                startActivity(new Intent(MiUsuario.this, Inicio.class));
                                 finish();
                             }
                         })
