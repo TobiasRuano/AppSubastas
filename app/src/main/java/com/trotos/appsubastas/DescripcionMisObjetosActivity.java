@@ -247,6 +247,12 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 botonOfertar4.setVisibility(View.GONE);
                 editarNumeroDeTexto4.setVisibility(View.GONE);
                 historialPujasView4.setVisibility(View.GONE);
+                valorActualOVendido4.setVisibility(View.GONE);
+                monedaActualTextView4.setVisibility(View.GONE);
+                valorActualTextView4.setVisibility(View.GONE);
+                precioBaseTextView4.setVisibility(View.GONE);
+                precioBaseView4.setVisibility(View.GONE);
+                monedaBaseTextView4.setVisibility(View.GONE);
                 break;
             case "Pending Auction":
                 historialPujasView4.setVisibility(View.GONE);
