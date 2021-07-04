@@ -188,10 +188,10 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
         precioBaseView4.setText(precioBaseText4);
 
 
-        String precioDeWR = String.format("%,d", element.getBasePrice());
+        String precioDeWR = String.format("%,d", element.getBasePrice()) + " " + element.getCurrency();
         precioBaseWR.setText(precioDeWR);
 
-        String comision = String.format("%,d", element.getCommission());
+        String comision = String.format("%,d", element.getCommission()) + " " + element.getCurrency();
         comisionWR.setText(comision);
 
         linearLayoutfullTitleDescripcion.setOnClickListener(new View.OnClickListener() {
@@ -239,6 +239,8 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 valorActualOVendido4.setText("Valor Actual:");
                 valorActualTextView4.setTextColor(Color.parseColor("#FF669900"));
                 cvPrecioComision.setVisibility(View.GONE);
+                comisionWR.setVisibility(View.GONE);
+                precioBaseWR.setVisibility(View.GONE);
                 break;
             case "Programmed":
                 valorActualOVendido4.setVisibility(View.GONE);
@@ -250,13 +252,17 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 precioBaseTextView4.setTextColor(Color.parseColor("#FF669900"));
                 precioBaseView4.setTextColor(Color.parseColor("#FF669900"));
                 cvPrecioComision.setVisibility(View.GONE);
+                comisionWR.setVisibility(View.GONE);
+                precioBaseWR.setVisibility(View.GONE);
                 break;
             case "Ended":
                 //editarNumeroDeTexto4.setVisibility(View.GONE);
                 //botonOfertar4.setVisibility(View.GONE);
-                valorActualOVendido4.setText("Vendido:");
+                valorActualOVendido4.setText(String.valueOf(element.getBasePrice()));
                 valorActualTextView4.setTextColor(Color.parseColor("#FF669900"));
                 cvPrecioComision.setVisibility(View.GONE);
+                comisionWR.setVisibility(View.GONE);
+                precioBaseWR.setVisibility(View.GONE);
                 break;
             case "Waiting Response":
                 //botonOfertar4.setVisibility(View.GONE);
@@ -268,14 +274,17 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 precioBaseTextView4.setVisibility(View.GONE);
                 precioBaseView4.setVisibility(View.GONE);
                 monedaBaseTextView4.setVisibility(View.GONE);
-                //comisionWR.setText(element.getCommission());
-                System.out.println(element.getCommission());
                 break;
             case "Pending Auction":
                 historialPujasView4.setVisibility(View.GONE);
                 //botonOfertar4.setVisibility(View.GONE);
                 //editarNumeroDeTexto4.setVisibility(View.GONE);
+                valorActualOVendido4.setVisibility(View.GONE);
+                valorActualTextView4.setVisibility(View.GONE);
+                monedaActualTextView4.setVisibility(View.GONE);
                 cvPrecioComision.setVisibility(View.GONE);
+                comisionWR.setVisibility(View.GONE);
+                precioBaseWR.setVisibility(View.GONE);
                 break;
             case "Pending":
                 monedaBaseTextView4.setVisibility(View.GONE);
@@ -288,6 +297,8 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 precioBaseView4.setVisibility(View.GONE);
                 //botonOfertar4.setVisibility(View.GONE);
                 cvPrecioComision.setVisibility(View.GONE);
+                comisionWR.setVisibility(View.GONE);
+                precioBaseWR.setVisibility(View.GONE);
                 break;
             case "Denied":
                 aceptarPendienteBoton.setVisibility(View.GONE);
@@ -302,6 +313,8 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 precioBaseView4.setVisibility(View.GONE);
                 //botonOfertar4.setVisibility(View.GONE);
                 cvPrecioComision.setVisibility(View.GONE);
+                comisionWR.setVisibility(View.GONE);
+                precioBaseWR.setVisibility(View.GONE);
                 break;
             default:
                 break;
