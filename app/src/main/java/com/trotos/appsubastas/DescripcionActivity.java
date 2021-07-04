@@ -51,7 +51,7 @@ public class DescripcionActivity extends AppCompatActivity {
     Button botonOfertar;
     Button botonRegistrar;
 
-    View divider3;
+    View divider2, divider3;
     LinearLayout linearLayoutfullTitleDescripcion;
 
     TextView valorActualOVendido;
@@ -112,10 +112,12 @@ public class DescripcionActivity extends AppCompatActivity {
         editarNumeroDeTexto = findViewById(R.id.editarNumeroDeTexto);
         botonOfertar = findViewById(R.id.botonOfertar);
         valorActualOVendido = findViewById(R.id.valorActualOVendido);
+        divider2 = findViewById(R.id.divider2);
+        divider3 = findViewById(R.id.divider3);
+
         precioBaseView = findViewById(R.id.precioBaseView);
         botonRegistrar = findViewById(R.id.botonRegistrar);
         historialPujasView = findViewById(R.id.historialPujasView);
-        divider3 = findViewById(R.id.divider3);
         linearLayoutfullTitleDescripcion = findViewById(R.id.linearLayoutfullTitleDescripcion);
 
         precioBaseView.setText(String.valueOf(element.getBasePrice()));
@@ -134,12 +136,14 @@ public class DescripcionActivity extends AppCompatActivity {
             editarNumeroDeTexto.setVisibility(View.GONE);
             botonOfertar.setVisibility(View.GONE);
             valorActualOVendido.setVisibility(View.GONE);
-            divider3.setVisibility(View.GONE);
+            divider2.setVisibility(View.GONE);
             monedaActualDescriptionTextView3.setVisibility(View.GONE);
             valorActualDescriptionTextView3.setVisibility(View.GONE);
             precioBaseDescriptionTextView3.setVisibility(View.GONE);
             monedaBaseDescriptionTextView3.setVisibility(View.GONE);
             precioBaseView.setVisibility(View.GONE);
+            divider3.setVisibility(View.GONE);
+
             historialPujasView.setVisibility(View.INVISIBLE);
         }else {
             botonRegistrar.setVisibility(View.GONE);
@@ -156,7 +160,7 @@ public class DescripcionActivity extends AppCompatActivity {
                 break;
             case "Programmed":
                 valorActualOVendido.setVisibility(View.GONE);
-                divider3.setVisibility(View.GONE);
+                divider2.setVisibility(View.GONE);
                 valorActualDescriptionTextView3.setVisibility(View.GONE);
                 monedaActualDescriptionTextView3.setVisibility(View.GONE);
                 editarNumeroDeTexto.setVisibility(View.GONE);

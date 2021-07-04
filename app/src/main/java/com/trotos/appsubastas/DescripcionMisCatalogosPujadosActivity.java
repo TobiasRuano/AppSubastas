@@ -60,6 +60,8 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
     TextView precioBaseView5;
     TextView historialPujasView5;
 
+    View divider2, divider3;
+
     CardView cvEnvio;
     TextView pendienteEnvio, enviadoEnvio, recibidoEnvio;
 
@@ -100,6 +102,10 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
         titleTextView5 = findViewById(R.id.titleDescriptionTextView5);
         precioBaseTextView5 = findViewById(R.id.precioBaseDescriptionTextView5);
         valorActualTextView5 = findViewById(R.id.valorActualDescriptionTextView5);
+
+        divider2 = findViewById(R.id.divider2);
+        divider3 = findViewById(R.id.divider3);
+
         descriptionTextView5 = findViewById(R.id.fullTitleDescriptionTextView5);
         linearLayoutfullTitleDescripcion = findViewById(R.id.linearLayoutfullTitleDescripcion);
 
@@ -155,7 +161,10 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
             valorActualOVendido5.setVisibility(View.GONE);
             monedaActualTextView5.setVisibility(View.GONE);
             valorActualTextView5.setVisibility(View.GONE);
+            divider2.setVisibility(View.GONE);
             precioBaseTextView5.setVisibility(View.GONE);
+            divider3.setVisibility(View.GONE);
+
             monedaBaseTextView5.setVisibility(View.GONE);
             precioBaseView5.setVisibility(View.GONE);
             historialPujasView5.setVisibility(View.INVISIBLE);
@@ -177,6 +186,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
             case "Programmed":
                 valorActualOVendido5.setVisibility(View.GONE);
                 valorActualTextView5.setVisibility(View.GONE);
+                divider2.setVisibility(View.GONE);
                 monedaActualTextView5.setVisibility(View.GONE);
                 //editarNumeroDeTexto5.setVisibility(View.GONE);
                 //botonOfertar5.setVisibility(View.GONE);

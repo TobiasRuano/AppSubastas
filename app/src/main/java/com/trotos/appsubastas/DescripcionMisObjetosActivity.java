@@ -44,6 +44,8 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
     TextView precioBaseWR;
     TextView comisionWR;
 
+    View divider2, divider3;
+
     LinearLayout linearLayoutfullTitleDescripcion;
 
     CardView cvPrecioComision;
@@ -171,6 +173,10 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
         //editarNumeroDeTexto4 = findViewById(R.id.editarNumeroDeTexto4);
         //botonOfertar4 = findViewById(R.id.botonOfertar4);
         valorActualOVendido4 = findViewById(R.id.valorActualOVendido4);
+
+        divider2 = findViewById(R.id.divider2);
+        divider3 = findViewById(R.id.divider3);
+
         precioBaseView4 = findViewById(R.id.precioBaseView4);
         botonRegistrar4 = findViewById(R.id.botonRegistrar4);
         historialPujasView4 = findViewById(R.id.historialPujasView4);
@@ -216,11 +222,13 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
             //editarNumeroDeTexto4.setVisibility(View.GONE);
             //botonOfertar4.setVisibility(View.GONE);
             valorActualOVendido4.setVisibility(View.GONE);
+            divider2.setVisibility(View.GONE);
             monedaActualTextView4.setVisibility(View.GONE);
             valorActualTextView4.setVisibility(View.GONE);
             precioBaseTextView4.setVisibility(View.GONE);
             monedaBaseTextView4.setVisibility(View.GONE);
             precioBaseView4.setVisibility(View.GONE);
+            divider3.setVisibility(View.GONE);
             historialPujasView4.setVisibility(View.INVISIBLE);
         }else {
             botonRegistrar4.setVisibility(View.GONE);
@@ -244,6 +252,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 break;
             case "Programmed":
                 valorActualOVendido4.setVisibility(View.GONE);
+                divider2.setVisibility(View.GONE);
                 valorActualTextView4.setVisibility(View.GONE);
                 monedaActualTextView4.setVisibility(View.GONE);
                 //editarNumeroDeTexto4.setVisibility(View.GONE);
@@ -269,10 +278,12 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 //editarNumeroDeTexto4.setVisibility(View.GONE);
                 historialPujasView4.setVisibility(View.INVISIBLE);
                 valorActualOVendido4.setVisibility(View.GONE);
+                divider2.setVisibility(View.GONE);
                 monedaActualTextView4.setVisibility(View.GONE);
                 valorActualTextView4.setVisibility(View.GONE);
                 precioBaseTextView4.setVisibility(View.GONE);
                 precioBaseView4.setVisibility(View.GONE);
+                divider3.setVisibility(View.GONE);
                 monedaBaseTextView4.setVisibility(View.GONE);
                 break;
             case "Pending Auction":
@@ -280,6 +291,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 //botonOfertar4.setVisibility(View.GONE);
                 //editarNumeroDeTexto4.setVisibility(View.GONE);
                 valorActualOVendido4.setVisibility(View.GONE);
+                divider2.setVisibility(View.GONE);
                 valorActualTextView4.setVisibility(View.GONE);
                 monedaActualTextView4.setVisibility(View.GONE);
                 cvPrecioComision.setVisibility(View.GONE);
@@ -290,11 +302,13 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 monedaBaseTextView4.setVisibility(View.GONE);
                 historialPujasView4.setVisibility(View.INVISIBLE);
                 valorActualOVendido4.setVisibility(View.GONE);
+                divider2.setVisibility(View.GONE);
                 //editarNumeroDeTexto4.setVisibility(View.GONE);
                 monedaActualTextView4.setVisibility(View.GONE);
                 valorActualTextView4.setVisibility(View.GONE);
                 precioBaseTextView4.setVisibility(View.GONE);
                 precioBaseView4.setVisibility(View.GONE);
+                divider3.setVisibility(View.GONE);
                 //botonOfertar4.setVisibility(View.GONE);
                 cvPrecioComision.setVisibility(View.GONE);
                 comisionWR.setVisibility(View.GONE);
@@ -306,11 +320,13 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 monedaBaseTextView4.setVisibility(View.GONE);
                 historialPujasView4.setVisibility(View.INVISIBLE);
                 valorActualOVendido4.setVisibility(View.GONE);
+                divider2.setVisibility(View.GONE);
                 //editarNumeroDeTexto4.setVisibility(View.GONE);
                 monedaActualTextView4.setVisibility(View.GONE);
                 valorActualTextView4.setVisibility(View.GONE);
                 precioBaseTextView4.setVisibility(View.GONE);
                 precioBaseView4.setVisibility(View.GONE);
+                divider3.setVisibility(View.GONE);
                 //botonOfertar4.setVisibility(View.GONE);
                 cvPrecioComision.setVisibility(View.GONE);
                 comisionWR.setVisibility(View.GONE);
