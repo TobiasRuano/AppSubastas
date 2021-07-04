@@ -55,12 +55,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-
                     >
 
                     <androidx.appcompat.widget.AppCompatRadioButton
                         android:id="@+id/estandarBoton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/radio_button_left_selector"
@@ -69,12 +68,11 @@
                         android:fontFamily="@font/montserrat_regular"
                         android:gravity="center"
                         android:text="Estandar"
-
                         android:textColor="@color/white" />
 
                     <androidx.appcompat.widget.AppCompatRadioButton
                         android:id="@+id/obraBoton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/radio_button_right_selector"
