@@ -17,7 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/navloguado"
         tools:ignore="MissingConstraints"
-
         >
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>

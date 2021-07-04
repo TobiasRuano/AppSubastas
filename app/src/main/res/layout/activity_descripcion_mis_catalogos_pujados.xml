@@ -49,12 +49,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/segundoLinearLayout5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/primerLinearLayout5"
-            android:orientation="vertical">
 
             <org.imaginativeworld.whynotimagecarousel.ImageCarousel
                 android:id="@+id/carousel5"
@@ -62,30 +56,39 @@
                 android:layout_height="300dp" />
 
 
-            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/card_view"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/cvEnvio"
+            android:layout_below="@+id/carousel5"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="-10dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:animateLayoutChanges="true"
+            android:outlineAmbientShadowColor="#000000"
+            android:outlineProvider="paddedBounds"
+            android:outlineSpotShadowColor="#000000"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="10dp"
+            app:cardUseCompatPadding="true">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="310dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="-10dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="0dp"
-                android:animateLayoutChanges="true"
-                android:outlineAmbientShadowColor="#000000"
-                android:outlineProvider="paddedBounds"
-                android:outlineSpotShadowColor="#000000"
-                app:cardCornerRadius="25dp"
-                app:cardElevation="10dp"
-                app:cardUseCompatPadding="true">
+                android:layout_height="match_parent">
 
 
                 <LinearLayout
+                    android:id="@+id/linearLayout6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:id="@+id/estadoDetalleDescriptionTextView5"
@@ -109,70 +112,34 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/OnlyViewfullTitleDescriptionTextView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="13dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Descripción"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
 
                 <LinearLayout
+                    android:id="@+id/linearLayout8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
+                    tools:layout_editor_absoluteX="0dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginEnd="0dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/valorActualDescriptionTextView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="1234567890"
-                        android:textColor="#000000"
-                        android:textSize="30sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/monedaActualDescriptionTextView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="ARS"
-                        android:textColor="@android:color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-
-                    <TextView
-                        android:id="@+id/valorActualOVendido5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="16dp"
-                        android:fontFamily="@font/montserrat_medium_italic"
-                        android:maxLines="1"
-                        android:text="Precio Actual"
-                        android:textColor="#009fff"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/divider3"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="85dp"
-                    android:background="#33009fff" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="85dp"
-                    android:orientation="horizontal">
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    >
 
                     <TextView
                         android:id="@+id/precioBaseDescriptionTextView5"
@@ -224,62 +191,121 @@
 
                 <View
                     android:id="@+id/divider"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="2dp"
-                    android:layout_marginTop="125dp"
-                    android:background="#33009fff" />
+                    android:background="#33009fff"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout8"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-
-                <TextView
+                <LinearLayout
+                    android:id="@+id/linearLayout7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
                     android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="130dp"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="Descripción"
-                    android:textColor="@android:color/black"
-                    android:textSize="25sp" />
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+                    <TextView
+                        android:id="@+id/valorActualDescriptionTextView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="1234567890"
+                        android:textColor="#000000"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/monedaActualDescriptionTextView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="ARS"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/valorActualOVendido5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="16dp"
+                        android:fontFamily="@font/montserrat_medium_italic"
+                        android:maxLines="1"
+                        android:text="Precio Actual"
+                        android:textColor="#009fff"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+                <View
+                    android:id="@+id/divider3"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#33009fff"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
+
 
                 <TextView
                     android:id="@+id/fullTitleDescriptionTextView5"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_below="@+id/titleDescriptionTextView5"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="160dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
                     android:ellipsize="end"
                     android:fontFamily="@font/montserrat_regular"
                     android:inputType="none"
-                    android:maxLines="3"
-                    android:text="Descripcion Completa (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) "
+                    android:text="Descripcion Completa (info) (info) (inf) (info) (info) (info) (inf) (info) (info) (info) (inf) (info) (info) (info) (inf) (info) (info) (info) (inf) (info) (info) (info) (info) (info) (info)(info) (inf) (info) (info) (info) (info) (info) (info)(info) (inf) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info)(info) (info) (info) (info) (info) "
                     android:textColor="@android:color/black"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="1dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/OnlyViewfullTitleDescriptionTextView5"
+                    android:maxLines="8" />
 
                 <LinearLayout
                     android:id="@+id/linearLayoutfullTitleDescripcion"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="240dp"
-                    android:orientation="horizontal">
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="68dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="1dp"
+                    android:gravity="center"
+                    >
 
                     <TextView
                         android:id="@+id/full2TitleDescriptionTextView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
                         android:layout_marginEnd="16dp"
                         android:fontFamily="@font/montserrat_medium_italic"
                         android:text="Ver descripción completa "
-                        android:textColor="#3483fa" />
+                        android:textColor="#3483fa"
+                        android:backgroundTint="@color/white"/>
 
                     <ImageView
                         android:id="@+id/imageView2"
@@ -293,84 +319,93 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="-34dp"
-                android:layout_marginEnd="0dp"
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvEnvio"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="-34dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            android:animateLayoutChanges="true"
+            android:outlineAmbientShadowColor="#000000"
+            android:outlineProvider="paddedBounds"
+            android:outlineSpotShadowColor="#000000"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="10dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            android:visibility="gone"
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/titleDescriptionTextView5"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="0dp"
-                android:animateLayoutChanges="true"
-                android:outlineAmbientShadowColor="#000000"
-                android:outlineProvider="paddedBounds"
-                android:outlineSpotShadowColor="#000000"
-                app:cardCornerRadius="25dp"
-                app:cardElevation="10dp"
-                app:cardUseCompatPadding="true">
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Estado del Envío"
+                android:textColor="@android:color/black"
+                android:textSize="25sp" />
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/pendienteEnvio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/titleDescriptionTextView5"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
                     android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="0dp"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="Estado del Envío"
-                    android:textColor="@android:color/black"
-                    android:textSize="25sp" />
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Pendiente ☑"
+                    android:textColor="#F39C12"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
 
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/enviadoEnvio"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:orientation="horizontal">
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Enviado ☑"
+                    android:textColor="#2ECC71"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
 
-                    <TextView
-                        android:id="@+id/pendienteEnvioDescriptionTextView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="Pendiente ☑"
-                        android:textColor="#F39C12"
-                        android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/recibidoEnvio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="Recibido ☑"
+                    android:textColor="#2980B9"
+                    android:textSize="18sp"
+                    android:visibility="gone" />
 
-                    <TextView
-                        android:id="@+id/enviadoEnvioDescriptionTextView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="Enviado ☑"
-                        android:textColor="#2ECC71"
-                        android:textSize="18sp" />
+            </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/recibidoEnvioDescriptionTextView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:text="Recibido ☑"
-                        android:textColor="#2980B9"
-                        android:textSize="18sp" />
+        </androidx.cardview.widget.CardView>
 
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
 
     </RelativeLayout>
 

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -58,6 +59,9 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
     TextView valorActualOVendido5;
     TextView precioBaseView5;
     TextView historialPujasView5;
+
+    CardView cvEnvio;
+    TextView pendienteEnvio, enviadoEnvio, recibidoEnvio;
 
     List<CarouselItem> list = new ArrayList<>();
     List<Bid> bids = new ArrayList<>();
@@ -105,23 +109,23 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
         lineaViewEstadosubastaTextView = findViewById(R.id.lineaViewEstadoDetalleDescriptionTextView5);
 
         titleTextView5.setText(element.getTitle());
-        //titleTextView5.setTextColor(Color.parseColor(element.getColor()));
 
         String precioBaseText5 = String.format("%,d", element.getBasePrice());
         precioBaseTextView5.setText(precioBaseText5);
-        //String valorActualText5 = String.format("%,d", element.getBasePrice());
         valorActualTextView5.setText("testt");
-        //valorActualTextView5.setTextColor(Color.GRAY);
         descriptionTextView5.setText(element.getDescription());
         monedaBaseTextView5.setText(element.getCurrency());
         monedaActualTextView5.setText(element.getCurrency());
 
-        //editarNumeroDeTexto5 = findViewById(R.id.editarNumeroDeTexto5);
-        //botonOfertar5 = findViewById(R.id.botonOfertar5);
         valorActualOVendido5 = findViewById(R.id.valorActualOVendido5);
         precioBaseView5 = findViewById(R.id.precioBaseView5);
-        //botonRegistrar5 = findViewById(R.id.botonRegistrar5);
         historialPujasView5 = findViewById(R.id.historialPujasView5);
+
+        cvEnvio = findViewById(R.id.cvEnvio);
+        pendienteEnvio = findViewById(R.id.pendienteEnvio);
+        enviadoEnvio = findViewById(R.id.enviadoEnvio);
+        recibidoEnvio = findViewById(R.id.recibidoEnvio);
+
 
         linearLayoutfullTitleDescripcion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,7 +171,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
         System.out.println(element.getStatus());
         switch (estado) {
             case "Auctioning":
-                valorActualOVendido5.setText("Valor Actual");
+                valorActualOVendido5.setText("Precio Actual");
                 valorActualTextView5.setTextColor(Color.parseColor("#FF669900"));
                 break;
             case "Programmed":
@@ -183,7 +187,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
             case "Ended":
                 //editarNumeroDeTexto5.setVisibility(View.GONE);
                 //botonOfertar5.setVisibility(View.GONE);
-                valorActualOVendido5.setText("Vendido:");
+                valorActualOVendido5.setText("Vendido!");
                 valorActualTextView5.setTextColor(Color.parseColor("#FF669900"));
                 break;
         }
@@ -231,11 +235,19 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
                     valorActualTextView5.setText(String.valueOf(valorActual));
                     Date fechaActual = new Date();
                     if(bids.get(bids.size() - 1).getUserId() == user.getId()) {
+
                         if(fechaActual.after(element.getEndTime())) {
                             estadosubastaTextView.setText("Ganada!\uD83D\uDE0D");
-
-                            // agregar funcion shipping status
                             System.out.println("Shipping status: " + element.getShippingStatus());
+                            cvEnvio.setVisibility(View.VISIBLE);
+                            pendienteEnvio.setVisibility(View.VISIBLE);
+                            descriptionTextView5.setMaxLines(4);
+                            if (element.getShippingStatus().equals("Dispatched")){
+                                enviadoEnvio.setVisibility(View.VISIBLE);
+                            } else if (element.getShippingStatus().equals("Delivered")){
+                                enviadoEnvio.setVisibility(View.VISIBLE);
+                                recibidoEnvio.setVisibility(View.VISIBLE);
+                            }
                         } else {
                             estadosubastaTextView.setText("Ganando!\uD83D\uDE0E");
                         }
