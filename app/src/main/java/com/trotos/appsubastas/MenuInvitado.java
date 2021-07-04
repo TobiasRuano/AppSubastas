@@ -126,8 +126,13 @@ public class MenuInvitado extends AppCompatActivity implements SearchView.OnQuer
                         adapter.setItems(auctions);
                     }
                 } else {
-                    Toast toast2 = Toast.makeText(getApplicationContext(), "Hubo un error al obtener los datos", Toast.LENGTH_LONG);
-                    toast2.show();
+                    if(response.code() == 404) {
+                        Toast toast2 = Toast.makeText(getApplicationContext(), "No hay subastas actualmente", Toast.LENGTH_LONG);
+                        toast2.show();
+                    } else {
+                        Toast toast2 = Toast.makeText(getApplicationContext(), "Ups, parece haber un error. Intenta mas tarde.", Toast.LENGTH_LONG);
+                        toast2.show();
+                    }
                 }
             }
 
