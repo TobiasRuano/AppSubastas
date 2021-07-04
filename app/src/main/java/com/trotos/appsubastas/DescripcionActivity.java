@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,9 @@ public class DescripcionActivity extends AppCompatActivity {
     EditText editarNumeroDeTexto;
     Button botonOfertar;
     Button botonRegistrar;
+
+    View divider3;
+    LinearLayout linearLayoutfullTitleDescripcion;
 
     TextView valorActualOVendido;
     TextView precioBaseView;
@@ -111,10 +115,12 @@ public class DescripcionActivity extends AppCompatActivity {
         precioBaseView = findViewById(R.id.precioBaseView);
         botonRegistrar = findViewById(R.id.botonRegistrar);
         historialPujasView = findViewById(R.id.historialPujasView);
+        divider3 = findViewById(R.id.divider3);
+        linearLayoutfullTitleDescripcion = findViewById(R.id.linearLayoutfullTitleDescripcion);
 
         precioBaseView.setText(String.valueOf(element.getBasePrice()));
 
-        descriptionTextView3.setOnClickListener(new View.OnClickListener() {
+        linearLayoutfullTitleDescripcion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),DetalleDeLaDescripcionActivity.class);
@@ -127,6 +133,7 @@ public class DescripcionActivity extends AppCompatActivity {
             editarNumeroDeTexto.setVisibility(View.GONE);
             botonOfertar.setVisibility(View.GONE);
             valorActualOVendido.setVisibility(View.GONE);
+            divider3.setVisibility(View.GONE);
             monedaActualDescriptionTextView3.setVisibility(View.GONE);
             valorActualDescriptionTextView3.setVisibility(View.GONE);
             precioBaseDescriptionTextView3.setVisibility(View.GONE);
@@ -148,6 +155,7 @@ public class DescripcionActivity extends AppCompatActivity {
                 break;
             case "Programmed":
                 valorActualOVendido.setVisibility(View.GONE);
+                divider3.setVisibility(View.GONE);
                 valorActualDescriptionTextView3.setVisibility(View.GONE);
                 monedaActualDescriptionTextView3.setVisibility(View.GONE);
                 editarNumeroDeTexto.setVisibility(View.GONE);
