@@ -83,6 +83,7 @@
                         android:fontFamily="@font/montserrat_regular"
                         android:gravity="center"
                         android:text="Obra Especial"
+
                         android:textColor="#ff0000" />
                 </RadioGroup>
             </LinearLayout>
