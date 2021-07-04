@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -36,9 +37,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AgregarObjeto extends AppCompatActivity {
 
-    TextInputLayout artista;
     Button cargarObjeto;
-    TextInputEditText nombreBox, artistaBox, nPlazaBox, descBox;
+    EditText nombreBox, artistaBox, nPlazaBox, descBox;
     ImageView imagenObjetos;
     FloatingActionButton subirFoto;
     RadioGroup radioGroup;
@@ -61,9 +61,8 @@ public class AgregarObjeto extends AppCompatActivity {
         botonEstandar = findViewById(R.id.estandarBoton);
         botonObra = findViewById(R.id.obraBoton);
         radioGroup = findViewById(R.id.radioGroupObjetos);
-        artista = findViewById(R.id.nombreArtistaTextoObjetoEstandar);
-        artista.setVisibility(View.GONE);
         artistaBox = findViewById(R.id.nombreArtistaObjetoEstandar);
+        artistaBox.setVisibility(View.GONE);
         labelNombreArtistaTextoObjetoEstandar = findViewById(R.id.labelNombreArtistaTextoObjetoEstandar);
         nombreBox = findViewById(R.id.nombreObjetoEstandar);
         nPlazaBox = findViewById(R.id.nPlazaObjetoEstandar);
@@ -89,7 +88,7 @@ public class AgregarObjeto extends AppCompatActivity {
                         botonEstandar.setBackground(getDrawable(R.drawable.radio_button_left_checked));
                         botonObra.setTextColor(Color.RED);
                         botonObra.setBackground(getDrawable(R.drawable.radio_button_right_unchecked));
-                        artista.setVisibility(View.GONE);
+                        artistaBox.setVisibility(View.GONE);
                         labelNombreArtistaTextoObjetoEstandar.setVisibility(View.GONE);
                         break;
                     case R.id.obraBoton:
@@ -97,7 +96,7 @@ public class AgregarObjeto extends AppCompatActivity {
                         botonEstandar.setBackground(getDrawable(R.drawable.radio_button_left_unchecked));
                         botonObra.setTextColor(Color.WHITE);
                         botonObra.setBackground(getDrawable(R.drawable.radio_button_right_checked));
-                        artista.setVisibility(View.VISIBLE);
+                        artistaBox.setVisibility(View.VISIBLE);
                         labelNombreArtistaTextoObjetoEstandar.setVisibility(View.VISIBLE);
                         artistaBox.setVisibility(View.VISIBLE);
                         break;
