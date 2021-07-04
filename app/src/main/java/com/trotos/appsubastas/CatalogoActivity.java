@@ -103,18 +103,26 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
                 case "Comun":
                     if(category.equals("Comun"))
                         startActivity(intent);
+                    else
+                        noPuedesAcceder();
                     break;
                 case "Especial":
                     if(category.equals("Comun") || category.equals("Bronce"))
                         startActivity(intent);
+                    else
+                        noPuedesAcceder();
                     break;
                 case "Plata":
                     if(category.equals("Comun") || category.equals("Bronce") || category.equals("Plata"))
                         startActivity(intent);
+                    else
+                        noPuedesAcceder();
                     break;
                 case "Oro":
                     if(!category.equals("Platino"))
                         startActivity(intent);
+                    else
+                        noPuedesAcceder();
                     break;
                 case "Platino":
                     startActivity(intent);
@@ -145,6 +153,14 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
             myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             myDialog.show();
         }
+    }
+
+
+    private void noPuedesAcceder() {
+        myDialog = new Dialog(this);
+        myDialog.setContentView(R.layout.pop_up_categorias);
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
     }
 
     private void getUser() {
