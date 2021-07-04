@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="16dp"
-                android:text="Tarjeta de Credito/Debito"
+                android:text="Tarjeta de Crédito/Débito"
                 android:textColor="#FFFFFF"
                 android:textSize="18dp"
                 app:layout_constraintStart_toStartOf="parent"
