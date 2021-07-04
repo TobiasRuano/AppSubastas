@@ -119,6 +119,7 @@ public class DescripcionActivity extends AppCompatActivity {
         linearLayoutfullTitleDescripcion = findViewById(R.id.linearLayoutfullTitleDescripcion);
 
         precioBaseView.setText(String.valueOf(element.getBasePrice()));
+        valorActualOVendido.setText(String.valueOf(element.getBasePrice()));
 
         linearLayoutfullTitleDescripcion.setOnClickListener(new View.OnClickListener() {
             @Override
