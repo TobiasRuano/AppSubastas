@@ -41,6 +41,8 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
     TextView monedaBaseTextView4;
     TextView monedaActualTextView4;
     TextView estadoItem;
+    TextView precioBaseWR;
+    TextView comisionWR;
 
     LinearLayout linearLayoutfullTitleDescripcion;
 
@@ -175,10 +177,22 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
 
         cvPrecioComision = findViewById(R.id.cvPrecioComision);
 
+        precioBaseWR = findViewById(R.id.precioBaseWR);
+        comisionWR = findViewById(R.id.comisionWR);
+
+
+
         //String valorActualText4 = String.format("%,d", element.getBasePrice()); // no deberia estar
         //valorActualOVendido4.setText(valorActualText4);
         String precioBaseText4 = String.format("%,d", element.getBasePrice());
         precioBaseView4.setText(precioBaseText4);
+
+
+        String precioDeWR = String.format("%,d", element.getBasePrice());
+        precioBaseWR.setText(precioDeWR);
+
+        String comision = String.format("%,d", element.getCommission());
+        comisionWR.setText(comision);
 
         linearLayoutfullTitleDescripcion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -254,6 +268,8 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 precioBaseTextView4.setVisibility(View.GONE);
                 precioBaseView4.setVisibility(View.GONE);
                 monedaBaseTextView4.setVisibility(View.GONE);
+                //comisionWR.setText(element.getCommission());
+                System.out.println(element.getCommission());
                 break;
             case "Pending Auction":
                 historialPujasView4.setVisibility(View.GONE);
