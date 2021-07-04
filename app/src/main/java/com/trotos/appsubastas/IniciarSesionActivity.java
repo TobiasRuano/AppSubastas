@@ -36,17 +36,14 @@ public class IniciarSesionActivity extends AppCompatActivity {
     Button logInButton;
     Button registerButton;
     Switch hasPassSwitch;
-    TextInputLayout passTextView;
 
     Boolean userHasPass = true;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(checkLogInStatus()) {
+        if (checkLogInStatus()) {
             Intent intent = new Intent(IniciarSesionActivity.this, MenuLogueado.class);
             startActivity(intent);
         } else {
@@ -61,14 +58,12 @@ public class IniciarSesionActivity extends AppCompatActivity {
                         passText.setFocusableInTouchMode(true);
                         passText.setEnabled(true);
                         passText.setVisibility(View.VISIBLE);
-                        passTextView.setVisibility(View.VISIBLE);
                         logInButton.setText("Iniciar Sesion");
                         userHasPass = true;
                     } else {
                         passText.setFocusable(false);
                         passText.setEnabled(false);
                         passText.setVisibility(View.GONE);
-                        passTextView.setVisibility(View.GONE);
                         passText.setText("");
                         logInButton.setText("Crear Contraseña");
                         userHasPass = false;
@@ -130,9 +125,9 @@ public class IniciarSesionActivity extends AppCompatActivity {
     }
 
     private Boolean checkLogInStatus() {
-        SharedPreferences  sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
         String token = sharedPreferences.getString("Token", null);
-        return token !=null;
+        return token != null;
     }
 
     private void configureUI() {
@@ -141,7 +136,6 @@ public class IniciarSesionActivity extends AppCompatActivity {
         logInButton = (Button) findViewById(R.id.submitButton);
         registerButton = (Button) findViewById(R.id.RegisterButton);
         hasPassSwitch = (Switch) findViewById(R.id.hasPassSwitch);
-        passTextView = findViewById(R.id.passTextView);
     }
 
     private void logIn(String mail, String password) {
@@ -157,12 +151,12 @@ public class IniciarSesionActivity extends AppCompatActivity {
         call.enqueue(new Callback<ResponseLogIn>() {
             @Override
             public void onResponse(Call<ResponseLogIn> call, Response<ResponseLogIn> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     ResponseLogIn responseLogin = response.body();
                     saveUser(responseLogin.getUser());
                     saveToken(responseLogin.getToken());
                     Intent intent = new Intent(IniciarSesionActivity.this, MenuLogueado.class);
-                    intent.putExtra("estadoLoggeado",true);
+                    intent.putExtra("estadoLoggeado", true);
                     startActivity(intent);
                 } else {
                     switch (response.code()) {
@@ -192,14 +186,14 @@ public class IniciarSesionActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseLogIn> call, Throwable t) {
-                Toast toast1 = Toast.makeText(getApplicationContext(),"Error al Iniciar sesion", Toast.LENGTH_LONG);
+                Toast toast1 = Toast.makeText(getApplicationContext(), "Error al Iniciar sesion", Toast.LENGTH_LONG);
                 toast1.show();
             }
         });
     }
 
     private void saveUser(User userToSave) {
-        SharedPreferences  sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(userToSave);
@@ -208,7 +202,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
     }
 
     private void saveToken(String token) {
-        SharedPreferences  sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
         prefsEditor.putString("Token", token);
         prefsEditor.apply();
@@ -225,23 +219,23 @@ public class IniciarSesionActivity extends AppCompatActivity {
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     User usuario = response.body();
                     Intent intent = new Intent(IniciarSesionActivity.this, CrearPassActivity.class);
                     intent.putExtra("usuario", usuario);
                     startActivity(intent);
                 } else {
-                    if(response.code() == 401) {
-                        Toast toast1 = Toast.makeText(getApplicationContext(),"El usuario aun no esta habilitado para crear la contraseña.", Toast.LENGTH_LONG);
+                    if (response.code() == 401) {
+                        Toast toast1 = Toast.makeText(getApplicationContext(), "El usuario aun no esta habilitado para crear la contraseña.", Toast.LENGTH_LONG);
                         toast1.show();
-                    } else if(response.code() == 400) {
-                        Toast toast1 = Toast.makeText(getApplicationContext(),"El usuario ya posee contraseña.", Toast.LENGTH_LONG);
+                    } else if (response.code() == 400) {
+                        Toast toast1 = Toast.makeText(getApplicationContext(), "El usuario ya posee contraseña.", Toast.LENGTH_LONG);
                         toast1.show();
-                    } else if(response.code() == 404) {
-                        Toast toast1 = Toast.makeText(getApplicationContext(),"No existe un usuario con el mail dado.", Toast.LENGTH_LONG);
+                    } else if (response.code() == 404) {
+                        Toast toast1 = Toast.makeText(getApplicationContext(), "No existe un usuario con el mail dado.", Toast.LENGTH_LONG);
                         toast1.show();
                     } else {
-                        Toast toast1 = Toast.makeText(getApplicationContext(),"Error en el servidor.", Toast.LENGTH_LONG);
+                        Toast toast1 = Toast.makeText(getApplicationContext(), "Error en el servidor.", Toast.LENGTH_LONG);
                         toast1.show();
                     }
                 }
@@ -249,7 +243,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Toast toast1 = Toast.makeText(getApplicationContext(),"Error al intentar obtener los datos de la cuenta.", Toast.LENGTH_LONG);
+                Toast toast1 = Toast.makeText(getApplicationContext(), "Error al intentar obtener los datos de la cuenta.", Toast.LENGTH_LONG);
                 toast1.show();
             }
         });

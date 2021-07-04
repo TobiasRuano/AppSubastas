@@ -42,8 +42,7 @@
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="34sp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
 
         <TextView
@@ -56,29 +55,24 @@
             android:fontFamily="@font/montserrat_medium"
             android:text="E-mail:"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            />
+            android:textSize="20sp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/userTextView"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+        <EditText
+            android:id="@+id/mailText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
-            app:endIconMode="clear_text"
+            android:background="@drawable/estilo_borde"
+            android:fontFamily="@font/montserrat_regular"
+            android:hint="Correo Electrónico"
+            android:paddingHorizontal="15dp"
+            android:textColor="#000000"
+            android:textColorHint="#8e8e8e"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mailText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/estilo_borde"
-                android:fontFamily="@font/montserrat_regular" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Switch
             android:id="@+id/hasPassSwitch"
@@ -97,27 +91,21 @@
             android:thumb="@drawable/switch_iniciar_sesion1"
             android:track="@drawable/switch_iniciar_sesion2" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passTextView"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <EditText
+            android:id="@+id/passText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
-            app:endIconMode="clear_text"
+            android:background="@drawable/estilo_borde"
+            android:fontFamily="@font/montserrat_regular"
+            android:hint="Contraseña"
+            android:paddingHorizontal="15dp"
+            android:textColor="#000000"
+            android:textColorHint="#8e8e8e"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:background="@drawable/estilo_borde"
-                android:fontFamily="@font/montserrat_regular" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/submitButton"
@@ -171,8 +159,7 @@
                     android:textColor="#108DC7"
                     android:textStyle="italic"
                     app:iconPadding="0dp"
-                    app:iconTint="#00FFFFFF"
-                    />
+                    app:iconTint="#00FFFFFF" />
 
             </LinearLayout>
 
