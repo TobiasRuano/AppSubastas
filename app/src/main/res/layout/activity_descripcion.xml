@@ -16,7 +16,8 @@
             android:id="@+id/primerLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="-3dp">
 
             <TextView
                 android:id="@+id/historialPujasView"
@@ -24,11 +25,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16sp"
                 android:layout_marginLeft="16sp"
-                android:layout_marginTop="0sp"
                 android:text="⏱️"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:gravity="center_vertical"/>
 
             <TextView
                 android:id="@+id/titleTextView3"
@@ -41,7 +42,7 @@
                 android:shadowDx="10"
                 android:shadowDy="10"
                 android:shadowRadius="20"
-                android:text="Description"
+                android:text=" Description Description "
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -51,7 +52,9 @@
             <org.imaginativeworld.whynotimagecarousel.ImageCarousel
                 android:id="@+id/carousel"
                 android:layout_width="match_parent"
-                android:layout_height="300dp" />
+                android:layout_height="300dp"
+                android:layout_marginTop="30dp"
+                />
 
 
         <LinearLayout
@@ -60,7 +63,7 @@
             android:layout_alignParentBottom="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="0dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="0dp"
             android:orientation="horizontal">
 
             <Button
@@ -83,7 +86,7 @@
             android:layout_alignParentBottom="true"
             android:layout_gravity="center_horizontal"
             android:orientation="horizontal"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="00dp"
             >
 
             <EditText
@@ -124,7 +127,7 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="-10dp"
             android:layout_marginEnd="0dp"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="70dp"
             android:animateLayoutChanges="true"
             android:outlineAmbientShadowColor="#000000"
             android:outlineProvider="paddedBounds"
@@ -169,7 +172,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="35dp"
+                >
 
 
                 <LinearLayout
@@ -177,7 +181,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="0dp"
                     android:layout_marginEnd="16dp"
                     android:orientation="horizontal"
                     app:layout_constraintTop_toTopOf="parent">

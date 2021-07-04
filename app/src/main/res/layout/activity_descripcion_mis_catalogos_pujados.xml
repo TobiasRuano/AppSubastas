@@ -16,13 +16,13 @@
             android:id="@+id/primerLinearLayout5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="-3dp">
 
             <TextView
                 android:id="@+id/historialPujasView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp"
                 android:layout_marginStart="16sp"
                 android:layout_marginLeft="16sp"
                 android:text="⏱️"
@@ -53,7 +53,8 @@
             <org.imaginativeworld.whynotimagecarousel.ImageCarousel
                 android:id="@+id/carousel5"
                 android:layout_width="match_parent"
-                android:layout_height="300dp" />
+                android:layout_height="300dp"
+                android:layout_marginTop="35dp" />
 
 
         <androidx.cardview.widget.CardView
@@ -75,9 +76,6 @@
             app:cardUseCompatPadding="true">
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
 
                 <LinearLayout
@@ -112,20 +110,11 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/OnlyViewfullTitleDescriptionTextView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="13dp"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="Descripción"
-                    android:textColor="@android:color/black"
-                    android:textSize="25sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="35dp">
 
                 <LinearLayout
                     android:id="@+id/linearLayout8"
@@ -199,16 +188,18 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
+
+
                 <LinearLayout
                     android:id="@+id/linearLayout7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+                    >
 
                     <TextView
                         android:id="@+id/valorActualDescriptionTextView5"
@@ -249,7 +240,6 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-
                 </LinearLayout>
 
 
@@ -281,7 +271,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/OnlyViewfullTitleDescriptionTextView5"
-                    android:maxLines="8" />
+                    android:maxLines="7" />
 
                 <LinearLayout
                     android:id="@+id/linearLayoutfullTitleDescripcion"
@@ -318,6 +308,21 @@
                         app:srcCompat="@drawable/ic_downarrow_121316" />
 
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/OnlyViewfullTitleDescriptionTextView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Descripción"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

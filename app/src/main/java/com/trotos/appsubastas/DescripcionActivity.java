@@ -140,7 +140,7 @@ public class DescripcionActivity extends AppCompatActivity {
             precioBaseDescriptionTextView3.setVisibility(View.GONE);
             monedaBaseDescriptionTextView3.setVisibility(View.GONE);
             precioBaseView.setVisibility(View.GONE);
-            historialPujasView.setVisibility(View.GONE);
+            historialPujasView.setVisibility(View.INVISIBLE);
         }else {
             botonRegistrar.setVisibility(View.GONE);
         }
@@ -161,9 +161,7 @@ public class DescripcionActivity extends AppCompatActivity {
                 monedaActualDescriptionTextView3.setVisibility(View.GONE);
                 editarNumeroDeTexto.setVisibility(View.GONE);
                 botonOfertar.setVisibility(View.GONE);
-                historialPujasView.setVisibility(View.GONE);
-                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) titleTextView3.getLayoutParams();
-                params.leftMargin = 0;
+                historialPujasView.setVisibility(View.INVISIBLE);
                 precioBaseDescriptionTextView3.setTextColor(Color.parseColor("#FF669900"));
                 precioBaseView.setTextColor(Color.parseColor("#FF669900"));
                 break;

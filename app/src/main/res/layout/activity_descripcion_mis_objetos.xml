@@ -16,7 +16,10 @@
             android:id="@+id/primerLinearLayout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="-3dp"
+            >
 
             <TextView
                 android:id="@+id/historialPujasView4"
@@ -24,10 +27,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16sp"
                 android:layout_marginLeft="16sp"
-                android:layout_marginTop="0sp"
                 android:text="⏱️"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -44,14 +46,15 @@
                 android:text="Description"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
         </LinearLayout>
 
 
             <org.imaginativeworld.whynotimagecarousel.ImageCarousel
                 android:id="@+id/carousel4"
                 android:layout_width="match_parent"
-                android:layout_height="300dp" />
+                android:layout_height="300dp"
+                android:layout_marginTop="30dp"/>
 
 
         <androidx.cardview.widget.CardView
@@ -105,7 +108,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="35dp"
+                >
 
 
                 <LinearLayout
@@ -113,7 +117,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="0dp"
                     android:layout_marginEnd="16dp"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
@@ -162,7 +166,7 @@
 
 
                 <View
-                    android:id="@+id/divider5"
+                    android:id="@+id/divider2"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_marginTop="1dp"
@@ -231,7 +235,7 @@
 
 
                 <View
-                    android:id="@+id/divider4"
+                    android:id="@+id/divider3"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_marginTop="10dp"
@@ -265,7 +269,7 @@
                     android:ellipsize="end"
                     android:fontFamily="@font/montserrat_regular"
                     android:inputType="none"
-                    android:maxLines="4"
+                    android:maxLines="3"
                     android:text="Descripcion Completa (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) (info) "
                     android:textColor="@android:color/black"
                     android:textSize="20dp"

@@ -158,7 +158,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
             precioBaseTextView5.setVisibility(View.GONE);
             monedaBaseTextView5.setVisibility(View.GONE);
             precioBaseView5.setVisibility(View.GONE);
-            historialPujasView5.setVisibility(View.GONE);
+            historialPujasView5.setVisibility(View.INVISIBLE);
         }else {
             //botonRegistrar5.setVisibility(View.GONE);
         }
@@ -180,7 +180,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
                 monedaActualTextView5.setVisibility(View.GONE);
                 //editarNumeroDeTexto5.setVisibility(View.GONE);
                 //botonOfertar5.setVisibility(View.GONE);
-                historialPujasView5.setVisibility(View.GONE);
+                historialPujasView5.setVisibility(View.INVISIBLE);
                 precioBaseTextView5.setTextColor(Color.parseColor("#FF669900"));
                 precioBaseView5.setTextColor(Color.parseColor("#FF669900"));
                 break;
@@ -241,7 +241,7 @@ public class DescripcionMisCatalogosPujadosActivity extends AppCompatActivity {
                             System.out.println("Shipping status: " + element.getShippingStatus());
                             cvEnvio.setVisibility(View.VISIBLE);
                             pendienteEnvio.setVisibility(View.VISIBLE);
-                            descriptionTextView5.setMaxLines(4);
+                            descriptionTextView5.setMaxLines(3);
                             if (element.getShippingStatus().equals("Dispatched")){
                                 enviadoEnvio.setVisibility(View.VISIBLE);
                             } else if (element.getShippingStatus().equals("Delivered")){

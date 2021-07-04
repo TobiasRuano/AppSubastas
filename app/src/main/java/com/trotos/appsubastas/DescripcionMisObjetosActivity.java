@@ -221,7 +221,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
             precioBaseTextView4.setVisibility(View.GONE);
             monedaBaseTextView4.setVisibility(View.GONE);
             precioBaseView4.setVisibility(View.GONE);
-            historialPujasView4.setVisibility(View.GONE);
+            historialPujasView4.setVisibility(View.INVISIBLE);
         }else {
             botonRegistrar4.setVisibility(View.GONE);
         }
@@ -248,7 +248,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 monedaActualTextView4.setVisibility(View.GONE);
                 //editarNumeroDeTexto4.setVisibility(View.GONE);
                 //botonOfertar4.setVisibility(View.GONE);
-                historialPujasView4.setVisibility(View.GONE);
+                historialPujasView4.setVisibility(View.INVISIBLE);
                 precioBaseTextView4.setTextColor(Color.parseColor("#FF669900"));
                 precioBaseView4.setTextColor(Color.parseColor("#FF669900"));
                 cvPrecioComision.setVisibility(View.GONE);
@@ -267,7 +267,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
             case "Waiting Response":
                 //botonOfertar4.setVisibility(View.GONE);
                 //editarNumeroDeTexto4.setVisibility(View.GONE);
-                historialPujasView4.setVisibility(View.GONE);
+                historialPujasView4.setVisibility(View.INVISIBLE);
                 valorActualOVendido4.setVisibility(View.GONE);
                 monedaActualTextView4.setVisibility(View.GONE);
                 valorActualTextView4.setVisibility(View.GONE);
@@ -276,7 +276,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 monedaBaseTextView4.setVisibility(View.GONE);
                 break;
             case "Pending Auction":
-                historialPujasView4.setVisibility(View.GONE);
+                historialPujasView4.setVisibility(View.INVISIBLE);
                 //botonOfertar4.setVisibility(View.GONE);
                 //editarNumeroDeTexto4.setVisibility(View.GONE);
                 valorActualOVendido4.setVisibility(View.GONE);
@@ -288,7 +288,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 break;
             case "Pending":
                 monedaBaseTextView4.setVisibility(View.GONE);
-                historialPujasView4.setVisibility(View.GONE);
+                historialPujasView4.setVisibility(View.INVISIBLE);
                 valorActualOVendido4.setVisibility(View.GONE);
                 //editarNumeroDeTexto4.setVisibility(View.GONE);
                 monedaActualTextView4.setVisibility(View.GONE);
@@ -304,7 +304,7 @@ public class DescripcionMisObjetosActivity extends AppCompatActivity {
                 aceptarPendienteBoton.setVisibility(View.GONE);
                 rechazarPendienteBoton.setVisibility(View.GONE);
                 monedaBaseTextView4.setVisibility(View.GONE);
-                historialPujasView4.setVisibility(View.GONE);
+                historialPujasView4.setVisibility(View.INVISIBLE);
                 valorActualOVendido4.setVisibility(View.GONE);
                 //editarNumeroDeTexto4.setVisibility(View.GONE);
                 monedaActualTextView4.setVisibility(View.GONE);
