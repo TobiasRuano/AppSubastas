@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="350dp"
-    android:layout_height="235dp"
+    android:layout_height="480dp"
     android:layout_gravity="center"
     android:background="#00FFFFFF"
     android:orientation="horizontal">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="350dp"
-        android:layout_height="235dp"
+        android:layout_width="match_parent"
+        android:layout_height="480dp"
         android:layout_gravity="center"
         android:background="@drawable/popup_isr"
         android:orientation="horizontal"
@@ -27,13 +27,11 @@
             android:shadowDx="10"
             android:shadowDy="10"
             android:shadowRadius="20"
-            android:text="¡No puedes acceder!"
+            android:text="¡No puedes acceder! 🤚🏻"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="26sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -44,7 +42,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/montserrat_medium_italic"
-            android:text="Para poder ingresar a esta subasta tienes que ser, por lo menos, de la misma categoria "
+            android:text="Para poder ingresar a esta subasta tienes que ser, por lo menos, de la misma categoría o superior."
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20dp"
@@ -54,8 +52,22 @@
             app:layout_constraintTop_toBottomOf="@+id/textView16"
             tools:ignore="MissingConstraints" />
 
-
-
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/montserrat_medium_italic"
+            android:text="Platino\n↑\nOro\n↑\nPlata\n↑\nEspecial\n↑\nComún"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView15"
+            tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
