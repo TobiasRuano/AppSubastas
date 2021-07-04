@@ -41,7 +41,7 @@
                 android:id="@+id/card_view"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:animateLayoutChanges="true"
                 android:outlineAmbientShadowColor="#000000"
                 android:outlineProvider="paddedBounds"
@@ -75,7 +75,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Volver"
                 android:textStyle="bold"
-                app:backgroundTint="#FF0000"
+                app:backgroundTint="#009fff"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -83,6 +83,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
-
 
 </RelativeLayout>
