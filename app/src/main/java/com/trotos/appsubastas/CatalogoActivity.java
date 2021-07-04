@@ -112,8 +112,14 @@ public class CatalogoActivity<animFadeIn> extends AppCompatActivity {
                     else
                         noPuedesAcceder();
                     break;
+                case "Bronce":
+                    if(category.equals("Comun") || category.equals("Especial") || category.equals("Bronce"))
+                        startActivity(intent);
+                    else
+                        noPuedesAcceder();
+                    break;
                 case "Plata":
-                    if(category.equals("Comun") || category.equals("Bronce") || category.equals("Plata"))
+                    if(!category.equals("Platino") && !category.equals("Oro"))
                         startActivity(intent);
                     else
                         noPuedesAcceder();
