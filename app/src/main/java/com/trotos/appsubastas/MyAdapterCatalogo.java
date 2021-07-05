@@ -85,7 +85,7 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
                 int myColor = Color.parseColor("#77dd77");
                 cv2.setCardBackgroundColor(myColor);
             }
-            
+
             if(!estaRegistrado){
                 ValorActual.setVisibility(View.GONE);
                 moneda.setVisibility(View.GONE);

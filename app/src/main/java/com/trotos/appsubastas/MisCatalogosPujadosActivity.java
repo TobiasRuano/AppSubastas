@@ -150,8 +150,10 @@ public class MisCatalogosPujadosActivity<animFadeIn> extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     ResponseItemsCatalog itemsCatalogo = response.body();
                     catalogos.addAll(itemsCatalogo.getData());
-                    catalogos.sort(Comparator.comparing(ItemCatalogo::getEndTime));
-                    listRecyclerView5.getAdapter().notifyDataSetChanged();
+                    if (catalogos.size() > 0) {
+                        catalogos.sort(Comparator.comparing(ItemCatalogo::getEndTime));
+                        listRecyclerView5.getAdapter().notifyDataSetChanged();
+                    }
                 } else {
                     Toast toast1 = Toast.makeText(getApplicationContext(),"Error al obtener los Catalogos", Toast.LENGTH_LONG);
                     toast1.show();

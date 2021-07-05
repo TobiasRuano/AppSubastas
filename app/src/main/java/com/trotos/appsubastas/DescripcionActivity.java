@@ -246,11 +246,26 @@ public class DescripcionActivity extends AppCompatActivity {
                 Toast toast1;
                 if(response.isSuccessful()) {
                     toast1 = Toast.makeText(getApplicationContext(), "Oferta realizada con exito!", Toast.LENGTH_LONG);
+                    toast1.show();
                     getBids();
                 } else {
-                    toast1 = Toast.makeText(getApplicationContext(), response.message(), Toast.LENGTH_LONG);
+                    if(response.code() == 410) {
+                        toast1 = Toast.makeText(getApplicationContext(), "Debes agregar un medio de pago.", Toast.LENGTH_LONG);
+                        toast1.show();
+                    } else if(response.code() == 406) {
+                        toast1 = Toast.makeText(getApplicationContext(), "La oferta no entra dentro de los paramtros validos para esta categoria.", Toast.LENGTH_LONG);
+                        toast1.show();
+                    } else if(response.code() == 400) {
+                        toast1 = Toast.makeText(getApplicationContext(), "Hubo un error en el servidor.", Toast.LENGTH_LONG);
+                        toast1.show();
+                    } else if(response.code() == 409) {
+                        toast1 = Toast.makeText(getApplicationContext(), "La subasta ha terminado!.", Toast.LENGTH_LONG);
+                        toast1.show();
+                    } else {
+                        toast1 = Toast.makeText(getApplicationContext(), "Hubo un error en el servidor.", Toast.LENGTH_LONG);
+                        toast1.show();
+                    }
                 }
-                toast1.show();
             }
 
             @Override
