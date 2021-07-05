@@ -30,6 +30,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tyc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -39,9 +40,11 @@
             android:layout_marginRight="16dp"
             android:fontFamily="@font/montserrat_regular"
             android:scrollbars="vertical"
-            android:text="El presente documento contiene los términos y condiciones para los usuarios que deseen participar de la subasta electrónica de WinnerAPP. \n\nDicho proceso consiste en que nuestra empresa autorizada, ofrece vender bienes y recibe ofertas de compra a través de esta Aplicación. \n\nDeclaro bajo juramento que la información consignada precedentemente y la documentación presentada revisten carácter de Declaración Jurada. \n\nAsimismo, me responsabilizo de su veracidad completando todos los campos de forma clara, y me comprometo a enviar el o los objetos a subastar a Balcarce 550, CABA, Argentina CP:C1064."
+            android:text="El presente documento contiene los términos y condiciones para los usuarios que deseen participar de la subasta electrónica de WinnerAPP. \n\nDicho proceso consiste en que nuestra empresa autorizada, ofrece vender bienes y recibe ofertas de compra a través de esta Aplicación. \n\nDeclaro bajo juramento que la información consignada precedentemente y la documentación presentada revisten carácter de Declaración Jurada. \n\nSe va a hacer un Cobro de verificación: se trata de un cobro mínimo, que se realiza en el momento de la adhesión de la tarjeta del pagador solo para verificar que la tarjeta utilizada para pagar es válida. Enseguida, este monto se reembolsa al pagador.\n\nAsimismo, me responsabilizo de su veracidad completando todos los campos de forma clara, y me comprometo a enviar el o los objetos a subastar a Balcarce 550, CABA, Argentina CP:C1064."
             android:textColor="#ffffff"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_marginBottom="50dp"
+            />
 
 
     </LinearLayout>
