@@ -88,7 +88,7 @@ public class MiUsuario extends AppCompatActivity {
                 AlertDialog.Builder alerta = new AlertDialog.Builder(MiUsuario.this);
                 alerta.setMessage("¿Desea cerrar sesion?")
                 .setCancelable(false)
-                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("Si", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 logOutUser();
@@ -96,7 +96,7 @@ public class MiUsuario extends AppCompatActivity {
                                 finish();
                             }
                         })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setPositiveButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();

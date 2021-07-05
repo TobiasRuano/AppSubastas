@@ -76,8 +76,8 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.CardVi
                 new AlertDialog.Builder(holder.card.getContext())
                         .setTitle(titulo)
                         .setMessage(mensaje)
-                        .setNegativeButton("Cancelar", null)
-                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Cancelar", null)
+                        .setNegativeButton("Si", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 deleteTarjeta(tarjetas.get(position));
