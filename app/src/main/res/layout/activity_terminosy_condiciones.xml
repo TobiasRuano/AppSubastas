@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/estilo_degradado_fondo"
+    tools:context=".DetalleDeLaDescripcionActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="40dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:scrollbars="vertical"
+            android:shadowColor="#000055"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:shadowRadius="20"
+            android:text="Términos y condiciones"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:scrollbars="vertical"
+            android:text="El presente documento contiene los términos y condiciones para los usuarios que deseen participar de la subasta electrónica de WinnerAPP. \n\nDicho proceso consiste en que nuestra empresa autorizada, ofrece vender bienes y recibe ofertas de compra a través de esta Aplicación. \n\nDeclaro bajo juramento que la información consignada precedentemente y la documentación presentada revisten carácter de Declaración Jurada. \n\nAsimismo, me responsabilizo de su veracidad completando todos los campos de forma clara, y me comprometo a enviar el o los objetos a subastar a Balcarce 550, CABA, Argentina CP:C1064."
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

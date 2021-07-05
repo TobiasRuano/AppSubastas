@@ -41,7 +41,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MiUsuario extends AppCompatActivity {
 
     ImageView fotoPerfil, logout;
-    FloatingActionButton subirFoto;
+//    FloatingActionButton subirFoto;
     Button editarPerfilBoton;
     BottomNavigationView bottomNavigationView;
     TextView nombre;
@@ -64,7 +64,7 @@ public class MiUsuario extends AppCompatActivity {
         getUser();
         getItemsWonCount();
 
-        subirFoto = findViewById(R.id.subirFoto);
+        //subirFoto = findViewById(R.id.subirFoto);
         editarPerfilBoton = findViewById(R.id.editarPerfilBoton);
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         nombre = findViewById(R.id.nombre);
@@ -137,12 +137,12 @@ public class MiUsuario extends AppCompatActivity {
         });
 
 
-        subirFoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SeleccionImagen();
-            }
-        });
+//        subirFoto.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                SeleccionImagen();
+//            }
+//        });
 
 
         editarPerfilBoton.setOnClickListener(new View.OnClickListener() {

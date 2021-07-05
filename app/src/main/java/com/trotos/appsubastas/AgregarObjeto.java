@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -40,11 +42,14 @@ public class AgregarObjeto extends AppCompatActivity {
     Button cargarObjeto;
     EditText nombreBox, artistaBox, nPlazaBox, descBox;
     ImageView imagenObjetos;
-    FloatingActionButton subirFoto;
+//    FloatingActionButton subirFoto;
     RadioGroup radioGroup;
     RadioButton botonEstandar, botonObra;
     Integer REQUEST_CAMERA = 1, SELECT_FILE = 0;
-    TextView labelNombreArtistaTextoObjetoEstandar;
+    TextView labelNombreArtistaTextoObjetoEstandar, tv6;
+
+
+    CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +62,7 @@ public class AgregarObjeto extends AppCompatActivity {
         }
 
         imagenObjetos = findViewById(R.id.imagenObjetos);
-        subirFoto = findViewById(R.id.subirFotoObjeto);
+//        subirFoto = findViewById(R.id.subirFotoObjeto);
         botonEstandar = findViewById(R.id.estandarBoton);
         botonObra = findViewById(R.id.obraBoton);
         radioGroup = findViewById(R.id.radioGroupObjetos);
@@ -68,6 +73,29 @@ public class AgregarObjeto extends AppCompatActivity {
         nPlazaBox = findViewById(R.id.nPlazaObjetoEstandar);
         descBox = findViewById(R.id.descripcionObjetoEstandar);
         cargarObjeto = findViewById(R.id.botonGargarObjeto);
+
+        checkBox = findViewById(R.id.checkBox);
+        tv6 = findViewById(R.id.tv6);
+
+        tv6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),TerminosyCondiciones.class);
+                startActivity(intent);
+            }
+        });
+
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(checkBox.isChecked()){
+                    cargarObjeto.setVisibility(View.VISIBLE);
+                }else {
+                    cargarObjeto.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
         cargarObjeto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,12 +132,12 @@ public class AgregarObjeto extends AppCompatActivity {
             }
         });
 
-        subirFoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SeleccionImagen();
-            }
-        });
+//        subirFoto.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                SeleccionImagen();
+//            }
+//        });
     }
 
     private boolean checkEstadoCamposObjetos(){

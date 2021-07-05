@@ -18,12 +18,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppSubastas"
-        android:usesCleartextTraffic="true"
-        >
-
+        android:usesCleartextTraffic="true">
+        <activity android:name=".TerminosyCondiciones"></activity>
         <activity android:name=".IniciarSesionActivity" />
         <activity android:name=".HistorialPujasDescripcionActivity" />
-        <activity android:name=".DetalleDeLaDescripcionActivity"></activity>
+        <activity android:name=".DetalleDeLaDescripcionActivity" />
         <activity android:name=".MisCatalogosPujadosActivity" />
         <activity android:name=".AgregarObjeto" />
         <activity android:name=".MenuInvitado" />
