@@ -400,7 +400,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/montserrat_medium"
-                    android:text="Comision: "
+                    android:text="Comisión: "
                     android:textColor="@color/black"
                     android:textSize="16dp"
                     android:textStyle="bold"
