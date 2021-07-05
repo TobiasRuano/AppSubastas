@@ -1,6 +1,7 @@
 package com.trotos.appsubastas;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +69,7 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
             descripcionBreve = itemView.findViewById(R.id.descripcionBreveTextView2);
             ValorActual = itemView.findViewById(R.id.valorActualTextView2);
             moneda = itemView.findViewById(R.id.monedaActualTextView2);
-            cv2 = itemView.findViewById(R.id.cv2);
+            cv2 = itemView.findViewById(R.id.cv5);
         }
 
         public void bindData(final ItemCatalogo item){
@@ -76,10 +77,15 @@ public class MyAdapterCatalogo extends RecyclerView.Adapter<MyAdapterCatalogo.Vi
             descripcion.setText(item.getTitle());
             descripcionBreve.setText(item.getDescription());
             moneda.setText(item.getCurrency());
-
+            item.getTimeStatus();
             String valorActualText = String.format("%,d", item.getBasePrice());
             ValorActual.setText(valorActualText);
 
+            if(item.getStatus().equals("Auctioning")) {
+                int myColor = Color.parseColor("#77dd77");
+                cv2.setCardBackgroundColor(myColor);
+            }
+            
             if(!estaRegistrado){
                 ValorActual.setVisibility(View.GONE);
                 moneda.setVisibility(View.GONE);
